@@ -4,19 +4,15 @@
 Advanced Configuration and Installation Options
 ================================================
 
-.. facet::
-   :name: programming_language
-   :values: cpp
-
-.. facet::
-   :name: genre
-   :values: reference
-
 .. contents:: On this page
    :local:
    :backlinks: none
    :depth: 1
    :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
 
 Additional Options for Integrators
 ----------------------------------
@@ -84,7 +80,6 @@ users.** A user can enable this behavior with the ``-DBUILD_SHARED_LIBS`` option
    cmake ..                                            \
        -DCMAKE_BUILD_TYPE=Release                      \
        -DBUILD_SHARED_LIBS=OFF
-
 
 Configuring with ``mongocxx`` 3.5.0 or Newer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

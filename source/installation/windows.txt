@@ -4,19 +4,15 @@
 Installation on Windows
 =======================
 
-.. facet::
-   :name: programming_language
-   :values: cpp
-
-.. facet::
-   :name: genre
-   :values: reference
-
 .. contents:: On this page
    :local:
    :backlinks: none
    :depth: 1
    :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
 
 Step 1: Choose a C++17 polyfill
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,7 +28,6 @@ release tarball.
 The `mongocxx releases <https://github.com/mongodb/mongo-cxx-driver/releases>`__
 page will have links to the release tarball for the version you wish you install.  For
 example, to download version 3.10.0:
-
 
 .. code-block:: bash
 
@@ -78,7 +73,6 @@ To build versions 3.7.0 and older without a C++17 polyfill, it is necessary to c
 <https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/>`__)
 - ``/EHsc`` to enable recommended `exception handling behavior <https://learn.microsoft.com/en-us/cpp/build/reference/eh-exception-handling-model?view=msvc-170>`__.
 
-
 .. code-block:: bash
 
    'C:\Program Files (x86)\CMake\bin\cmake.exe' .. \
@@ -101,7 +95,6 @@ Step 4: Build and install the driver
 
 Build and install the driver. Use ``--config`` to select a build configuration (e.g. ``Debug``, ``RelWithDebInfo``, ``Release``):
 
-
 .. code-block:: bash
 
    cmake --build . --config RelWithDebInfo
@@ -109,7 +102,6 @@ Build and install the driver. Use ``--config`` to select a build configuration (
 
 The driver can be uninstalled at a later time in one of two ways.  First,
 the uninstall target can be called:
-
 
 .. code-block:: bash
 

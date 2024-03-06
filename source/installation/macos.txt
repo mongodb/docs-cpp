@@ -4,19 +4,15 @@
 Installation on macOS
 =====================
 
-.. facet::
-   :name: programming_language
-   :values: cpp
-
-.. facet::
-   :name: genre
-   :values: reference
-
 .. contents:: On this page
    :local:
    :backlinks: none
    :depth: 1
    :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
 
 Step 1: Choose a C++17 polyfill
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,7 +28,6 @@ release tarball.
 The `mongocxx releases <https://github.com/mongodb/mongo-cxx-driver/releases>`__
 page will have links to the release tarball for the version you wish you install.  For
 example, to download version 3.10.0:
-
 
 .. code-block:: bash
 
@@ -50,7 +45,6 @@ Without additional configuration, ``mongocxx`` installs into its local build
 directory as a courtesy to those who build from source. To configure
 ``mongocxx`` for installation into ``/usr/local`` as well, use the following
 ``cmake`` command:
-
 
 .. code-block:: bash
 

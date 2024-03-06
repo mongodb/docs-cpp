@@ -4,19 +4,15 @@
 Testing
 =======
 
-.. facet::
-   :name: programming_language
-   :values: cpp
-
-.. facet::
-   :name: genre
-   :values: reference
-
 .. contents:: On this page
    :local:
    :backlinks: none
    :depth: 1
    :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
 
 Tests for the C++11 driver use
 `Catch <https://github.com/philsquared/Catch>`__, a testing framework for C++.

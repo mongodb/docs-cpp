@@ -4,19 +4,15 @@
 Installation on Linux
 =====================
 
-.. facet::
-   :name: programming_language
-   :values: cpp
-
-.. facet::
-   :name: genre
-   :values: reference
-
 .. contents:: On this page
    :local:
    :backlinks: none
    :depth: 1
    :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
 
 Step 1: Choose a C++17 polyfill
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,7 +67,6 @@ Step 4: Build and install the driver
 
 Build and install the driver:
 
-
 .. code-block:: bash
 
    cmake --build .
@@ -80,13 +75,11 @@ Build and install the driver:
 The driver can be uninstalled at a later time in one of two ways.  First,
 the uninstall target can be called:
 
-
 .. code-block:: bash
 
    sudo cmake --build . --target uninstall
 
 Second, the uninstall script can be called:
-
 
 .. code-block:: bash
 

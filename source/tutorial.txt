@@ -4,9 +4,11 @@
 Tutorial
 =========
 
-.. facet::
-   :name: programming_language
-   :values: cpp
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
 
 .. facet::
    :name: genre
@@ -480,7 +482,6 @@ index type for each field:
 .. code-block:: json
 
    { "index1": "<type>", "index2": "<type>" }
-
 
 - For an ascending index type, specify 1 for ``<type>``.
 - For a descending index type, specify -1 for ``<type>``.
