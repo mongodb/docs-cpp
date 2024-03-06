@@ -14,7 +14,6 @@ API and ABI Versioning
    :name: genre
    :values: reference
 
-
 API Versioning
 --------------
 
