@@ -2,6 +2,12 @@
 MongoDB C++ Driver
 ===================
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
 .. facet::
    :name: genre
    :values: reference
@@ -32,6 +38,8 @@ Driver Status by Family and Version
 
 Stability indicates whether this driver is recommended for production use.
 Currently, no drivers guarantee API or ABI stability.
+
+For documentation about previous releases, see the `legacy documentation <https://mongocxx.org/legacy-v1/>`__.
 
 .. list-table::
    :header-rows: 1
