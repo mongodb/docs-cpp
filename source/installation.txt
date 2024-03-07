@@ -17,6 +17,15 @@ Installation
 .. meta::
    :keywords: running
 
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   /installation/windows
+   /installation/macos
+   /installation/linux
+   /installation/advanced
+
 Prerequisites
 -------------
 
