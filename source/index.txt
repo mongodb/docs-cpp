@@ -36,7 +36,6 @@ Currently, no drivers guarantee API or ABI stability.
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
-   :widths: 25 15 25 35
 
    * - Family/version
      - Stability
