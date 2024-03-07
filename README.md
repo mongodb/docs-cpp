@@ -12,7 +12,7 @@ Please file issue reports or requests at the [Documentation Jira Project](https:
 
 Licenses
 --------
-
+  
 All documentation is available under the terms of a [Creative Commons
 License](https://creativecommons.org/licenses/by-nc-sa/3.0/).
 
