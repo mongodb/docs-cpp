@@ -24,7 +24,8 @@ MongoDB C++ Driver
    /working-with-bson
    /testing
    /contributing
-   View the Source <https://github.com/mongodb/mongo-cxx-driver>
+   API Documentation <https://mongocxx.org/api/current/>
+   Driver Source <https://github.com/mongodb/mongo-cxx-driver>
 
 Welcome to the MongoDB C++ driver.  On this site, you'll find documentation
 to help you get the most from MongoDB and C++.  If you're just starting
