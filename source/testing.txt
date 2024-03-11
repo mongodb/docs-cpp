@@ -66,7 +66,7 @@ Running Integration Tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some of the tests require a running mongod instance.  For this, first download
-the `mongodb server <https://www.mongodb.com/download-center>`__.
+the `Mongodb server <https://www.mongodb.com/download-center>`__.
 
 Then deploy a mongod on the default port with the command:
 

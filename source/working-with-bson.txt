@@ -263,7 +263,7 @@ document allows us to use the document multiple times:
 Optionally-owning BSON Documents (view_or_value)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Many driver methods take a document::view_or_value parameter, for example,
+Many driver methods take a ``document::view_or_value`` parameter, for example,
 `run_command <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/mongocxx/include/mongocxx/v_noabi/mongocxx/database.hpp#L144-L153>`__:
 
 .. code-block:: cpp
@@ -284,7 +284,7 @@ ownership of the document is transferred to the method.
    // Or you can move in a document::value
    db.run_command(std::move(ping));
 
-You shouldn't need to create view_or_value types directly in order to use
+You shouldn't need to create ``view_or_value`` types directly in order to use
 the driver.  They are offered as a convenience method to allow driver
 methods to take documents in either an owning or non-owning way.  The
 ``view_or_value`` type also helps mitigate some of the lifetime issues

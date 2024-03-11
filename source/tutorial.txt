@@ -393,7 +393,7 @@ The update methods return an instance of ``std::optional<
 mongocxx::result::update >``, which provides information about the operation
 including the number of documents modified by the update. For more information,
 see `mongocxx::result::update
-<{+api+}/classmongocxx_1_1v__noabi_1_1result_1_1update>`__
+<{+api+}/classmongocxx_1_1v__noabi_1_1result_1_1update>`__.
 
 Update a Single Document
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -437,7 +437,7 @@ To delete documents from a collection, you can use a collection's
 The delete methods return an instance of ``std::optional<
 mongocxx::result::delete >``, which contains the number of documents deleted.
 For more information, see `mongocxx::result::delete
-<{+api+}/classmongocxx_1_1v__noabi_1_1result_1_1delete__result>`__
+<{+api+}/classmongocxx_1_1v__noabi_1_1result_1_1delete__result>`__.
 
 Delete a Single Document
 ~~~~~~~~~~~~~~~~~~~~~~~~

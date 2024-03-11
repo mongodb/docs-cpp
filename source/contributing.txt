@@ -130,6 +130,7 @@ Guidelines:
 - Public section up top / private at bottom
 - Lifecycle methods first (see rules above)
 - Private Member Ordering
+  
   - Friendships
   - Private Constructors
   - Private Methods
