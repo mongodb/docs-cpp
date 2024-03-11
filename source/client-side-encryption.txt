@@ -21,7 +21,7 @@ New in MongoDB 4.2 `Client-Side Field Level Encryption (CSFLE) <https://www.mong
 
 With CSFLE, developers can encrypt fields client side without any server-side configuration or directives. Client-Side Field Level Encryption supports workloads where applications must guarantee that unauthorized parties, including server administrators, cannot read the encrypted data.
 
-For an overview of CSFLE, please read [the official MongoDB documentation in the manual](https://www.mongodb.com/docs/manual/core/security-client-side-encryption/).
+For an overview of CSFLE, please read :manual:`the official MongoDB documentation in the manual </core/security-client-side-encryption/>`.
 
 Installation
 ------------
@@ -29,7 +29,7 @@ Installation
 ``libmongocrypt``
 ~~~~~~~~~~~~~~~~~
 
-Client-Side Field Level Encryption relies on a C library called ``libmongocrypt`` to do the heavy lifting encryption work. This dependency is managed by the C driver.  As long as the C driver installation is 1.16.0 or higher, and has been compiled with Client-Side Field Level Encryption support, this dependency should be managed internally.  See the C driver's [Using Client-Side Field Level Encryption](https://mongoc.org/libmongoc/current/client-side-field-level-encryption.html) for more information.
+Client-Side Field Level Encryption relies on a C library called ``libmongocrypt`` to do the heavy lifting encryption work. This dependency is managed by the C driver.  As long as the C driver installation is 1.16.0 or higher, and has been compiled with Client-Side Field Level Encryption support, this dependency should be managed internally.  See the C driver's `Using Client-Side Field Level Encryption <https://mongoc.org/libmongoc/current/client-side-field-level-encryption.html>`__ for more information.
 
 ``mongocryptd``
 ~~~~~~~~~~~~~~~
@@ -40,7 +40,7 @@ Automatic CSFLE relies upon a new binary called ``mongocryptd`` running as a dae
 
 To run mongocryptd separately, pass the ``mongocryptdBypassSpawn`` flag to the client's auto encryption options:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto mongocryptd_options = make_document(kvp("mongocryptdBypassSpawn", true));
 
@@ -49,7 +49,7 @@ To run mongocryptd separately, pass the ``mongocryptdBypassSpawn`` flag to the c
 
 If the mongocryptd binary is on the current path, the driver will be able to spawn it without any custom flags.  However, if the mongocryptd binary is on a different path, set the path with the ``mongocryptdSpawnPath`` option:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto mongocryptd_options = make_document(kvp("mongocryptdSpawnPath", "path/to/mongocryptd"));
 
@@ -79,7 +79,7 @@ Supplying a ``schema_map`` provides more security than relying on JSON Schemas o
 
 JSON Schemas supplied in the ``schema_map`` only apply to configuring automatic client-side field level encryption. Other validation rules in the JSON schema will not be enforced by the driver and will result in an error.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    //
    // The schema map has the following form:
@@ -107,9 +107,9 @@ Server-Side Field Level Encryption Enforcement
 
 The MongoDB 4.2 server supports using schema validation to enforce encryption of specific fields in a collection. This schema validation will prevent an application from inserting unencrypted values for any fields marked with the ``"encrypt"`` JSON schema keyword.
 
-It is possible to set up automatic client-side field level encryption using the ``mongocxx::client_encryption`` to create a new encryption data key and create a collection with the [Automatic Encryption JSON Schema Syntax](https://www.mongodb.com/docs/manual/reference/security-client-side-automatic-json-schema/).
+It is possible to set up automatic client-side field level encryption using the ``mongocxx::client_encryption`` to create a new encryption data key and create a collection with the :manual:`Automatic Encryption JSON Schema Syntax </reference/security-client-side-automatic-json-schema/>`.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    // Please see the linked example below for full json_schema construction.
    bsoncxx::document::value json_schema{};
@@ -130,7 +130,7 @@ Explicit Encryption
 
 Explicit encryption is a MongoDB community feature and does not use the ``mongocryptd`` process. Explicit encryption is provided by the ``mongocxx::client_encryption`` class.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    // Explicitly encrypt a BSON value.
    auto to_encrypt = bsoncxx::types::bson_value::make_value("secret message");
@@ -146,7 +146,7 @@ Explicit Encryption with Automatic Decryption
 
 Although automatic encryption requires MongoDB 4.2 enterprise or a MongoDB 4.2 Atlas cluster, automatic decryption is supported for all users. To configure automatic decryption without automatic encryption, set ``bypass_auto_encryption=True`` in the ``options::auto_encryption`` class.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    options::auto_encryption auto_encrypt_opts{};
    auto_encrypt_opts.bypass_auto_encryption(true);

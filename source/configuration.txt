@@ -26,7 +26,9 @@ Configuring TLS/SSL
 
 To enable TLS (SSL), set ``tls=true`` in the URI:
 
-> ``mongodb://mongodb.example.com/?tls=true``
+.. code-block:: cpp
+
+   mongodb://mongodb.example.com/?tls=true
 
 By default, mongocxx will verify server certificates against the local
 system CA list.  You can override that either by specifying different settings in
@@ -37,7 +39,7 @@ object and passing it to ``tls_opts`` on ``mongocxx::options::client``.
 For example, to use a custom CA or to disable certificate validation,
 see the following example:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    // 1) Using tls_options
    mongocxx::options::client client_options;
@@ -71,7 +73,7 @@ to authenticate from:
 
 .. _cpp-configuration-default-auth:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    #include <mongocxx/client.hpp>
    #include <mongocxx/uri.hpp>
@@ -85,7 +87,7 @@ To explicitly create a credential of type ``SCRAM-SHA-1`` use a connection
 string as above but with a parameter specifying the authentication
 mechanism as ``"SCRAM-SHA-1"``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    #include <mongocxx/client.hpp>
    #include <mongocxx/uri.hpp>
@@ -113,7 +115,7 @@ parameter that specifies the authentication mechanism as ``"MONGODB-X509"``,
 that specifies the path to the PEM file containing the client private key
 and certificate, and that has TLS enabled:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    #include <mongocxx/client.hpp>
    #include <mongocxx/uri.hpp>
@@ -122,8 +124,7 @@ and certificate, and that has TLS enabled:
        uri{"mongodb://host1/?authMechanism=MONGODB-X509&tlsCertificateFile=client.pem&tls=true"}
        };
 
-See the MongoDB server `X.509 tutorial
-<https://www.mongodb.com/docs/manual/tutorial/configure-x509-client-authentication/>`__
+See the MongoDB server :manual:`X.509 tutorial </tutorial/configure-x509-client-authentication/>`
 for more information about determining the subject name from the certificate.
 
 The PEM file can also be specified using the `mongocxx::options::tls
@@ -139,7 +140,7 @@ credential of type `Kerberos (GSSAPI) <https://www.mongodb.com/docs/manual/core/
 use a connection string with the username and realm in the URI as well as
 a parameter specifying the authentication mechanism as ``"GSSAPI"``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    #include <mongocxx/client.hpp>
    #include <mongocxx/uri.hpp>
@@ -162,7 +163,7 @@ connection string specifying the user as well as parameters specifying
 the authentication source as ``"$external"`` and the authentication mechanishm
 as ``"PLAIN"``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    #include <mongocxx/client.hpp>
    #include <mongocxx/uri.hpp>
@@ -180,7 +181,7 @@ Then, call ``mongocxx::pool::acquire`` to receive a client from the pool.
 The client will automatically be returned to the pool when it goes out of
 scope.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    #include <mongocxx/pool.hpp>
    #include <mongocxx/uri.hpp>

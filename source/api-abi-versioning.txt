@@ -41,7 +41,7 @@ Sonames and Symlinks
 
    - Below examples are given for libmongocxx, but also apply to libbsoncxx
    
-   - Dynamic Shared Object (DSO) refers to Ulrich Drepper's
+   - DSO refers to Dynamic Shared Object, to use Ulrich Drepper’s terminology
 
 Windows (MSVC only)
 ~~~~~~~~~~~~~~~~~~~
@@ -113,7 +113,7 @@ In the release that marks a feature as deprecated we offer several transition op
 In the following release, the original feature marked with ``MONGOCXX_DEPRECATED`` and its
 suffixed ``_deprecated`` equivalent will be removed.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    // release 1 with a supported feature
    void do_thing();
@@ -129,7 +129,7 @@ suffixed ``_deprecated`` equivalent will be removed.
 In the case of a feature rename we do not offer a suffixed ``_deprecated`` variant,
 as one can simply switch to using the new name with the same amount of effort.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    // release 1 with a supported feature
    void do_thing();

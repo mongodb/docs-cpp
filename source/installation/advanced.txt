@@ -253,9 +253,10 @@ Consider setting ``-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE`` so the rpath for t
    $HOME/app/bin/app.out
    # Prints "successfully connected with C++ driver"
 
-See the cmake documentation for [RPATH handling](https://gitlab.kitware.com/cmake/community/-/wikis/doc/cmake/RPATH-handling) for more information.
+See the cmake documentation for `RPATH handling <https://gitlab.kitware.com/cmake/community/-/wikis/doc/cmake/RPATH-handling>`__ for more information.
 
-### Fixing the "cannot open shared object file" error on Linux
+Fixing the "cannot open shared object file" error on Linux
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Applications linking to a non-standard directory installation may encounter an error loading the C++ driver at runtime. Example:
 

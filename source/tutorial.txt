@@ -30,7 +30,7 @@ Prerequisites
 
 - The following statements at the top of your source file:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    #include <cstdint>
    #include <iostream>
@@ -93,14 +93,14 @@ to build the C++ driver or for the `latest libmongoc release <https://mongoc.org
 The default ``mongocxx::uri`` constructor will connect to a
 server running on localhost on port ``27017``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    mongocxx::instance instance{}; // This should be done only once.
    mongocxx::client client{mongocxx::uri{}};
 
 This is equivalent to the following:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    mongocxx::instance instance{}; // This should be done only once.
    mongocxx::uri uri("mongodb://localhost:27017");
@@ -120,7 +120,7 @@ first store data.
 
 The following example accesses the ``mydb`` database:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto db = client["mydb"];
 
@@ -140,7 +140,7 @@ For example, using the ``db`` instance created in the previous section,
 the following statement accesses the collection named ``test`` in the
 ``mydb`` database:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto collection = db["test"];
 
@@ -176,7 +176,7 @@ For example, consider the following JSON document:
 Using the basic builder interface, you can construct this document
 as follows:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto doc_value = make_document(
         kvp("name", "MongoDB"),
@@ -190,7 +190,7 @@ This ``bsoncxx::document::value`` type is a read-only object owning its own
 memory. To use it, you must obtain a `bsoncxx::document::view <{+api+}/classbsoncxx_1_1v__noabi_1_1document_1_1view>`__ using
 the ``view()`` method:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto doc_view = doc_value.view();
 
@@ -200,7 +200,7 @@ which will return a
 instance. For example, the following will extract the ``name`` field whose
 value is a string:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto element = doc_view["name"];
    assert(element.type() == bsoncxx::type::k_string);
@@ -221,7 +221,7 @@ To insert a single document into the collection, use a
 `mongocxx::collection <{+api+}/classmongocxx_1_1v__noabi_1_1collection>`__
 instance's ``insert_one()`` method to insert ``{ "i": 0 }``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto insert_one_result = collection.insert_one(make_document(kvp("i", 0)));
 
@@ -231,7 +231,7 @@ example, ``insert_one_result`` is expected to be set. The default behavior for
 write operations is to wait for a reply from the server. This may be overridden by setting an unacknowledged
 `mongocxx::write_concern <{+api+}/classmongocxx_1_1v__noabi_1_1write__concern>`__.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    assert(insert_one_result);  // Acknowledged writes return results.
 
@@ -242,7 +242,7 @@ You can obtain this value using the ``inserted_id()`` method of the returned
 `mongocxx::result::insert_one
 <{+api+}/classmongocxx_1_1v__noabi_1_1result_1_1insert__one>`__ instance.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto doc_id = insert_one_result->inserted_id();
    assert(doc_id.type() == bsoncxx::type::k_oid);
@@ -257,7 +257,7 @@ To insert multiple documents to the collection, use a
 The following example inserts the documents ``{ "i": 1 }`` and ``{ "i": 2 }``.
 Create the documents and add to the documents list:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    std::vector<bsoncxx::document::value> documents;
    documents.push_back(make_document(kvp("i", 1)));
@@ -265,7 +265,7 @@ Create the documents and add to the documents list:
 
 To insert these documents to the collection, pass the list of documents to the ``insert_many()`` method.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto insert_many_result = collection.insert_many(documents);
    assert(insert_many_result);  // Acknowledged writes return results.
@@ -277,7 +277,7 @@ You can obtain this value using the ``inserted_ids()`` method of the
 returned `mongocxx::result::insert_many <{+api+}/classmongocxx_1_1v__noabi_1_1result_1_1insert__many>`__
 instance.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto doc0_id = insert_many_result->inserted_ids().at(0);
    auto doc1_id = insert_many_result->inserted_ids().at(1);
@@ -305,7 +305,7 @@ Find a Single Document in a Collection
 To return a single document in the collection, use the ``find_one()``
 method without any parameters.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto find_one_result = collection.find_one({});
    if (find_one_result) {
@@ -316,7 +316,7 @@ method without any parameters.
 Find All Documents in a Collection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto cursor_all = collection.find({});
    for (auto doc : cursor_all) {
@@ -329,7 +329,7 @@ Print All Documents in a Collection
 
 The `bsoncxx::to_json <{+api+}/namespacebsoncxx>`__ function converts a BSON document to a JSON string.
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto cursor_all = collection.find({});
    std::cout << "collection " << collection.name()
@@ -362,7 +362,7 @@ Get A Single Document That Matches a Filter
 To find the first document where the field ``i`` has the value ``0``,
 pass the document ``{"i": 0}`` to specify the equality condition:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto find_one_filtered_result = collection.find_one(make_document(kvp("i", 0)));
    if (find_one_filtered_result) {
@@ -374,7 +374,7 @@ Get All Documents That Match a Filter
 
 The following example gets all documents where ``0 < "i" <= 2``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto cursor_filtered =
        collection.find(make_document(kvp("i", make_document(kvp("$gt", 0), kvp("$lte", 2)))));
@@ -403,7 +403,7 @@ To update at most one document, use the ``update_one()`` method.
 The following example updates the first document that matches the filter
 ``{ "i": 0 }`` and sets the value of ``foo`` to ``bar``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto update_one_result =
        collection.update_one(make_document(kvp("i", 0)),
@@ -420,7 +420,7 @@ method.
 The following example sets the value of ``foo`` to ``buzz`` where
 ``i`` is greater than ``0``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto update_many_result =
        collection.update_many(make_document(kvp("i", make_document(kvp("$gt", 0)))),
@@ -448,7 +448,7 @@ To delete at most a single document that matches a filter, use the
 For example, to delete a document that matches the filter
 ``{ "i": 0 }``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto delete_one_result = collection.delete_one(make_document(kvp("i", 0)));
    assert(delete_one_result);  // Acknowledged writes return results.
@@ -462,7 +462,7 @@ To delete all documents matching a filter, use a collection's
 
 The following example deletes all documents where ``i`` is greater than ``0``:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto delete_many_result =
        collection.delete_many(make_document(kvp("i", make_document(kvp("$gt", 0)))));
@@ -488,7 +488,7 @@ index type for each field:
 
 The following example creates an ascending index on the ``i`` field:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    auto index_specification = make_document(kvp("i", 1));
    collection.create_index(std::move(index_specification));

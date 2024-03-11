@@ -56,6 +56,7 @@ Package Managers
 ----------------
 
 The Mongo C++ driver is available in the following package managers.
+
 - `Vcpkg <https://vcpkg.io/>`__ (search for mongo-cxx-driver)
 - `Conan <https://conan.io/center/recipes/mongo-cxx-driver>`__
 - `Homebrew <https://formulae.brew.sh/formula/mongo-cxx-driver>`__
@@ -116,7 +117,7 @@ initalization command below:
    $ pip install conan
    $ conan profile detect --force
 
-Add the following to your ``conanfile.txt``
+Add the following to your ``conanfile.txt``:
 
 .. code-block:: none
 

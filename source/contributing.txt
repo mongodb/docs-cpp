@@ -37,13 +37,17 @@ If a pull-request addresses a JIRA ticket, for a single-commit PR, prefix
 the subject line with the ticket ID.  (For a multi-commit PR, we will add
 the ID later when we squash or merge it.)
 
-> CXX-883 Add commit message conventions to CONTRIBUTING.md
+.. code-block:: none
+
+   CXX-883 Add commit message conventions to CONTRIBUTING.md
 
 Capitalize subject lines and don't use a trailing period.  Keep the subject
 at most 70 characters long.  Use active voice!  Imagine this preamble to get
 your phrasing right:
 
-> *If applied, this commit will...* [your subject line]
+.. code-block:: none
+
+   If applied, this commit will... [your subject line]
 
 See Chris Beams'
 `How to write a git commit message <http://chris.beams.io/posts/git-commit/>`__
@@ -81,7 +85,7 @@ General structure:
 
 Example:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    // Copyright 2018-present MongoDB Inc.
    //
@@ -133,7 +137,7 @@ Guidelines:
 
 Example:
 
-.. code-block:: c++
+.. code-block:: cpp
 
    class foo {
 

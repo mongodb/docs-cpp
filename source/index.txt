@@ -16,12 +16,16 @@ MongoDB C++ Driver
    :titlesonly:
    :maxdepth: 1
 
-   /installation
-   /tutorial
    /polyfill-selection
-   /reporting-bugs
+   /installation
+   /configuration
+   /client-side-encryption
+   /tutorial
    /thread-safety
+   /connection-pools
    /working-with-bson
+   /api-abi-versioning
+   /reporting-bugs
    /testing
    /contributing
    API Documentation <https://mongocxx.org/api/current/>

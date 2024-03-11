@@ -29,7 +29,7 @@ child object.
 Incorrect Threading Example
 ---------------------------
 
-.. code-block:: c++
+.. code-block:: cpp
 
    mongocxx::instance instance{};
    mongocxx::uri uri{};
@@ -61,7 +61,7 @@ same problem occurs if ``db2`` is a copy of ``db1``.
 Acceptable Threading Example
 -----------------------------
 
-.. code-block:: c++
+.. code-block:: cpp
 
    mongocxx::instance instance{};
    mongocxx::uri uri{};
@@ -87,7 +87,7 @@ Acceptable Threading Example
 Ideal Threading Example
 -----------------------
 
-.. code-block:: c++
+.. code-block:: cpp
   
    mongocxx::instance instance{};
    mongocxx::pool pool{mongocxx::uri{}};
