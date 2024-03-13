@@ -24,6 +24,18 @@ Per `The Linux Documentation Project <https://tldp.org/HOWTO/Program-Library-HOW
 
 - Every shared library has a special name called the \`\`soname''. The soname has the prefix \`\`lib'', the name of the library, the phrase \`\`.so'', followed by a period and a version number that is incremented whenever the interface changes (as a special exception, the lowest-level C libraries don't start with \`\`lib''). A fully-qualified soname includes as a prefix the directory it's in; on a working system a fully-qualified soname is simply a symbolic link to the shared library's \`\`real name''.
 
+\``\``
+
+\`\`
+
+\` \`
+
+\\` \\`
+
+``
+
+` `
+
 Per `CMake documentation <https://cmake.org/cmake/help/latest/prop_tgt/SOVERSION.html>`__:
 
 - For shared libraries ``VERSION`` and ``SOVERSION`` can be used to specify the build version and ABI version respectively. When building or installing appropriate symlinks are created if the platform supports symlinks and the linker supports so-names. If only one of both is specified the missing is assumed to have the same version number.
