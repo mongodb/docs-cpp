@@ -67,7 +67,9 @@ To build with Visual Studio 2017 without a C++17 polyfill, configure as follows:
 Configuring with ``mongocxx`` 3.7.0 and Older
 `````````````````````````````````````````````
 
-To build versions 3.7.0 and older without a C++17 polyfill, it is necessary to configure with additional options:
+To build versions 3.7.0 and older without a C++17 polyfill, it is necessary to
+configure with additional options:
+
 - ``/Zc:__cplusplus`` to opt into the correct definition of ``__cplusplus``
 (`problem described here
 <https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/>`__)
