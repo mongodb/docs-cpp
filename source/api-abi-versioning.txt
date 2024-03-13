@@ -18,8 +18,8 @@ API and ABI Versioning
    :titlesonly:
    :maxdepth: 1
 
-   /api-abi-versioning/abi-versioning
    /api-abi-versioning/api-versioning
+   /api-abi-versioning/abi-versioning
 
 For brevity, this page may describe properties and features as-if they only apply to the bsoncxx library.
 Unless stated otherwise, one may assume the properties and features described are similarly applicable to the mongocxx library.
@@ -27,12 +27,12 @@ Unless stated otherwise, one may assume the properties and features described ar
 API Versioning
 --------------
 
-See `API Versioning <{+api+}/policies/api-versioning>`__.
+See :ref:`API Versioning <cpp-api-versioning-policy>`.
 
 ABI Versioning
 --------------
 
-See `ABI Versioning <{+api+}/policies/abi-versioning>`__.
+See :ref:`ABI Versioning <cpp-abi-versioning-policy>`.
 
 Header File Structure
 ---------------------

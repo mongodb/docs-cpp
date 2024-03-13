@@ -37,7 +37,11 @@ The API version number is updated according to SemVer and the definition of the 
 
 .. important::
 
-   Only the stability of the public API is communicated by the API version number. Backward (in)compatible changes to the private API are not communicated by the API version number.
+   Only the stability of the public API is communicated by the API version
+   number. Backward (in)compatible changes to the private API are not
+   communicated by the API version number.
+
+.. _cpp-api-source-compatibility:
 
 Source Compatibility
 --------------------
@@ -68,10 +72,12 @@ If there is an entity that *should* be documented, but is currently not, please 
 
    Some entities that are part of the public API may not be part of the stable ABI. Conversely, some symbols that are part of the stable ABI may not be part of the public API. See `ABI Versioning Policy <{+api+}/abi-versioning#binary-compatibility>`__.
 
+.. _cpp-api-build-sys-compat:
+
 Build System Compatibility
 --------------------------
 
-Although the public API depends on the configuration of the build system, the build system itself is **_NOT_** part of the public API.
+Although the public API depends on the configuration of the build system, the build system itself is **NOT** part of the public API.
 
 Properties of the build system include:
 
@@ -100,9 +106,14 @@ Therefore, ``BSONCXX_OUTPUT_NAME`` is *not* considered part of the public API.
 Root Namespace Redeclarations
 -----------------------------
 
-The API of C++ Driver libraries uses root namespace redeclarations of ABI namespace entities to facilitate incremental changes to the ABI: see `Root Namespace Redeclarations <{+api+}/abi-versioning#root-namespace-redeclarations>`__.
+The API of C++ Driver libraries uses root namespace redeclarations of ABI
+namespace entities to facilitate incremental changes to the ABI. For more
+information, see :ref:`ABI Root
+Namespace Redeclarations <cpp-abi-root-namespace-redec>`.
 
 Entities that are not part of the stable ABI or the public API may be declared in the root namespace without being a member of any particular ABI namespace (e.g. ``bsoncxx::detail``).
+
+.. _cpp-api-dep-and-rem:
 
 Deprecation and Removal
 -----------------------
@@ -114,6 +125,7 @@ When able, the backward incompatible entity or behavior will be provided alongsi
 Users are strongly encouraged to apply the clean transition when such an opportunity is provided: please do not continue to use deprecated entities or behavior.
 
 .. note::
+    
    Providing a clean transition path in a minor release may not always be possible.
 
 A deprecated entity or behavior will be documented using one or more of the following methods (not exhaustive):

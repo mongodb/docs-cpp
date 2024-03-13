@@ -22,7 +22,7 @@ Per `Ulrich Drepper <https://www.cs.dartmouth.edu/~sergey/cs258/ABI/UlrichDreppe
 
 Per `The Linux Documentation Project <https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html>`__:
 
-- Every shared library has a special name called the \``\``soname''. The soname has the prefix \``\``lib'', the name of the library, the phrase \``\``.so'', followed by a period and a version number that is incremented whenever the interface changes (as a special exception, the lowest-level C libraries don't start with \``\``lib''). A fully-qualified soname includes as a prefix the directory it's in; on a working system a fully-qualified soname is simply a symbolic link to the shared library's \``\``real name''.
+- Every shared library has a special name called the \`\`soname''. The soname has the prefix \`\`lib'', the name of the library, the phrase \`\`.so'', followed by a period and a version number that is incremented whenever the interface changes (as a special exception, the lowest-level C libraries don't start with \`\`lib''). A fully-qualified soname includes as a prefix the directory it's in; on a working system a fully-qualified soname is simply a symbolic link to the shared library's \`\`real name''.
 
 Per `CMake documentation <https://cmake.org/cmake/help/latest/prop_tgt/SOVERSION.html>`__:
 
@@ -43,7 +43,7 @@ The ABI version number is bumped whenever there is a backward incompatible chang
 Binary Compatibility
 --------------------
 
-An *ABI namespace* is declared within the library's root namespace (see `Source Compatibility <{+api+}/api-versioning#source-compatibility>`__), prefixed with the letter ``v`` and followed by either an integer or ``_noabi``.
+An *ABI namespace* is declared within the library's root namespace (see :ref:`Source Compatibility <cpp-api-source-compatibility>`), prefixed with the letter ``v`` and followed by either an integer or ``_noabi``.
 
 Examples of ABI namespaces include (relative to the global namespace scope):
 
@@ -86,12 +86,14 @@ If there is a symbol that *should* be exported or part of the stable ABI, but is
 
 .. note::
 
-   Some entities that are part of the public API may not be part of the stable ABI (e.g. inline functions, inline variables, and template instantiations of functions and variables). Conversely, some entities that are part of the stable ABI may not be part of the public API (e.g. an exported private member function). See `API Versioning <{+api+}/api-versioning>`__.
+   Some entities that are part of the public API may not be part of the stable ABI (e.g. inline functions, inline variables, and template instantiations of functions and variables). Conversely, some entities that are part of the stable ABI may not be part of the public API (e.g. an exported private member function). See :ref:`API Versioning <cpp-api-versioning-policy>`.
 
 Build System Compatibility
 --------------------------
 
-The stable ABI policy concerning properties of the build system is mostly the same as that for the public API (see `Build System Compatibility <{+api+}/api-versioning#build-system-compatibility>`__ with the following differences:
+The stable ABI policy concerning properties of the build system is mostly the
+same as that for the public API (see :ref:`API Build System Compatibility
+<cpp-api-build-sys-compat>` with the following differences:
 
 - Instead of properties that directly impact the public API, properties that directly impact the stable ABI are considered part of the stable ABI.
 - **The soname is considered part of the stable ABI**. This means, in contrast to the public API, ``BSONCXX_OUTPUT_NAME`` is considered part of the stable ABI, as it directly impacts the soname of the resulting bsoncxx shared library.
@@ -99,7 +101,15 @@ The stable ABI policy concerning properties of the build system is mostly the sa
 
 .. note::
 
-   We support the the stability of the public API *per build configuration*. We do not support compatibility of the public API *across* different build configurations. For example, a shared library generated with ``BSONCXX_OUTPUT_NAME=bsoncxx`` is not expected to be compatible with a program compiled against a stable ABI produced using a build configuration with ``BSONCXX_OUTPUT_NAME=bsoncxx-custom-basename``. (This is particularly important when using multi-config generators such as Visual Studio!)
+   We support the the stability of the public API *per build configuration*. We
+   do not support compatibility of the public API *across* different build
+   configurations. For example, a shared library generated with
+   ``BSONCXX_OUTPUT_NAME=bsoncxx`` is not expected to be compatible with a
+   program compiled against a stable ABI produced using a build configuration
+   with ``BSONCXX_OUTPUT_NAME=bsoncxx-custom-basename``. (This is particularly
+   important when using multi-config generators such as Visual Studio!)
+   
+.. _cpp-abi-root-namespace-redec:
 
 Root Namespace Redeclarations
 -----------------------------
@@ -157,8 +167,7 @@ Deprecation and Removal
 -----------------------
 
 The policy for deprecation and removal of symbols in the stable ABI is the same
-as that for the public API: see `Deprecation and Removal <{+api+}
-api-versioning#deprecation-and-removal>`__.
+as that for the public API. For more information, see :ref:`API Deprecation and Removal <cpp-api-dep-and-rem>`.
 
 A release containing binary incompatible changes will bump the ABI version number rather than the API major version number.
 However, it is likely that when the ABI version number is bumped, the API major version number will also be bumped, as a binary incompatible change is likely to also be a source incompatible change.
