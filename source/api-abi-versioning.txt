@@ -63,7 +63,7 @@ from the *latest* ABI namespace directory whenever available.
 
 .. note::
 
-   The stability of an _undocumented_ include directive is not supported.
+   The stability of an *undocumented* include directive is not supported.
 
 Package files are installed to subdirectories in ``${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/``.
 Users are strongly encouraged to use these package files to obtain bsoncxx library header (as well for linking and the setting of compile flags).
@@ -139,7 +139,7 @@ For example, assuming the C++ driver was installed to a prefix ``$INSTALLDIR``:
 
 .. note::
 
-   The C Driver is a required dependency of C++ Driver. The CMake package config
+   The C Driver is a required dependency for the C++ Driver. The CMake package config
    files for the C Driver may also need to be imported using the same (or
    similar) approach to satisfy this dependency. 
 
@@ -210,9 +210,9 @@ parallel and without conflict. See references to
 ``ENABLE_ABI_TAG_IN_LIBRARY_FILENAMES`` and related code in the CMake
 configuration for more details.
 
-For example, the following install prefix directory contains the expected debug _and_ release library files for a bsoncxx library with API version ``1.2.3`` and ABI version ``10`` (the bin directory is included to account for ``.dll`` files):
+For example, the following install prefix directory contains the expected debug *and* release library files for a bsoncxx library with API version ``1.2.3`` and ABI version ``10`` (the bin directory is included to account for ``.dll`` files):
 
-.. code-block:: bash
+.. code-block:: none
 
    ${CMAKE_INSTALL_PREFIX}/
    ├── ${CMAKE_INSTALL_BINDIR}/

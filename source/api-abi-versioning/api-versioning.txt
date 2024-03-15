@@ -19,19 +19,17 @@ The C++ Driver uses Semantic Versioning (aka SemVer) for API versioning.
 Per the `SemVer specification <http://semver.org/>`__, given a version number
 format of MAJOR.MINOR.PATCH, increment vaules when the following changes occur:
 
-- MAJOR
-   when you make incompatible API changes
-- MINOR
-   when you add functionality in a backward compatible manner
-- PATCH
-   when you make backward compatible bug fixes
+- MAJOR: when you make incompatible API changes
+- MINOR: when you add functionality in a backward compatible manner
+- PATCH: when you make backward compatible bug fixes
 
 For purposes of API versioning, we distinguish between the *public API* and the
-*private API*. For this system to work, you first need to declare a public API.
-This may consist of documentation or be enforced by the code itself. Regardless,
-it is important that this API be clear and precise. Once you identify your
-public API, you communicate changes to it with specific increments to your
-version number.
+*private API*: 
+
+  For this system to work, you first need to declare a public API. This may
+   consist of documentation or be enforced by the code itself. Regardless, it is
+   important that this API be clear and precise. Once you identify your public API,
+   you communicate changes to it with specific increments to your version number.*
 
 The API version number is updated according to SemVer and the definition of the public API below.
 
@@ -70,7 +68,7 @@ If there is an entity that *should* be documented, but is currently not, please 
 
 .. note::
 
-   Some entities that are part of the public API may not be part of the stable ABI. Conversely, some symbols that are part of the stable ABI may not be part of the public API. See `ABI Versioning Policy <{+api+}/abi-versioning#binary-compatibility>`__.
+   Some entities that are part of the public API may not be part of the stable ABI. Conversely, some symbols that are part of the stable ABI may not be part of the public API. See :ref:`ABI Versioning Policy <cpp-abi-binary-compatibility>`.
 
 .. _cpp-api-build-sys-compat:
 
@@ -83,6 +81,7 @@ Properties of the build system include:
 
 - CMake configuration variables and corresponding behavior (with some exceptions: see below).
 - The name, location, and contents of:
+
   - CMake source files (e.g. under ``${PROJECT_SOURCE_DIR}``).
   - CMake binary files (e.g. under ``${PROJECT_BINARY_DIR}``).
   - Installed library files (e.g. under ``{CMAKE_INSTALL_LIBDIR}``).
@@ -91,7 +90,7 @@ Properties of the build system include:
 However, build system configuration variables that directly impact the public API are considered part of the public API.
 
 For example, C++17 polyfills declared in the ``bsoncxx::stdx`` namespace depend on configuration variables that determine the polyfill library used, e.g. ``CMAKE_CXX_STANDARD``, ``BSONCXX_POLY_USE_STD``, etc.
-A build configuration using ``CMAKE_CXX_STANDARD=17`` produces a public API where ``bsoncxx::stdx::optional<T- == std::optional<T>``.
+A build configuration using ``CMAKE_CXX_STANDARD=17`` produces a public API where ``bsoncxx::stdx::optional<T> == std::optional<T>``.
 Because changing the type of ``bsoncxx::stdx::optional<T>`` such that it is no longer equivalent to ``std::optional<T>`` is a breaking change to the public API, changing the polyfill library selection behavior of ``CMAKE_CXX_STANDARD`` is also a breaking change to the public API.
 Therefore, ``CMAKE_CXX_STANDARD`` is considered part of the public API.
 
@@ -101,7 +100,7 @@ Therefore, ``BSONCXX_OUTPUT_NAME`` is *not* considered part of the public API.
 
 .. note::
 
-   We support the the stability of the public API *per build configuration*. We do not support compatibility of the public API *across* different build configurations. For example, a public API produced using a build configuration with ``CMAKE_BUILD_TYPE=Debug`` is not expected to be compatible with a program compiled against a public API produced using a build configuration with ``CMAKE_BUILD_TYPE=Release``. (This is particularly important when using multi-config generators such as Visual Studio!)
+   We support the stability of the public API *per build configuration*. We do not support compatibility of the public API *across* different build configurations. For example, a public API produced using a build configuration with ``CMAKE_BUILD_TYPE=Debug`` is not expected to be compatible with a program compiled against a public API produced using a build configuration with ``CMAKE_BUILD_TYPE=Release``. (This is particularly important when using multi-config generators such as Visual Studio!)
 
 Root Namespace Redeclarations
 -----------------------------

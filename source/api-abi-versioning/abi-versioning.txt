@@ -18,11 +18,21 @@ The C++ Driver uses Ulrich Drepper's guide to *Defining Stability*, the Linux sh
 
 Per `Ulrich Drepper <https://www.cs.dartmouth.edu/~sergey/cs258/ABI/UlrichDrepper-How-To-Write-Shared-Libraries.pdf>`__:
 
-- The definition of stability should therefore use the *documented* interface as the basis. Legitimate uses of interfaces should not be affected by changes in the implementation; using interfaces in an undefined way void the warranty. The same is true for using completely undocumented, internal symbols. Those must not be used at all.
+  The definition of stability should therefore use the *documented* interface as
+   the basis. Legitimate uses of interfaces should not be affected by changes in
+   the implementation; using interfaces in an undefined way void the warranty.
+   The same is true for using completely undocumented, internal symbols. Those
+   must not be used at all.
 
 Per `The Linux Documentation Project <https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html>`__:
 
-- Every shared library has a special name called the ` ` soname''. The soname has the prefix ` ` lib'', the name of the library, the phrase ` ` .so'', followed by a period and a version number that is incremented whenever the interface changes (as a special exception, the lowest-level C libraries don't start with ` ` lib''). A fully-qualified soname includes as a prefix the directory it's in; on a working system a fully-qualified soname is simply a symbolic link to the shared library's ` ` real name''.
+  Every shared library has a special name called the ` ` soname''. The soname
+   has the prefix ` ` lib'', the name of the library, the phrase ` ` .so'',
+   followed by a period and a version number that is incremented whenever the
+   interface changes (as a special exception, the lowest-level C libraries don't
+   start with ` ` lib''). A fully-qualified soname includes as a prefix the
+   directory it's in; on a working system a fully-qualified soname is simply a
+   symbolic link to the shared library's ` ` real name''.
 
 Per `CMake documentation <https://cmake.org/cmake/help/latest/prop_tgt/SOVERSION.html>`__:
 
@@ -39,6 +49,8 @@ The ABI version number is bumped whenever there is a backward incompatible chang
 .. note::
 
    The ABI versioning policy is only applicable to *shared libraries*. It does not apply to static libraries.
+
+.. _cpp-abi-binary-compatibility:
 
 Binary Compatibility
 --------------------
@@ -93,7 +105,7 @@ Build System Compatibility
 
 The stable ABI policy concerning properties of the build system is mostly the
 same as that for the public API (see :ref:`API Build System Compatibility
-<cpp-api-build-sys-compat>` with the following differences:
+<cpp-api-build-sys-compat>`) with the following differences:
 
 - Instead of properties that directly impact the public API, properties that directly impact the stable ABI are considered part of the stable ABI.
 - **The soname is considered part of the stable ABI**. This means, in contrast to the public API, ``BSONCXX_OUTPUT_NAME`` is considered part of the stable ABI, as it directly impacts the soname of the resulting bsoncxx shared library.
@@ -101,8 +113,8 @@ same as that for the public API (see :ref:`API Build System Compatibility
 
 .. note::
 
-   We support the the stability of the public API *per build configuration*. We
-   do not support compatibility of the public API *across* different build
+   We support the stability of the stable API *per build configuration*. We
+   do not support compatibility of the stable API *across* different build
    configurations. For example, a shared library generated with
    ``BSONCXX_OUTPUT_NAME=bsoncxx`` is not expected to be compatible with a
    program compiled against a stable ABI produced using a build configuration
@@ -118,9 +130,9 @@ The root namespace provides "redeclarations" of entities declared in an ABI name
 
 For example, all of the following redeclarations may be present simultaneously:
 
-- ``bsoncxx::example::foo`` -- ``bsoncxx::v_noabi::example::foo``
-- ``bsoncxx::example::bar`` -- ``bsoncxx::v1::example::bar``
-- ``bsoncxx::example::baz`` -- ``bsoncxx::v2::example::baz``
+- ``bsoncxx::example::foo`` --> ``bsoncxx::v_noabi::example::foo``
+- ``bsoncxx::example::bar`` --> ``bsoncxx::v1::example::bar``
+- ``bsoncxx::example::baz`` --> ``bsoncxx::v2::example::baz``
 
 Root namespace redeclarations are designed to allow for the addition of binary incompatible symbols in ``vB`` without breaking binary compatibility of ``vA`` symbols.
 They facilitate the deprecation of stable ABI symbols while providing the opportunity for a clean transition from ``vA`` to ``vB`` without breaking binary compatibility.
@@ -156,8 +168,13 @@ The following compatibility table describes when the API major version number or
      - Maybe (2)
      - No
 
-- (1): A ``vB`` entity could be 100% source compatible with the ``vA`` API despite requiring use of a new, incompatible stable ABI symbol.
-- (2): A stable ABI symbol could be removed from the public API (e.g. via documentation or removal from public headers) while still providing an exported symbol definition for backward compatibility. This is probably unlikely to happen, but if it does, it would be a rare case where the source and binary incompatible changes can be split into separate releases.
+- (1): A ``vB`` entity could be 100% source compatible with the ``vA`` API
+  despite requiring use of a new, incompatible stable ABI symbol.
+- (2): A stable ABI symbol could be removed from the public API (e.g. via
+  documentation or removal from public headers) while still providing an
+  exported symbol definition for backward compatibility. This is probably
+  unlikely to happen, but if it does, it would be a rare case where the source
+  and binary incompatible changes can be split into separate releases.
 
 .. important::
 
