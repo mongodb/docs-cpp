@@ -26,10 +26,10 @@ format of MAJOR.MINOR.PATCH, increment vaules when the following changes occur:
 For purposes of API versioning, we distinguish between the *public API* and the
 *private API*: 
 
-   For this system to work, you first need to declare a public API. This may
-   consist of documentation or be enforced by the code itself. Regardless, it is
-   important that this API be clear and precise. Once you identify your public API,
-   you communicate changes to it with specific increments to your version number.
+      For this system to work, you first need to declare a public API. This may
+      consist of documentation or be enforced by the code itself. Regardless, it is
+      important that this API be clear and precise. Once you identify your public API,
+      you communicate changes to it with specific increments to your version number.
 
 The API version number is updated according to SemVer and the definition of the public API below.
 

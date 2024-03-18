@@ -18,29 +18,29 @@ The C++ Driver uses Ulrich Drepper's guide to *Defining Stability*, the Linux sh
 
 Per `Ulrich Drepper <https://www.cs.dartmouth.edu/~sergey/cs258/ABI/UlrichDrepper-How-To-Write-Shared-Libraries.pdf>`__:
 
-*The definition of stability should therefore use the documented interface as
-the basis. Legitimate uses of interfaces should not be affected by changes in
-the implementation; using interfaces in an undefined way void the warranty.
-The same is true for using completely undocumented, internal symbols. Those
-must not be used at all.*
+      The definition of stability should therefore use the documented interface as
+      the basis. Legitimate uses of interfaces should not be affected by changes in
+      the implementation; using interfaces in an undefined way void the warranty.
+      The same is true for using completely undocumented, internal symbols. Those
+      must not be used at all.
 
 Per `The Linux Documentation Project <https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html>`__:
 
-*Every shared library has a special name called the ` ` soname''. The soname
-has the prefix ` ` lib'', the name of the library, the phrase ` ` .so'',
-followed by a period and a version number that is incremented whenever the
-interface changes (as a special exception, the lowest-level C libraries don't
-start with ` ` lib''). A fully-qualified soname includes as a prefix the
-directory it's in; on a working system a fully-qualified soname is simply a
-symbolic link to the shared library's ` ` real name''.*
+      Every shared library has a special name called the ` ` soname''. The soname
+      has the prefix ` ` lib'', the name of the library, the phrase ` ` .so'',
+      followed by a period and a version number that is incremented whenever the
+      interface changes (as a special exception, the lowest-level C libraries don't
+      start with ` ` lib''). A fully-qualified soname includes as a prefix the
+      directory it's in; on a working system a fully-qualified soname is simply a
+      symbolic link to the shared library's ` ` real name''.
 
 Per `CMake documentation <https://cmake.org/cmake/help/latest/prop_tgt/SOVERSION.html>`__:
 
-*For shared libraries ``VERSION`` and ``SOVERSION`` can be used to specify the
-build version and ABI version respectively. When building or installing
-appropriate symlinks are created if the platform supports symlinks and the
-linker supports so-names. If only one of both is specified the missing is
-assumed to have the same version number.*
+      For shared libraries ``VERSION`` and ``SOVERSION`` can be used to specify the
+      build version and ABI version respectively. When building or installing
+      appropriate symlinks are created if the platform supports symlinks and the
+      linker supports so-names. If only one of both is specified the missing is
+      assumed to have the same version number.
 
 For purposes of ABI versioning, we distinguish between the *stable ABI* and the *unstable ABI*.
 
