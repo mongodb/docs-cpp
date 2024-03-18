@@ -161,20 +161,21 @@ The following compatibility table describes when the API major version number or
      - Yes
 
    * - Upgrade a redeclaration from ``vA`` to ``vB``
-     - Maybe (1)
+     - Maybe [1]_
      - Yes
 
    * - Remove a ``vA`` symbol (from the public API)
      - No
-     - Maybe (2)
+     - Maybe [2]_
 
    * - Remove a ``vA`` symbol (from the stable ABI)
-     - Maybe (2)
+     - Maybe [2]_
      - No
 
-- (1): A ``vB`` entity could be 100% source compatible with the ``vA`` API
+.. [1] A ``vB`` entity could be 100% source compatible with the ``vA`` API
   despite requiring use of a new, incompatible stable ABI symbol.
-- (2): A stable ABI symbol could be removed from the public API (e.g. via
+
+.. [2] A stable ABI symbol could be removed from the public API (e.g. via
   documentation or removal from public headers) while still providing an
   exported symbol definition for backward compatibility. This is probably
   unlikely to happen, but if it does, it would be a rare case where the source
