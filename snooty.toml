@@ -1,4 +1,4 @@
-name = "cpp"
+name = "cpp-driver"
 title = "C++ Driver"
 
 intersphinx = [
