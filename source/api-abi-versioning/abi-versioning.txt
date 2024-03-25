@@ -20,7 +20,7 @@ Per `Ulrich Drepper <https://www.cs.dartmouth.edu/~sergey/cs258/ABI/UlrichDreppe
 
 .. blockquote::
 
-   The definition of stability should therefore use the documented interface as
+   The definition of stability should therefore use the *documented* interface as
    the basis. Legitimate uses of interfaces should not be affected by changes in
    the implementation; using interfaces in an undefined way void the warranty.
    The same is true for using completely undocumented, internal symbols. Those

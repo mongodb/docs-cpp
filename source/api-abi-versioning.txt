@@ -201,7 +201,7 @@ Examples of expected library filenames (with a brief description of notable feat
 
 .. note::
    
-   This example also applies to the companion `.lib` file.
+   This example also applies to the companion ``.lib`` file.
 
 This naming scheme allows the bsoncxx library to be built and installed with
 different build configurations (e.g. Debug vs. Release) and different runtime
@@ -242,7 +242,7 @@ For example, to obtain flags for the shared library ``bsoncxx-v_noabi-rhs-x64-v1
 
    pkg-config --cflags "libbsoncxx"
 
-or as follows when `ENABLE_ABI_TAG_IN_PKGCONFIG_FILENAMES=ON`:
+or as follows when ``ENABLE_ABI_TAG_IN_PKGCONFIG_FILENAMES=ON``:
 
 .. code-block:: bash
 
