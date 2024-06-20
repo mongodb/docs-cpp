@@ -96,7 +96,7 @@ software installed in your development environment:
 After you complete these steps, you have the {+driver-short+} installed 
 on your machine.
 
-.. include:: /includes/quick-start/troubleshoot.rst
+.. include:: /includes/get-started/troubleshoot.rst
 
 .. button:: Next: Create a MongoDB Deployment
-   :uri: /quick-start/create-a-deployment/
+   :uri: /get-started/create-a-deployment/

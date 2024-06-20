@@ -19,7 +19,7 @@ int main() {
     auto db = client["sample_mflix"];
     auto collection = db["movies"];
 
-    auto result = collection.find_one(make_document(kvp("title", "Back to the Future")));
+    auto result = collection.find_one(make_document(kvp("title", "The Shawshank Redemption")));
     std::cout << bsoncxx::to_json(*result) << std::endl;
 
 }

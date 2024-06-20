@@ -40,7 +40,7 @@ Connect to MongoDB
 
       Copy and paste the following code into the ``quickstart.cpp`` file
 
-      .. include:: /includes/quick-start/quickstart.cpp
+      .. include:: /includes/get-started/quickstart.cpp
 
    .. step:: Assign the connection string
 
@@ -63,12 +63,11 @@ Connect to MongoDB
       .. code-block:: none
          :copyable: false
 
-         { "_id" : { "$oid" : "573a1398f29313caabce9682" },
-         "plot" : "A young man is accidentally sent 30 years into the past in a time-traveling
-         DeLorean invented by his friend, Dr. Emmett Brown, and must make sure his high-school-age
-         parents unite in order to save his own existence.",
+         { "_id" : { "$oid" : "573a1399f29313caabceeb20" },
+         "plot" : "Two imprisoned men bond over a number of years, finding solace
+         and eventual redemption through acts of common decency.",
          ...
-         "title" : "Back to the Future", 
+         "title" : "The Shawshank Redemption", 
          ...
 
       If you encounter an error or see no output, ensure that you specified the
@@ -79,7 +78,7 @@ After you complete these steps, you have a working application that
 uses the driver to connect to your MongoDB deployment, runs a query on
 the sample data, and prints out the result.
 
-.. include:: /includes/quick-start/troubleshoot.rst
+.. include:: /includes/get-started/troubleshoot.rst
 
 .. button:: Next Steps
-   :uri: /quick-start/next-steps/
+   :uri: /get-started/next-steps/
