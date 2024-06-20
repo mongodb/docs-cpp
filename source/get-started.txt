@@ -29,9 +29,9 @@ Get Started with {+driver-short+}
 Overview
 --------
 
-{+driver-short+} is a C++ package that you can use to connect
+The {+driver-short+} is a C++ package that you can use to connect
 to and communicate with MongoDB. This guide shows you how to create an
-application that uses {+driver-short+} to connect to a MongoDB cluster hosted on
+application that uses the {+driver-short+} to connect to a MongoDB cluster hosted on
 MongoDB Atlas.
 
 .. tip:: 
