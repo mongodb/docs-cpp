@@ -44,7 +44,8 @@ when applicable, and connection options.
       Click the button on the right of the connection string to copy it
       to your clipboard, as shown in the following screenshot:
 
-      .. include:: /includes/figures/atlas_connection_copy_string_cpp.png
+      .. figure:: /includes/figures/atlas_connection_copy_string_cpp.png
+         :alt: The copy button next to the connection string in the Atlas UI
 
    .. step:: Update the Placeholders
 

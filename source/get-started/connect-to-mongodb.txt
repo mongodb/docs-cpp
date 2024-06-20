@@ -38,9 +38,9 @@ Connect to MongoDB
 
    .. step:: Create your {+driver-short+} application
 
-      Copy and paste the following code into the ``quickstart.cpp`` file
+      Copy and paste the following code into the ``quickstart.cpp`` file:
 
-      .. include:: /includes/get-started/quickstart.cpp
+      .. literalinclude:: /includes/get-started/quickstart.cpp
 
    .. step:: Assign the connection string
 

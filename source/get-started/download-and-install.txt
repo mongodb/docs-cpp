@@ -10,19 +10,18 @@ Download and Install
 
 .. meta::
    :keywords: cmake, code example
-   
-Prerequisites
--------------
-
-Before installing the {+driver-short+}, ensure that you have the following
-software installed in your development environment:
-
-- Compiler that supports C++11 (`GCC <https://gcc.gnu.org/install/>`__, `Clang <https://clang.llvm.org/>`__,
-  or `Visual Studio <https://visualstudio.microsoft.com/>`__)
-- `CMake <https://cmake.org/>`__ v3.15 or later
 
 .. procedure::
    :style: connected
+
+   .. step:: Install dependencies
+
+      Ensure you have the following dependencies installed
+      in your development environment:
+      
+      - Compiler that supports C++11 (`GCC <https://gcc.gnu.org/install/>`__, `Clang <https://clang.llvm.org/>`__,
+        or `Visual Studio <https://visualstudio.microsoft.com/>`__)
+      - `CMake <https://cmake.org/>`__ v3.15 or later
 
    .. step:: Download the {+driver-short+}
 
@@ -72,7 +71,7 @@ software installed in your development environment:
 
    .. step:: Build and install the driver
 
-      Select the tab corresponding to your operating system and run following command to install
+      Select the tab corresponding to your operating system and run following commands to install
       the driver:
 
       .. tabs::
