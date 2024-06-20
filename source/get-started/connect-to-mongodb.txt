@@ -54,7 +54,7 @@ Connect to MongoDB
       
       .. code-block:: none
 
-         c++ --std=c++11 quickstart.cpp $(pkg-config --cflags --libs libmongocxx) -o ./app.out
+         c++ --std=c++17 quickstart.cpp $(pkg-config --cflags --libs libmongocxx) -o ./app.out
          ./app.out
 
       The command line output contains details about the retrieved movie

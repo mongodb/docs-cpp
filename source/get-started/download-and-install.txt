@@ -19,7 +19,7 @@ Download and Install
       Ensure you have the following dependencies installed
       in your development environment:
       
-      - Compiler that supports C++11 (`GCC <https://gcc.gnu.org/install/>`__, `Clang <https://clang.llvm.org/>`__,
+      - Compiler that supports C++17 (`GCC <https://gcc.gnu.org/install/>`__, `Clang <https://clang.llvm.org/>`__,
         or `Visual Studio <https://visualstudio.microsoft.com/>`__)
       - `CMake <https://cmake.org/>`__ v3.15 or later
 
