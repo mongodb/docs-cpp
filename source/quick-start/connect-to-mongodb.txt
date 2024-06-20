@@ -1,0 +1,85 @@
+.. _cpp-quick-start-connect-to-mongodb:
+
+==================
+Connect to MongoDB
+==================
+
+.. facet::
+   :name: genre
+   :values: tutorial
+
+.. meta::
+   :keywords: test connection, runnable, code example
+
+.. procedure::
+   :style: connected
+
+   .. step:: Create a project directory
+
+      In your shell, run the following command to create a directory called
+      ``cpp-quickstart`` for this project:
+
+      .. code-block:: bash
+
+         mkdir cpp-quickstart
+
+      Run the following command to navigate into the ``cpp-quickstart`` directory:
+
+      .. code-block:: bash
+
+         cd cpp-quickstart
+
+      Run the following command to create a ``quickstart.cpp`` file to contain your
+      application:
+
+      .. code-block:: bash
+
+         touch quickstart.cpp
+
+   .. step:: Create your {+driver-short+} application
+
+      Copy and paste the following code into the ``quickstart.cpp`` file
+
+      .. include:: /includes/quick-start/quickstart.cpp
+
+   .. step:: Assign the connection string
+
+      Replace the ``<connection string>`` placeholder with the 
+      connection string that you copied from the :ref:`cpp-quick-start-connection-string`
+      step of this guide.
+
+   .. step:: Run your C++ application
+
+      In your shell, run the following commands to compile and run this application:
+      
+      .. code-block:: none
+
+         c++ --std=c++11 quickstart.cpp $(pkg-config --cflags --libs libmongocxx) -o ./app.out
+         ./app.out
+
+      The command line output contains details about the retrieved movie
+      document:
+
+      .. code-block:: none
+         :copyable: false
+
+         { "_id" : { "$oid" : "573a1398f29313caabce9682" },
+         "plot" : "A young man is accidentally sent 30 years into the past in a time-traveling
+         DeLorean invented by his friend, Dr. Emmett Brown, and must make sure his high-school-age
+         parents unite in order to save his own existence.",
+         ...
+         "title" : "Back to the Future", 
+         ...
+
+      If you encounter an error or see no output, ensure that you specified the
+      proper connection string in the ``quickstart.cpp`` file and that you loaded the
+      sample data.
+
+After you complete these steps, you have a working application that
+uses the driver to connect to your MongoDB deployment, runs a query on
+the sample data, and prints out the result.
+
+.. include:: /includes/quick-start/troubleshoot.rst
+
+.. button:: Next Steps
+   :uri: /quick-start/next-steps/
