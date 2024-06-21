@@ -19,7 +19,12 @@ Issues & Help
 
 We're glad to have such a vibrant community of {+driver-short+}
 users. We recommend seeking support for general
-questions through the :community-forum:`MongoDB Community Forums. <tag/python/>`
+questions through the :community-forum:`MongoDB Community Forums. <tag/cxx/>`
+
+You can also refer to
+`Stack Overflow <https://stackoverflow.com/questions/tagged/mongodb%20c%2b%2b>`__
+and MongoDB's
+`support channels <https://www.mongodb.com/docs/manual/support>`__ documentation.
 
 Bugs / Feature Requests
 -----------------------
@@ -29,8 +34,8 @@ please open an issue in JIRA, our issue-management tool, using the
 following steps:
 
 1. `Create a JIRA account <https://jira.mongodb.org>`__.
-#. Navigate to `the C++ Driver project <https://jira.mongodb.org/browse/c++>`__.
-#. Click :guilabel:`Create Issue`. Please provide as much information as possible about the
+#. Navigate to the `C++ Driver project <https://jira.mongodb.org/projects/CXX/issues/CXX-2810?filter=allopenissues>`__.
+#. Click :guilabel:`Create`. Please provide as much information as possible about the
    issue and the steps to reproduce it.
 
 Bug reports in JIRA for the C++ Driver project can be viewed by everyone.
