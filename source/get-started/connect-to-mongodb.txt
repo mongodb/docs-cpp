@@ -16,7 +16,7 @@ Connect to MongoDB
 
    .. step:: Create a project directory
 
-      In your shell, run the following command to create a directory called
+      From your root directory, run the following command in your shell to create a directory called
       ``cpp-quickstart`` for this project:
 
       .. code-block:: bash
@@ -56,6 +56,23 @@ Connect to MongoDB
 
          c++ --std=c++17 quickstart.cpp $(pkg-config --cflags --libs libmongocxx) -o ./app.out
          ./app.out
+      
+      .. tip::
+
+         MacOS users might see the following errors after running the preceding commands:
+
+         .. code-block:: bash
+            :copyable: false
+
+            dyld[54430]: Library not loaded: @rpath/libmongocxx._noabi.dylib
+ 
+         To resolve this error, use the ``-Wl,-rpath`` linker option to set the ``@rpath``, as shown
+         in the following code: 
+
+         .. code-block:: none
+
+            c++ --std=c++17 quickstart.cpp -Wl,-rpath,/usr/local/lib/ $(pkg-config --cflags --libs libmongocxx) -o ./app.out
+            ./app.out
 
       The command line output contains details about the retrieved movie
       document:
