@@ -23,22 +23,18 @@ Connect to MongoDB
 
          mkdir cpp-quickstart
 
-      Run the following command to navigate into the ``cpp-quickstart`` directory:
+      Run the following commands to create a ``quickstart.cpp`` application file in the ``cpp-quickstart``
+      directory:
 
       .. code-block:: bash
 
          cd cpp-quickstart
-
-      Run the following command to create a ``quickstart.cpp`` file to contain your
-      application:
-
-      .. code-block:: bash
-
          touch quickstart.cpp
 
    .. step:: Create your {+driver-short+} application
 
-      Copy and paste the following code into the ``quickstart.cpp`` file:
+      Copy and paste the following code into the ``quickstart.cpp`` file, which queries
+      the ``movies`` collection in the ``sample_mflix`` database:
 
       .. literalinclude:: /includes/get-started/quickstart.cpp
 
