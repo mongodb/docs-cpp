@@ -27,7 +27,7 @@ MongoDB C++ Driver
    /api-abi-versioning
    /reporting-bugs
    /testing
-   /contributing
+   /issues-and-help
    /getting-help
    API Documentation <https://mongocxx.org/api/current/>
    Driver Source <https://github.com/mongodb/mongo-cxx-driver>
