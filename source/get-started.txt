@@ -29,10 +29,10 @@ Get Started with the C++ Driver
 Overview
 --------
 
-The {+driver-short+} is a C++ package that you can use to connect
-to and communicate with MongoDB. This guide shows you how to create an
+The {+driver-long+} is a C++ package that you can use to connect to MongoDB and
+interact with data stored in your deployment. This guide shows you how to create an
 application that uses the {+driver-short+} to connect to a MongoDB cluster hosted on
-MongoDB Atlas.
+MongoDB Atlas and query data in your cluster.
 
 .. tip:: 
 
