@@ -59,7 +59,7 @@ Connect to MongoDB
       
       .. tip::
 
-         MacOS users might see the following errors after running the preceding commands:
+         MacOS users might see the following error after running the preceding commands:
 
          .. code-block:: bash
             :copyable: false

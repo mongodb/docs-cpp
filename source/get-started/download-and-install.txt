@@ -22,7 +22,7 @@ Download and Install
       - Compiler that supports C++17, such as `GCC <https://gcc.gnu.org/install/>`__, `Clang <https://clang.llvm.org/>`__,
         or `Visual Studio <https://visualstudio.microsoft.com/>`__
       - `CMake <https://cmake.org/>`__ v3.15 or later
-      - `pkg-config https://www.freedesktop.org/wiki/Software/pkg-config/`__
+      - `pkg-config <https://www.freedesktop.org/wiki/Software/pkg-config/>`__
 
    .. step:: Download the {+driver-short+}
 
