@@ -80,11 +80,19 @@ matching document from the retrieved results.
 The following example uses the ``find_one()`` method to find the first document in which
 the ``name`` field has the value ``"LinkedIn"``:
 
-.. literalinclude:: /includes/read/retrieve.cpp
-    :language: cpp
-    :dedent:
-    :start-after: start-find-one
-    :end-before: end-find-one
+.. io-code-block::
+
+   .. input:: /includes/read/retrieve.cpp
+      :start-after: start-find-one
+      :end-before: end-find-one
+      :language: cpp
+      :dedent:
+
+   .. output::
+
+      { "_id" : { "$oid" : "52cdef7c4bab8bd675297e0c" }, "name" : "LinkedIn", "permalink" : "linkedin",
+      "crunchbase_url" : "http://www.crunchbase.com/company/linkedin", "homepage_url" : "http://linkedin.com",
+      ...
    
 .. tip:: Sort Order
 
