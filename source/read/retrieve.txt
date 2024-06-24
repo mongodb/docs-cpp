@@ -20,8 +20,8 @@ Retrieve Data
 Overview
 --------
 
-In this guide, you can learn how to use {+driver-short+} to retrieve
-data from a MongoDB collection by using read operations. You can call the
+In this guide, you can learn how to use the {+driver-short+} to retrieve
+data from a MongoDB collection by using **read operations**. You can call the
 ``find()`` or ``find_one()`` method on a collection to retrieve documents
 that match a set of criteria.
 
@@ -29,8 +29,9 @@ Sample Data
 ~~~~~~~~~~~
 
 The examples in this guide use the ``companies`` collection in the ``sample_training``
-database from the :atlas:`Atlas sample datasets </sample-data>`. Use the following code to
-access this collection from your C++ application:
+database from the :atlas:`Atlas sample datasets </sample-data>`. To access this collection
+from your C++ application, instantiate a ``client`` that connects to an Atlas cluster
+and assign the following values to your ``db`` and ``collection`` variables:
 
 .. literalinclude:: /includes/read/retrieve.cpp
     :language: cpp
@@ -120,11 +121,26 @@ amount of documents.
 You can iterate over the documents in a cursor by using a ``for-in`` loop, as shown in
 the following example:
 
-.. literalinclude:: /includes/read/retrieve.cpp
-    :language: cpp
-    :dedent:
-    :start-after: start-cursor
-    :end-before: end-cursor
+.. io-code-block::
+
+   .. input:: /includes/read/retrieve.cpp
+      :start-after: start-cursor
+      :end-before: end-cursor
+      :language: cpp
+
+   .. output::
+
+      { "_id" : { "$oid" : "52cdef7d4bab8bd675298be4" }, "name" : "Mitsubishi Motors",
+      "permalink" : "mitsubishi-motors", "crunchbase_url" : "http://www.crunchbase.com/company/mitsubishi-motors",
+      ...
+
+      { "_id" : { "$oid" : "52cdef7e4bab8bd67529b996" }, "name" : "Western Digital",
+      "permalink" : "western-digital", "crunchbase_url" : "http://www.crunchbase.com/company/western-digital",
+      ...
+
+      { "_id" : { "$oid" : "52cdef7e4bab8bd67529b9f1" }, "name" : "Celarayn", "permalink" : "celarayn",
+      "crunchbase_url" : "http://www.crunchbase.com/company/celarayn",
+      ...
 
 .. note:: Find All Documents
 
@@ -177,9 +193,9 @@ describes some of the fields you can set in a ``mongocxx::options::find`` instan
      - | The order in which the operation returns matching documents.
        | Type: ``bsoncxx::document::view_or_value``
 
-The following example uses the ``find()`` method to find all documents where
-the ``number_of_employees`` field has the value greater than ``1000`` and instructs
-the operation to return a maximum of five results:
+The following example uses the ``find()`` method to find all documents in which
+the ``number_of_employees`` field has the value ``1000`` and instructs the
+operation to return a maximum of five results:
 
 .. literalinclude:: /includes/read/retrieve.cpp
     :language: cpp
@@ -188,7 +204,7 @@ the operation to return a maximum of five results:
     :end-before: end-modify
 
 For a full list of ``mongocxx::options::find`` object fields, see the
-`API documentation <{+api+}/classmongocxx_1_1options_1_1find.html>`__.
+`API documentation <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html>`__.
 
 .. _cpp-retrieve-additional-information:
 
