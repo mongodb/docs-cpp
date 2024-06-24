@@ -29,7 +29,7 @@ and MongoDB's
 Bugs / Feature Requests
 -----------------------
 
-To report a bug or to request a new feature in {+driver-short+},
+To report a bug or to request a new feature in the {+driver-short+},
 please open an issue in JIRA, our issue-management tool, using the
 following steps:
 
