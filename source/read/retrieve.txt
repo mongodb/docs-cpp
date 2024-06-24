@@ -127,6 +127,7 @@ the following example:
       :start-after: start-cursor
       :end-before: end-cursor
       :language: cpp
+      :dedent:
 
    .. output::
 
@@ -195,7 +196,7 @@ describes some of the fields you can set in a ``mongocxx::options::find`` instan
 
 The following example uses the ``find()`` method to find all documents in which
 the ``number_of_employees`` field has the value ``1000`` and instructs the
-operation to return a maximum of five results:
+operation to return a maximum of ``5`` results:
 
 .. literalinclude:: /includes/read/retrieve.cpp
     :language: cpp
