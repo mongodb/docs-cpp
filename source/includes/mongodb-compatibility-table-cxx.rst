@@ -4,6 +4,7 @@
    :header-rows: 1
    :stub-columns: 1
    :class: compatibility-large
+   :widths: auto 
 
    * - C++ Driver Version
      - MongoDB 7.0
