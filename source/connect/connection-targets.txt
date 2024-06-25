@@ -9,7 +9,7 @@ Choose a Connection Target
    :values: reference
 
 .. meta::
-   :keywords: connection string, URI, server, settings, client
+   :keywords: connection string, URI, server, settings, client, stable api
 
 .. contents:: On this page
    :local:
