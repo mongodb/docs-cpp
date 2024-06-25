@@ -22,6 +22,7 @@ Connect to MongoDB
    :titlesonly:
    :maxdepth: 1
 
-   /connect/mongoclient
+   /connect/instance 
+   /connect/client
 
 .. TODO: Finish page
