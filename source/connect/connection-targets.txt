@@ -53,7 +53,7 @@ The code also uses the ``server_api_opts`` option to specify a {+stable-api+} ve
    :copyable: true
    :start-after: // start-atlas
    :end-before: // end-atlas
-   :language: c++
+   :language: cpp
 
 .. tip::
 
@@ -71,7 +71,7 @@ The following code shows how to use the {+driver-short+} to connect to a local M
 deployment:
 
 .. literalinclude:: /includes/connect.cpp
-      :language: c++
+      :language: cpp
       :copyable: true
       :start-after: // start-client
       :end-before: // end-client
@@ -96,7 +96,7 @@ MongoDB replica set ``sampleRS``, which is running on port ``27017`` of three di
 hosts, including ``host1``:
 
 .. literalinclude:: /includes/connect.cpp
-      :language: c++
+      :language: cpp
       :copyable: true
       :start-after: // start-replica-set
       :end-before: // end-replica-set
@@ -110,7 +110,7 @@ option to ``true`` in the connection string. The following code example shows ho
 set this connection option: 
 
 .. literalinclude:: /includes/connect.cpp
-      :language: c++
+      :language: cpp
       :copyable: true
       :start-after: // start-direct-connection
       :end-before: // end-direct-connection
