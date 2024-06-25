@@ -1,0 +1,127 @@
+.. _cpp-connection-targets:
+
+==========================
+Choose a Connection Target
+==========================
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: connection string, URI, server, settings, client
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to use a connection string and ``mongocxx::client`` object
+to connect to different types of MongoDB deployments.
+
+.. note:: mongocxx::instance
+
+   The code examples on this page assume that you've already created a ``mongocxx::instance``
+   object elsewhere in your application.
+
+Atlas
+-----
+
+To connect to a MongoDB deployment on Atlas, include the following elements
+in your connection string:
+
+- URL of your Atlas cluster
+- MongoDB username
+- MongoDB password
+
+Then, pass your connection string to the ``mongocxx::uri`` constructor, and use
+the ``mongocxx::uri`` object to construct a ``mongocxx::client`` object.
+
+When you connect to Atlas, we recommend using the {+stable-api+} client option to avoid
+breaking changes when Atlas upgrades to a new version of {+mdb-server+}.
+To learn more about the {+stable-api+} feature, see the :ref:`{+stable-api+} page
+<cpp-stable-api>`.
+
+The following code shows how to use the {+driver-short+} to connect to an Atlas cluster.
+The code also uses the ``server_api`` option to specify a {+stable-api+} version.
+
+.. literalinclude:: /includes/connect/connect.cpp
+   :copyable: true
+   :start-after: // start-atlas
+   :end-before: // end-atlas
+   :emphasize-lines: 
+   :language: c++
+
+.. tip::
+
+   Follow the :atlas:`Atlas driver connection guide </driver-connection>`
+   to retrieve your connection string.
+
+Local Deployments
+-----------------
+
+To connect to a local MongoDB deployment, use ``localhost`` as the hostname. By
+default, the ``mongod`` process runs on port 27017, though you can customize this for
+your deployment.
+
+The following code shows how to use the {+driver-short+} to connect to a local MongoDB
+deployment:
+
+.. literalinclude:: /includes/connect.cpp
+      :language: c++
+      :copyable: true
+      :start-after: // start-client
+      :end-before: // end-client
+
+Replica Sets
+------------
+
+To connect to a replica set, specify the hostnames (or IP addresses) and 
+port numbers of the replica-set members in your connection string.
+
+If you aren't able to provide a full list of hosts in the replica set, you can 
+specify one or more of the hosts in the replica set and instruct the {+driver-short+} to 
+perform automatic discovery to find the others. To instruct the driver to perform
+automatic discovery, perform one of the following actions:
+
+- Specify the name of the replica set as the value of the ``replicaSet`` parameter.
+- Specify ``false`` as the value of the ``directConnection`` parameter.
+- Specify more than one host in the replica set.
+
+In the following example, the driver uses a sample connection URI to connect to the 
+MongoDB replica set ``sampleRS``, which is running on port ``27017`` of three different
+hosts, including ``host1``:
+
+.. literalinclude:: /includes/connect.cpp
+      :language: c++
+      :copyable: true
+      :start-after: // start-replica-set
+      :end-before: // end-replica-set
+
+Initialization
+~~~~~~~~~~~~~~
+
+To initialize a replica set, you must connect directly to a single member. To do so,
+set the ``directConnection`` connection
+option to ``true`` in the connection string. The following code example shows how to
+set this connection option: 
+
+.. literalinclude:: /includes/connect.cpp
+      :language: c++
+      :copyable: true
+      :start-after: // start-direct-connection
+      :end-before: // end-direct-connection
+
+API Documentation
+-----------------
+
+To learn more about the types used on this page,
+see the following API documentation:
+
+- `mongocxx::client <{+api+}/current/classmongocxx_1_1v__noabi_1_1client.html>`__ 
+- `mongocxx::uri <{+api+}/current/classmongocxx_1_1v__noabi_1_1uri.html>`__ 
+- `mongocxx::instance <{+api+}/current/classmongocxx_1_1v__noabi_1_1instance.html>`__ 
