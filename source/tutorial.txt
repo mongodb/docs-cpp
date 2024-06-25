@@ -211,6 +211,8 @@ If the value in the name field is not a string and you do not
 include a type guard as seen in the preceding example, this code will
 throw an instance of `bsoncxx::exception <{+api+}/classbsoncxx_1_1v__noabi_1_1exception>`__.
 
+.. _cpp-tutorial-insert:
+
 Insert Documents
 ----------------
 
