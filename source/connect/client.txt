@@ -111,4 +111,4 @@ API Documentation
 To learn more about creating a ``mongocxx::client`` object in {+driver-short+},
 see the following API documentation:
 
-- `mongocxx::client <{+api+}/classmongocxx_1_1v__noabi_1_1client.html#a65ce383ea6cd492ba2e9ae290252e5ee>`__ 
+- `mongocxx::client <{+api+}/current/classmongocxx_1_1v__noabi_1_1client.html>`__ 
