@@ -121,6 +121,8 @@ API Documentation
 To learn more about the types used on this page,
 see the following API documentation:
 
-- `mongocxx::client <{+api+}/current/classmongocxx_1_1v__noabi_1_1client.html>`__ 
-- `mongocxx::uri <{+api+}/current/classmongocxx_1_1v__noabi_1_1uri.html>`__ 
-- `mongocxx::instance <{+api+}/current/classmongocxx_1_1v__noabi_1_1instance.html>`__ 
+- `mongocxx::client <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ 
+- `mongocxx::uri <{+api+}/classmongocxx_1_1v__noabi_1_1uri.html>`__ 
+- `mongocxx::instance <{+api+}/classmongocxx_1_1v__noabi_1_1instance.html>`__ 
+- `mongocxx::options::client <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1client.html>`__ 
+- `mongocxx::options::server_api <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1server__api.html>`__ 
