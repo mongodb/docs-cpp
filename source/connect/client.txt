@@ -79,47 +79,36 @@ A standard connection string includes the following components:
        these options.
 
 For more information about creating a connection string, see
-:manual:`Connection Strings </reference/connection-string?tck=docs_driver_python>` in the
+:manual:`Connection Strings </reference/connection-string>` in the
 MongoDB Server documentation.
 
-mongocxx::client
-----------------
+Create a ``mongocxx::client``
+-----------------------------
 
 To create a connection to MongoDB, construct an instance of the ``mongocxx::uri`` class,
 passing the connection URI as a string to the constructor. Then, pass the instance of
 the ``mongocxx::uri`` class to the ``mongocxx::client`` constructor.
 
 In the following example, the driver uses a sample connection URI to connect to a MongoDB 
-instance on port ``27017`` of ``localhost``: 
+deployment on port ``27017`` of ``localhost``: 
 
 .. literalinclude:: /includes/connect.cpp
       :language: c++
       :copyable: true
       :start-after: // start-client
       :end-before: // end-client
+      :emphasize-lines: 2-3,6-7
 
-.. important:: mongocxx::instance
+.. tip:: Reuse Your Client
 
-   The ``mongocxx::instance`` object represents a MongoDB driver instance in your application.
-   It performs the initialization and shutdown of the MongoDB C++ driver, initializes
-   driver dependencies, and ensures correct functioning .
-   It also manages the lifetime of resources such as the connection pool and BSON library that are shared among mongocxx::client objects.
-
-   You must create an instance of this class before you use the driver, and it must remain
-   alive for as long as any other MongoDB objects (like mongocxx::client) are in scope.
-
-.. TODO confirm this is true in C++
-  .. tip:: Reusing Your Client
    Because each ``mongocxx::client`` object represents a pool of connections to the
    database, most applications require only a single instance of
-   ``mongocxx::client``, even across multiple requests. However, if you fork
-   a process, the child process *does* need its own ``mongocxx::client`` object.
-   To learn more, see the :ref:`FAQ <pymongo-faq>` page.
+   ``mongocxx::client``, even across multiple requests. 
 
 API Documentation
 -----------------
 
-To learn more about creating a ``MongoClient`` object in {+driver-short+},
+To learn more about creating a ``mongocxx::client`` object in {+driver-short+},
 see the following API documentation:
 
-- `MongoClient <{+api-root+}pymongo/mongo_client.html#pymongo.mongo_client.MongoClient>`__ 
+- `mongocxx::client <{+api+}/classmongocxx_1_1v__noabi_1_1client.html#a65ce383ea6cd492ba2e9ae290252e5ee>`__ 
