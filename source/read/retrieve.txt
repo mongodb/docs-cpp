@@ -176,31 +176,31 @@ describes some of the fields you can set in a ``mongocxx::options::find`` instan
 
    * - ``batch_size`` 
      - | The number of documents to return per batch.
-       | Type: ``std::int32_t``
+       | **Type**: ``std::int32_t``
 
    * - ``collation`` 
-     - | The collation to use for this operation.
-       | Type: ``bsoncxx::document::view_or_value``
+     - | The collation to use for the operation.
+       | **Type**: ``bsoncxx::document::view_or_value``
 
    * - ``comment`` 
      - | The comment to attach to the operation.
-       | Type: ``bsoncxx::string::view_or_value``
+       | **Type**: ``bsoncxx::string::view_or_value``
 
    * - ``cursor_type`` 
      - | The type of cursor to use for the operation.
-       | Type: ``cursor::type``
+       | **Type**: ``cursor::type``
 
    * - ``limit`` 
      - | The maximum number of documents the operation can return.
-       | Type: ``std::int64_t``
+       | **Type**: ``std::int64_t``
 
    * - ``skip`` 
      - | The number of documents to skip before returning results.
-       | Type: ``std::int64_t``
+       | **Type**: ``std::int64_t``
 
    * - ``sort`` 
      - | The order in which the operation returns matching documents.
-       | Type: ``bsoncxx::document::view_or_value``
+       | **Type**: ``bsoncxx::document::view_or_value``
 
 The following example uses the ``find()`` method to find all documents in which
 the ``number_of_employees`` field has the value ``1000`` and instructs the
