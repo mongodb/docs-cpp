@@ -53,7 +53,6 @@ The code also uses the ``server_api`` option to specify a {+stable-api+} version
    :copyable: true
    :start-after: // start-atlas
    :end-before: // end-atlas
-   :emphasize-lines: 
    :language: c++
 
 .. tip::
