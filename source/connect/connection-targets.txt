@@ -47,9 +47,9 @@ To learn more about the {+stable-api+} feature, see the :ref:`{+stable-api+} pag
 <cpp-stable-api>`.
 
 The following code shows how to use the {+driver-short+} to connect to an Atlas cluster.
-The code also uses the ``server_api`` option to specify a {+stable-api+} version.
+The code also uses the ``server_api_opts`` option to specify a {+stable-api+} version.
 
-.. literalinclude:: /includes/connect/connect.cpp
+.. literalinclude:: /includes/connect.cpp
    :copyable: true
    :start-after: // start-atlas
    :end-before: // end-atlas
