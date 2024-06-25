@@ -33,6 +33,8 @@ while connected to MongoDB.
 This guide shows you how to create a connection string and use a ``mongocxx::client`` object
 to connect to MongoDB.
 
+.. include:: /includes/assumes-instance.rst
+
 .. _cpp-connection-uri:
 
 Connection URI
@@ -93,11 +95,10 @@ In the following example, the driver uses a sample connection URI to connect to 
 deployment on port ``27017`` of ``localhost``: 
 
 .. literalinclude:: /includes/connect.cpp
-      :language: c++
+      :language: cpp
       :copyable: true
       :start-after: // start-client
       :end-before: // end-client
-      :emphasize-lines: 2-3,6-7
 
 .. tip:: Reuse Your Client
 
@@ -111,4 +112,4 @@ API Documentation
 To learn more about creating a ``mongocxx::client`` object in {+driver-short+},
 see the following API documentation:
 
-- `mongocxx::client <{+api+}/current/classmongocxx_1_1v__noabi_1_1client.html>`__ 
+- `mongocxx::client <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ 

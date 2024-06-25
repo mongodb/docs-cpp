@@ -25,7 +25,7 @@ class. This instance performs the following functions in your application:
 
 - Initializes and shuts down the {+driver-short+}
 - Initializes driver dependencies
-- Ensures correct driver functioning
+- Ensures the driver functions correctly
 - Manages the lifetimes of resources that
   are shared among ``mongocxx::client`` objects, such as the connection pool
   and BSON library
@@ -41,7 +41,7 @@ construct an instance of ``mongocxx::instance`` at the start of your application
 as shown in the following example:
 
 .. literalinclude:: /includes/connect.cpp
-      :language: c++
+      :language: cpp
       :copyable: true
       :start-after: // start-instance
       :end-before: // end-instance
@@ -55,7 +55,7 @@ as shown in the following example:
 API Documentation
 -----------------
 
-To learn more about the ``mongocxx::instance`` class in {+driver-short+},
+To learn more about the ``mongocxx::instance`` class in the {+driver-short+},
 see the following API documentation:
 
 - `mongocxx::instance <{+api+}/classmongocxx_1_1v__noabi_1_1instance.html>`__
