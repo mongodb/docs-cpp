@@ -74,8 +74,8 @@ You can set these options in the connection string when creating a
 MONGODB X.509
 -------------
 
-If you enable TLS, during the TLS handshake, {+driver-short+} can present an X.509
-client certificate to MongoDB to prove its identity. The MONGODB-X509 authentication
+If you enable TLS, during the TLS handshake, the {+driver-short+} can present an X.509
+client certificate to MongoDB to prove its identity. The ``MONGODB-X509`` authentication
 mechanism uses this certificate to authenticate the client.
 
 To authenticate with this mechanism, set the following connection options:
@@ -172,7 +172,7 @@ example:
    export AWS_SESSION_TOKEN=<AWS session token>
 
 After you set these environment variables, set the ``authMechanism``
-parameter in your connection string to ``"MONGODB-AWS"``, as shown in the
+parameter in your connection URI to ``"MONGODB-AWS"``, as shown in the
 following example:
 
 .. literalinclude:: /includes/authentication.cpp
@@ -194,7 +194,7 @@ ECS endpoint. To do so, specify the URI of the ECS endpoint in an environment va
    export AWS_CONTAINER_CREDENTIALS_RELATIVE_URI=<URI of the ECS endpoint>
 
 After you set the environment variable, set the ``authMechanism``
-parameter in your connection string to ``"MONGODB-AWS"``, as shown in the
+parameter in your connection URI to ``"MONGODB-AWS"``, as shown in the
 following example:
 
 .. literalinclude:: /includes/authentication.cpp
@@ -207,9 +207,9 @@ EC2 Instance Metadata
 ~~~~~~~~~~~~~~~~~~~~~
 
 The {+driver-short+} can automatically retrieve temporary AWS credentials from an
-Amazon Elastic Cloud Compute (EC2) instance. To use temporary credentials from within an EC2 instance, set the ``authMechanism``
-parameter in your connection URI to ``"MONGODB-AWS"``, as shown in the following
-example:
+Amazon Elastic Cloud Compute (EC2) instance. To use temporary credentials from
+within an EC2 instance, set the ``authMechanism`` parameter in your connection
+URI to ``"MONGODB-AWS"``, as shown in the following example:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -220,10 +220,10 @@ example:
 .. note::
 
    If you set any of the environment variables from the preceding AWS authentication
-   methods, the {+driver-short+} attempts to retrieve credentials using those
+   methods, the {+driver-short+} attempts to retrieve credentials by using those
    methods before attempting to retrieve them from an EC2 instance. To attempt
    to retrieve credentials only from an EC2 instance, ensure that the
-   environment variables are not set in your environment.
+   environment variables are not set.
 
 API Documentation
 -----------------

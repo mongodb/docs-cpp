@@ -42,28 +42,28 @@ Complete the following steps to authenticate with GSSAPI:
 .. procedure::
    :style: connected
 
-   .. step:: Obtain a Ticket-granting Ticket
+   .. step:: Obtain a Ticket-Granting Ticket
 
-   On Unix environments, you must first run the ``kinit`` command to obtain and cache
-   an initial ticket-granting ticket. If you're running a Windows environment,
-   you can skip ahead to the next step.
+      On Unix environments, you must first run the ``kinit`` command to obtain and cache
+      an initial ticket-granting ticket. If you're running a Windows environment,
+      you can skip ahead to the next step.
 
-   The following example uses the
-   ``knit`` command to obtain a ticket-granting ticket for the principal
-   ``mongodbuser@EXAMPLE.COM``. It then uses the ``klist``
-   command to display the principal and ticket in the credentials cache.
-   
-   .. code-block:: sh
-       :copyable: false
-   
-       $ kinit mongodbuser@EXAMPLE.COM
-       mongodbuser@EXAMPLE.COM's Password:
-       $ klist
-       Credentials cache: FILE:/tmp/krb5cc_1000
-               Principal: mongodbuser@EXAMPLE.COM
-   
-       Issued                Expires               Principal
-       Feb  9 13:48:51 2013  Feb  9 23:48:51 2013  krbtgt/mongodbuser@EXAMPLE.COM
+      The following example uses the
+      ``knit`` command to obtain a ticket-granting ticket for the principal
+      ``mongodbuser@EXAMPLE.COM``. It then uses the ``klist``
+      command to display the principal and ticket in the credentials cache.
+      
+      .. code-block:: sh
+         :copyable: false
+      
+         $ kinit mongodbuser@EXAMPLE.COM
+         mongodbuser@EXAMPLE.COM's Password:
+         $ klist
+         Credentials cache: FILE:/tmp/krb5cc_1000
+                 Principal: mongodbuser@EXAMPLE.COM
+      
+         Issued                Expires               Principal
+         Feb  9 13:48:51 2013  Feb  9 23:48:51 2013  krbtgt/mongodbuser@EXAMPLE.COM
 
    .. step:: Set the Connection Options
 
