@@ -23,10 +23,7 @@ Overview
 In this guide, you can learn how to use a connection string and ``mongocxx::client`` object
 to connect to different types of MongoDB deployments.
 
-.. note:: mongocxx::instance
-
-   The code examples on this page assume that you've already created a ``mongocxx::instance``
-   object elsewhere in your application.
+.. include:: /includes/assumes-instance.rst
 
 Atlas
 -----
@@ -96,10 +93,10 @@ MongoDB replica set ``sampleRS``, which is running on port ``27017`` of three di
 hosts, including ``host1``:
 
 .. literalinclude:: /includes/connect.cpp
-      :language: cpp
-      :copyable: true
-      :start-after: // start-replica-set
-      :end-before: // end-replica-set
+   :language: cpp
+   :copyable: true
+   :start-after: // start-replica-set
+   :end-before: // end-replica-set
 
 Initialization
 ~~~~~~~~~~~~~~
@@ -110,10 +107,10 @@ option to ``true`` in the connection string. The following code example shows ho
 set this connection option: 
 
 .. literalinclude:: /includes/connect.cpp
-      :language: cpp
-      :copyable: true
-      :start-after: // start-direct-connection
-      :end-before: // end-direct-connection
+   :language: cpp
+   :copyable: true
+   :start-after: // start-direct-connection
+   :end-before: // end-direct-connection
 
 API Documentation
 -----------------
