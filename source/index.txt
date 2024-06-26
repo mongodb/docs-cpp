@@ -20,6 +20,7 @@ MongoDB C++ Driver
    /connect 
    /polyfill-selection
    /installation
+   /read
    /configuration
    /client-side-encryption
    /tutorial
