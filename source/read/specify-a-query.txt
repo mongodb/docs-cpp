@@ -53,7 +53,7 @@ insert the sample documents into your collection:
    :copyable:
 
 .. include:: /includes/assumes-instance.rst
-   
+
 Exact Match
 -----------
 
@@ -255,8 +255,8 @@ Additional Information
 To learn more about querying documents, see the :manual:`Query Documents
 </tutorial/query-documents/>` guide in the {+mdb-server+} manual.
 
-To learn more about retrieving documents with the {+driver-short+}, see
-:ref:`cpp-retrieve`.
+To learn more about retrieving documents with the {+driver-short+}, see the
+:ref:`cpp-retrieve` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
