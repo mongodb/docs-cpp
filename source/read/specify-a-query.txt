@@ -25,8 +25,8 @@ In this guide, you can learn how to specify a query by using the {+driver-short+
 You can refine the set of documents that a query returns by creating a
 **query filter**. A query filter is an expression that specifies the search
 criteria MongoDB uses to match documents in a read or write operation.
-In a query filter, you can prompt the driver to search for documents with an
-exact match to your query, or you can compose query filters to express more
+In a query filter, you can prompt the driver to search for documents that have
+an exact match to your query, or you can compose query filters to express more
 complex matching criteria.
 
 Sample Data
@@ -40,7 +40,7 @@ The examples in this guide run operations on a collection called
    { "_id": 1, "name": "apples", "qty": 5, "rating": 3, "color": "red", "type": ["fuji", "honeycrisp"] },
    { "_id": 2, "name": "bananas", "qty": 7, "rating": 4, "color": "yellow", "type": ["cavendish"] },
    { "_id": 3, "name": "oranges", "qty": 6, "rating": 2, "type": ["naval", "mandarin"] },
-   { "_id": 4, "name": "pineapple", "qty": 3, "rating": 5, "color": "yellow" },
+   { "_id": 4, "name": "pineapples", "qty": 3, "rating": 5, "color": "yellow" },
 
 The following code example shows how to create a database and collection, then
 insert the sample documents into your collection:
@@ -71,7 +71,7 @@ is ``"yellow"``:
    .. output::
       
       {'_id': 2, 'name': 'bananas', 'qty': 7, 'rating': 4, 'color': 'yellow', 'type': ['cavendish']}
-      {'_id': 4, 'name': 'pineapple', 'qty': 3, 'rating': 5, 'color': 'yellow'}
+      {'_id': 4, 'name': 'pineapples', 'qty': 3, 'rating': 5, 'color': 'yellow'}
 
 .. tip:: Find All Documents
 
@@ -112,9 +112,9 @@ parameter to the ``find()`` method. The code returns all documents that have a
 
    .. output::
 
-      {'_id': 1, 'name': 'apples', 'qty': 5, 'rating': 3, 'color': 'red', 'type': ['fuji', 'honeycrisp']}
-      {'_id': 2, 'name': 'bananas', 'qty': 7, 'rating': 4, 'color': 'yellow', 'type': ['cavendish']}
-      {'_id': 4, 'name': 'pineapple', 'qty': 3, 'rating': 5, 'color': 'yellow'}
+      { "_id" : 1, "name" : "apples", "qty" : 5, "rating" : 3, "color" : "red", "type" : [ "fuji", "honeycrisp" ] }
+      { "_id" : 2, "name" : "bananas", "qty" : 7, "rating" : 4, "color" : "yellow", "type" : [ "cavendish" ] }
+      { "_id" : 4, "name" : "pineapples", "qty" : 3, "rating" : 5, "color" : "yellow" }
 
 Logical Operators
 -----------------
@@ -145,9 +145,9 @@ parameter to the ``find()`` method. The code returns all documents in which the
 
    .. output::
 
-      {'_id': 2, 'name': 'bananas', 'qty': 7, 'rating': 4, 'color': 'yellow', 'type': ['cavendish']}
-      {'_id': 3, 'name': 'oranges', 'qty': 6, 'rating': 2, 'type': ['naval', 'mandarin']}
-      {'_id': 4, 'name': 'pineapple', 'qty': 3, 'rating': 5, 'color': 'yellow'}
+      { "_id" : 2, "name" : "bananas", "qty" : 7, "rating" : 4, "color" : "yellow", "type" : [ "cavendish" ] }
+      { "_id" : 3, "name" : "oranges", "qty" : 6, "rating" : 2, "type" : [ "naval", "mandarin" ] }
+      { "_id" : 4, "name" : "pineapples", "qty" : 3, "rating" : 5, "color" : "yellow" }
 
 Array Operators
 ---------------
@@ -176,8 +176,8 @@ parameter to the ``find()`` method. The code returns all documents in which the
 
    .. output::
 
-      {'_id': 1, 'name': 'apples', 'qty': 5, 'rating': 3, 'color': 'red', 'type': ['fuji', 'honeycrisp']}
-      {'_id': 3, 'name': 'oranges', 'qty': 6, 'rating': 2, 'type': ['naval', 'mandarin']}
+      { "_id" : 1, "name" : "apples", "qty" : 5, "rating" : 3, "color" : "red", "type" : [ "fuji", "honeycrisp" ] }
+      { "_id" : 3, "name" : "oranges", "qty" : 6, "rating" : 2, "type" : [ "naval", "mandarin" ] }
 
 Element Operators
 -----------------
@@ -201,9 +201,9 @@ parameter to the ``find()`` method. The code returns all documents that have a
 
    .. output::
 
-      {'_id': 1, 'name': 'apples', 'qty': 5, 'rating': 3, 'color': 'red', 'type': ['fuji', 'honeycrisp']}
-      {'_id': 2, 'name': 'bananas', 'qty': 7, 'rating': 4, 'color': 'yellow', 'type': ['cavendish']}
-      {'_id': 4, 'name': 'pineapple', 'qty': 3, 'rating': 5, 'color': 'yellow'}
+      { "_id" : 1, "name" : "apples", "qty" : 5, "rating" : 3, "color" : "red", "type" : [ "fuji", "honeycrisp" ] }
+      { "_id" : 2, "name" : "bananas", "qty" : 7, "rating" : 4, "color" : "yellow", "type" : [ "cavendish" ] }
+      { "_id" : 4, "name" : "pineapples", "qty" : 3, "rating" : 5, "color" : "yellow" }
 
 Evaluation Operators
 --------------------
@@ -236,8 +236,8 @@ all documents in which the ``name`` field value has at least two consecutive
 
    .. output::
 
-      {'_id': 1, 'name': 'apples', 'qty': 5, 'rating': 3, 'color': 'red', 'type': ['fuji', 'honeycrisp']}
-      {'_id': 4, 'name': 'pineapple', 'qty': 3, 'rating': 5, 'color': 'yellow'}
+      { "_id" : 1, "name" : "apples", "qty" : 5, "rating" : 3, "color" : "red", "type" : [ "fuji", "honeycrisp" ] }
+      { "_id" : 4, "name" : "pineapples", "qty" : 3, "rating" : 5, "color" : "yellow" }
 
 Additional Information
 ----------------------
