@@ -16,6 +16,8 @@ MongoDB C++ Driver
    :titlesonly:
    :maxdepth: 1
 
+   Get Started </get-started>
+   /connect 
    /polyfill-selection
    /installation
    /read
@@ -28,8 +30,8 @@ MongoDB C++ Driver
    /api-abi-versioning
    /reporting-bugs
    /testing
-   /contributing
-   /getting-help
+   /compatibility
+   /issues-and-help
    API Documentation <https://mongocxx.org/api/current/>
    Driver Source <https://github.com/mongodb/mongo-cxx-driver>
 
