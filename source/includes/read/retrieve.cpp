@@ -34,7 +34,7 @@ int main() {
     // start-cursor
     auto cursor = collection.find(make_document(kvp("founded_year", 1970)));
     for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << "\n" << std::endl;
+        std::cout << bsoncxx::to_json(doc) << std::endl;
     }
     // end-cursor
  
