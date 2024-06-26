@@ -52,16 +52,19 @@ exclusion statements in a single projection, unless you are excluding the
 Specify Fields to Include
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the following syntax to specify the fields to include in the result:
+To specify the fields to include in the result, create an instance of the 
+``mongocxx::options::find`` class and set its ``projection`` field. To set
+this field, use the following syntax:
 
-.. code-block:: json
+.. code-block:: cpp
 
-   { "<field name>": 1 }
+   <options instance>.projection(make_document(kvp("<field name>", 1)));
 
-The following example uses the ``find()`` method to find all restaurants in which
-the ``name`` field value is ``"Emerald Pub"``. It then uses a projection to
-return only the ``name``, ``cuisine``, and ``borough`` fields in the returned
-documents:
+The following example sets the ``projection`` field of a ``mongocxx::options::find``
+object to return only the ``name``, ``cuisine``, and ``borough`` fields of matching
+documents. It then calls the ``find()`` method to find all restaurants in which
+the ``name`` field value is ``"Emerald Pub"``, passing the ``mongocxx::options::find``
+object as a parameter to ``find()``:
 
 .. io-code-block::
     
@@ -70,12 +73,12 @@ documents:
       :end-before: end-project-include
       :language: cpp
       :dedent:
-      :emphasize-lines: 1
+      :emphasize-lines: 2
 
    .. output::
 
-      {'_id': ObjectId('...'), 'borough': 'Manhattan', 'cuisine': 'American', 'name': 'Emerald Pub'}
-      {'_id': ObjectId('...'), 'borough': 'Queens', 'cuisine': 'American', 'name': 'Emerald Pub'}
+      { "_id" : { "$oid" : "..." }, "borough" : "Manhattan", "cuisine" : "American", "name" : "Emerald Pub" }
+      { "_id" : { "$oid" : "..." }, "borough" : "Queens", "cuisine" : "American", "name" : "Emerald Pub" }
 
 When you use a projection to specify fields to include in the return
 document, the ``_id`` field is also included by default. All other fields are
@@ -100,25 +103,29 @@ excludes the ``_id`` field from the projection:
       :end-before: end-project-include-without-id
       :language: python
       :dedent:
-      :emphasize-lines: 1
+      :emphasize-lines: 2
 
    .. output::
 
-      {'borough': 'Manhattan', 'cuisine': 'American', 'name': 'Emerald Pub'}
-      {'borough': 'Queens', 'cuisine': 'American', 'name': 'Emerald Pub'}
+     { "borough" : "Manhattan", "cuisine" : "American", "name" : "Emerald Pub" }
+     { "borough" : "Queens", "cuisine" : "American", "name" : "Emerald Pub" }
 
 Specify Fields to Exclude
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the following syntax to specify the fields to exclude from the result:
+To specify the fields to exclude in the result, create an instance of the 
+``mongocxx::options::find`` class and set its ``projection`` field. To set
+this field, use the following syntax:
 
-.. code-block:: json
+.. code-block:: cpp
 
-   { "<field name>": 0 }
+   <options instance>.projection(make_document(kvp("<field name>", 0)));
 
-The following example uses the ``find()`` method to find all restaurants in which
-the ``name`` field value is ``"Emerald Pub"``. It then uses a projection to
-exclude the ``grades`` and ``address`` fields from the returned documents:
+The following example sets the ``projection`` field of a ``mongocxx::options::find``
+object to exclude the ``grades`` and ``address`` fields of matching documents.
+It then calls the ``find()`` method to find all restaurants in which the ``name``
+field value is ``"Emerald Pub"``, passing the ``mongocxx::options::find`` object
+as a parameter to ``find()``:
 
 .. io-code-block::
     
@@ -127,13 +134,12 @@ exclude the ``grades`` and ``address`` fields from the returned documents:
       :end-before: end-project-exclude
       :language: cpp
       :dedent:
-      :emphasize-lines: 1
+      :emphasize-lines: 2
 
    .. output:: 
 
-      {'_id': ObjectId('...'), 'borough': 'Manhattan', 'cuisine': 'American', 'name': 'Emerald Pub', 'restaurant_id': '40367329'}
-      {'_id': ObjectId('...'), 'borough': 'Queens', 'cuisine': 'American',
-      'name': 'Emerald Pub', 'restaurant_id': '40668598'}
+     { "_id" : { "$oid" : "..." }, "borough" : "Manhattan", "cuisine" : "American", "name" : "Emerald Pub", "restaurant_id" : "40367329" }
+     { "_id" : { "$oid" : "..." }, "borough" : "Queens", "cuisine" : "American", "name" : "Emerald Pub", "restaurant_id" : "40668598" }
 
 When you use a projection to specify which fields to exclude,
 any unspecified fields are implicitly included in the return document.
@@ -141,8 +147,8 @@ any unspecified fields are implicitly included in the return document.
 Additional Information
 ----------------------
 
-To learn more about projections, see the :manual:`Project Fields guide
-</tutorial/project-fields-from-query-results/>` in the {+mdb-server+} manual.
+To learn more about projections, see the :manual:`Project Fields
+</tutorial/project-fields-from-query-results/>` guide in the {+mdb-server+} manual.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

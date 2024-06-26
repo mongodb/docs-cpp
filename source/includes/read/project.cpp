@@ -22,25 +22,33 @@ int main() {
     // end-db-coll
 
     // start-project-include
-    auto result = collection.find_one(make_document(kvp("name", "LinkedIn")));
-    std::cout << bsoncxx::to_json(*result) << std::endl;
+    mongocxx::options::find opts{};
+    opts.projection(make_document(kvp("name", 1), kvp("cuisine", 1), kvp("borough", 1)));
+
+    auto cursor = collection.find(make_document(kvp("name", "Emerald Pub")), opts);
+    for(auto&& doc : cursor) {
+        std::cout << bsoncxx::to_json(doc) << std::endl;
+    }
     // end-project-include
 
     // start-project-include-without-id
-    auto cursor = collection.find(make_document(kvp("founded_year", 1970)));
+    mongocxx::options::find opts{};
+    opts.projection(make_document(kvp("_id", 0), kvp("name", 1), kvp("cuisine", 1), kvp("borough", 1)));
+
+    auto cursor = collection.find(make_document(kvp("name", "Emerald Pub")), opts);
+    for(auto&& doc : cursor) {
+        std::cout << bsoncxx::to_json(doc) << std::endl;
+    }
     // end-project-include-without-id
 
     // start-project-exclude
-    auto cursor = collection.find(make_document(kvp("founded_year", 1970)));
+    mongocxx::options::find opts{};
+    opts.projection(make_document(kvp("grades", 0), kvp("address", 0)));
+
+    auto cursor = collection.find(make_document(kvp("name", "Emerald Pub")), opts);
     for(auto&& doc : cursor) {
         std::cout << bsoncxx::to_json(doc) << std::endl;
     }
     // end-project-exclude
- 
-   // start-modify
-    mongocxx::options::find opts;
-    opts.limit(5);
-    auto cursor = collection.find(make_document(kvp("number_of_employees", 1000)), opts);
-   // end-modify
 
 }
