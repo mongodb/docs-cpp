@@ -56,7 +56,7 @@ mongocxx::client client(uri);
 #include <mongocxx/client.hpp>
 #include <mongocxx/uri.hpp>
 
-auto uri = mongocxx::uri("mongodb://<username>%40EXAMPLE.COM@<hostname>:<port>/?"
+auto uri = mongocxx::uri("mongodb://mongodbuser%40EXAMPLE.COM@<hostname>:<port>/?"
                          "&authMechanism=GSSAPI"
                          "&authMechanismProperties=SERVICE_NAME:<authentication service name>");
 mongocxx::client client(uri);
