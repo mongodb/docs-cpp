@@ -14,7 +14,7 @@ Enterprise Authentication Mechanisms
    :values: reference
  
 .. meta::
-   :keywords: ldap, encryption, principal, tls
+   :keywords: ldap, tls, security
 
 Overview
 --------
@@ -72,8 +72,8 @@ Complete the following steps to authenticate with GSSAPI:
       - ``username``: The Kerbos principal to authenticate.
       - ``authMechanism``: Set to ``"GSSAPI"``.
       - ``authMechanismProperties``: Optional. By default, MongoDB uses ``mongodb`` as
-      the authentication service name. To specify a different service name, set
-      this option to ``"SERVICE_NAME:<authentication service name>"``.
+        the authentication service name. To specify a different service name, set
+        this option to ``"SERVICE_NAME:<authentication service name>"``.
 
       You can set these options through parameters in your connection URI, as shown in
       the following example:
