@@ -16,7 +16,6 @@ MongoDB C++ Driver
    :titlesonly:
    :maxdepth: 1
 
-   /connect 
    /polyfill-selection
    /installation
    /configuration
