@@ -49,8 +49,11 @@ insert the sample documents into your collection:
    :start-after: start-setup
    :end-before: end-setup
    :language: cpp
+   :dedent:
    :copyable:
 
+.. include:: /includes/assumes-instance.rst
+   
 Exact Match
 -----------
 
@@ -67,6 +70,7 @@ is ``"yellow"``:
       :start-after: start-find-exact
       :end-before: end-find-exact
       :language: cpp
+      :dedent:
 
    .. output::
       
@@ -83,6 +87,7 @@ is ``"yellow"``:
       :start-after: start-find-all
       :end-before: end-find-all
       :language: cpp
+      :dedent:
       :copyable:
 
 Comparison Operators
@@ -109,6 +114,7 @@ parameter to the ``find()`` method. The code returns all documents that have a
       :start-after: start-find-comparison
       :end-before: end-find-comparison
       :language: cpp
+      :dedent:
 
    .. output::
 
@@ -142,6 +148,7 @@ parameter to the ``find()`` method. The code returns all documents in which the
       :start-after: start-find-logical
       :end-before: end-find-logical
       :language: cpp
+      :dedent:
 
    .. output::
 
@@ -173,6 +180,7 @@ parameter to the ``find()`` method. The code returns all documents in which the
       :start-after: start-find-array
       :end-before: end-find-array
       :language: cpp
+      :dedent:
 
    .. output::
 
@@ -198,6 +206,7 @@ parameter to the ``find()`` method. The code returns all documents that have a
       :start-after: start-find-element
       :end-before: end-find-element
       :language: cpp
+      :dedent:
 
    .. output::
 
@@ -233,6 +242,7 @@ all documents in which the ``name`` field value has at least two consecutive
       :start-after: start-find-evaluation
       :end-before: end-find-evaluation
       :language: cpp
+      :dedent:
 
    .. output::
 
