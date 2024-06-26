@@ -49,7 +49,7 @@ Complete the following steps to authenticate with GSSAPI:
       you can skip ahead to the next step.
 
       The following example uses the
-      ``knit`` command to obtain a ticket-granting ticket for the principal
+      ``kinit`` command to obtain a ticket-granting ticket for the principal
       ``mongodbuser@EXAMPLE.COM``. It then uses the ``klist``
       command to display the principal and ticket in the credentials cache.
       
@@ -86,7 +86,7 @@ Complete the following steps to authenticate with GSSAPI:
 
       .. note::
 
-         You must replace the ``@`` symbol in the URI string with ``%40``, as shown
+         You must replace the ``@`` symbol in the principal with ``%40``, as shown
          in the preceding example.
 
 PLAIN SASL

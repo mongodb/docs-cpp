@@ -36,7 +36,7 @@ To authenticate with this mechanism, set the following connection options:
 - ``authSource``: The MongoDB database to authenticate against. By default,
   {+driver-short+} authenticates against the database in the connection
   URI, if you include one. If you don't, it authenticates against the ``admin`` database.
-- ``authMechanism``: Set to ``SCRAM-SHA-256``.
+- ``authMechanism``: Set to ``"SCRAM-SHA-256"``.
 
 You can set these options in the connection string when creating a
 ``mongocxx::client`` object, as shown in the following example:
@@ -106,14 +106,14 @@ MONGODB-AWS
 The ``MONGODB-AWS`` authentication mechanism uses AWS IAM (Amazon Web Services Identity and
 Access Management) or AWS Lambda credentials to authenticate your application.
 To authenticate using this mechanism, first create a user with an associated Amazon Resource Name (ARN) on
-the ``$external`` database, and specify the ``MONGODB-AWS`` authMechanism in the
+the ``$external`` database, then specify the ``MONGODB-AWS`` authMechanism in the
 URI.
 
 When you use the ``MONGODB-AWS`` mechanism, the {+driver-short+} attempts to
 retrieve your AWS credentials from the following sources, in the order listed:
 
 1. Named parameters passed to the Connection URI
-#. Environment Variables
+#. Environment variables
 #. ECS container metadata
 #. EC2 instance metadata
 
@@ -142,7 +142,7 @@ You can set these options in the connection string when creating a
    :end-before: // end-aws-connection-uri
 
 You can also include an AWS session token by passing it into the
-``AuthMechanismProperties`` parameter:
+``authMechanismProperties`` parameter:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -185,7 +185,7 @@ ECS Metadata
 ~~~~~~~~~~~~
 
 If your application runs in an Elastic Container Service (ECS) container,
-{+driver-short+} can automatically retrieve temporary AWS credentials from an
+the {+driver-short+} can automatically retrieve temporary AWS credentials from an
 ECS endpoint. To do so, specify the URI of the ECS endpoint in an environment variable called
 ``AWS_CONTAINER_CREDENTIALS_RELATIVE_URI``, as shown in the following example:
 
