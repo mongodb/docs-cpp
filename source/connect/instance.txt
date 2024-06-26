@@ -41,10 +41,10 @@ construct an instance of ``mongocxx::instance`` at the start of your application
 as shown in the following example:
 
 .. literalinclude:: /includes/connect.cpp
-      :language: cpp
-      :copyable: true
-      :start-after: // start-instance
-      :end-before: // end-instance
+   :language: cpp
+   :copyable: true
+   :start-after: // start-instance
+   :end-before: // end-instance
 
 .. important::
 
