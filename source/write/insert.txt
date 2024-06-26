@@ -24,8 +24,9 @@ In this guide, you can learn how to use the {+driver-short+} to add
 documents to a MongoDB collection by performing **insert operations**.
 
 An insert operation inserts one or more documents into a MongoDB collection.
-You can perform an insert operation by using the ``insert_one()`` or
-``insert_many()`` method.
+You can perform an insert operation by using the ``insert_one()`` method to
+insert a single document or the ``insert_many()`` method to insert one or more
+documents.
 
 Sample Data
 ~~~~~~~~~~~
@@ -55,9 +56,7 @@ MongoDB allows you to manage this field in two ways:
 - You can set this field for each document yourself, ensuring each
   ``_id`` field value is unique.
 - You can let the driver automatically generate unique ``ObjectId``
-  values for each document ``_id``. If you do not manually set an
-  ``_id`` value for a document, the driver populates the field
-  with an ``ObjectId``.
+  values for each document ``_id``.
 
 Unless you can guarantee uniqueness, we recommend
 letting the driver automatically generate ``_id`` values.
