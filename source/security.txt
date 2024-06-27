@@ -15,6 +15,7 @@ Secure Your Data
    :values: reference
 
 .. meta::
+   :keywords: ldap, authorize, ecs, aws, authenticate
    :description: Learn how to use {+driver-short+} to secure your data.
 
 .. toctree::
