@@ -23,15 +23,17 @@ Overview
 In this guide, you can learn how to specify which documents to return from a read
 operation by using the following methods:
 
-- ``limit()``: Specifies the maximum number of documents to return from a query.
-- ``sort()``: Specifies the sort order for the returned documents.
-- ``skip()``: Specifies the number of documents to skip before returning query results.
+- :ref:`limit() <cpp-return-documents-limit>`: Specifies the maximum number of documents
+  to return from a query.
+- :ref:`sort() <cpp-return-documents-sort>`: Specifies the sort order for the returned documents.
+- :ref:`skip() <cpp-return-documents-skip>`: Specifies the number of documents to skip before
+  returning query results.
 
 Sample Data
 ~~~~~~~~~~~
 
-The examples in this guide use the ``sample_restaurants.restaurants`` collection
-from the :atlas:`Atlas sample datasets </sample-data>`. To access this collection
+The examples in this guide use the ``restaurants`` collection in the ``sample_restaurants``
+database from the :atlas:`Atlas sample datasets </sample-data>`. To access this collection
 from your C++ application, instantiate a ``client`` that connects to an Atlas cluster
 and assign the following values to your ``db`` and ``collection`` variables:
 
@@ -130,9 +132,10 @@ of ``"Manhattan"`` and skips the first ``10`` documents:
 .. io-code-block::
 
    .. input:: /includes/read/limit-skip-sort.cpp
-      :start-after: start-skip
-      :end-before: end-skip
-      :language: python
+      :start-after: start-skip-method
+      :end-before: end-skip-method
+      :language: cpp
+      :dedent:
 
    .. output::
 
@@ -160,7 +163,8 @@ The following example returns documents with the ``cuisine`` value of
    .. input:: /includes/read/limit-skip-sort.cpp
       :start-after: start-limit-sort-skip
       :end-before: end-limit-sort-skip
-      :language: python
+      :language: cpp
+      :dedent:
 
    .. output::
       
