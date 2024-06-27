@@ -136,11 +136,9 @@ of ``"Manhattan"`` and skips the first ``10`` documents:
 
    .. output::
 
-      Dorrian'S Red Hand Restaurant
-      The Princeton Club
-      Moran'S Chelsea
-      La Parisienne Diner
-      Jimmy'S Corner
+      { "_id" : { "$oid" : "..." }, ...,  "name" : "Cafe Metro", "restaurant_id" : "40363298" }
+      { "_id" : { "$oid" : "..." }, ..., "name" : "Lexler Deli", "restaurant_id" : "40363426" }
+      { "_id" : { "$oid" : "..." }, ..., "name" : "Domino'S Pizza", "restaurant_id" : "40363644" }
       ...
 
 .. _cpp-return-documents-combine:
@@ -166,11 +164,11 @@ The following example returns documents with the ``cuisine`` value of
 
    .. output::
       
-      Acqua
-      Acqua Restaurant
-      Acqua Santa
-      Acquista Trattoria
-      Acquolina Catering
+      { "_id" : { "$oid" : "..." }, ..., "name" : "Acqua", "restaurant_id" : "40871070" }
+      { "_id" : { "$oid" : "..." }, ..., "name" : "Acqua Restaurant", "restaurant_id" : "41591488" }
+      { "_id" : { "$oid" : "..." }, ..., "name" : "Acqua Santa", "restaurant_id" : "40735858" }
+      { "_id" : { "$oid" : "..." }, ..., "name" : "Acquista Trattoria", "restaurant_id" : "40813992" }
+      { "_id" : { "$oid" : "..." }, ..., "name" : "Acquolina Catering", "restaurant_id" : "41381423" }
 
 .. note::
 

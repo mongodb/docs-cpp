@@ -20,45 +20,56 @@ int main() {
     auto db = client["sample_restaurants"];
     auto collection = db["restaurants"];
     // end-db-coll
+ 
+    {
+        // Retrieves 5 documents that have a "cuisine" value of "Italian"
+        // start-limit-method
+        mongocxx::options::find opts{};
+        opts.limit(5);
 
-    // start-limit-method
-    mongocxx::options::find opts{};
-    opts.limit(5);
-
-    auto cursor = collection.find(make_document(kvp("cuisine", "Italian")), opts);
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+        auto cursor = collection.find(make_document(kvp("cuisine", "Italian")), opts);
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-limit-method
     }
-    // end-limit-method
 
-    // start-sort-method
-    mongocxx::options::find opts{};
-    opts.sort(make_document(kvp("name", 1)));
+    {
+        // Retrieves documents with a "cuisine" value of "Italian" and sorts in ascending "name" order
+        // start-sort-method
+        mongocxx::options::find opts{};
+        opts.sort(make_document(kvp("name", 1)));
 
-    auto cursor = collection.find(make_document(kvp("cuisine", "Italian")), opts);
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+        auto cursor = collection.find(make_document(kvp("cuisine", "Italian")), opts);
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-sort-method
     }
-    // end-sort-method
 
-    // start-skip-method
-    mongocxx::options::find opts{};
-    opts.skip(10);
+    {
+        // Retrieves documents with a "borough" value of "Manhattan" but skips the first 10 results
+        // start-skip-method
+        mongocxx::options::find opts{};
+        opts.skip(10);
 
-    auto cursor = collection.find(make_document(kvp("borough", "Manhattan")), opts);
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+        auto cursor = collection.find(make_document(kvp("borough", "Manhattan")), opts);
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-skip-method
     }
-    // end-skip-method
 
-    // start-limit-sort-skip
-    mongocxx::options::find opts{};
-    opts.sort(make_document(kvp("name", 1))).limit(5).skip(10);
+    {
+        // Retrieves 5 matching documents, skips the first 10 results, and sorts by ascending "name" order
+        // start-limit-sort-skip
+        mongocxx::options::find opts{};
+        opts.sort(make_document(kvp("name", 1))).limit(5).skip(10);
 
-    auto cursor = collection.find(make_document(kvp("cuisine", "Italian")), opts);
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+        auto cursor = collection.find(make_document(kvp("cuisine", "Italian")), opts);
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-limit-sort-skip
     }
-    // end-limit-sort-skip
-
 }
