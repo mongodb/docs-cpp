@@ -160,3 +160,6 @@ PLAIN SASL
     :copyable: true
     :start-after: // start-plain
     :end-before: // end-plain
+
+To learn more about authenticating with PLAIN SASL, see
+:ref:`cpp-plain` in the Enterprise Authentication guide.
