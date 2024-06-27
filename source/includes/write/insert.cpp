@@ -43,7 +43,7 @@ int main() {
     docs.push_back(make_document(kvp("name", "Mongo's Pizza")));
     docs.push_back(make_document(kvp("name", "Mongo's Tacos")));
 
-    mongocxx::v_noabi::options::insert opts;
+    mongocxx::options::insert opts;
     opts.bypass_document_validation(true);
 
     auto result = collection.insert_many(docs, opts);
