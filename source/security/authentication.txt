@@ -22,6 +22,8 @@ Overview
 This guide describes the mechanisms you can use in the {+driver-short+} to authenticate
 users.
 
+.. _cpp-scram-sha-256:
+
 SCRAM-SHA-256
 -------------
 
@@ -47,6 +49,8 @@ You can set these options in the connection string when creating a
    :start-after: // start-scram-sha-256
    :end-before: // end-scram-sha-256
 
+.. _cpp-scram-sha-1:
+
 SCRAM-SHA-1
 -----------
 
@@ -70,6 +74,8 @@ You can set these options in the connection string when creating a
    :copyable: true
    :start-after: // start-scram-sha-1
    :end-before: // end-scram-sha-1
+
+.. _cpp-x509:
 
 MONGODB X.509
 -------------
@@ -95,6 +101,8 @@ You can set these options in the connection string when creating a
    :end-before: // end-x509
 
 .. TODO: To learn more about enabling TLS, see :ref:`cpp-tls`.
+
+.. _cpp-mongo-aws:
 
 MONGODB-AWS
 -----------

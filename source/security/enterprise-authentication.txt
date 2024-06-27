@@ -25,6 +25,8 @@ In this guide, you can learn how to authenticate to MongoDB by using these
 authentication mechanisms. To learn about the other authentication mechanisms available
 in MongoDB, see :ref:`<cpp-auth>`.
 
+.. _cpp-kerberos:
+
 Kerberos
 --------
 
@@ -88,6 +90,8 @@ Complete the following steps to authenticate with GSSAPI:
 
          You must replace the ``@`` symbol in the principal with ``%40``, as shown
          in the preceding example.
+
+.. _cpp-plain:
 
 PLAIN SASL
 ----------
