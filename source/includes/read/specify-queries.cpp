@@ -30,59 +30,75 @@ int main() {
     auto result = collection.insert_many(fruits);
     // end-setup
 
-    // Retrieves documents in which the "color" value is "yellow"
-    // start-find-exact
-    auto cursor = collection.find(make_document(kvp("color", "yellow")));
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+    {
+        // Retrieves documents in which the "color" value is "yellow"
+        // start-find-exact
+        auto cursor = collection.find(make_document(kvp("color", "yellow")));
+        for (auto &&doc : cursor)
+        {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-find-exact
     }
-    // end-find-exact
 
-    // Retrieves all documents in the collection
-    // start-find-all
-    auto cursor = collection.find({});
-    // end-find-all
+    {
+        // Retrieves all documents in the collection
+        // start-find-all
+        auto cursor = collection.find({});
+        // end-find-all
+    }
 
-    // Retrieves and prints documents in which the "rating" value is greater than 2
-    // start-find-comparison
-    auto cursor = collection.find(make_document(kvp("rating", make_document(kvp("$gt", 2)))));
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
-    }
-    // end-find-comparison
- 
-    // Retrieves and prints documents that match one or both query filters
-    // start-find-logical
-    auto cursor = collection.find(
-        make_document(kvp("$or",
-                            make_array(make_document(kvp("qty", make_document(kvp("$gt", 5)))),
-                                        make_document(kvp("color", "yellow"))))));
-    for (auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
-    }
-    // end-find-logical
+    {
 
-    // Retrieves and prints documents in which the "type" array has 2 elements
-    // start-find-array
-    auto cursor = collection.find(make_document(kvp("type", make_document(kvp("$size", 2)))));
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+        // Retrieves and prints documents in which the "rating" value is greater than 2
+        // start-find-comparison
+        auto cursor = collection.find(make_document(kvp("rating", make_document(kvp("$gt", 2)))));
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-find-comparison
     }
-    // end-find-array
 
-    // Retrieves and prints documents that have a "color" field
-    // start-find-element
-    auto cursor = collection.find(make_document(kvp("color", make_document(kvp("$exists", "true")))));
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+    {
+        // Retrieves and prints documents that match one or both query filters
+        // start-find-logical
+        auto cursor = collection.find(
+            make_document(kvp("$or",
+                                make_array(make_document(kvp("qty", make_document(kvp("$gt", 5)))),
+                                            make_document(kvp("color", "yellow"))))));
+        for (auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-find-logical
     }
-    // end-find-element
 
-    // Retrieves and prints documents in which the "name" value has at least two consecutive "p" characters
-    // start-find-evaluation
-    auto cursor = collection.find(make_document(kvp("name", make_document(kvp("$regex", "p{2,}")))));
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+    {
+        // Retrieves and prints documents in which the "type" array has 2 elements
+        // start-find-array
+        auto cursor = collection.find(make_document(kvp("type", make_document(kvp("$size", 2)))));
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-find-array
     }
-    // end-find-evaluation
+
+    {
+        // Retrieves and prints documents that have a "color" field
+        // start-find-element
+        auto cursor = collection.find(make_document(kvp("color", make_document(kvp("$exists", true)))));
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-find-element
+    }
+    
+    {
+        // Retrieves and prints documents in which the "name" value has at least two consecutive "p" characters
+        // start-find-evaluation
+        auto cursor = collection.find(make_document(kvp("name", make_document(kvp("$regex", "p{2,}")))));
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-find-evaluation
+    }
 }
