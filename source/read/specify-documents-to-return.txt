@@ -192,9 +192,9 @@ API Documentation
 ~~~~~~~~~~~~~~~~~
 
 To learn more about any of the methods or types discussed in this
-guide, see the following API Documentation:
+guide, see the following API documentation:
 
 - `find() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#ada76e1596a65c7615e7af7d34a8140d6>`__
-- `limit() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#aa8245eed102202a625dab67047903738>`__
+- `limit() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#a3eb2bdc65a762bb31cbb64aa3ff2522a>`__
 - `sort() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#a39e497bf0c084d9ddb1ccc68edee4b3a>`__
 - `skip() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#a7f5688e726d8c460d016e5007a47e001>`__
