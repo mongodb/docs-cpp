@@ -1,0 +1,26 @@
+. _cpp-security:
+
+================
+Secure Your Data
+================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :description: Learn how to use {+driver-short+} to secure your data.
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   /security/authentication
+   /security/enterprise-authentication
+   /in-use-encryption
