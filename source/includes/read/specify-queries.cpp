@@ -33,6 +33,9 @@ int main() {
     // Retrieves documents in which the "color" value is "yellow"
     // start-find-exact
     auto cursor = collection.find(make_document(kvp("color", "yellow")));
+    for(auto&& doc : cursor) {
+        std::cout << bsoncxx::to_json(doc) << std::endl;
+    }
     // end-find-exact
 
     // Retrieves all documents in the collection
