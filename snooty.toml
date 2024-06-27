@@ -11,7 +11,8 @@ toc_landing_pages = [
     "/installation",
     "/api-abi-versioning",
     "/get-started",
-    ]
+    "/security",
+]
 
 sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
 
