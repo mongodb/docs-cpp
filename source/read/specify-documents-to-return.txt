@@ -154,9 +154,9 @@ You can set the ``limit``, ``sort``, and ``skip`` fields of a single
 number of sorted documents to return, skipping a specified number of
 documents before returning.
 
-The following example returns documents with the ``cuisine`` value of
-``"Italian"``. The results are sorted in alphabetical order, skipping the first
-10 documents:
+The following example returns documents that have a ``cuisine`` value of
+``"Italian"``. The results are sorted in ascending ``name`` value order,
+skipping the first ``10`` documents:
 
 .. io-code-block::
 
