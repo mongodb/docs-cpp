@@ -21,6 +21,7 @@ int main() {
     auto collection = db["restaurants"];
     // end-db-coll
 
+    // Retrieves documents matching the "name" field query and projects their "name", "cuisine", and "borough" values
     // start-project-include
     mongocxx::options::find opts{};
     opts.projection(make_document(kvp("name", 1), kvp("cuisine", 1), kvp("borough", 1)));
@@ -31,6 +32,8 @@ int main() {
     }
     // end-project-include
 
+    // Retrieves documents matching the "name" field query
+    // and projects their "name", "cuisine", and "borough" values while excluding the "_id" values
     // start-project-include-without-id
     mongocxx::options::find opts{};
     opts.projection(make_document(kvp("_id", 0), kvp("name", 1), kvp("cuisine", 1), kvp("borough", 1)));
@@ -41,6 +44,7 @@ int main() {
     }
     // end-project-include-without-id
 
+    // Retrieves documents matching the "name" field query and excludes their "grade" and "address" values when printing
     // start-project-exclude
     mongocxx::options::find opts{};
     opts.projection(make_document(kvp("grades", 0), kvp("address", 0)));
