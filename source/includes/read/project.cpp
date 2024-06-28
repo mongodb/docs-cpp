@@ -1,6 +1,4 @@
-#include <cstdint>
 #include <iostream>
-#include <vector>
 
 #include <bsoncxx/builder/basic/document.hpp>
 #include <bsoncxx/json.hpp>
@@ -44,7 +42,7 @@ int main() {
     }
     // end-project-include-without-id
 
-    // Retrieves documents matching the "name" field query and excludes their "grade" and "address" values when printing
+    // Retrieves documents matching the "name" field query and excludes their "grades" and "address" values when printing
     // start-project-exclude
     mongocxx::options::find opts{};
     opts.projection(make_document(kvp("grades", 0), kvp("address", 0)));
