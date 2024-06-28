@@ -23,20 +23,20 @@ int main() {
  
     {
         // Counts documents that have a "founded_year" value of 2010
-        // start-count-specific
+        // start-count-accurate
         auto result = collection.count_documents(make_document(kvp("founded_year", 2010)));
         std::cout << "Number of documents: " << result << std::endl;
-        // end-count-specific
+        // end-count-accurate
     }
 
     {
         // Counts a maximum of 100 documents that have a "number_of_employees" value of 50
-        // start-modify-count
+        // start-modify-accurate
         mongocxx::options::count opts;
         opts.limit(100); 
         auto result = collection.count_documents(make_document(kvp("number_of_employees", 50)));
         std::cout << "Number of documents: " << result << std::endl;
-        // end-modify-count
+        // end-modify-accurate
     }
 
     {
@@ -45,5 +45,15 @@ int main() {
         auto result = collection.estimated_document_count();
         std::cout << "Estimated number of documents: " << result << std::endl;
         // end-count-estimate
+    }
+
+    {
+        // Estimates the number of documents in the collection and sets a time limit on the operation
+        // start-modify-accurate
+        mongocxx::options::estimated_document_count opts;
+        opts.max_time(1000); 
+        auto result = collection.estimated_document_count(opts);
+        std::cout << "Estimated number of documents: " << result << std::endl;
+        // end-modify-accurate
     }
 }

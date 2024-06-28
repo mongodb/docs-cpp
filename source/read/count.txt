@@ -20,16 +20,16 @@ Count Documents
 Overview
 ---------
 
-In this guide, you can learn how to retrieve an accurate and estimated count of the
-number of documents in a collection.
+In this guide, you can learn how to use the {+driver-short+} to retrieve an accurate
+and estimated count of the number of documents in a collection.
 
 Sample Data
 ~~~~~~~~~~~
 
 The examples in this guide use the ``companies`` collection in the ``sample_training``
 database from the :atlas:`Atlas sample datasets </sample-data>`. To access this collection
-from your C++ application, instantiate a ``client`` that connects to an Atlas cluster
-and assign the following values to your ``db`` and ``collection`` variables:
+from your C++ application, instantiate a ``mongocxx::client`` that connects to an Atlas
+cluster and assign the following values to your ``db`` and ``collection`` variables:
 
 .. literalinclude:: /includes/read/count.cpp
     :language: cpp
@@ -38,7 +38,7 @@ and assign the following values to your ``db`` and ``collection`` variables:
     :end-before: end-db-coll
 
 To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
-:ref:`<cpp-get-started>`.
+:ref:`<cpp-get-started>` tutorial.
 
 .. _cpp-accurate-count:
 
@@ -73,8 +73,8 @@ value of ``2010``:
 .. io-code-block::
 
    .. input:: /includes/read/count.cpp
-      :start-after: start-count-specific
-      :end-before: end-count-specific
+      :start-after: start-count-accurate
+      :end-before: end-count-accurate
       :language: cpp
       :dedent:
 
@@ -131,8 +131,8 @@ operation to count a maximum of ``100`` results:
 .. io-code-block::
 
    .. input:: /includes/read/count.cpp
-      :start-after: start-modify-count
-      :end-before: end-modify-count
+      :start-after: start-modify-accurate
+      :end-before: end-modify-accurate
       :language: cpp
       :dedent:
 
@@ -190,6 +190,22 @@ instance:
    * - ``read_preference``
      - | The read preference to use for the operation.
        | **Type**: ``mongocxx::read_preference``
+
+The following example uses the ``estimated_document_count()`` method to return an
+estimate of the number of documents in the collection and instructs the operation
+to run for a maximum of ``1000`` milliseconds:
+
+.. io-code-block::
+
+   .. input:: /includes/read/count.cpp
+      :start-after: start-modify-estimate
+      :end-before: end-modify-estimate
+      :language: cpp
+      :dedent:
+
+   .. output::
+
+      Estimated number of documents: 9500
 
 API Documentation
 -----------------
