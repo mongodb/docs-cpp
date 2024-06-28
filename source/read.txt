@@ -10,3 +10,4 @@ Read Data from MongoDB
 
    /read/retrieve
    /read/project
+   /read/specify-a-query
