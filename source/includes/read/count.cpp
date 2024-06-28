@@ -49,11 +49,11 @@ int main() {
 
     {
         // Estimates the number of documents in the collection and sets a time limit on the operation
-        // start-modify-accurate
+        // start-modify-estimate
         mongocxx::options::estimated_document_count opts;
         opts.max_time(1000); 
         auto result = collection.estimated_document_count(opts);
         std::cout << "Estimated number of documents: " << result << std::endl;
-        // end-modify-accurate
+        // end-modify-estimate
     }
 }
