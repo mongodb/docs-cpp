@@ -1,0 +1,382 @@
+.. _cpp-connection-options:
+
+==========================
+Specify Connection Options
+==========================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: connection string, URI, server, Atlas, settings, configure
+
+Overview
+--------
+
+This section describes the MongoDB connection and authentication options
+available in the {+driver-short+}. You can configure your connection by using either
+the connection URI or the ``client_options`` parameter of the ``mongocxx::client``
+constructor.
+
+.. note::
+
+   You can set most connection options by using either the connection URI or the
+   ``client_options`` parameter. However, some options support only one of these
+   methods. You might need to use both a connection URI and the ``client_options``
+   parameter to set all the options that you need.
+
+.. _cpp-connection-uri:
+
+Using the Connection URI
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+When you construct a ``mongocxx::client`` object, you can pass in a ``mongocxx::uri``
+object that represents your connection URI. This connection URI can include
+connection options as ``<name>=<value>`` pairs. In the following example,
+the connection URI contains the ``tls`` option with a value of ``true`` and the
+``tlsCertificateKeyFile`` option with a value of ``path/to/file.pem``:
+
+.. literalinclude:: /includes/connect.cpp
+   :language: cpp
+   :copyable: true
+   :start-after: // start-connection-string-options
+   :end-before: // end-connection-string-options
+
+.. note::
+
+   Not all connection string options are accessible via the ``uri.option()`` accessor.
+
+.. _cpp-client-options:
+
+Using the ``client_options`` Parameter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can set some connection options by specifying them as part of a ``mongocxx::options::client``
+object, then passing this object to the ``mongocxx::client`` constructor.
+Configuring the connection this way makes it easier to
+change settings at runtime and helps you catch errors during compilation.
+
+The following example shows how to use a ``mongocxx::options::client`` object to set
+the ``pem_file`` option to
+``path/to/file.pem``. The example sets the ``tls`` option to ``true`` in the connection
+string because it can't be set as part of ``client_options``.
+
+.. literalinclude:: /includes/connect.cpp
+   :language: cpp
+   :copyable: true
+   :start-after: // start-client-options
+   :end-before: // end-client-options
+
+Connection URI Options
+----------------------
+
+The following sections describe the connection options that you can set in the connection
+URI passed to the {+driver-short+}. These are documented on the Server page. 
+The driver supports the following options.
+
+If a ``mongocxx::options::client`` option maps to more than one
+option in the connection string, the **Connection URI Example** shows all
+relevant options.
+
+.. todo: .. note::
+   If you're using a query parameter for a time duration, the value must be in
+   milliseconds. For example, to specify 60 seconds, use the value ``60000``. If you're
+   using a ``MongoClientSettings`` object for a time duration, use the appropriate
+   ``TimeSpan`` value.
+
+Replica Set Options
+~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+
+   * - :manual:`directConnection </reference/connection-string/#mongodb-urioption-urioption.directConnection>`
+     -
+     -
+   
+   * - :manual:`replicaSet </reference/connection-string/#mongodb-urioption-urioption.replicaSet>`
+     -
+     -
+   
+Connection Options
+~~~~~~~~~~~~~~~~~~
+
+TLS Options
+```````````
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+
+   * - :manual:`tls </reference/connection-string/#mongodb-urioption-urioption.tls>`
+     - 
+     - 
+   
+   * - tlscertificatekeyfile
+     - 
+     - 
+
+   * - tlscertificatekeypassword
+     - 
+     - 
+
+   * - tlscafile
+     - 
+     - 
+
+   * - tlsallowinvalidcertificates
+     - 
+     - 
+
+   * - tlsallowinvalidhostnames
+     - 
+     - 
+
+   * - tlsinsecure
+     - 
+     - 
+
+   * - tlsdisablecertificaterevocationcheck
+     - 
+     - 
+
+   * - tlsdisableocspendpointcheck
+     - 
+     - 
+
+Timeout Options
+```````````````
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+
+   * - ``connecttimeoutms``
+     -
+     -
+
+   * - ``sockettimeoutms``
+     -
+     -
+
+Compression Options
+```````````````````
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+
+   * - ``compressors``
+     -
+     -
+
+   * - ``zlibcompressionlevel``
+     -
+     -
+
+Connection Pool Options
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+
+   * - maxpoolsize
+     -
+     -
+
+   * - waitqueuetimeoutms
+     -
+     -
+
+Write Concern Options
+~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+   
+   * - w 
+     -
+     - 
+
+   * - wtimeoutms 
+     - 
+     - 
+
+   * - journal 
+     -
+     - 
+
+Read Concern Options
+~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+   
+   * - readconcernlevel
+     -
+     - 
+
+Read Preference Options
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+   
+   * - readpreference
+     -
+     - 
+   
+   * - maxstalenessseconds
+     -
+     - 
+
+   * - readpreferencetags
+     -
+     - 
+
+Authentication Options
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+   
+   * - authmechanism
+     -
+     -
+
+   * - authmechanismproperties
+     -
+     -
+
+   * - authsource
+     -
+     -
+
+canonicalizehostname
+   * - gssapiservicename
+     -
+     -
+
+Server Selection and Discovery Options
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+   
+   * - localthresholdms
+     -
+     -
+
+   * - serverselectiontimeoutms
+     -
+     -
+
+   * - serverselectiontryonce
+     -
+     -
+
+   * - heartbeatfrequencyms
+     -
+     -
+
+   * - socketcheckintervalms
+     -
+     -
+
+Miscellaneous Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Connection URI Option
+     - ``client_options`` Equivalent
+     - Accessible from ``uri`` Object
+   
+   * - ``appname``
+     -
+     -
+
+   * - ``retryReads``
+     -
+     -
+
+   * - ``retryWrites``
+     -
+     -
+   
+   * - ``loadbalanced``
+     -
+     -
+
+   * - ``srvMaxHosts``
+     -
+     -
+
+
+
+
+
+
+
+
+Warning
+
+Setting any of the *timeoutMS options above to either 0 or a negative value is discouraged due to unspecified and inconsistent behavior. The “default value” historically specified as a fallback for 0 or a negative value is NOT related to the default values for the *timeoutMS options documented above. The meaning of a timeout of 0 or a negative value may vary depending on the operation being executed, even when specified by the same URI option. To specify the documented default value for a *timeoutMS option, use the MONGOC_DEFAULT_* constants defined in mongoc-client.h instead.
+
+
