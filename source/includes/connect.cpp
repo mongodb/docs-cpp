@@ -24,8 +24,6 @@ mongocxx::uri uri("<connection string>");
 // Create a mongocxx::client with a mongocxx::options::client object to set the Stable API version
 mongocxx::options::client client_options;
 mongocxx::options::server_api server_api_options(k_version_1);
-server_api_options.strict(true);
-server_api_options.deprecation_errors(true);
 client_options.server_api_opts(server_api_options);
 mongocxx::client client(uri, client_options);
 
