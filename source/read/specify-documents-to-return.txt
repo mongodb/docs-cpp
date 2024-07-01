@@ -23,10 +23,10 @@ Overview
 In this guide, you can learn how to specify which documents to return from a read
 operation by using the following methods:
 
-- :ref:`limit() <cpp-return-documents-limit>`: Specifies the maximum number of documents
+- :ref:`mongocxx::options::find::limit() <cpp-return-documents-limit>`: Specifies the maximum number of documents
   to return from a query.
-- :ref:`sort() <cpp-return-documents-sort>`: Specifies the sort order for the returned documents.
-- :ref:`skip() <cpp-return-documents-skip>`: Specifies the number of documents to skip before
+- :ref:`mongocxx::options::find::sort() <cpp-return-documents-sort>`: Specifies the sort order for the returned documents.
+- :ref:`mongocxx::options::find::skip() <cpp-return-documents-skip>`: Specifies the number of documents to skip before
   returning query results.
 
 Sample Data
@@ -90,8 +90,8 @@ Sort
 To return documents in a specified order, create a document that includes
 the field to sort the results by and the sort direction. A value of ``1`` sorts
 values from lowest to highest, and a value of ``-1`` sorts them from highest to
-lowest. Then, call the ``sort()`` method on a ``mongocxx::options::find``
-instance and pass this document as an argument.
+lowest. Then, call the ``mongocxx::options::find::sort()`` method on a
+``mongocxx::options::find`` instance and pass this document as an argument.
 
 The following example returns all documents that have a ``cuisine`` value of ``"Italian"``,
 sorted in ascending order of ``name`` field values:
