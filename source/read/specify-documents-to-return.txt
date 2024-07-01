@@ -181,8 +181,7 @@ Additional Information
 
 For more information about retrieving documents, see the :ref:`cpp-retrieve` guide.
 
-.. TODO:
- For more information about specifying a query, see the :ref:`cpp-specify-query` guide.
+For more information about specifying a query, see the :ref:`cpp-specify-query` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
