@@ -61,7 +61,8 @@ int main() {
     }
 
     {
-        // Retrieves 5 matching documents, skips the first 10 results, and sorts by ascending "name" order
+        // Retrieves 5 documents with a "cuisine" value of "Italian", skips the first 10 results,
+        // and sorts by ascending "name" order
         // start-limit-sort-skip
         mongocxx::options::find opts{};
         opts.sort(make_document(kvp("name", 1))).limit(5).skip(10);

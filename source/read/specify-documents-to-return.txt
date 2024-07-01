@@ -34,7 +34,7 @@ Sample Data
 
 The examples in this guide use the ``restaurants`` collection in the ``sample_restaurants``
 database from the :atlas:`Atlas sample datasets </sample-data>`. To access this collection
-from your C++ application, instantiate a ``client`` that connects to an Atlas cluster
+from your C++ application, instantiate a ``mongocxx::client`` that connects to an Atlas cluster
 and assign the following values to your ``db`` and ``collection`` variables:
 
 .. literalinclude:: /includes/read/limit-skip-sort.cpp
@@ -53,7 +53,7 @@ Limit
 
 To specify the maximum number of documents returned from a read operation, create
 an instance of the ``mongocxx::options::find`` class and set its ``limit`` field.
-Then, pass your ``mongocxx::options::find`` instance as a parameter to the
+Then, pass your ``mongocxx::options::find`` instance as an argument to the
 ``find()`` method.
 
 The following example finds all restaurants that have a ``cuisine`` field value
@@ -80,22 +80,18 @@ of ``"Italian"`` and limits the results to ``5`` documents:
    The preceding example returns the first five documents matched by the query
    according to their :manual:`natural order </reference/glossary/#std-term-natural-order>`
    in the database. The following section describes how to return the documents
-   in a specified sort order.
+   in a specified order.
 
 .. _cpp-return-documents-sort:
 
 Sort
 ----
 
-To return documents in a specified order, create an instance of the ``mongocxx::options::find``
-class and set its ``sort`` field. Then, pass your ``mongocxx::options::find`` instance as a
-parameter to the ``find()`` method.
-
-
-To set the ``sort`` field, call the ``sort()`` setter method on your ``mongocxx::options::find``
-instance and pass a document as a parameter. In this document, specify the field to sort the
-results by and the sort direction. A value of ``1`` sorts values from lowest to highest, and a value
-of ``-1`` sorts them from highest to lowest.
+To return documents in a specified order, create a document that includes
+the field to sort the results by and the sort direction. A value of ``1`` sorts
+values from lowest to highest, and a value of ``-1`` sorts them from highest to
+lowest. Then, call the ``sort()`` method on a ``mongocxx::options::find``
+instance and pass this document as an argument.
 
 The following example returns all documents that have a ``cuisine`` value of ``"Italian"``,
 sorted in ascending order of ``name`` field values:
@@ -123,7 +119,7 @@ Skip
 
 To skip a specified number of documents before returning your query results, create
 an instance of the ``mongocxx::options::find`` class and set its ``skip`` field.
-Then, pass your ``mongocxx::options::find`` instance as a parameter to the
+Then, pass your ``mongocxx::options::find`` instance as an argument to the
 ``find()`` method.
 
 The following example returns all documents that have a ``borough`` field value
@@ -154,8 +150,8 @@ You can set the ``limit``, ``sort``, and ``skip`` fields of a single
 number of sorted documents to return, skipping a specified number of
 documents before returning.
 
-The following example returns documents that have a ``cuisine`` value of
-``"Italian"``. The results are sorted in ascending ``name`` value order,
+The following example returns ``5`` documents that have a ``cuisine`` value of
+``"Italian"``. The results are sorted in ascending order by ``name`` field value,
 skipping the first ``10`` documents:
 
 .. io-code-block::
@@ -178,7 +174,7 @@ skipping the first ``10`` documents:
 
    The order in which you call these methods doesn't change the documents
    that are returned. The driver automatically reorders the calls to perform the
-   sort and skip operations first, and the limit operation afterward.
+   sort operation first, the skip operation next, and then the limit operation.
 
 Additional Information
 ----------------------
@@ -194,7 +190,8 @@ API Documentation
 To learn more about any of the methods or types discussed in this
 guide, see the following API documentation:
 
-- `find() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#ada76e1596a65c7615e7af7d34a8140d6>`__
-- `limit() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#a3eb2bdc65a762bb31cbb64aa3ff2522a>`__
-- `sort() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#a39e497bf0c084d9ddb1ccc68edee4b3a>`__
-- `skip() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#a7f5688e726d8c460d016e5007a47e001>`__
+- `mongocxx::collection::find() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#ada76e1596a65c7615e7af7d34a8140d6>`__
+- `mongocxx::options::find <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html>`__
+- `mongocxx::options::find::limit() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#a3eb2bdc65a762bb31cbb64aa3ff2522a>`__
+- `mongocxx::options::find::sort() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#a39e497bf0c084d9ddb1ccc68edee4b3a>`__
+- `mongocxx::options::find::skip() <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1find.html#a7f5688e726d8c460d016e5007a47e001>`__
