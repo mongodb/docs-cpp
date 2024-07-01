@@ -21,7 +21,10 @@ Overview
 ---------
 
 In this guide, you can learn how to use the {+driver-short+} to retrieve an accurate
-and estimated count of the number of documents in a collection.
+and estimated count of the number of documents in a collection. The ``count_documents()``
+method returns the exact number of documents that match a query filter or that exist in
+a collection, and the ``estimated_document_count()`` method returns the estimated number
+of documents in a collection.
 
 Sample Data
 ~~~~~~~~~~~
@@ -49,7 +52,7 @@ Use the ``count_documents()`` method to count the number of documents that are i
 collection. To count the number of documents that match a specific search
 critera, pass a query filter document to the ``count_documents()`` method.
 
-To learn more about specifying a query, see :ref:`cpp-specify-query`.
+To learn more about specifying a query, see the :ref:`cpp-specify-query` guide.
 
 Count All Documents
 ~~~~~~~~~~~~~~~~~~~
@@ -64,8 +67,8 @@ the ``count_documents()`` method, as shown in the following example:
 Count Specific Documents
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-To return a count of documents that match specific search criteria, specify your
-query in the ``count_documents()`` method.
+To return a count of documents that match specific search criteria, pass your query
+filter document to the ``count_documents()`` method.
 
 The following example counts the number of documents that have a ``founded_year``
 value of ``2010``:
