@@ -20,10 +20,18 @@ int main() {
     // end-db-coll
  
     {
+        // Counts all documents in the collection
+        // start-count-all
+        auto result = collection.count_documents({});
+        std::cout << "Number of documents: " << result << std::endl;
+        // end-count-all
+    }
+
+    {
         // Counts documents that have a "founded_year" value of 2010
         // start-count-accurate
         auto result = collection.count_documents(make_document(kvp("founded_year", 2010)));
-        std::cout << "Number of documents: " << result << std::endl;
+        std::cout << "Number of companies founded in 2010: " << result << std::endl;
         // end-count-accurate
     }
 
@@ -33,7 +41,7 @@ int main() {
         mongocxx::options::count opts;
         opts.limit(100); 
         auto result = collection.count_documents(make_document(kvp("number_of_employees", 50)));
-        std::cout << "Number of documents: " << result << std::endl;
+        std::cout << "Number of companies with 50 employees: " << result << std::endl;
         // end-modify-accurate
     }
 

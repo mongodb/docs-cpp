@@ -60,9 +60,17 @@ Count All Documents
 To return a count of all documents in the collection, pass an empty filter document to
 the ``count_documents()`` method, as shown in the following example:
 
-.. code-block:: cpp
+.. io-code-block::
 
-   auto count = collection.count_documents({})
+   .. input:: /includes/read/count.cpp
+      :start-after: start-count-all
+      :end-before: end-count-all
+      :language: cpp
+      :dedent:
+
+   .. output::
+
+      Number of documents: 9500
 
 Count Specific Documents
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -83,7 +91,7 @@ value of ``2010``:
 
    .. output::
 
-      Number of documents: 33
+      Number of companies founded in 2010: 33
 
 Customize Count Behavior
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -141,7 +149,7 @@ operation to count a maximum of ``100`` results:
 
    .. output::
 
-      Number of documents: 100
+      Number of companies with 50 employees: 100
 
 .. _cpp-estimated-count:
 
