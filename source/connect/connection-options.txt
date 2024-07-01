@@ -78,7 +78,7 @@ Connection URI Options
 ----------------------
 
 The following sections describe the connection options that you can set in the connection
-URI passed to the {+driver-short+}. These are documented on the Server page. 
+URI passed to the {+driver-short+}. These are documented on the Server page. Click those links. 
 The driver supports the following options.
 
 If a ``mongocxx::options::client`` option maps to more than one
@@ -99,15 +99,12 @@ Replica Set Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
 
    * - :manual:`directConnection </reference/connection-string/#mongodb-urioption-urioption.directConnection>`
      -
-     -
    
    * - :manual:`replicaSet </reference/connection-string/#mongodb-urioption-urioption.replicaSet>`
-     -
      -
    
 Connection Options
@@ -121,44 +118,39 @@ TLS Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
 
    * - :manual:`tls </reference/connection-string/#mongodb-urioption-urioption.tls>`
      - 
-     - 
    
-   * - tlscertificatekeyfile
-     - 
-     - 
-
-   * - tlscertificatekeypassword
-     - 
+   * - :manual:`tlsCertificateKeyFile </reference/connection-string/#mongodb-urioption-urioption.tlsCertificateKeyFile>`
      - 
 
-   * - tlscafile
-     - 
-     - 
-
-   * - tlsallowinvalidcertificates
-     - 
+   * - :manual:`tlsCertificateKeyPassword </reference/connection-string/#mongodb-urioption-urioption.tlsCertificateKeyPassword>`
      - 
 
-   * - tlsallowinvalidhostnames
-     - 
-     - 
-
-   * - tlsinsecure
-     - 
+   * - :manual:`tlsCAFile </reference/connection-string/#mongodb-urioption-urioption.tlsCaFile>`
      - 
 
-   * - tlsdisablecertificaterevocationcheck
-     - 
+   * - :manual:`tlsAllowInvalidCertificates </reference/connection-string/#mongodb-urioption-urioption.tlsAllowInvalidCertificates>`
      - 
 
-   * - tlsdisableocspendpointcheck
+   * - :manual:`tlsAllowInvalidHostnames </reference/connection-string/#mongodb-urioption-urioption.tlsAllowInvalidHostnames>`
      - 
+
+   * - :manual:`tlsInsecure </reference/connection-string/#mongodb-urioption-urioption.tlsInsecure>`
      - 
+
+   * - :manual:`tlsDisableCertificateRevocationCheck </reference/connection-string/#mongodb-urioption-urioption.tlsDisableCertificateRevocationCheck>`
+     - 
+
+   * - :manual:`tlsDisableOCSPEndpointCheck </reference/connection-string/#mongodb-urioption-urioption.tlsDisableOcspEndpointCheck>`
+     -
+
+.. tip::
+
+   Some of the TLS option can be set using the ``tls`` class. See the API page for a list
+   of these fields: https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1options_1_1tls.html
 
 Timeout Options
 ```````````````
@@ -168,15 +160,12 @@ Timeout Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
 
-   * - ``connecttimeoutms``
-     -
+   * - :manual:`connectTimeoutMS </reference/connection-string/#mongodb-urioption-urioption.connecttimeoutms>`
      -
 
-   * - ``sockettimeoutms``
-     -
+   * - :manual:`socketTimeoutMS </reference/connection-string/#mongodb-urioption-urioption.sockettimeoutms>`
      -
 
 Compression Options
@@ -187,15 +176,12 @@ Compression Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
 
-   * - ``compressors``
-     -
+   * - :manual:`compressors </reference/connection-string/#mongodb-urioption-urioption.compressors>`
      -
 
-   * - ``zlibcompressionlevel``
-     -
+   * - :manual:`zlibCompressionLevel </reference/connection-string/#mongodb-urioption-urioption.zlibcompressionlevel>`
      -
 
 Connection Pool Options
@@ -206,15 +192,12 @@ Connection Pool Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
 
-   * - maxpoolsize
-     -
+   * - :manual:`maxPoolSize </reference/connection-string/#mongodb-urioption-urioption.maxpoolsize>`
      -
 
-   * - waitqueuetimeoutms
-     -
+   * - :manual:`waitQueueTimeoutMS </reference/connection-string/#mongodb-urioption-urioption.waitqueuetimeoutms>`
      -
 
 Write Concern Options
@@ -225,19 +208,15 @@ Write Concern Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
    
-   * - w 
-     -
+   * - :manual:`w </reference/connection-string/#mongodb-urioption-urioption.w>` 
      - 
 
-   * - wtimeoutms 
-     - 
+   * - :manual:`wTimeoutMS </reference/connection-string/#mongodb-urioption-urioption.wtimeoutms>`
      - 
 
-   * - journal 
-     -
+   * - :manual:`journal </reference/connection-string/#mongodb-urioption-urioption.journal>` 
      - 
 
 Read Concern Options
@@ -248,11 +227,9 @@ Read Concern Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
    
-   * - readconcernlevel
-     -
+   * - :manual:`readConcernLevel </reference/connection-string/#mongodb-urioption-urioption.readconcernlevel>`
      - 
 
 Read Preference Options
@@ -263,19 +240,15 @@ Read Preference Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
    
-   * - readpreference
-     -
+   * - :manual:`readPreference </reference/connection-string/#mongodb-urioption-urioption.readpreference>`
      - 
    
-   * - maxstalenessseconds
-     -
+   * - :manual:`maxStalenessSeconds </reference/connection-string/#mongodb-urioption-urioption.maxstalenessseconds>`
      - 
 
-   * - readpreferencetags
-     -
+   * - :manual:`readPreferenceTags </reference/connection-string/#mongodb-urioption-urioption.readpreferencetags>`
      - 
 
 Authentication Options
@@ -286,24 +259,15 @@ Authentication Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
    
-   * - authmechanism
-     -
-     -
-
-   * - authmechanismproperties
-     -
+   * - :manual:`authMechanism </reference/connection-string/#mongodb-urioption-urioption.authmechanism>`
      -
 
-   * - authsource
-     -
+   * - :manual:`authMechanismProperties </reference/connection-string/#mongodb-urioption-urioption.authmechanismproperties>`
      -
 
-canonicalizehostname
-   * - gssapiservicename
-     -
+   * - :manual:`authSource </reference/connection-string/#mongodb-urioption-urioption.authsource>`
      -
 
 Server Selection and Discovery Options
@@ -314,28 +278,26 @@ Server Selection and Discovery Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
    
-   * - localthresholdms
-     -
-     -
-
-   * - serverselectiontimeoutms
-     -
+   * - :manual:`localThresholdMS </reference/connection-string/#mongodb-urioption-urioption.localthresholdms>`
      -
 
-   * - serverselectiontryonce
-     -
-     -
-
-   * - heartbeatfrequencyms
-     -
+   * - :manual:`serverSelectionTimeoutMS </reference/connection-string/#mongodb-urioption-urioption.serverselectiontimeoutms>`
      -
 
-   * - socketcheckintervalms
+   * - :manual:`serverSelectionTryOnce </reference/connection-string/#mongodb-urioption-urioption.serverselectiontryonce>`
      -
+
+   * - :manual:`heartbeatFrequencyMS </reference/connection-string/#mongodb-urioption-urioption.heartbeatfrequencyms>`
      -
+
+   * - :manual:`socketCheckIntervalMS </reference/connection-string/#mongodb-urioption-urioption.socketcheckintervalms>`
+     -
+
+Warning
+
+Setting any of the *timeoutMS options above to either 0 or a negative value is discouraged due to unspecified and inconsistent behavior. The “default value” historically specified as a fallback for 0 or a negative value is NOT related to the default values for the *timeoutMS options documented above. The meaning of a timeout of 0 or a negative value may vary depending on the operation being executed, even when specified by the same URI option. To specify the documented default value for a *timeoutMS option, use the MONGOC_DEFAULT_* constants defined in mongoc-client.h instead.
 
 Miscellaneous Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -345,38 +307,19 @@ Miscellaneous Configuration
    :stub-columns: 1
 
    * - Connection URI Option
-     - ``client_options`` Equivalent
      - Accessible from ``uri`` Object
    
-   * - ``appname``
-     -
-     -
-
-   * - ``retryReads``
-     -
+   * - :manual:`appName </reference/connection-string/#mongodb-urioption-urioption.appname>`
      -
 
-   * - ``retryWrites``
+   * - :manual:`retryReads </reference/connection-string/#mongodb-urioption-urioption.retryreads>`
      -
+
+   * - :manual:`retryWrites </reference/connection-string/#mongodb-urioption-urioption.retrywrites>`
      -
    
-   * - ``loadbalanced``
-     -
-     -
-
-   * - ``srvMaxHosts``
-     -
+   * - :manual:`loadBalanced </reference/connection-string/#mongodb-urioption-urioption.loadbalanced>`
      -
 
-
-
-
-
-
-
-
-Warning
-
-Setting any of the *timeoutMS options above to either 0 or a negative value is discouraged due to unspecified and inconsistent behavior. The “default value” historically specified as a fallback for 0 or a negative value is NOT related to the default values for the *timeoutMS options documented above. The meaning of a timeout of 0 or a negative value may vary depending on the operation being executed, even when specified by the same URI option. To specify the documented default value for a *timeoutMS option, use the MONGOC_DEFAULT_* constants defined in mongoc-client.h instead.
-
-
+   * - :manual:`srvMaxHosts </reference/connection-string/#mongodb-urioption-urioption.srvmaxhosts>`
+     -
