@@ -9,5 +9,6 @@ Read Data from MongoDB
    :maxdepth: 1
 
    /read/retrieve
-   /read/project
    /read/specify-a-query
+   /read/project
+   /read/count
