@@ -77,7 +77,7 @@ Replica Sets
 ------------
 
 To connect to a replica set, specify the hostnames (or IP addresses) and 
-port numbers of the replica-set members in your connection string.
+port numbers of the replica set members in your connection string.
 
 If you aren't able to provide a full list of hosts in the replica set, you can 
 specify one or more of the hosts in the replica set and instruct the {+driver-short+} to 
