@@ -19,36 +19,41 @@ int main() {
     auto collection = db["restaurants"];
     // end-db-coll
 
-    // Retrieves distinct values of the "borough" field
-    // start-distinct
-    auto cursor = collection.distinct("borough", {});
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+    {
+        // Retrieves distinct values of the "borough" field
+        // start-distinct
+        auto cursor = collection.distinct("borough", {});
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-distinct
     }
-    // end-distinct
 
-    // Retrieves distinct "borough" field values for documents with a "cuisine" value of "Italian"
-    // start-distinct-with-query
-    auto cursor = collection.distinct("borough", make_document(kvp("cuisine", "Italian")));
-    for(auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+    {
+        // Retrieves distinct "borough" field values for documents with a "cuisine" value of "Italian"
+        // start-distinct-with-query
+        auto cursor = collection.distinct("borough", make_document(kvp("cuisine", "Italian")));
+        for(auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-distinct-with-query
     }
-    // end-distinct-with-query
 
-    // Retrieves documents matching the "name" field query and excludes their "grades" and "address" values when printing
-    // start-distinct-with-comment
-    mongocxx::options::distinct opts{};
-    opts.comment(comment="Bronx pizza restaurants");
+    {
+        // Retrieves documents matching the "name" field query and excludes their "grades" and "address" values when printing
+        // start-distinct-with-comment
+        mongocxx::options::distinct opts{};
+        opts.comment(bsoncxx::types::bson_value::view_or_value{"Bronx pizza restaurants"});
 
-    auto cursor = collection.distinct("name",
-        make_document(kvp("$and",
-                            make_array(make_document(kvp("borough", "Bronx")),
-                                        make_document(kvp("cuisine", "Pizza"))))),
-        opts
-    );
-    for (auto&& doc : cursor) {
-        std::cout << bsoncxx::to_json(doc) << std::endl;
+        auto cursor = collection.distinct("name",
+            make_document(kvp("$and",
+                                make_array(make_document(kvp("borough", "Bronx")),
+                                            make_document(kvp("cuisine", "Pizza"))))),
+            opts
+        );
+        for (auto&& doc : cursor) {
+            std::cout << bsoncxx::to_json(doc) << std::endl;
+        }
+        // end-distinct-with-comment
     }
-    // end-distinct-with-comment
-
 }

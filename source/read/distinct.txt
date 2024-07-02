@@ -24,10 +24,10 @@ In this guide, you can learn how to use the {+driver-short+} to retrieve the
 distinct values of a specified field across a collection.
 
 Within a collection, different documents might contain different values for a
-single field. For example, one ``restaurant`` document has a ``borough`` value of
-``"Manhattan"``, and another has a ``borough`` value of ``"Queens"``. Using the
-{+driver-short+}, you can retrieve all the unique values that a field contains
-across multiple documents in a collection.
+single field. For example, one document in a ``restaurants`` collection has a
+``borough`` value of ``"Manhattan"``, and another has a ``borough`` value of
+``"Queens"``. Using the {+driver-short+}, you can retrieve all the unique values
+that a field contains across multiple documents in a collection.
 
 Sample Data
 ~~~~~~~~~~~
@@ -68,16 +68,14 @@ the ``restaurants`` collection:
 
    .. output:: 
 
-      Bronx
-      Brooklyn
-      Manhattan
-      Missing
-      Queens
-      Staten Island
+      { "values" : [ "Bronx", "Brooklyn", "Manhattan", "Missing", "Queens", "Staten Island" ],
+      "ok" : 1.0, "$clusterTime" : { "clusterTime" : { "$timestamp" : { ... } },
+      "signature" : { "hash" : { ... }, "keyId" : ... } }, "operationTime" : { "$timestamp" : { ... } }
 
-The results show every distinct value that appears in the ``borough`` field
-across all documents in the collection. Although several documents have the same
-value in the ``borough`` field, each value appears in the results only once.
+The operation returns a cursor that stores a single document, which includes a list of
+distinct ``borough`` field values and metadata about the operation. Although several
+documents have the same value in the ``borough`` field, each value appears in the results
+only once.
 
 Retrieve Distinct Values Across Specified Documents
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -100,17 +98,15 @@ all documents that have a ``cuisine`` field value of ``"Italian"``:
 
    .. output:: 
 
-      Bronx
-      Brooklyn
-      Manhattan
-      Queens
-      Staten Island
+      { "values" : [ "Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island" ],
+      "ok" : 1.0, "$clusterTime" : { "clusterTime" : { "$timestamp" : { ... },
+      "signature" : { "hash" : { ... }, "keyId" : ... } }, "operationTime" : { "$timestamp" : { ... } }
 
 Modify Distinct Behavior
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can modify the behavior of the ``distinct()`` method by passing an instance
-of the ``mongocxx::options::distinct`` class as a parameter. The following table
+of the ``mongocxx::options::distinct`` class as an argument. The following table
 describes the fields you can set in a ``mongocxx::options::distinct`` instance:
 
 .. list-table::
@@ -151,12 +147,8 @@ of an options instance to add a comment to the operation:
 
    .. output:: 
 
-      $1.25 Pizza
-      18 East Gunhill Pizza
-      2 Bros
-      Aenos Pizza
-      Alitalia Pizza Restaurant
-      ...
+      { "values" : [ "$1.25 Pizza", "18 East Gunhill Pizza", "2 Bros", "Aenos Pizza", "Alitalia Pizza Restaurant", … ], 
+        "ok" : 1.0, "$clusterTime" : { "clusterTime" : { … }, "signature" : { … }, "keyId" : … } }, "operationTime" : { … } }
 
 API Documentation
 -----------------
