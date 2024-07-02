@@ -40,7 +40,8 @@ int main() {
     }
 
     {
-        // Retrieves documents matching the "name" field query and excludes their "grades" and "address" values when printing
+        // Retrieves distinct "name" field values for documents matching the "borough" and "cuisine" fields query
+        // and attaches a comment to the operation
         // start-distinct-with-comment
         mongocxx::options::distinct opts{};
         opts.comment(bsoncxx::types::bson_value::view_or_value{"Bronx pizza restaurants"});
