@@ -26,7 +26,7 @@ distinct values of a specified field across a collection.
 Within a collection, different documents might contain different values for a
 single field. For example, one document in a ``restaurants`` collection has a
 ``borough`` value of ``"Manhattan"``, and another has a ``borough`` value of
-``"Queens"``. Using the {+driver-short+}, you can retrieve all the unique values
+``"Queens"``. By using the {+driver-short+}, you can retrieve all the unique values
 that a field contains across multiple documents in a collection.
 
 Sample Data
@@ -72,8 +72,8 @@ the ``restaurants`` collection:
       "ok" : 1.0, "$clusterTime" : { "clusterTime" : { "$timestamp" : { ... } },
       "signature" : { "hash" : { ... }, "keyId" : ... } }, "operationTime" : { "$timestamp" : { ... } }
 
-The operation returns a cursor that stores a single document, which includes a list of
-distinct ``borough`` field values and metadata about the operation. Although several
+The operation returns a cursor that contains a single document. The document includes a list
+of distinct ``borough`` field values and metadata about the operation. Although several
 documents have the same value in the ``borough`` field, each value appears in the results
 only once.
 
