@@ -39,7 +39,7 @@ int main() {
         // start-modify-accurate
         mongocxx::options::count opts;
         opts.limit(100); 
-        auto result = collection.count_documents(make_document(kvp("number_of_employees", 50)));
+        auto result = collection.count_documents(make_document(kvp("number_of_employees", 50)), opts);
         std::cout << "Number of companies with 50 employees: " << result << std::endl;
         // end-modify-accurate
     }
