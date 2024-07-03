@@ -8,6 +8,7 @@
 
 using bsoncxx::builder::basic::kvp;
 using bsoncxx::builder::basic::make_document;
+using bsoncxx::builder::basic::make_array;
 
 int main() {
     mongocxx::instance instance{};
