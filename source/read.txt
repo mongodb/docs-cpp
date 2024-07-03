@@ -10,5 +10,6 @@ Read Data from MongoDB
 
    /read/retrieve
    /read/specify-a-query
+   /read/distinct
    /read/project
    /read/count
