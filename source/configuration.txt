@@ -204,4 +204,4 @@ MongoDB 3.4 added Snappy compression support, while zlib compression was added
 in 3.6, and zstd compression in 4.2.
 
 Data compression can be enabled with the appropriate URI options, as documented
-in the `C driver manual <https://mongoc.org/libmongoc/current/data-compression.html>`__.
+in the `API documentation for the MongoDB C driver <https://mongoc.org/libmongoc/current/mongoc_uri_t.html#connection-options>`__.
