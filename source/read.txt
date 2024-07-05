@@ -12,4 +12,6 @@ Read Data from MongoDB
    /read/specify-a-query
    /read/specify-documents-to-return
    /read/project
-
+   /read/distinct
+   /read/project
+   /read/count
