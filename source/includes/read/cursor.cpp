@@ -17,12 +17,12 @@ using bsoncxx::builder::basic::make_document;
 
 int main() {
     mongocxx::instance instance{};
-    mongocxx::uri uri("mongodb+srv://norareidy:peanutCC@codetestcluster.8vjy7d0.mongodb.net/?retryWrites=true&w=majority&appName=CodeTestCluster");
+    mongocxx::uri uri("<connection string>");
     mongocxx::client client(uri);
 
     // start-db-coll
-      auto db = client["sample_restaurants"];
-      auto collection = db["restaurants"];
+    auto db = client["sample_restaurants"];
+    auto collection = db["restaurants"];
     // end-db-coll
 
     {
@@ -41,22 +41,12 @@ int main() {
         auto cursor = collection.find(make_document(kvp("name", "Dunkin' Donuts")));
         auto doc = cursor.begin();
         std::cout << bsoncxx::to_json(*doc) << std::endl;
-    }
-
-    {
-        // Retrieves and prints the first document stored in the cursor, then continues printing each subsequent document
-        // start-cursor-first
-        auto cursor = collection.find(make_document(kvp("name", "Dunkin' Donuts")));
-        while (cursor.begin() != cursor.end()) {
-            auto it = cursor.begin();
-            std::cout << bsoncxx::to_json(*it) << std::endl;
-            it++;
-        }
+        // end-cursor-first
     }
 
     {
         // Creates a collection with a maximum size and inserts documents representing vegetables
-        // begin-capped-coll
+        // start-capped-coll
         auto db = client["db"];
         auto collection = db.create_collection("vegetables", make_document(kvp("capped", true), kvp("size", 1024 * 1024)));
         
@@ -69,7 +59,7 @@ int main() {
         
         // Iterates over the initial query results and continues iterating until three documents are stored in the cursor
         // by using a tailable cursor
-        // begin-tailable
+        // start-tailable
         mongocxx::options::find opts{};
         opts.cursor_type(mongocxx::cursor::type::k_tailable);
         auto cursor = collection.find({}, opts);
