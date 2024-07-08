@@ -15,3 +15,4 @@ Read Data from MongoDB
    /read/distinct
    /read/project
    /read/count
+   /read/cursor
