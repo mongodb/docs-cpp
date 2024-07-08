@@ -49,8 +49,8 @@ To learn how to create a free MongoDB Atlas cluster and load the sample datasets
 
 .. _pymongo-cursors-iterate:
 
-Iterate Over All Cursor Contents
---------------------------------
+Retrieve All Cursor Documents
+-----------------------------
 
 To iterate over the contents of a ``mongocxx::cursor`` instance, use a ``for`` loop.
 
@@ -107,7 +107,7 @@ results in a cursor. To create a tailable cursor, instantiate a ``mongocxx::opti
 object and set its ``cursor_type`` field to ``mongocxx::cursor::type::k_tailable``. Then,
 pass your ``mongocxx::options::find`` instance as an argument to the ``find()`` method.
 
-For example, you can query a capped collection called ``vegetables`` that stores
+For example, you can create a capped collection called ``vegetables`` that stores
 documents representing vegetables, as shown in the following code:
 
 .. literalinclude:: /includes/read/cursor.cpp
