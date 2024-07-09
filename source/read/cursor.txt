@@ -24,8 +24,9 @@ In this guide, you can learn how to access data from a **cursor** by using the
 {+driver-short+}.
 
 A cursor is a mechanism that returns the results of a read operation in iterable
-batches. Because a cursor holds only a subset of documents at any given time,
-cursors reduce both memory consumption and network bandwidth usage.
+batches. Cursors reduce both memory consumption and network bandwidth usage by holding
+only a subset of documents at any given time rather than returning all documents at
+once.
 
 Whenever the {+driver-short+} performs a read operation by using the ``find()``
 method, it returns the matching documents in a ``mongocxx::cursor`` instance.
@@ -77,7 +78,7 @@ by the ``find()`` method:
 Retrieve Documents Individually
 -------------------------------
 
-To retrieve documents from a cursor individually, call the ``begin()`` method on
+To retrieve an individual document from a cursor, call the ``begin()`` method on
 a ``mongocxx::cursor`` instance. This method returns an instance of ``mongocxx::cursor::iterator``
 that points to the first document in the cursor.
 
