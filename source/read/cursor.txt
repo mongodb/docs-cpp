@@ -118,8 +118,7 @@ documents representing vegetables, as shown in the following code:
     :end-before: end-capped-coll
 
 The following code uses a tailable cursor to retrieve all documents in the ``vegetables``
-collection but continues to check the cursor for more documents until it retrieves
-three documents:
+collection. After the cursor is exhausted, it remains open until retrieving three documents:
 
 .. io-code-block::
    :copyable:
