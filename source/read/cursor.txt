@@ -28,7 +28,7 @@ batches. Because a cursor holds only a subset of documents at any given time,
 cursors reduce both memory consumption and network bandwidth usage.
 
 Whenever the {+driver-short+} performs a read operation by using the ``find()``
-method, it returns the matching documents in a ``mongocxxx::cursor`` instance.
+method, it returns the matching documents in a ``mongocxx::cursor`` instance.
 
 Sample Data
 ~~~~~~~~~~~
