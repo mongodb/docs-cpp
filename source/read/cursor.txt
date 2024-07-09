@@ -27,8 +27,8 @@ A cursor is a mechanism that returns the results of a read operation in iterable
 batches. Because a cursor holds only a subset of documents at any given time,
 cursors reduce both memory consumption and network bandwidth usage.
 
-Whenever the {+driver-short+} performs a read operation that returns multiple
-documents, it automatically returns those documents in a cursor.
+Whenever the {+driver-short+} performs a read operation by using the ``find()``
+method, it returns the matching documents in a ``mongocxxx::cursor`` instance.
 
 Sample Data
 ~~~~~~~~~~~
@@ -47,7 +47,7 @@ and assign the following values to your ``db`` and ``collection`` variables:
 To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
 :atlas:`Get Started with Atlas </getting-started>` guide.
 
-.. _pymongo-cursors-iterate:
+.. _cpp-cursors-iterate:
 
 Retrieve All Cursor Documents
 -----------------------------
@@ -78,7 +78,7 @@ Retrieve Documents Individually
 -------------------------------
 
 To retrieve documents from a cursor individually, call the ``begin()`` method on
-your ``mongocxx::cursor`` instance. This method returns an instance of ``mongocxx::cursor::iterator``
+a ``mongocxx::cursor`` instance. This method returns an instance of ``mongocxx::cursor::iterator``
 that points to the first document in the cursor.
 
 The following example finds all documents in a collection that have a ``name`` value
