@@ -82,6 +82,7 @@ When you update the collection, the change stream application prints the change
 as it occurs. The printed change event resembles the following output:
 
 .. code-block:: bash
+   :copyable: false
 
    { "_id" : { "_data" : "..." }, "operationType" : "update", "clusterTime" : 
    { "$timestamp" : { ... }, "wallTime" : { "$date" : ... }, "ns" : 
@@ -232,6 +233,7 @@ With the change stream application running, updating a document in the
 code:
 
 .. code-block:: bash
+   :copyable: false
    :emphasize-lines: 3,4,5,6
 
    { "_id" : { "_data" : "..." }, "operationType" : "update", "clusterTime" :
