@@ -70,7 +70,7 @@ To begin watching for changes, run the preceding code. Then, in a separate
 application or shell, modify the ``restaurants`` collection. The following
 example updates a document that has a ``name`` field value of ``Blarney Castle``:
 
-.. _pymongo-change-stream-update:
+.. _cpp-change-stream-update:
 
 .. literalinclude:: /includes/read/change-streams.cpp
    :start-after: start-update-for-change-stream
@@ -79,14 +79,15 @@ example updates a document that has a ``name`` field value of ``Blarney Castle``
    :dedent:
 
 When you update the collection, the change stream application prints the change
-as it occurs. The printed change event resembles the
-following:
+as it occurs. The printed change event resembles the following output:
 
 .. code-block:: bash
 
-   {'_id': {'_data': '...'}, 'operationType': 'update', 'clusterTime': Timestamp(...), 'wallTime': datetime.datetime(...),
-   'ns': {'db': 'sample_restaurants', 'coll': 'restaurants'}, 'documentKey': {'_id': ObjectId('...')}, 
-   'updateDescription': {'updatedFields': {'cuisine': 'Irish'}, 'removedFields': [], 'truncatedArrays': []}}
+   { "_id" : { "_data" : "..." }, "operationType" : "update", "clusterTime" : 
+   { "$timestamp" : { ... }, "wallTime" : { "$date" : ... }, "ns" : 
+   { "db" : "sample_restaurants", "coll" : "restaurants" }, "documentKey" : 
+   { "_id" : { "$oid" : "..." } }, "updateDescription" : { "updatedFields" : { "cuisine" : "Irish" },
+   "removedFields" : [  ], "truncatedArrays" : [  ] } }
 
 Modify the Change Stream Output
 -------------------------------
@@ -233,15 +234,21 @@ code:
 .. code-block:: sh
    :emphasize-lines: 2,5
 
-   {'_id': {'_data': '...'}, 'operationType': 'update', 'clusterTime': Timestamp(...), 'wallTime': datetime.datetime(...),
-    'fullDocument': {'_id': ObjectId('...'), 'address': {...}, 'borough': 'Queens', 
-    'cuisine': 'Irish', 'grades': [...], 'name': 'Blarney Castle', 'restaurant_id': '40366356'},
-    'ns': {'db': 'sample_restaurants', 'coll': 'restaurants'}, 'documentKey': {'_id': ObjectId('...')},
-    'updateDescription': {'updatedFields': {'cuisine': 'Irish'}, 'removedFields': [], 'truncatedArrays': []}}
+   { "_id" : { "_data" : "..." }, "operationType" : "update", "clusterTime" :
+   { "$timestamp" : { ... } }, "wallTime" : { "$date" : ... }, "fullDocument" :
+   { "_id" : { "$oid" : "..." }, "address" : { "building" : "202-24", "coord" : 
+   [ -73.925044200000002093, 40.559546199999999772 ], "street" : "Rockaway Point Boulevard",
+   "zipcode" : "11697" }, "borough" : "Queens", "cuisine" : "Irish", "grades" :
+   [ ... ], "name" : "Blarney Castle", "restaurant_id" : "40366356" },
+   "ns" : { "db" : "sample_restaurants", "coll" : "restaurants" }, "documentKey" :
+   { "_id" : { "$oid" : "..." } }, "updateDescription" : { "updatedFields" :
+   { "cuisine" : "Irish" }, "removedFields" : [  ], "truncatedArrays" : [  ] } }
 
-To learn more about pre-images and post-images, see 
-:manual:`Change Streams with Document Pre- and Post-Images </changeStreams#change-streams-with-document-pre--and-post-images>` 
-in the {+mdb-server+} manual.
+.. tip::
+
+   To learn more about pre-images and post-images, see 
+   :manual:`Change Streams with Document Pre- and Post-Images </changeStreams#change-streams-with-document-pre--and-post-images>` 
+   in the {+mdb-server+} manual.
 
 Additional Information
 ----------------------
