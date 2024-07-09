@@ -122,6 +122,7 @@ retrieve your AWS credentials from the following sources, in the order listed:
 
 1. Named parameters passed to the Connection URI
 #. Environment variables
+#. AWS EKS AssumeRoleWithWebIdentity request
 #. ECS container metadata
 #. EC2 instance metadata
 
@@ -188,6 +189,36 @@ following example:
    :copyable: true
    :start-after: // start-aws-environment
    :end-before: // end-aws-environment
+
+AssumeRoleWithWebIdentity Request
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If your application authenticates users for your EKS cluster from an OpenID Connect (OIDC)
+identity provider, {+driver-short+} can make an ``AssumeRoleWithWebIdentity`` request
+to exchange the OIDC token for temporary AWS credentials for your application. 
+
+To authenticate with temporary AWS IAM credentials returned by an
+``AssumeRoleWithWebIdentity`` request, ensure that the AWS config file exists in your
+environment and is configured with the ``AWS_WEB_IDENTITY_TOKEN_FILE``
+and ``AWS_ROLE_ARN`` environment variables. To learn how to create and configure
+an AWS config file, see `Configuration <https://docs.aws.amazon.com/sdkref/latest/guide/creds-config-files.html>`__
+in the AWS documentation.
+
+After you configure your environment for an ``AssumeRoleWithWebIdentity`` request,
+set the ``authMechanism`` parameter in your connection URI to ``"MONGODB-AWS"``,
+as shown in the following example:
+
+.. literalinclude:: /includes/authentication.cpp
+   :language: cpp
+   :copyable: true
+   :start-after: // start-aws-environment
+   :end-before: // end-aws-environment
+
+For more information about using an ``AssumeRoleWithWebIdentity`` request to
+authenticate your application, see the following AWS documentation:
+
+- `AssumeRoleWithWebIdentity <https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html>`__
+- `Authenticating users for your cluster from an OpenID Connect identity provider <https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html>`__
 
 ECS Metadata
 ~~~~~~~~~~~~

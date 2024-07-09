@@ -30,7 +30,7 @@ mongocxx::client client(uri);
 #include <mongocxx/uri.hpp>
 
 auto uri = mongocxx::uri("mongodb://<AWS IAM access key ID>:<AWS IAM secret access key>@<hostname>:<port>/?"
-                         "&authMechanism=MONGODB-AWS");
+                         "authMechanism=MONGODB-AWS");
 mongocxx::client client(uri);
 // end-aws-connection-uri
 
@@ -39,7 +39,7 @@ mongocxx::client client(uri);
 #include <mongocxx/uri.hpp>
 
 auto uri = mongocxx::uri("mongodb://<AWS IAM access key ID>:<AWS IAM secret access key>@<hostname>:<port>/?"
-                         "&authMechanism=MONGODB-AWSS&authMechanismProperties=AWS_SESSION_TOKEN:<token>");
+                         "authMechanism=MONGODB-AWSS&authMechanismProperties=AWS_SESSION_TOKEN:<token>");
 mongocxx::client client(uri);
 // end-aws-connection-uri-session
 
@@ -57,7 +57,7 @@ mongocxx::client client(uri);
 #include <mongocxx/uri.hpp>
 
 auto uri = mongocxx::uri("mongodb://mongodbuser%40EXAMPLE.COM@<hostname>:<port>/?"
-                         "&authMechanism=GSSAPI"
+                         "authMechanism=GSSAPI"
                          "&authMechanismProperties=SERVICE_NAME:<authentication service name>");
 mongocxx::client client(uri);
 // end-kerberos
@@ -67,6 +67,6 @@ mongocxx::client client(uri);
 #include <mongocxx/uri.hpp>
 
 auto uri = mongocxx::uri("mongodb://<username>:<password>@<hostname>:<port>/?"
-                         "&authMechanism=PLAIN&tls=true");
+                         "authMechanism=PLAIN&tls=true");
 mongocxx::client client(uri);
 // end-plain

@@ -35,7 +35,7 @@ authentication.
 
 .. note::
 
-   To authenticate with GSSAPI, you must build the driver with SASL support.
+   To authenticate with GSSAPI, you must build the MongoDB C driver with SASL support.
    If you are building the driver from source, you can enable SASL support with
    the ``ENABLE_SASL`` ``cmake`` option.
 
