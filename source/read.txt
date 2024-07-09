@@ -34,7 +34,7 @@ Overview
 --------
 
 On this page, you can see copyable code examples that show common
-methods you can use to retrieve documents by using the {+driver-short+}.
+{+driver-short+} methods for retrieving documents.
 
 .. tip::
 
@@ -55,7 +55,7 @@ deployment.
    :language: cpp
    :dedent:
    :linenos:
-   :emphasize-lines: 11-13
+   :emphasize-lines: 22-24
 
 Find One
 --------
@@ -66,8 +66,8 @@ Find One
    :language: cpp
    :dedent:
 
-To learn more about the ``find_one()`` method, see :ref:`cpp-retrieve-find-one` in
-the Retrieve Data guide.
+To learn more about the ``find_one()`` method, see the :ref:`cpp-retrieve-find-one`
+section in the Retrieve Data guide.
 
 Find Multiple
 -------------
