@@ -36,7 +36,7 @@ database from the :atlas:`Atlas sample datasets </sample-data>`. To access this 
 from your C++ application, instantiate a ``mongocxx::client`` that connects to an Atlas cluster
 and assign the following values to your ``db`` and ``collection`` variables:
 
-.. literalinclude:: /includes/read/distinct.cpp
+.. literalinclude:: /includes/read/change-streams.cpp
     :language: cpp
     :dedent:
     :start-after: start-db-coll
@@ -86,8 +86,8 @@ as it occurs. The printed change event resembles the following output:
    { "_id" : { "_data" : "..." }, "operationType" : "update", "clusterTime" : 
    { "$timestamp" : { ... }, "wallTime" : { "$date" : ... }, "ns" : 
    { "db" : "sample_restaurants", "coll" : "restaurants" }, "documentKey" : 
-   { "_id" : { "$oid" : "..." } }, "updateDescription" : { "updatedFields" : { "cuisine" : "Irish" },
-   "removedFields" : [  ], "truncatedArrays" : [  ] } }
+   { "_id" : { "$oid" : "..." } }, "updateDescription" : { "updatedFields" :
+   { "cuisine" : "Irish" }, "removedFields" : [  ], "truncatedArrays" : [  ] } }
 
 Modify the Change Stream Output
 -------------------------------
@@ -231,15 +231,15 @@ With the change stream application running, updating a document in the
 <cpp-change-stream-update>` prints a change event resembling the following
 code:
 
-.. code-block:: sh
-   :emphasize-lines: 2,5
+.. code-block:: bash
+   :emphasize-lines: 3,4,5,6
 
    { "_id" : { "_data" : "..." }, "operationType" : "update", "clusterTime" :
-   { "$timestamp" : { ... } }, "wallTime" : { "$date" : ... }, "fullDocument" :
-   { "_id" : { "$oid" : "..." }, "address" : { "building" : "202-24", "coord" : 
-   [ -73.925044200000002093, 40.559546199999999772 ], "street" : "Rockaway Point Boulevard",
-   "zipcode" : "11697" }, "borough" : "Queens", "cuisine" : "Irish", "grades" :
-   [ ... ], "name" : "Blarney Castle", "restaurant_id" : "40366356" },
+   { "$timestamp" : { ... } }, "wallTime" : { "$date" : ... },
+   "fullDocument" : { "_id" : { "$oid" : "..." }, "address" : { "building" : "202-24",
+   "coord" : [ -73.925044200000002093, 40.559546199999999772 ], "street" :
+   "Rockaway Point Boulevard", "zipcode" : "11697" }, "borough" : "Queens", "cuisine" :
+   "Irish", "grades" : [ ... ], "name" : "Blarney Castle", "restaurant_id" : "40366356" },
    "ns" : { "db" : "sample_restaurants", "coll" : "restaurants" }, "documentKey" :
    { "_id" : { "$oid" : "..." } }, "updateDescription" : { "updatedFields" :
    { "cuisine" : "Irish" }, "removedFields" : [  ], "truncatedArrays" : [  ] } }
@@ -255,11 +255,6 @@ Additional Information
 
 To learn more about change streams, see :manual:`Change Streams
 </changeStreams>` in the {+mdb-server+} manual.
-
-To learn more about modifying your change stream output, see the
-:manual:`Modify Change Stream Output
-</changeStreams/#modify-change-stream-output>` section in the {+mdb-server+}
-manual.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

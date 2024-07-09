@@ -8,7 +8,6 @@
 
 using bsoncxx::builder::basic::kvp;
 using bsoncxx::builder::basic::make_document;
-using bsoncxx::builder::basic::make_array;
 
 int main() {
     mongocxx::instance instance{};
@@ -35,8 +34,9 @@ int main() {
     {
         // Updates a document that has a "name" value of "Blarney Castle"
         // start-update-for-change-stream
-        bsoncxx::document::view_or_value update_doc = make_document(kvp("$set", make_document(kvp("cuisine", "Irish"))));
-        auto result = collection.update_one(make_document(kvp("name", "Blarney Castle")), update_doc);
+        auto result = collection.update_one(make_document(kvp("name", "Blarney Castle")), 
+                                            make_document(kvp("$set", 
+                                            make_document(kvp("cuisine", "Irish")))));
         // end-update-for-change-stream
     }
 
