@@ -110,7 +110,8 @@ fields you can set by calling their corresponding setter methods:
    <{+api+}/classmongocxx_1_1v__noabi_1_1pipeline.html>`__ API documentation.
 
 The following example sets the ``match`` field of a ``mongocxx::pipeline`` instance,
-then passes the pipeline to the ``watch()`` method to output only update operations:
+then passes the pipeline to the ``watch()`` method. This instructs the ``watch()`` method
+to output only update operations:
 
 .. literalinclude:: /includes/read/change-streams.cpp
    :start-after: start-change-stream-pipeline
@@ -122,7 +123,7 @@ Modify ``watch()`` Behavior
 ---------------------------
 
 You can modify the behavior of the ``watch()`` method by passing an instance
-the ``mongocxx::options::change_stream`` class as a parameter. The following table
+of the ``mongocxx::options::change_stream`` class as a parameter. The following table
 describes the fields you can set in a ``mongocxx::options::find`` instance:
 
 .. list-table::
