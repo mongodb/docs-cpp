@@ -80,7 +80,7 @@ in the ``restaurants`` collection that have a ``borough`` value of ``"Brooklyn"`
    :start-after: start-delete-many
    :end-before: end-delete-many
    :language: cpp
-   :copyable:
+   :dedent:
 
 Customize the Delete Operation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -146,9 +146,9 @@ Return Value
 
 The ``delete_one()`` and ``delete_many()`` methods return an instance of
 the ``mongocxx::result::delete_result`` class. This class contains the
-member functions:
+following member functions:
 
-- ``result)()``, which returns the raw bulk write result
+- ``result()``, which returns the raw bulk write result
 - ``deleted_count()``, which returns the number of documents deleted
 
 If the query filter does not match any documents, the driver doesn't delete any
@@ -178,5 +178,5 @@ guide, see the following API Documentation:
 
 - `delete_one() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#adecd9613670ec09aa02814d652ef0014>`__
 - `delete_many() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a8f8907150f76ab1ba31c52b23f0b50d7>`__
-- `mongocxx::options::delete_options <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1delete__options.htmll>`__
+- `mongocxx::options::delete_options <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1delete__options.html>`__
 - `mongocxx::result::delete_result <{+api+}/classmongocxx_1_1v__noabi_1_1result_1_1delete__result.html>`__
