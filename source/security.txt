@@ -54,7 +54,8 @@ the relevant values for your MongoDB deployment.
 SCRAM-SHA-256
 -------------
 
-The following code shows how to create a connection URI to authenticate using SCRAM-SHA-256:
+The following code shows how to create a connection URI to authenticate by using
+the ``SCRAM-SHA-256`` authentication mechanism:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -68,7 +69,8 @@ the Authentication guide.
 SCRAM-SHA-1
 -----------
 
-The following code shows how to create a connection URI to authenticate using SCRAM-SHA-1:
+The following code shows how to create a connection URI to authenticate by using
+the ``SCRAM-SHA-1`` authentication mechanism:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -82,7 +84,8 @@ the Authentication guide.
 MONGODB X.509
 -------------
 
-The following code shows how to create a connection URI to authenticate using X.509:
+The following code shows how to create a connection URI to authenticate by using
+the ``X.509`` authentication mechanism:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
