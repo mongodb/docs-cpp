@@ -54,6 +54,8 @@ the relevant values for your MongoDB deployment.
 SCRAM-SHA-256
 -------------
 
+The following code shows how to create a connection URI to authenticate using SCRAM-SHA-256:
+
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
    :copyable: true
@@ -66,6 +68,8 @@ the Authentication guide.
 SCRAM-SHA-1
 -----------
 
+The following code shows how to create a connection URI to authenticate using SCRAM-SHA-1:
+
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
    :copyable: true
@@ -77,6 +81,8 @@ the Authentication guide.
 
 MONGODB X.509
 -------------
+
+The following code shows how to create a connection URI to authenticate using X.509:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -109,6 +115,9 @@ To learn more about authenticating with AWS, see
 Connection URI
 ~~~~~~~~~~~~~~
 
+The following code shows how to create a connection URI that includes AWS credentials to
+authenticate with MONGODB-AWS:
+
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
    :copyable: true
@@ -117,6 +126,9 @@ Connection URI
 
 Environment Variables
 ~~~~~~~~~~~~~~~~~~~~~
+
+The following code shows how to create a connection URI to
+authenticate with MONGODB-AWS when obtaining credentials from environment variables:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -127,6 +139,10 @@ Environment Variables
 AssumeRoleWithWebIdentity Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+The following code shows how to create a connection URI to
+authenticate with MONGODB-AWS when obtaining credentials from an
+AssumeRoleWithWebIdentity request:
+
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
    :copyable: true
@@ -136,6 +152,9 @@ AssumeRoleWithWebIdentity Request
 ECS Metadata
 ~~~~~~~~~~~~
 
+The following code shows how to create a connection URI to
+authenticate with MONGODB-AWS when obtaining credentials from ECS metadata:
+
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
    :copyable: true
@@ -144,6 +163,9 @@ ECS Metadata
 
 EC2 Instance Metadata
 ~~~~~~~~~~~~~~~~~~~~~
+
+The following code shows how to create a connection URI to
+authenticate with MONGODB-AWS when obtaining credentials from EC2 instance metadata:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -157,6 +179,9 @@ Kerberos
 .. note:: MongoDB Enterprise Only
 
    Kerberos authentication is available only in MongoDB Enterprise.
+
+The following code shows how to create a connection URI to
+authenticate with Kerberos:
 
 .. literalinclude:: /includes/authentication.cpp
     :language: cpp
@@ -173,6 +198,9 @@ PLAIN SASL
 .. note:: MongoDB Enterprise Only
 
    PLAIN SASL authentication is available only in MongoDB Enterprise.
+
+The following code shows how to create a connection URI to
+authenticate with PLAIN SASL:
 
 .. literalinclude:: /includes/authentication.cpp
     :language: cpp
