@@ -95,7 +95,7 @@ authentication mechanism. Each section shows how to create the connection URI
 for the specified method of retrieving AWS credentials.
 
 To learn more about authenticating with AWS, see
-:ref:`cpp-mongodb-aws` in the Authentication guide.
+:ref:`cpp-mongo-aws` in the Authentication guide.
 
 Connection URI
 ~~~~~~~~~~~~~~
