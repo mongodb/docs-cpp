@@ -47,13 +47,13 @@ To learn how to create a free MongoDB Atlas cluster and load the sample datasets
 Delete Operations
 -----------------
 
-You can perform delete operations in MongoDB by using the following methods:
+You can perform delete operations by using the following methods:
 
 - ``delete_one()``, which deletes *the first document* that matches the search criteria
 - ``delete_many()``, which deletes *all documents* that match the search criteria
 
 Each delete method requires a **query filter** document, which specifies the
-search criteria that determine which documents to select for removal.
+search criteria to determine which documents to select for removal.
 For more information about query filters, see the 
 :manual:`Query Filter Documents section </core/document/#query-filter-documents>` in
 the {+mdb-server+} manual.
@@ -124,7 +124,7 @@ parameter. The following table describes the fields you can set in a
          fields </reference/command/delete/#command-fields>` guide in the
          {+mdb-server+} manual.
 
-The following code uses the ``delete_many()`` method to delete all documents in
+The following example calls the ``delete_many()`` method to delete all documents in
 the ``restaurants`` collection that have a ``name`` value containing the string ``"Mongo"``.
 It also sets the ``comment`` field of a ``mongocxx::options::delete_options`` instance
 to add a comment to the operation:
@@ -154,9 +154,9 @@ following member functions:
 If the query filter does not match any documents, the driver doesn't delete any
 documents and ``deleted_count`` is 0.
 
-The following example uses the ``delete_many()`` method to delete documents
-that have a ``cuisine`` value of ``"Greek"`` and prints the number of deleted
-documents:
+The following example calls the ``delete_many()`` method to delete documents
+that have a ``cuisine`` value of ``"Greek"``. It then calls the ``deleted_count()``
+member function to print the number of deleted documents:
 
 .. io-code-block::
 
