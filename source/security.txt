@@ -1,4 +1,4 @@
-. _cpp-security:
+.. _cpp-security:
 
 ================
 Secure Your Data
