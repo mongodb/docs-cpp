@@ -1,4 +1,3 @@
-
 .. _cpp-in-use-encryption:
 
 =================
