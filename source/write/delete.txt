@@ -76,7 +76,7 @@ Delete Multiple Documents
 The following example uses the ``delete_many()`` method to remove all documents
 in the ``restaurants`` collection that have a ``borough`` value of ``"Brooklyn"``:
 
-.. literalinclude:: /includes/write/delete.py
+.. literalinclude:: /includes/write/delete.cpp
    :start-after: start-delete-many
    :end-before: end-delete-many
    :language: cpp
@@ -146,10 +146,10 @@ Return Value
 
 The ``delete_one()`` and ``delete_many()`` methods return an instance of
 the ``mongocxx::result::delete_result`` class. This class contains the
-following fields:
+member functions:
 
-- ``result``, which stores the raw bulk write result
-- ``deleted_count``, which stores the number of documents deleted
+- ``result)()``, which returns the raw bulk write result
+- ``deleted_count()``, which returns the number of documents deleted
 
 If the query filter does not match any documents, the driver doesn't delete any
 documents and ``deleted_count`` is 0.
