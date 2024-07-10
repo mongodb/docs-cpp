@@ -194,7 +194,7 @@ AssumeRoleWithWebIdentity Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If your application authenticates users for your EKS cluster from an OpenID Connect (OIDC)
-identity provider, {+driver-short+} can make an ``AssumeRoleWithWebIdentity`` request
+identity provider, the {+driver-short+} can make an ``AssumeRoleWithWebIdentity`` request
 to exchange the OIDC token for temporary AWS credentials for your application. 
 
 To authenticate with temporary AWS IAM credentials returned by an
