@@ -141,7 +141,7 @@ AssumeRoleWithWebIdentity Request
 
 The following code shows how to create a connection URI to
 authenticate with MONGODB-AWS when obtaining credentials from an
-AssumeRoleWithWebIdentity request:
+``AssumeRoleWithWebIdentity`` request:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
