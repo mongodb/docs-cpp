@@ -174,7 +174,7 @@ API Documentation
 ~~~~~~~~~~~~~~~~~
 
 To learn more about any of the methods or types discussed in this
-guide, see the following API Documentation:
+guide, see the following API documentation:
 
 - `delete_one() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#adecd9613670ec09aa02814d652ef0014>`__
 - `delete_many() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a8f8907150f76ab1ba31c52b23f0b50d7>`__
