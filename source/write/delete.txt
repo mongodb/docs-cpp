@@ -168,7 +168,7 @@ documents:
 
    .. output:: 
 
-      Deleted documents: 96
+      Deleted documents: 111
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
