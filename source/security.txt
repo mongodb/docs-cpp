@@ -29,7 +29,7 @@ Overview
 --------
 
 MongoDB supports multiple mechanisms that you can use to authenticate your application.
-This page contains code examples that show each of these mechanisms.
+This page contains code examples that demonstrate each of these mechanisms.
 
 .. tip::
   
@@ -91,8 +91,17 @@ MONGODB-AWS
 -----------
 
 The following sections show how to connect to MongoDB by using the MONGODB-AWS
-authentication mechanism. Each section shows how to create the connection URI
-for the specified method of retrieving AWS credentials.
+authentication mechanism. When you use the MONGODB-AWS mechanism, the {+driver-short+} attempts to
+retrieve your AWS credentials from the following sources, in the order listed:
+
+1. Named parameters passed to the Connection URI
+#. Environment variables
+#. AWS EKS AssumeRoleWithWebIdentity request
+#. ECS container metadata
+#. EC2 instance metadata
+ 
+Each section shows how to create the connection URI to authenticate with
+MONGODB-AWS when retrieving your AWS credentials from the specified source.
 
 To learn more about authenticating with AWS, see
 :ref:`cpp-mongo-aws` in the Authentication guide.
