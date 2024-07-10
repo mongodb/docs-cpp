@@ -96,8 +96,8 @@ the Authentication guide.
 MONGODB-AWS
 -----------
 
-The following sections show how to connect to MongoDB by using the MONGODB-AWS
-authentication mechanism. When you use the MONGODB-AWS mechanism, the {+driver-short+} attempts to
+The following sections show how to connect to MongoDB by using the ``MONGODB-AWS``
+authentication mechanism. When you use the ``MONGODB-AWS`` mechanism, the {+driver-short+} attempts to
 retrieve your AWS credentials from the following sources, in the order listed:
 
 1. Named parameters passed to the Connection URI
@@ -107,7 +107,7 @@ retrieve your AWS credentials from the following sources, in the order listed:
 #. EC2 instance metadata
  
 Each section shows how to create the connection URI to authenticate with
-MONGODB-AWS when retrieving your AWS credentials from the specified source.
+``MONGODB-AWS`` when retrieving your AWS credentials from the specified source.
 
 To learn more about authenticating with AWS, see
 :ref:`cpp-mongo-aws` in the Authentication guide.
@@ -116,7 +116,7 @@ Connection URI
 ~~~~~~~~~~~~~~
 
 The following code shows how to create a connection URI that includes AWS credentials to
-authenticate with MONGODB-AWS:
+authenticate with ``MONGODB-AWS``:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -128,7 +128,7 @@ Environment Variables
 ~~~~~~~~~~~~~~~~~~~~~
 
 The following code shows how to create a connection URI to
-authenticate with MONGODB-AWS when obtaining credentials from environment variables:
+authenticate with ``MONGODB-AWS`` when obtaining credentials from environment variables:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -140,7 +140,7 @@ AssumeRoleWithWebIdentity Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following code shows how to create a connection URI to
-authenticate with MONGODB-AWS when obtaining credentials from an
+authenticate with ``MONGODB-AWS`` when obtaining credentials from an
 ``AssumeRoleWithWebIdentity`` request:
 
 .. literalinclude:: /includes/authentication.cpp
@@ -153,7 +153,7 @@ ECS Metadata
 ~~~~~~~~~~~~
 
 The following code shows how to create a connection URI to
-authenticate with MONGODB-AWS when obtaining credentials from ECS metadata:
+authenticate with ``MONGODB-AWS`` when obtaining credentials from ECS metadata:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
@@ -165,7 +165,7 @@ EC2 Instance Metadata
 ~~~~~~~~~~~~~~~~~~~~~
 
 The following code shows how to create a connection URI to
-authenticate with MONGODB-AWS when obtaining credentials from EC2 instance metadata:
+authenticate with ``MONGODB-AWS`` when obtaining credentials from EC2 instance metadata:
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
