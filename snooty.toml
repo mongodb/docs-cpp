@@ -9,7 +9,8 @@ intersphinx = [
 
 toc_landing_pages = [
     "/installation",
-    "/api-abi-versioning"
+    "/api-abi-versioning",
+    "/get-started",
     ]
 
 sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
@@ -21,3 +22,4 @@ driver-short = "C++ driver"
 version = "3.10"
 full-version = "{+version+}.1"
 api = "https://mongocxx.org/api/current"
+mdb-server = "MongoDB Server"
