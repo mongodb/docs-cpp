@@ -28,7 +28,8 @@ Read Data from MongoDB
    /read/project
    /read/distinct
    /read/count
-   .. TODO: /read/change-streams
+   /read/cursor
+   /read/change-streams
 
 Overview
 --------
