@@ -115,6 +115,15 @@ Environment Variables
    :start-after: // start-aws-environment
    :end-before: // end-aws-environment
 
+AssumeRoleWithWebIdentity Request
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. literalinclude:: /includes/authentication.cpp
+   :language: cpp
+   :copyable: true
+   :start-after: // start-aws-environment
+   :end-before: // end-aws-environment
+
 ECS Metadata
 ~~~~~~~~~~~~
 
