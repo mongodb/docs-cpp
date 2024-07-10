@@ -30,8 +30,8 @@ Sample Data
 
 The examples in this guide use the ``companies`` collection in the ``sample_training``
 database from the :atlas:`Atlas sample datasets </sample-data>`. To access this collection
-from your C++ application, instantiate a ``client`` that connects to an Atlas cluster
-and assign the following values to your ``db`` and ``collection`` variables:
+from your C++ application, instantiate a ``mongocxx::client`` that connects to an Atlas
+cluster and assign the following values to your ``db`` and ``collection`` variables:
 
 .. literalinclude:: /includes/read/retrieve.cpp
     :language: cpp
@@ -40,7 +40,7 @@ and assign the following values to your ``db`` and ``collection`` variables:
     :end-before: end-db-coll
 
 To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
-:ref:`<cpp-get-started>`.
+:atlas:`Get Started with Atlas </getting-started>` guide.
 
 .. _cpp-retrieve-find:
 
