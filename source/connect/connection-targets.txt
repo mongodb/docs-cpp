@@ -31,7 +31,7 @@ Atlas
 To connect to a MongoDB deployment on Atlas, include the following elements
 in your connection string:
 
-- URL of your Atlas cluster
+- URI of your Atlas cluster
 - MongoDB username
 - MongoDB password
 
@@ -46,10 +46,8 @@ To learn more about the {+stable-api+} feature, see the :ref:`{+stable-api+} pag
 The following code shows how to use the {+driver-short+} to connect to an Atlas cluster.
 The code also uses the ``server_api_opts`` option to specify a {+stable-api+} version.
 
-.. literalinclude:: /includes/connect.cpp
+.. literalinclude:: /includes/connect/atlas.cpp
    :copyable: true
-   :start-after: // start-atlas
-   :end-before: // end-atlas
    :language: cpp
 
 .. tip::
@@ -67,11 +65,9 @@ your deployment.
 The following code shows how to use the {+driver-short+} to connect to a local MongoDB
 deployment:
 
-.. literalinclude:: /includes/connect.cpp
+.. literalinclude:: /includes/connect/client.cpp
       :language: cpp
       :copyable: true
-      :start-after: // start-client
-      :end-before: // end-client
 
 Replica Sets
 ------------
@@ -92,11 +88,9 @@ In the following example, the driver uses a sample connection URI to connect to 
 MongoDB replica set ``sampleRS``, which is running on port ``27017`` of three different
 hosts, including ``host1``:
 
-.. literalinclude:: /includes/connect.cpp
+.. literalinclude:: /includes/connect/replica-set.cpp
    :language: cpp
    :copyable: true
-   :start-after: // start-replica-set
-   :end-before: // end-replica-set
 
 Initialization
 ~~~~~~~~~~~~~~
@@ -106,11 +100,9 @@ set the ``directConnection`` connection
 option to ``true`` in the connection string. The following code example shows how to
 set this connection option: 
 
-.. literalinclude:: /includes/connect.cpp
+.. literalinclude:: /includes/connect/direct-connection.cpp
    :language: cpp
    :copyable: true
-   :start-after: // start-direct-connection
-   :end-before: // end-direct-connection
 
 API Documentation
 -----------------
