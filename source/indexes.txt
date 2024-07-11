@@ -1,0 +1,25 @@
+.. _cpp-indexes:
+
+=============================
+Optimize Queries with Indexes
+=============================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :description: Learn how to use indexes with the {+driver-long+}.
+   :keywords: query, optimization, efficiency, usage example, code example
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   /work-with-indexes
