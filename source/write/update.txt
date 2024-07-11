@@ -21,8 +21,9 @@ Overview
 --------
 
 In this guide, you can learn how to use the {+driver-short+} to update
-documents in a MongoDB collection. You can call the ``update_one()`` to update
-a single document or the ``update_many()`` method to update multiple documents.
+documents in a MongoDB collection. You can call the ``update_one()`` method
+to update a single document or the ``update_many()`` method to update multiple
+documents.
 
 Sample Data
 ~~~~~~~~~~~
@@ -58,7 +59,7 @@ Each update method requires the following parameters:
 
 - **Update** document: Specifies the **update operator**, or the kind of update to
   perform, and the fields and values to change. For a list of update operators
-  and their usage, see the :manual:`Field Update Operators guide page
+  and their usage, see the :manual:`Field Update Operators guide
   </reference/operator/update-field/>` in the {+mdb-server+} manual.
 
 Update One Document
@@ -107,7 +108,7 @@ parameter. The following table describes the fields you can set in a
          documents match the query filter. For more information, see the :manual:`upsert
          statement </reference/command/update/#std-label-update-command-upsert>`
          in the {+mdb-server+} manual.
-       | Defaults to ``false``
+       | Defaults to ``false``.
 
    * - ``bypass_document_validation``
      - | Specifies whether the update operation bypasses document validation. This lets you 
@@ -187,12 +188,11 @@ member functions:
      - | Returns the raw result document for the operation.
 
    * - ``upserted_count()``
-     - | Returns the ID of the document that was upserted in the database, if the driver
-         performed an upsert. Otherwise, the function returns ``None``.
+     - | Returns the number of document that were upserted into the database.
 
    * - ``upserted_id()``
      - | Returns the ID of the document that was upserted in the database, if the driver
-         performed an upsert. Otherwise ``None``.
+         performed an upsert.
         
 The following example uses the ``update_many()`` method to update the ``name`` field
 of matching documents from ``"Dunkin' Donuts"`` to ``"Dunkin'"``. It calls the
