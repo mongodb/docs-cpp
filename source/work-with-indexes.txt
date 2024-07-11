@@ -37,7 +37,7 @@ To improve query performance, build indexes on fields that appear often in
 your application's queries and operations that return sorted results. Each
 index that you add consumes disk space and memory when active, so we recommend
 that you track index memory and disk usage for capacity planning. In addition,
-when a write operation updates an indexed field, MongoDB updates the related
+when a write operation updates an indexed field, MongoDB also updates any related
 index.
 
 Because MongoDB supports dynamic schemas, applications can query against fields
@@ -55,7 +55,7 @@ Sample Data
 
 The examples in this guide use the ``sample_mflix.movies`` collection
 from the :atlas:`Atlas sample datasets </sample-data>`. To learn how to create a
-free MongoDB Atlas cluster and load the sample datasets, see the
+free MongoDB Atlas cluster and load the sample datasets, see
 :ref:`<cpp-get-started>`.
 
 Create an Index
@@ -70,8 +70,8 @@ Single-Field Indexes
 
 :manual:`Single-field indexes </core/index-single/>` are indexes with a
 reference to a single field within a collection's
-documents. They improve single field query and sort performance, and support
-:manual:`TTL Indexes </core/index-ttl>` that
+documents. They improve single-field query and sort performance, and support
+:manual:`TTL (time to live) indexes </core/index-ttl>`, which
 automatically remove documents from a collection after a certain amount of time
 or at a specific clock time. You can specify the sort order of the index entries
 by specifying ``1`` for ascending or ``-1`` for descending.
@@ -100,7 +100,7 @@ Remove an Index
 You can remove any unused index except the default unique index on the
 ``_id`` field.
 
-The following sections show how to remove a single index or to remove all
+The following sections show how to remove a single index and how to remove all
 indexes in a collection.
 
 Remove a Single Index
