@@ -51,23 +51,22 @@ You can perform update operations in MongoDB by using the following methods:
 
 Each update method requires the following parameters:
 
-- A **query filter** document: Specifies which documents to update. For
+- **Query filter** document: Specifies which documents to update. For
   more information about query filters, see the 
   :manual:`Query Filter Documents section </core/document/#query-filter-documents>` in
   the {+mdb-server+} manual.
 
-- An **update** document: Specifies the **update operator**, or the kind of update to
-  perform, and the fields and values that should change. For a list of update
-  operators and their usage, see the 
-  :manual:`Field Update Operators guide page</reference/operator/update-field/>`
-  in the {+mdb-server+} manual.
+- **Update** document: Specifies the **update operator**, or the kind of update to
+  perform, and the fields and values to change. For a list of update operators
+  and their usage, see the :manual:`Field Update Operators guide page
+  </reference/operator/update-field/>` in the {+mdb-server+} manual.
 
 Update One Document
 ~~~~~~~~~~~~~~~~~~~
 
 The following example uses the ``update_one()`` method to update the ``name``
-value of a document from ``"Bagels N Buns"`` to ``"2 Bagels 2 Buns"`` in the
-``restaurants`` collection:
+value of a document in the ``restaurants`` collection from ``"Bagels N Buns"``
+to ``"2 Bagels 2 Buns"``:
 
 .. literalinclude:: /includes/write/update.cpp
    :start-after: start-update-one
@@ -199,11 +198,17 @@ The following example uses the ``update_many()`` method to update the ``name`` f
 of matching documents from ``"Dunkin' Donuts"`` to ``"Dunkin'"``. It calls the
 ``modified_count()`` member function to print the number of modified documents:
 
-.. literalinclude:: /includes/write/update.cpp
-   :start-after: start-update-result
-   :end-before: end-update-result
-   :language: cpp
-   :dedent:
+.. io-code-block::
+
+   .. input:: /includes/write/update.cpp
+      :start-after: start-update-result
+      :end-before: end-update-result
+      :language: cpp
+      :dedent:
+
+   .. output:: 
+
+      Modified documents: 206
 
 Additional Information 
 ----------------------
