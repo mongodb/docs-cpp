@@ -9,4 +9,5 @@ Write Data to MongoDB
    :maxdepth: 1
 
    /write/insert
+   /write/update
    /write/delete
