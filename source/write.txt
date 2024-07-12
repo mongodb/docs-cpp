@@ -4,6 +4,20 @@
 Write Data to MongoDB
 =====================
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :description: Learn how to use the {+driver-short+} to write data to MongoDB.
+   :keywords: usage examples, save, crud, create, code example
+
 .. toctree::
    :titlesonly:
    :maxdepth: 1
@@ -11,3 +25,122 @@ Write Data to MongoDB
    /write/insert
    /write/update
    /write/delete
+
+.. TODO:
+   /write/replace
+   /write/bulk-write
+   /write/gridfs
+
+Overview
+--------
+
+On this page, you can see copyable code examples that show common
+{+driver-short+} methods for writing data to MongoDB.
+
+.. tip::
+
+   To learn more about any of the methods shown on this page, see the link
+   provided in each section.
+
+To use an example from this page, copy the code example into the
+:ref:`sample application <cpp-write-sample>` or your own application.
+Be sure to replace all placeholders, such as ``<connection string URI>``, with
+the relevant values for your MongoDB deployment.
+
+.. _cpp-write-sample:
+
+.. include:: /includes/usage-examples/sample-app-intro.rst
+
+.. literalinclude:: /includes/usage-examples/sample-app.cpp
+   :language: cpp
+   :dedent:
+   :linenos:
+   :emphasize-lines: 22-24
+
+Insert One
+----------
+
+.. literalinclude:: /includes/usage-examples/write-code-examples.cpp
+   :start-after: start-insert-one
+   :end-before: end-insert-one
+   :language: cpp
+   :dedent:
+
+To learn more about the ``insert_one()`` method, see the :ref:`Insert Documents
+<cpp-write-insert>` guide.
+
+Insert Multiple
+---------------
+
+.. literalinclude:: /includes/usage-examples/write-code-examples.cpp
+   :start-after: start-insert-multiple
+   :end-before: end-insert-multiple
+   :language: cpp
+   :dedent:
+
+To learn more about the ``insert_many()`` method, see the :ref:`Insert Documents
+<cpp-write-insert>` guide.
+
+Update One
+----------
+
+.. literalinclude:: /includes/usage-examples/write-code-examples.cpp
+   :start-after: start-update-one
+   :end-before: end-update-one
+   :language: cpp
+   :dedent:
+
+To learn more about the ``update_one()`` method, see the
+:ref:`Update Documents <cpp-write-update>` guide.
+
+Update Multiple
+---------------
+
+.. literalinclude:: /includes/usage-examples/write-code-examples.cpp
+   :start-after: start-update-multiple
+   :end-before: end-update-multiple
+   :language: cpp
+   :dedent:
+
+To learn more about the ``update_many()`` method, see the
+:ref:`Update Documents <cpp-write-update>` guide.
+
+.. TODO:
+ Replace One
+ -----------
+
+Delete One
+----------
+
+.. literalinclude:: /includes/usage-examples/write-code-examples.cpp
+   :start-after: start-delete-one
+   :end-before: end-delete-one
+   :language: cpp
+   :dedent:
+
+To learn more about the ``delete_one()`` method, see the
+:ref:`Delete Documents <cpp-write-delete>` guide.
+
+Delete Multiple
+---------------
+
+.. literalinclude:: /includes/usage-examples/write-code-examples.cpp
+   :start-after: start-delete-multiple
+   :end-before: end-delete-multiple
+   :language: cpp
+   :dedent:
+
+To learn more about the ``delete_many()`` method, see the
+:ref:`Delete Documents <cpp-write-delete>` guide.
+
+Bulk Write
+----------
+
+.. literalinclude:: /includes/usage-examples/write-code-examples.cpp
+   :start-after: start-bulk-write
+   :end-before: end-bulk-write
+   :language: cpp
+   :dedent:
+
+To learn more about the ``bulk_write()`` method, see the
+:ref:`Bulk Write <cpp-bulk-write>` guide.
