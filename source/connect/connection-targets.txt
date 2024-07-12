@@ -23,8 +23,6 @@ Overview
 In this guide, you can learn how to use a connection string and ``mongocxx::client`` object
 to connect to different types of MongoDB deployments.
 
-.. include:: /includes/assumes-instance.rst
-
 Atlas
 -----
 

@@ -1,3 +1,4 @@
+#include <mongocxx/instance.hpp>
 #include <mongocxx/client.hpp>
 #include <mongocxx/uri.hpp>
 #include <bsoncxx/json.hpp>
@@ -8,6 +9,8 @@ using bsoncxx::builder::basic::make_document;
 
 int main()
 {
+    mongocxx::instance instance{};
+
     // Replace the placeholder with your Atlas connection string
     mongocxx::uri uri("<connection string>");
 
