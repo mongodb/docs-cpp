@@ -10,3 +10,4 @@ Write Data to MongoDB
 
    /write/insert
    /write/update
+   /write/delete
