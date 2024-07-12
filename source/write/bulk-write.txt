@@ -52,7 +52,8 @@ Create a Bulk Write Instance
 
 Before running a bulk write operation, call the ``create_bulk_write()`` method on
 a collection. This method returns an instance of the ``mongocxx::bulk_write``
-class, which stores instructions about which types of bulk writes to perform.
+class that you can use to store instructions about which types of bulk writes to
+perform.
 
 The following example calls the ``create_bulk_write()`` method on the ``restaurants``
 collection:
@@ -97,7 +98,8 @@ To perform an insert operation, create an instance of the ``mongocxx::model::ins
 class and specify the document you want to insert. Then, append the model instance
 to an instance of the ``mongocxx::bulk_write`` class.
 
-The following example creates an instance of ``mongocxx::model::insert_one``:
+The following example creates an instance of ``mongocxx::model::insert_one`` and appends
+it to a ``mongocxx::bulk_write`` instance called ``bulk``:
 
 .. literalinclude:: /includes/write/bulk-write.cpp
    :start-after: start-bulk-insert-one
@@ -117,7 +119,7 @@ To update a document, create an instance of ``mongocxx::model::update_one`` and
 pass in the following arguments:
 
 - **Query filter** document, which specifies the criteria used to match documents
-  in your collection
+  in your collection.
 - **Update** document, which specifies the kind of update to perform. For more information
   about update operations, see the :manual:`Field Update Operators
   </reference/operator/update-field/>` guide in the {+mdb-server+} manual.
@@ -126,7 +128,8 @@ This model instructs the driver to update *the first* document that matches your
 query filter. Then, append the model instance to an instance of the ``mongocxx::bulk_write``
 class.
 
-The following example creates an instance of ``mongocxx::model::update_one``:
+The following example creates an instance of ``mongocxx::model::update_one`` and appends
+it to a ``mongocxx::bulk_write`` instance called ``bulk``:
 
 .. literalinclude:: /includes/write/bulk-write.cpp
    :start-after: start-bulk-update-one
@@ -138,7 +141,8 @@ To update multiple documents, create an instance of ``mongocxx::model::update_ma
 and pass in the same arguments. This model instructs the driver to update *all* documents
 that match your query filter.
 
-The following example creates an instance of ``mongocxx::model::update_many``:
+The following example creates an instance of ``mongocxx::model::update_many`` and appends
+it to ``bulk``:
 
 .. literalinclude:: /includes/write/bulk-write.cpp
    :start-after: start-bulk-update-many
@@ -157,7 +161,8 @@ of the ``mongocxx::model::replace_one`` class and pass it a query filter and
 the fields and values you want to store in the matching document. Then, append
 the model instance to an instance of the ``mongocxx::bulk_write`` class.
 
-The following example creates an instance of ``mongocxx::model::replace_one``:
+The following example creates an instance of ``mongocxx::model::replace_one`` and appends
+it to a ``mongocxx::bulk_write`` instance called ``bulk``:
 
 .. literalinclude:: /includes/write/bulk-write.cpp
    :start-after: start-bulk-replace-one
@@ -178,7 +183,8 @@ pass in a query filter specifying the document you want to delete. This model in
 the driver to delete only *the first* document that matches your query filter. Then, append
 the model instance to an instance of the ``mongocxx::bulk_write`` class.
 
-The following example creates an instance of ``mongocxx::model::delete_one``:
+The following example creates an instance of ``mongocxx::model::delete_one`` and appends
+it to a ``mongocxx::bulk_write`` instance called ``bulk``:
 
 .. literalinclude:: /includes/write/bulk-write.cpp
    :start-after: start-bulk-delete-one
@@ -190,7 +196,8 @@ To delete multiple documents, create an instance of the ``mongocxx::model::delet
 class and pass in a query filter specifying the document you want to delete. This model
 instructs the driver to delete *all* documents that match your query filter.
 
-The following example creates an instance of ``mongocxx::model::delete_many``:
+The following example creates an instance of ``mongocxx::model::delete_many`` and appends
+it to ``bulk``:
 
 .. literalinclude:: /includes/write/bulk-write.cpp
    :start-after: start-bulk-delete-many
@@ -203,14 +210,15 @@ Run the Bulk Operation
 
 To run a bulk operation, call the ``execute()`` method on an instance of the 
 ``mongocxx::bulk_write`` class that contains your write models. By default, the
-``execute()``` method runs the operations in the order they're appended to the
+``execute()`` method runs the operations in the order they're appended to the
 ``mongocxx::bulk_write`` instance.
 
-The following example performs the :ref:`cpp-bulk-insert-model`, :ref:`cpp-bulk-update-model`,
-:ref:`cpp-bulk-replace-model`, and :ref:`cpp-bulk-delete-model` operations
-specified in the preceding sections of this guide by appending each corresponding
-write model to an instance of ``mongocxx::bulk_write`` and calling the ``execute()``
-method. Then, it prints the number of modified documents:
+The following example performs the :ref:`insert <cpp-bulk-insert-model>`,
+:ref:`update <cpp-bulk-update-model>`, :ref:`replace <cpp-bulk-replace-model>`,
+and :ref:`delete <cpp-bulk-delete-model>` operations specified in the preceding
+sections of this guide by appending each corresponding write model to an instance
+of ``mongocxx::bulk_write`` and calling the ``execute()`` method. Then, it prints
+the number of modified documents:
 
 .. io-code-block::
 
@@ -228,8 +236,10 @@ method. Then, it prints the number of modified documents:
 If any of the write operations fail, the {+driver-short+} raises a
 ``mongocxx::bulk_write_exception`` and does not perform any further operations.
 
-To learn more about the ``modified_count()`` function, see the :ref:`cpp-bulk-return-value`
-section of this guide.
+.. tip::
+
+   To learn more about the ``modified_count()`` function, see the :ref:`cpp-bulk-return-value`
+   section of this guide.
 
 Customize Bulk Write Operations
 -------------------------------
@@ -278,7 +288,7 @@ instance:
          </reference/command/delete/#std-label-delete-let-syntax>` in the
          {+mdb-server+} manual.
 
-The following example calls the ``create_bulk_write()`` method from the preceding
+The following example calls the ``create_bulk_write()`` method from the
 :ref:`cpp-bulk-start-operation` example on this page, but sets the ``ordered`` field
 of a ``mongocxx::options::bulk_write`` instance to ``false``:
 

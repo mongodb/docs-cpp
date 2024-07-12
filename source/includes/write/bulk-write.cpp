@@ -99,18 +99,18 @@ int main() {
         auto bulk = collection.create_bulk_write();
 
         // Specifies documents to insert, update, replace, or delete
-        auto insert_doc = make_document(kvp("name", "Mongo's Pitas"),
-                                        kvp("cuisine", "Middle Eastern"),
+        auto insert_doc = make_document(kvp("name", "Mongo's Deli"),
+                                        kvp("cuisine", "Sandwiches"),
                                         kvp("borough", "Manhattan"),
-                                        kvp("restaurant_id", "12345"));
-        auto update_filter = make_document(kvp("name", "Mongo's Pitas"));
+                                        kvp("restaurant_id", "1234"));
+        auto update_filter = make_document(kvp("name", "Mongo's Deli"));
         auto update_doc = make_document(kvp("$set", make_document(kvp("cuisine", "Sandwiches and Salads"))));
-        auto replace_filter = make_document(kvp("restaurant_id", "12345"));
+        auto replace_filter = make_document(kvp("restaurant_id", "1234"));
         auto replace_doc = make_document(kvp("name", "Mongo's Pizza"),
                                         kvp("cuisine", "Pizza"),
                                         kvp("borough", "Brooklyn"),
                                         kvp("restaurant_id", "5678"));
-        auto delete_filter = make_document(kvp("name", "Mongo's Pitas"));
+        auto delete_filter = make_document(kvp("name", "Mongo's Deli"));
 
         // Creates write models for each write operation using the preceding documents
         mongocxx::model::insert_one insert_op{insert_doc.view()};
