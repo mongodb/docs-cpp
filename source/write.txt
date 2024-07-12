@@ -142,5 +142,5 @@ Bulk Write
    :language: cpp
    :dedent:
 
-To learn more about the ``bulk_write()`` method, see the
+To learn more about the ``create_bulk_write()`` method, see the
 :ref:`Bulk Write <cpp-bulk-write>` guide.
