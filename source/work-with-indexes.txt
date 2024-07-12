@@ -65,6 +65,8 @@ MongoDB supports several different index types to support querying your data.
 The following sections describe the most common index types and provide sample
 code for creating each index type.
 
+.. _cpp-single-field-index:
+
 Single-Field Indexes
 ~~~~~~~~~~~~~~~~~~~~
 
