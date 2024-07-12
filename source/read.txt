@@ -55,7 +55,7 @@ the relevant values for your MongoDB deployment.
    :language: cpp
    :dedent:
    :linenos:
-   :emphasize-lines: 22-24
+   :emphasize-lines: 23-25
 
 Find One
 --------
