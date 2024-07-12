@@ -4,13 +4,13 @@ collection.create_index(std::move(index_specification));
 // end-index-single
 
 // start-remove-index
-collection.drop_index("title_1");
+collection.indexes().drop_one("title_1");
 // end-remove-index
 
 // start-remove-all-indexes
-collection.drop_indexes();
+collection.indexes().drop_all();
 // end-remove-all-indexes
 
 // start-remove-all-wildcard
-collection.drop_index("*");
+collection.indexes().drop_one("*");
 // end-remove-all-wildcard

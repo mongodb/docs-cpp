@@ -106,7 +106,7 @@ indexes in a collection.
 Remove a Single Index
 ~~~~~~~~~~~~~~~~~~~~~
 
-Pass an instance of an index or the index name to the ``drop_index()`` method to
+Pass an instance of an index or the index name to the ``drop_one()`` method to
 remove an index from a collection.
 
 The following example removes an index with the name ``"title_1"`` from the ``movies``
@@ -127,7 +127,7 @@ Remove All Indexes
 ~~~~~~~~~~~~~~~~~~
 
 Starting with MongoDB 4.2, you can drop all indexes by calling the
-``drop_indexes()`` method on your collection:
+``drop_all()`` method on the index view in your collection:
 
 .. literalinclude:: /includes/indexes/indexes.cpp
    :language: cpp
@@ -135,7 +135,7 @@ Starting with MongoDB 4.2, you can drop all indexes by calling the
    :end-before: end-remove-all-indexes
 
 For earlier versions of MongoDB, pass ``"*"`` as a parameter to your call to
-``drop_index()`` on your collection:
+``drop_one()`` on the index view in your collection:
 
 .. literalinclude:: /includes/indexes/indexes.cpp
    :language: cpp
@@ -155,3 +155,6 @@ To learn more about any of the methods or types discussed in this
 guide, see the following API documentation:
 
 - `create_index() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a39cf05fd8da3a7993929c8bfd3de9b46>`__
+- `drop_one() <{+api+}/classmongocxx_1_1v__noabi_1_1index__view.html#a1779a23bd9565cf295cc2479b6e5981a>`__
+- `drop_all() <{+api+}/classmongocxx_1_1v__noabi_1_1index__view.html#a2fc4f2778ce800076368f026fd2649d8>`__
+- `indexes() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#aac9843f8a560d39b85ef24a651d66e3b>`__
