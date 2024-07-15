@@ -42,11 +42,9 @@ connection options as ``<name>=<value>`` pairs. In the following example,
 the connection URI contains the ``tls`` option with a value of ``true`` and the
 ``tlsCertificateKeyFile`` option with a value of ``path/to/file.pem``:
 
-.. literalinclude:: /includes/connect.cpp
+.. literalinclude:: /includes/connect/connection-options.cpp
    :language: cpp
    :copyable: true
-   :start-after: // start-connection-string-options
-   :end-before: // end-connection-string-options
 
 Connection URI Options
 ----------------------
