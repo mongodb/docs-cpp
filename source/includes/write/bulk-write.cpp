@@ -63,8 +63,8 @@ int main() {
         // Creates a write model to specify a replace operation and adds it to the bulk operation
         // start-bulk-replace-one
         auto filter_doc = make_document(kvp("restaurant_id", "1234"));
-        auto replace_doc = make_document(kvp("name", "Mongo's Pizza"),
-                                        kvp("cuisine", "Pizza"),
+        auto replace_doc = make_document(kvp("name", "Mongo's Deli"),
+                                        kvp("cuisine", "Sandwiches and Salads"),
                                         kvp("borough", "Brooklyn"),
                                         kvp("restaurant_id", "5678"));
         
@@ -86,7 +86,7 @@ int main() {
     {
         // Creates a write model to specify a delete many operation and adds it to the bulk operation
         // start-bulk-delete-many
-        auto filter_doc = make_document(kvp("name", "Mongo's Deli"));
+        auto filter_doc = make_document(kvp("borough", "Manhattan"));
         
         mongocxx::model::delete_many delete_op{filter_doc.view()};
         bulk.append(delete_op);
@@ -106,11 +106,11 @@ int main() {
         auto update_filter = make_document(kvp("name", "Mongo's Deli"));
         auto update_doc = make_document(kvp("$set", make_document(kvp("cuisine", "Sandwiches and Salads"))));
         auto replace_filter = make_document(kvp("restaurant_id", "1234"));
-        auto replace_doc = make_document(kvp("name", "Mongo's Pizza"),
-                                        kvp("cuisine", "Pizza"),
+        auto replace_doc = make_document(kvp("name", "Mongo's Deli"),
+                                        kvp("cuisine", "Sandwiches and Salads"),
                                         kvp("borough", "Brooklyn"),
                                         kvp("restaurant_id", "5678"));
-        auto delete_filter = make_document(kvp("name", "Mongo's Deli"));
+        auto delete_filter = make_document(kvp("borough", "Manhattan"));
 
         // Creates write models for each write operation using the preceding documents
         mongocxx::model::insert_one insert_op{insert_doc.view()};

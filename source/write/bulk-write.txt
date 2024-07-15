@@ -107,7 +107,7 @@ it to a ``mongocxx::bulk_write`` instance called ``bulk``:
    :language: cpp
    :dedent:
 
-To insert multiple documents, create an instance of ``mongocxx::model::insert_many``
+To insert multiple documents, create an instance of ``mongocxx::model::insert_one``
 for each document.
 
 .. _cpp-bulk-update-model:
@@ -115,18 +115,17 @@ for each document.
 Update Operations
 ~~~~~~~~~~~~~~~~~
 
-To update a document, create an instance of ``mongocxx::model::update_one`` and
-pass in the following arguments:
+To update a document, create an instance of ``mongocxx::model::update_one``. This model
+instructs the driver to update *the first* document that matches your query filter. Then,
+append the model instance to an instance of the ``mongocxx::bulk_write`` class. 
+
+Pass the following arguments to the ``mongocxx::model::update_one`` model:
 
 - **Query filter** document, which specifies the criteria used to match documents
   in your collection.
 - **Update** document, which specifies the kind of update to perform. For more information
   about update operations, see the :manual:`Field Update Operators
   </reference/operator/update-field/>` guide in the {+mdb-server+} manual.
-
-This model instructs the driver to update *the first* document that matches your
-query filter. Then, append the model instance to an instance of the ``mongocxx::bulk_write``
-class.
 
 The following example creates an instance of ``mongocxx::model::update_one`` and appends
 it to a ``mongocxx::bulk_write`` instance called ``bulk``:
@@ -170,7 +169,7 @@ it to a ``mongocxx::bulk_write`` instance called ``bulk``:
    :language: cpp
    :dedent:
 
-To replace multiple documents, you must create an instance of ``mongocxx::model::replace_one``
+To replace multiple documents, you must create a new instance of ``mongocxx::model::replace_one``
 for each document.
 
 .. _cpp-bulk-delete-model:
@@ -277,16 +276,15 @@ instance:
          :manual:`Write Concern </reference/write-concern/>` in the {+mdb-server+} manual.
 
    * - ``comment``
-     - | A comment to attach to the operation. For more information, see the :manual:`delete command
+     - | Attaches a comment to the operation. For more information, see the :manual:`delete command
          fields </reference/command/delete/#command-fields>` guide in the
          {+mdb-server+} manual.
 
    * - ``let``
-     - | A map of parameter names and values. Values must be constant or closed
-         expressions that don't reference document fields. For more information,
-         see the :manual:`let statement
-         </reference/command/delete/#std-label-delete-let-syntax>` in the
-         {+mdb-server+} manual.
+     - | Specifies a document with a list of values to improve operation readability. Values
+         must be constant or closed expressions that don't reference document fields. For more
+         information, see the :manual:`let statement
+         </reference/command/delete/#std-label-delete-let-syntax>` in the {+mdb-server+} manual.
 
 The following example calls the ``create_bulk_write()`` method from the
 :ref:`cpp-bulk-start-operation` example on this page, but sets the ``ordered`` field
