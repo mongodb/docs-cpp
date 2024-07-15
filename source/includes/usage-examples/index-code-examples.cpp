@@ -6,9 +6,9 @@ std::cout << "Index created: " << bsoncxx::to_json(result) << std::endl;
 // end-single-field
 
 // start-remove-index
-collection.indexes().drop_one("title_1");
+collection.indexes().drop_one("<field name>");
 
-std::cout << "Index 'title_1' dropped." << std::endl;
+std::cout << "Index dropped." << std::endl;
 // end-remove-index
 
 // start-remove-all-indexes
