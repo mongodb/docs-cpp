@@ -319,23 +319,23 @@ The ``mongocxx::result::bulk_write`` class contains the following member functio
    * - Function
      - Description
          
-   * - ``deleted_count``
-     - | The number of documents deleted, if any.
+   * - ``deleted_count()``
+     - | Returns the number of documents deleted, if any.
 
-   * - ``inserted_count``
-     - | The number of documents inserted, if any.
+   * - ``inserted_count()``
+     - | Returns the number of documents inserted, if any.
 
-   * - ``matched_count``
-     - | The number of documents matched for an update, if applicable.
+   * - ``matched_count()``
+     - | Returns the number of documents matched for an update, if applicable.
 
-   * - ``modified_count``
-     - | The number of documents modified, if any.
+   * - ``modified_count()``
+     - | Returns the number of documents modified, if any.
 
-   * - ``upserted_count``
-     - | The number of documents upserted, if any.
+   * - ``upserted_count()``
+     - | Returns the number of documents upserted, if any.
 
-   * - ``upserted_ids``
-     - | A map of the operation's index to the ``_id`` of the upserted documents, if
+   * - ``upserted_ids()``
+     - | Returns a map of the operation's index to the ``_id`` of the upserted documents, if
          applicable.
 
 Additional Information
