@@ -84,7 +84,7 @@ TLS Options
      - ``mongocxx::uri`` Member
 
    * - :manual:`tls </reference/connection-string/#mongodb-urioption-urioption.tls>`
-     - `tls <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a41c20bd79917a3c550ba8a93294f5e11>`__
+     - `tls() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a41c20bd79917a3c550ba8a93294f5e11>`__
    
    * - :manual:`tlsCertificateKeyFile </reference/connection-string/#mongodb-urioption-urioption.tlsCertificateKeyFile>`
      - `tls_certificate_key_file() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a65658767e1caedd886c91c113c32b9b5>`__
