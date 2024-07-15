@@ -34,7 +34,7 @@ options in the connection URI.
 .. _cpp-connection-uri:
 
 Using the Connection URI
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 When you construct a ``mongocxx::client`` object, you can pass in a ``mongocxx::uri``
 object that represents your connection URI. This connection URI can include
@@ -73,7 +73,7 @@ Replica Set Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
 
    * - :manual:`directConnection </reference/connection-string/#mongodb-urioption-urioption.directConnection>`
      - `direct_connection() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a4d4e43c3ef3f30f81c990c04082b1655>`__
@@ -92,7 +92,7 @@ TLS Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
 
    * - :manual:`tls </reference/connection-string/#mongodb-urioption-urioption.tls>`
      - `tls <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a41c20bd79917a3c550ba8a93294f5e11>`__
@@ -123,8 +123,10 @@ TLS Options
 
 .. tip::
 
-   Some of the TLS option can be set using the ``tls`` class. See the API page for a list
-   of these fields: https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1options_1_1tls.html
+   You can set some of the preceding TLS option by using the ``mongocxx::tls`` class.
+   See the
+   `mongocxx::tls <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1options_1_1tls.html>`__
+   API documentation for more information.
 
 Timeout Options
 ```````````````
@@ -134,7 +136,7 @@ Timeout Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
 
    * - :manual:`connectTimeoutMS </reference/connection-string/#mongodb-urioption-urioption.connecttimeoutms>`
      - `connect_timeout_ms() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a3f6b8de687ba1c9a6f04873849d151a5>`__
@@ -150,7 +152,7 @@ Compression Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
 
    * - :manual:`compressors </reference/connection-string/#mongodb-urioption-urioption.compressors>`
      - `compressors() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a5e6c61e2fa272d1cc18c12a1fa8b4f67>`__
@@ -166,7 +168,7 @@ Connection Pool Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
 
    * - :manual:`maxPoolSize </reference/connection-string/#mongodb-urioption-urioption.maxpoolsize>`
      - `max_pool_size() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a0a56e5ca293f780646b8137e60987e3a>`__
@@ -182,13 +184,13 @@ Write Concern Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
    
    * - :manual:`w </reference/connection-string/#mongodb-urioption-urioption.w>` 
      - `write_concern() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#ad04c12d62bb115e187093922831f721b>`__
 
    * - :manual:`wTimeoutMS </reference/connection-string/#mongodb-urioption-urioption.wtimeoutms>`
-     -  N/A
+     - N/A
 
    * - :manual:`journal </reference/connection-string/#mongodb-urioption-urioption.journal>` 
      - N/A
@@ -201,7 +203,7 @@ Read Concern Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
    
    * - :manual:`readConcernLevel </reference/connection-string/#mongodb-urioption-urioption.readconcernlevel>`
      - `read_concern() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a4d123cfaae73668f9f7590d348b0045d>`__
@@ -214,7 +216,7 @@ Read Preference Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
    
    * - :manual:`readPreference </reference/connection-string/#mongodb-urioption-urioption.readpreference>`
      - `read_preference() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a317a88b7a0ae693e18579458ac0d31be>`__
@@ -233,7 +235,7 @@ Authentication Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
    
    * - :manual:`authMechanism </reference/connection-string/#mongodb-urioption-urioption.authmechanism>`
      - `auth_mechanism() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a1a2ad55a4d98f6233b3cd23d1890d333>`__
@@ -252,7 +254,7 @@ Server Selection and Discovery Options
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
    
    * - :manual:`localThresholdMS </reference/connection-string/#mongodb-urioption-urioption.localthresholdms>`
      - `local_threshold_ms() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a4c7ecb56b4ef71647183da2076fba7e2>`__
@@ -269,10 +271,6 @@ Server Selection and Discovery Options
    * - :manual:`socketCheckIntervalMS </reference/connection-string/#mongodb-urioption-urioption.socketcheckintervalms>`
      - N/A
 
-Warning
-
-Setting any of the *timeoutMS options above to either 0 or a negative value is discouraged due to unspecified and inconsistent behavior. The “default value” historically specified as a fallback for 0 or a negative value is NOT related to the default values for the *timeoutMS options documented above. The meaning of a timeout of 0 or a negative value may vary depending on the operation being executed, even when specified by the same URI option. To specify the documented default value for a *timeoutMS option, use the MONGOC_DEFAULT_* constants defined in mongoc-client.h instead.
-
 Miscellaneous Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -281,7 +279,7 @@ Miscellaneous Configuration
    :stub-columns: 1
 
    * - Connection URI Option
-     - Accessible from ``uri`` Object
+     - ``mongocxx::uri`` Member
    
    * - :manual:`appName </reference/connection-string/#mongodb-urioption-urioption.appname>`
      - `appname() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#aa4cca307af41312f3aa75569eb028f31>`__
