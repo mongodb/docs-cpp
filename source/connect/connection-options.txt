@@ -50,18 +50,8 @@ Connection URI Options
 ----------------------
 
 The following sections describe the connection options that you can set in the connection
-URI passed to the {+driver-short+}. These are documented on the Server page. Click those links. 
-The driver supports the following options.
-
-If a ``mongocxx::options::client`` option maps to more than one
-option in the connection string, the **Connection URI Example** shows all
-relevant options.
-
-.. todo: .. note::
-   If you're using a query parameter for a time duration, the value must be in
-   milliseconds. For example, to specify 60 seconds, use the value ``60000``. If you're
-   using a ``MongoClientSettings`` object for a time duration, use the appropriate
-   ``TimeSpan`` value.
+URI passed to the {+driver-short+}. Each connection option links to its entry in
+the {+mdb-server+} manual.
 
 Replica Set Options
 ~~~~~~~~~~~~~~~~~~~
