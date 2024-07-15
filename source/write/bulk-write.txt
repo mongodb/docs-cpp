@@ -345,10 +345,10 @@ To learn how to perform individual write operations, see the following guides:
 
 - :ref:`cpp-write-insert`
 - :ref:`cpp-write-update`
+- :ref:`cpp-write-delete`
 
 .. TODO:
  - :ref:`cpp-write-replace`
- - :ref:`cpp-write-delete`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
