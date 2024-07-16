@@ -15,7 +15,7 @@ Read Data from MongoDB
    :values: reference
  
 .. meta::
-   :description: Learn how to use the {+driver-short+} to read data from MongoDB.
+   :description: Learn how to use the C++ driver to read data from MongoDB.
    :keywords: usage examples, query, find, code example
 
 .. toctree::
