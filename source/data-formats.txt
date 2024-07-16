@@ -1,0 +1,11 @@
+.. _cpp-data-formats:
+
+========================
+Specialized Data Formats
+========================
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   /data-formats/time-series
