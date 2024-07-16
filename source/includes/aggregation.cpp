@@ -16,13 +16,11 @@ int main() {
     mongocxx::uri uri("<connection string>");
     mongocxx::client client(uri);
 
-    // start-db-coll
     auto db = client["sample_restaurants"];
     auto collection = db["restaurants"];
-    // end-db-coll
 
     {
-        // Retrieves documents with a cuisine value of Bakery, groups them by borough, and
+        // Retrieves documents with a cuisine value of "Bakery", groups them by "borough", and
         // counts each borough's matching documents
         // start-match-group
         mongocxx::pipeline stages;
