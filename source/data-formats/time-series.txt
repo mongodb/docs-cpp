@@ -72,8 +72,8 @@ This example creates the ``sept2023`` time series collection in the
 - ``metaField`` is set to ``"location"``
 - ``granularity`` is set to ``"minutes"``
 
-.. literalinclude:: /includes/data-formats/time-series-cpp
-   :start-after: begin-create-ts
+.. literalinclude:: /includes/data-formats/time-series.cpp
+   :start-after: start-create-ts
    :end-before: end-create-ts
    :language: php
    :dedent:
@@ -84,7 +84,7 @@ the ``list_collections()`` method on the database and print the results:
 .. io-code-block::
    :copyable: true
 
-   .. input:: /includes/data-formats/time-series-cpp
+   .. input:: /includes/data-formats/time-series.cpp
       :start-after: start-list-colls
       :end-before: end-list-colls
       :language: php
