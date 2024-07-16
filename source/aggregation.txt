@@ -76,7 +76,7 @@ Keep the following limitations in mind when using aggregation operations:
   limit by setting the ``allow_disk_use`` field of a ``mongocxx::options::aggregate``
   instance.
 
-.. important:: $graphLookup exception
+.. important:: $graphLookup Exception
 
    The :manual:`$graphLookup
    </reference/operator/aggregation/graphLookup/>` stage has a strict
@@ -153,8 +153,10 @@ The following example performs the same aggregation operation as the preceding
 
      { "explainVersion" : "2", "queryPlanner" : { "namespace" : "sample_restaurants.restaurants",
      "indexFilterSet" : false, "parsedQuery" : { "cuisine" : { "$eq" : "Bakery" } }, "queryHash":
-     "865F14C3", "planCacheKey" : "ECEA3AD7", "optimizedPipeline" : true, "maxIndexedOrSolutionsReached":
-     false, "maxIndexedAndSolutionsReached" : false, ... }
+     "...", "planCacheKey" : "...", "optimizedPipeline" : true, "maxIndexedOrSolutionsReached":
+     false, "maxIndexedAndSolutionsReached" : false, "maxScansToExplodeReached" : false,
+     "winningPlan" : { ... } 
+     ... }
 
 
 Additional Information
