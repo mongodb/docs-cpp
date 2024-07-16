@@ -15,7 +15,7 @@ Write Data to MongoDB
    :values: reference
  
 .. meta::
-   :description: Learn how to use the {+driver-short+} to write data to MongoDB.
+   :description: Learn how to use the C++ driver to write data to MongoDB.
    :keywords: usage examples, save, crud, create, code example
 
 .. toctree::
@@ -60,6 +60,8 @@ the relevant values for your MongoDB deployment.
 Insert One
 ----------
 
+The following code shows how to insert a single document into a collection:
+
 .. literalinclude:: /includes/usage-examples/write-code-examples.cpp
    :start-after: start-insert-one
    :end-before: end-insert-one
@@ -71,6 +73,8 @@ To learn more about the ``insert_one()`` method, see the :ref:`Insert Documents
 
 Insert Multiple
 ---------------
+
+The following code shows how to insert multiple documents into a collection:
 
 .. literalinclude:: /includes/usage-examples/write-code-examples.cpp
    :start-after: start-insert-multiple
@@ -84,6 +88,9 @@ To learn more about the ``insert_many()`` method, see the :ref:`Insert Documents
 Update One
 ----------
 
+The following code shows how to update a single document in a collection by creating
+or editing a field:
+
 .. literalinclude:: /includes/usage-examples/write-code-examples.cpp
    :start-after: start-update-one
    :end-before: end-update-one
@@ -95,6 +102,9 @@ To learn more about the ``update_one()`` method, see the
 
 Update Multiple
 ---------------
+
+The following code shows how to update multiple documents in a collection by creating
+or editing a field:
 
 .. literalinclude:: /includes/usage-examples/write-code-examples.cpp
    :start-after: start-update-multiple
@@ -112,6 +122,8 @@ To learn more about the ``update_many()`` method, see the
 Delete One
 ----------
 
+The following code shows how to delete a single document in a collection:
+
 .. literalinclude:: /includes/usage-examples/write-code-examples.cpp
    :start-after: start-delete-one
    :end-before: end-delete-one
@@ -124,6 +136,8 @@ To learn more about the ``delete_one()`` method, see the
 Delete Multiple
 ---------------
 
+The following code shows how to delete multiple documents in a collection:
+
 .. literalinclude:: /includes/usage-examples/write-code-examples.cpp
    :start-after: start-delete-multiple
    :end-before: end-delete-multiple
@@ -135,6 +149,9 @@ To learn more about the ``delete_many()`` method, see the
 
 Bulk Write
 ----------
+
+The following code shows how to perform multiple write operations in a single bulk
+operation:
 
 .. literalinclude:: /includes/usage-examples/write-code-examples.cpp
    :start-after: start-bulk-write
