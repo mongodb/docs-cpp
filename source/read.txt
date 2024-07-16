@@ -60,6 +60,9 @@ the relevant values for your MongoDB deployment.
 Find One
 --------
 
+The following code shows how to retrieve a single document from a collection
+that matches the specified criteria:
+
 .. literalinclude:: /includes/usage-examples/read-code-examples.cpp
    :start-after: start-find-one
    :end-before: end-find-one
@@ -71,6 +74,9 @@ section in the Retrieve Data guide.
 
 Find Multiple
 -------------
+
+The following code shows how to retrieve all documents from a collection
+that match the specified criteria:
 
 .. literalinclude:: /includes/usage-examples/read-code-examples.cpp
    :start-after: start-find-multiple
@@ -84,6 +90,9 @@ section in the Retrieve Data guide.
 Count Documents in a Collection
 -------------------------------
 
+The following code shows how to count the number of documents in
+a collection:
+
 .. literalinclude:: /includes/usage-examples/read-code-examples.cpp
    :start-after: start-count
    :end-before: end-count
@@ -95,6 +104,9 @@ To learn more about the ``count_documents()`` method, see the
 
 Count Documents Returned from a Query
 -------------------------------------
+
+The following code shows how to count documents in a collection
+that match the specified criteria:
 
 .. literalinclude:: /includes/usage-examples/read-code-examples.cpp
    :start-after: start-count-query
@@ -108,6 +120,9 @@ To learn more about the ``count_documents()`` method, see the
 Estimated Document Count
 ------------------------
 
+The following code shows how to retrieve an estimated count of the
+number of documents in a collection:
+
 .. literalinclude:: /includes/usage-examples/read-code-examples.cpp
    :start-after: start-count-estimate
    :end-before: end-count-estimate
@@ -120,6 +135,9 @@ To learn more about the ``estimated_document_count()`` method, see the
 Retrieve Distinct Values
 ------------------------
 
+The following code shows how to retrieve the unique values of a field
+for documents that match the specified criteria:
+
 .. literalinclude:: /includes/usage-examples/read-code-examples.cpp
    :start-after: start-distinct
    :end-before: end-distinct
@@ -131,6 +149,9 @@ To learn more about the ``distinct()`` method, see the
 
 Monitor Data Changes
 --------------------
+
+The following code shows how to monitor and print changes to a
+collection:
 
 .. literalinclude:: /includes/usage-examples/read-code-examples.cpp
    :start-after: start-change-stream

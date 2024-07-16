@@ -22,7 +22,7 @@ int main() {
     {
         // Retrieves one document that matches a query filter
         // start-find-one
-        auto result = collection.find_one(make_document(kvp("<field name>", <value>)));
+        auto result = collection.find_one(make_document(kvp("<field name>", "<value>")));
         std::cout << bsoncxx::to_json(*result) << std::endl;
         // end-find-one
     }
@@ -30,7 +30,7 @@ int main() {
     {
         // Retrieves all documents that match a query filter
         // start-find-multiple
-        auto results = collection.find(make_document(kvp("<field name>", <value>)));
+        auto results = collection.find(make_document(kvp("<field name>", "<value>")));
         for(auto&& doc : results) {
             std::cout << bsoncxx::to_json(doc) << std::endl;
         }
@@ -48,7 +48,7 @@ int main() {
     {
         // Counts the number of documents that match a query filter
         // start-count-query
-        auto result = collection.count_documents(make_document(kvp("<field name>", <value>)));
+        auto result = collection.count_documents(make_document(kvp("<field name>", "<value>")));
         std::cout << result << std::endl;
         // end-count-query
     }
@@ -64,7 +64,7 @@ int main() {
     {
         // Retrieves distinct values of a specified field
         // start-distinct
-        auto results = collection.distinct("<field name>", <filter>);
+        auto results = collection.distinct("<field name>", "<filter>");
         for(auto&& doc : results) {
             std::cout << bsoncxx::to_json(doc) << std::endl;
         }
