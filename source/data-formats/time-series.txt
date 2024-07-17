@@ -75,7 +75,7 @@ Example
 This example creates the ``sept2023`` time series collection in the
 ``precipitation`` database with the following configuration:
 
-- ``timeField`` is set to ``"precipitation_mm"``
+- ``timeField`` is set to ``"timestamp"``
 - ``metaField`` is set to ``"location"``
 - ``granularity`` is set to ``"minutes"``
 
@@ -122,11 +122,13 @@ in each inserted document.
 Example
 ~~~~~~~
 
-The following example inserts New York City precipitation data into the ``sept2023``
+This example inserts New York City precipitation data into the ``sept2023``
 time series collection created in the :ref:`Create a Time Series Collection example
-<cpp-time-series-create-example>`. Each document contains a ``precipitation_mm`` field
-to store precipitation measurements, a ``location`` field to store location metadata, and
-a ``timestamp`` field to store the time of the measurement collection:
+<cpp-time-series-create-example>`. Each document contains the following fields:
+
+- ``precipitation_mm``, which stores precipitation measurements
+- ``location``, which stores location metadata
+- ``timestamp``, which stores the time of the measurement collection
 
 .. literalinclude:: /includes/data-formats/time-series.cpp
    :start-after: start-insert-ts
