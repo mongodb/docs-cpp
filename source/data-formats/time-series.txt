@@ -170,3 +170,4 @@ guide, see the following API documentation:
 
 - `create_collection() <{+api+}/classmongocxx_1_1v__noabi_1_1database.html#a8989a894e021e87d704288a8d2522069>`__
 - `list_collections() <{+api+}/classmongocxx_1_1v__noabi_1_1database.html#aacef87f0bc585c536ce0dfae67cfefe8>`__
+- `insert_many() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a533e1d929fb71a6e85303769f3175275>`__
