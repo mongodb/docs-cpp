@@ -61,7 +61,7 @@ Create a Time Series Collection
 You can create a time series collection to store time series data.  
 To create a time series collection, perform the following actions:
 
-1. Create a BSON document that specifies properties of
+1. Create a BSON document that specifies the properties of
    your time series collection.
 
 #. Call the ``create_collection()`` method and pass the collection
