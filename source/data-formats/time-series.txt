@@ -126,7 +126,7 @@ This example inserts New York City precipitation data into the ``sept2023``
 time series collection created in the :ref:`Create a Time Series Collection example
 <cpp-time-series-create-example>`. Each document contains the following fields:
 
-- ``precipitation_mm``, which stores precipitation measurements
+- ``precipitation_mm``, which stores precipitation measurements in millimeters
 - ``location``, which stores location metadata
 - ``timestamp``, which stores the time of the measurement collection
 
