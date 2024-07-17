@@ -20,9 +20,9 @@ and interact with **time series data**.
 
 Time series data is composed of the following components:
 
-- Measurements collected over time
-- Timestamps for each measurement
-- Metadata that describes the measurements
+- Measured quantity
+- Timestamp for the measurement
+- Metadata that describes the measurement
 
 The following table describes sample situations for which you could store time
 series data:
