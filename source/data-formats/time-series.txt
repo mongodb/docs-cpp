@@ -18,9 +18,14 @@ Overview
 In this guide, you can learn how to use the {+driver-short+} to store
 and interact with **time series data**.
 
-Time series data consists of any data collected over time, metadata that
-describes the measurement, and the time of the measurement. The following table
-describes sample situations for which you could store time series data:
+Time series data is composed of the following components:
+
+- Measurements collected over time
+- Timestamps for each measurement
+- Metadata that describes the measurements
+
+The following table describes sample situations for which you could store time
+series data:
 
 .. list-table::
    :widths: 33, 33, 33
@@ -62,6 +67,8 @@ To create a time series collection, perform the following actions:
 #. Call the ``create_collection()`` method and pass the collection
    name and the time series BSON document as arguments.
 
+.. _cpp-time-series-create-example:
+
 Example
 ~~~~~~~
 
@@ -95,16 +102,45 @@ the ``list_collections()`` method on the database and print the results:
       :visible: false
 
       { "name" : "sept2023", "type" : "timeseries", "options" : { "timeseries" :
-      { "timeField" : "precipitation_mm", "metaField" : "location", "granularity" :
+      { "timeField" : "timestamp", "metaField" : "location", "granularity" :
       "minutes", "bucketMaxSpanSeconds" : 86400 } }, "info" : ... }
+
+.. _cpp-time-series-store:
+
+Store Time Series Data
+----------------------
+
+You can insert data into a time series collection by using the ``insert_one()``
+or ``insert_many()`` methods and specifying the measurement, timestamp, and metadata
+in each inserted document.
+
+.. tip::
+
+   To learn more about inserting documents into a collection, see the :ref:`cpp-write-insert`
+   guide.
+
+Example
+~~~~~~~
+
+The following example inserts New York City precipitation data into the ``sept2023``
+time series collection created in the :ref:`Create a Time Series Collection example
+<cpp-time-series-create-example>`. Each document contains a ``precipitation_mm`` field
+to store precipitation measurements, a ``location`` field to store location metadata, and
+a ``timestamp`` field to store the time of the measurement collection:
+
+.. literalinclude:: /includes/data-formats/time-series.cpp
+   :start-after: start-insert-ts
+   :end-before: end-insert-ts
+   :language: php
+   :dedent:
 
 .. _cpp-time-series-query:
 
-Query a Time Series Collection
-------------------------------
+Query Time Series Data
+----------------------
 
-You can use the same syntax and conventions to query a time series
-collection as you use when performing read or aggregation operations on
+You can use the same syntax and conventions to query data stored in a time 
+series collection as you use when performing read or aggregation operations on
 other collections. To find more information about these operations, see
 the :ref:`Additional Information <cpp-time-series-addtl-info>` section.
 
