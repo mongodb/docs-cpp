@@ -58,7 +58,7 @@ You can use find operations to perform the following actions:
 
 You can use aggregation operations to perform the following actions:
 
-- Perform find operations
+- Run find operations
 - Rename fields
 - Calculate fields
 - Summarize data
@@ -69,12 +69,12 @@ Limitations
 
 Keep the following limitations in mind when using aggregation operations:
 
-- Returned documents must not violate the
+- Returned documents cannot violate the
   :manual:`BSON document size limit </reference/limits/#mongodb-limit-BSON-Document-Size>`
   of 16 megabytes.
 - Pipeline stages have a memory limit of 100 megabytes by default. You can exceed this
   limit by setting the ``allow_disk_use`` field of a ``mongocxx::options::aggregate``
-  instance.
+  instance to ``true``.
 
 .. important:: $graphLookup Exception
 
@@ -128,9 +128,9 @@ Explain an Aggregation
 ~~~~~~~~~~~~~~~~~~~~~~
 
 To view information about how MongoDB executes your operation, you can
-instruct MongoDB to **explain** it. When MongoDB explains an operation, it returns
-**execution plans** and performance statistics. An execution
-plan is a potential way MongoDB can complete an operation.
+instruct the MongoDB query planner to **explain** it. When MongoDB explains
+an operation, it returns **execution plans** and performance statistics.
+An execution plan is a potential way MongoDB can complete an operation.
 When you instruct MongoDB to explain an operation, it returns both the
 plan MongoDB executed and any rejected execution plans.
 
@@ -138,8 +138,8 @@ To explain an aggregation operation, run the ``explain`` database command by spe
 the command in a BSON document and passing it as an argument to the ``run_command()``
 method.
 
-The following example performs the same aggregation operation as the preceding
-:ref:`cpp-aggregation-example` but instructs MongoDB to explain the operation:
+The following example instructs MongoDB to explain the aggregation operation from the
+preceding :ref:`cpp-aggregation-example`:
 
 .. io-code-block::
 
