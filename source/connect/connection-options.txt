@@ -21,20 +21,21 @@ Overview
 --------
 
 This page describes the MongoDB connection and authentication options
-available in the {+driver-short+}. You can configure your connection by using
-options in the connection URI.
+available in the {+driver-short+}. You can configure your connection by
+specifying options in the connection URI or by passing an instance of the
+``mongocxx::options::client`` class as the ``client_options`` parameter to the
+``mongocxx::client`` constructor.
 
 .. note::
 
-   You can set most connection options by using either the connection URI or the
-   ``client_options`` parameter. However, some options support only one of these
-   methods. You might need to use both a connection URI and the ``client_options``
-   parameter to set all the options that you need.
+   You can specify some connection options only in the connection URI, and others only
+   in an the ``client_options`` parameter.
+   You might need to combine these methods to specify all the options that you need.
 
 .. _cpp-connection-uri:
 
 Using the Connection URI
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 When you construct a ``mongocxx::client`` object, you can pass in a ``mongocxx::uri``
 object that represents your connection URI. This connection URI can include
@@ -45,14 +46,52 @@ the connection URI contains the ``tls`` option with a value of ``true`` and the
 .. literalinclude:: /includes/connect/connection-options.cpp
    :language: cpp
    :copyable: true
+   :start-after: // start-connection-uri
+   :end-before: // end-connection-uri
+
+Using a ``mongocxx::options::client`` Object
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``mongocxx::client`` constructor includes a ``client_options`` parameter that
+accepts an instance of the ``mongocxx::options::client`` class. You can specify
+certain options in the ``client_options`` parameter instead of including them in your
+connection URI.
+
+The following example shows how to use the ``client_options`` parameter
+to set connection options:
+
+.. literalinclude:: /includes/connect/connection-options.cpp
+   :language: cpp
+   :copyable: true
+   :start-after: // start-client-options 
+   :end-before: // end-client-options
+
+Read Connection Options with the ``mongocxx::uri`` Object
+---------------------------------------------------------
+
+After constructing a ``mongocxx::client`` object, you can read the values of certain
+connection options by using properties of the
+``mongocxx::uri`` object.
+
+The following example shows how to read the value of the ``tls`` connection options
+by using the ``tls()`` property:
+
+.. literalinclude:: /includes/connect/connection-options.cpp
+   :language: cpp
+   :copyable: true
+   :start-after: // start-uri-object
+   :end-before: // end-uri-object
+
+The following sections show the corresponding ``mongocxx::uri`` property for
+each connection option that supports it.
 
 Connection URI Options
 ----------------------
 
 The following sections describe the connection options that you can set in the connection
-URI passed to the {+driver-short+}. Each connection option links to its entry in
-the {+mdb-server+} manual. If you can access the value of a connection option by using
-a member of the ``mongocxx::uri`` class, the member name is also listed. 
+URI passed to the {+driver-short+}. Each connection option links to
+the {+mdb-server+} manual and to its corresponding ``mongocxx::uri``
+property, if supported.
 
 Replica Set Options
 ~~~~~~~~~~~~~~~~~~~
@@ -112,8 +151,7 @@ TLS Options
 
 .. tip::
 
-   You can set some of the preceding TLS option by using the ``mongocxx::tls`` class.
-   See the
+   You can set most TLS options by using the ``client_options`` parameter. See the
    `mongocxx::tls <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1options_1_1tls.html>`__
    API documentation for more information.
 
