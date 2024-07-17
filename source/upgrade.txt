@@ -1,0 +1,96 @@
+.. _cpp-upgrade:
+
+=================================
+Upgrade {+driver-short+} Versions
+=================================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :keywords: compatibility, backwards compatibility
+
+Overview
+--------
+
+This page describes the changes you must make to your application
+when you upgrade to a new version of the {+driver-short+}.
+
+Before you upgrade, perform the following actions:
+
+- Ensure the new {+driver-short+} version is compatible with the {+mdb-server+} versions
+  your application connects to and the C++ version your
+  application runs on. For version compatibility information, see the
+  :ref:`{+driver-short+} Compatibility <cpp-compatibility>`
+  page.
+- Address any breaking changes between the driver version
+  your application is using and your planned upgrade version in the
+  :ref:`Breaking Changes <cpp-breaking-changes>` section.
+
+.. note::
+
+   The {+driver-short+} doesn't ensure API or ABI stability across patch releases
+   within a minor version.
+
+.. tip::
+
+   To minimize the number of changes your application requires when
+   upgrading driver versions in the future, use the
+   :ref:`{+stable-api+} <cpp-stable-api>`.
+
+.. _cpp-breaking-changes:
+
+Breaking Changes
+----------------
+
+A breaking change is a change of a convention or a behavior starting in a specific
+version of the driver. This type of change may prevent your application from working
+properly if not addressed before upgrading the driver.
+
+The breaking changes in this section are categorized by the driver version that introduced
+them. When upgrading driver versions, address all the breaking changes between the current
+and upgrade versions.
+
+.. example:: Upgrading from Version 3.0
+
+  If you're upgrading the {+driver-short+} from version 3.0 to version 3.10,
+  address all breaking changes listed for versions 3.1 to 3.10, if any.
+
+.. _version-3.0.3-breaking-changes:
+
+Version 3.0.3 Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- ``bsoncxx`` iterators always have the type ``document::view::const_iterator``.
+- ``document::element::operator[]`` doesn't throw an exception when given an invalid element.
+
+.. _version-3.0.2-breaking-changes:
+
+Version 3.0.2 Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- ``bsoncxx::oid`` objects are initialized to a valid state by default.
+- JSON-ification of element and types has been removed.
+- JSON formatting uses the ``libbson`` JSON algorithm.
+
+.. _version-3.0.1-breaking-changes:
+
+Version 3.0.1 Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Some operations on ``array`` and ``document`` ``element`` objects
+  return invalid ``element`` objects instead of throwing exceptions.
+
+.. _version-3.0-breaking-changes:
+
+Version 3.0 Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- This version of the {+driver-short+} is incompatible with all previous MongoDB C++ drivers.
