@@ -1,8 +1,7 @@
 #include <iostream>
 #include <chrono>
 
-#include <bsoncxx/builder/list.hpp>
-#include <bsoncxx/builder/stream/document.hpp>
+#include <bsoncxx/builder/basic/document.hpp>
 #include <bsoncxx/json.hpp>
 #include <mongocxx/client.hpp>
 #include <mongocxx/instance.hpp>
