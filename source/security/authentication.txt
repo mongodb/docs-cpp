@@ -160,6 +160,8 @@ You can also include an AWS session token by passing it into the
    :start-after: // start-aws-connection-uri-session
    :end-before: // end-aws-connection-uri-session
 
+.. _cpp-mongo-aws-environment:
+
 Environment Variables
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -191,6 +193,8 @@ following example:
    :start-after: // start-aws-environment
    :end-before: // end-aws-environment
 
+.. _cpp-mongo-aws-assume-role:
+
 AssumeRoleWithWebIdentity Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -221,6 +225,8 @@ authenticate your application, see the following AWS documentation:
 - `AssumeRoleWithWebIdentity <https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html>`__
 - `Authenticating users for your cluster from an OpenID Connect identity provider <https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html>`__
 
+.. _cpp-mongo-aws-ecs:
+
 ECS Metadata
 ~~~~~~~~~~~~
 
@@ -242,6 +248,8 @@ following example:
    :copyable: true
    :start-after: // start-aws-environment
    :end-before: // end-aws-environment
+
+.. _cpp-mongo-aws-ec2:
 
 EC2 Instance Metadata
 ~~~~~~~~~~~~~~~~~~~~~
