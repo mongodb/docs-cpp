@@ -131,50 +131,67 @@ Environment Variables
 ~~~~~~~~~~~~~~~~~~~~~
 
 The following code shows how to create a connection URI to
-authenticate with ``MONGODB-AWS`` when obtaining credentials from environment variables:
+authenticate with ``MONGODB-AWS`` when obtaining credentials from environment
+variables. Ensure you have your environment variables specified before running
+this code.
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
    :copyable: true
    :start-after: // start-aws-environment
    :end-before: // end-aws-environment
+
+To learn more about authenticating with AWS by using environment
+variables, see :ref:`cpp-mongo-aws-environment`.
 
 AssumeRoleWithWebIdentity Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following code shows how to create a connection URI to
 authenticate with ``MONGODB-AWS`` when obtaining credentials from an
-``AssumeRoleWithWebIdentity`` request:
+``AssumeRoleWithWebIdentity`` request. Ensure that an AWS config file exists in your
+environment and is configured with the ``AWS_WEB_IDENTITY_TOKEN_FILE``
+and ``AWS_ROLE_ARN`` environment variables.
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
    :copyable: true
    :start-after: // start-aws-environment
    :end-before: // end-aws-environment
+
+To learn more about authenticating with AWS by using an
+``AssumeRoleWithWebIdentity`` request, see :ref:`cpp-mongo-aws-assume-role`.
 
 ECS Metadata
 ~~~~~~~~~~~~
 
 The following code shows how to create a connection URI to
-authenticate with ``MONGODB-AWS`` when obtaining credentials from ECS metadata:
+authenticate with ``MONGODB-AWS`` when obtaining credentials from ECS metadata.
+Ensure that you specify the URI of the ECS endpoint in an environment variable called
+``AWS_CONTAINER_CREDENTIALS_RELATIVE_URI``.
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
    :copyable: true
    :start-after: // start-aws-environment
    :end-before: // end-aws-environment
+
+To learn more about authenticating with AWS by using ECS metadata, see :ref:`cpp-mongo-aws-ecs`.
 
 EC2 Instance Metadata
 ~~~~~~~~~~~~~~~~~~~~~
 
 The following code shows how to create a connection URI to
-authenticate with ``MONGODB-AWS`` when obtaining credentials from EC2 instance metadata:
+authenticate with ``MONGODB-AWS`` when obtaining credentials from EC2 instance
+metadata. Ensure that you configure your EC2 instance with your temporary credentials.
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
    :copyable: true
    :start-after: // start-aws-environment
    :end-before: // end-aws-environment
+
+To learn more about authenticating with AWS by using EC2 instance metadata, see :ref:`cpp-mongo-aws-ec2`.
 
 Kerberos
 --------
