@@ -24,6 +24,7 @@ Secure Your Data
 
    /security/authentication
    /security/enterprise-authentication
+   /security/in-use-encryption
 
 Overview
 --------

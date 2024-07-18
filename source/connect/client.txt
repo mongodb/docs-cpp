@@ -92,19 +92,17 @@ passing the connection URI as a string to the constructor. Then, pass the instan
 the ``mongocxx::uri`` class to the ``mongocxx::client`` constructor.
 
 In the following example, the driver uses a sample connection URI to connect to a MongoDB 
-deployment on port ``27017`` of ``localhost``: 
+deployment on port ``27017`` of ``localhost``:
 
-.. literalinclude:: /includes/connect.cpp
+.. literalinclude:: /includes/connect/client.cpp
    :language: cpp
    :copyable: true
-   :start-after: // start-client
-   :end-before: // end-client
 
 .. tip:: Reuse Your Client
 
    Because each ``mongocxx::client`` object represents a pool of connections to the
    database, most applications require only a single instance of
-   ``mongocxx::client``, even across multiple requests. 
+   ``mongocxx::client``, even across multiple requests.
 
 API Documentation
 -----------------
