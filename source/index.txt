@@ -22,6 +22,7 @@ MongoDB C++ Driver
    /installation
    /read
    /write
+   /aggregation
    /indexes
    /security
    /data-formats
