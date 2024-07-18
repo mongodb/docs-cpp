@@ -4,7 +4,7 @@
 
 int main()
 {
-    mongocxx::instance instance{};
+    mongocxx::instance instance;
     mongocxx::uri uri("mongodb://localhost:27017");
     mongocxx::client client(uri);
 }

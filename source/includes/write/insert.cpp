@@ -13,7 +13,7 @@ using bsoncxx::builder::basic::kvp;
 using bsoncxx::builder::basic::make_document;
 
 int main() {
-    mongocxx::instance instance{};
+    mongocxx::instance instance;
     mongocxx::uri uri("<connection string>");
     mongocxx::client client(uri);
 

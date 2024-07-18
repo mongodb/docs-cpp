@@ -13,7 +13,7 @@ using bsoncxx::builder::basic::make_document;
 using bsoncxx::builder::basic::make_array;
 
 int main() {
-    mongocxx::instance instance{};
+    mongocxx::instance instance;
     // Accesses a collection and inserts documents representing fruits
     // start-setup
     mongocxx::uri uri("<connection string>");
