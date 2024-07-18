@@ -9,7 +9,7 @@
 
 int main()
 {
-    mongocxx::instance instance{};
+    mongocxx::instance instance;
 
     try
     {

@@ -49,7 +49,7 @@ the relevant values for your MongoDB deployment.
       :language: cpp
       :copyable: true
       :linenos:
-      :emphasize-lines: 13-15
+      :emphasize-lines: 16-18
 
 SCRAM-SHA-256
 -------------
