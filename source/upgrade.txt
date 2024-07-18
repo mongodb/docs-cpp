@@ -28,16 +28,12 @@ Before you upgrade, perform the following actions:
 - Ensure the new {+driver-short+} version is compatible with the {+mdb-server+} versions
   your application connects to and the C++ version your
   application runs on. For version compatibility information, see the
-  :ref:`{+driver-short+} Compatibility <cpp-compatibility>`
+  :ref:`{+driver-short+} Compatibility <cpp-compatibility-tables>`
   page.
 - Address any breaking changes between the driver version
   your application is using and your planned upgrade version in the
   :ref:`Breaking Changes <cpp-breaking-changes>` section.
 
-.. note::
-
-   The {+driver-short+} doesn't ensure API or ABI stability across patch releases
-   within a minor version.
 
 .. tip::
 
@@ -49,6 +45,11 @@ Before you upgrade, perform the following actions:
 
 Breaking Changes
 ----------------
+
+.. note::
+
+   The {+driver-short+} doesn't ensure API or ABI stability across patch releases
+   within a minor version.
 
 A breaking change is a change of a convention or a behavior starting in a specific
 version of the driver. This type of change may prevent your application from working
@@ -63,34 +64,38 @@ and upgrade versions.
   If you're upgrading the {+driver-short+} from version 3.0 to version 3.10,
   address all breaking changes listed for versions 3.1 to 3.10, if any.
 
-.. _version-3.0.3-breaking-changes:
+.. _version-3.10-breaking-changes:
 
-Version 3.0.3 Breaking Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Version 3.10 Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- ``bsoncxx`` iterators always have the type ``document::view::const_iterator``.
-- ``document::element::operator[]`` doesn't throw an exception when given an invalid element.
+This driver version introduces the following breaking changes:
 
-.. _version-3.0.2-breaking-changes:
+- Drops support for the ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)`` CMake
+  commands. Call ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
+  instead.
+- Drops support for the ``LIBBSONCXX_*`` and ``LIBMONGOCXX_*`` CMake variables
+  provided by the legacy CMake package config files. Use the ``mongo::bsoncxx_*`` and
+  ``mongo::mongocxx_*`` CMake targets instead.
+- Removes the experimental C++ standard library (``BSONCXX_POLY_USE_STD_EXPERIMENTAL``) as a
+  polyfill option.
 
-Version 3.0.2 Breaking Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- ``bsoncxx::oid`` objects are initialized to a valid state by default.
-- JSON-ification of element and types has been removed.
-- JSON formatting uses the ``libbson`` JSON algorithm.
+.. _version-3.9-breaking-changes:
 
-.. _version-3.0.1-breaking-changes:
+Version 3.9 Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version 3.0.1 Breaking Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This driver version introduces the following breaking changes:
 
-- Some operations on ``array`` and ``document`` ``element`` objects
-  return invalid ``element`` objects instead of throwing exceptions.
+- Removes support for exported targets from the CMake project build tree.
+- Drops support for macOS 10.14, macOS 10.15, and Ubuntu 14.04.
+- Requires MongoDB C Driver v1.25.0 or later.
+- Requires CMake v3.15 or later
 
 .. _version-3.0-breaking-changes:
 
 Version 3.0 Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- This version of the {+driver-short+} is incompatible with all previous MongoDB C++ drivers.
+This driver version is incompatible with all previous MongoDB C++ drivers.
