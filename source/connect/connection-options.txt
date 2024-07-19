@@ -21,10 +21,14 @@ Overview
 --------
 
 This page describes the MongoDB connection and authentication options
-available in the {+driver-short+}. You can configure your connection by
-specifying options in the connection URI or by passing an instance of the
-``mongocxx::options::client`` class as the ``client_options`` parameter to the
-``mongocxx::client`` constructor.
+available in the {+driver-short+}.
+
+Set Connection Options
+----------------------
+
+You can configure your connection by specifying options in the connection URI or by
+passing an instance of the ``mongocxx::options::client`` class as the ``client_options``
+parameter to the ``mongocxx::client`` constructor.
 
 .. note::
 
@@ -49,6 +53,8 @@ the connection URI contains the ``tls`` option with a value of ``true`` and the
    :start-after: // start-connection-uri
    :end-before: // end-connection-uri
 
+.. _cpp-client-object:
+
 Using a ``mongocxx::options::client`` Object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -66,8 +72,8 @@ to set connection options:
    :start-after: // start-client-options 
    :end-before: // end-client-options
 
-Read Connection Options with the ``mongocxx::uri`` Object
----------------------------------------------------------
+Read Connection Options
+-----------------------
 
 After constructing a ``mongocxx::client`` object, you can read the values of certain
 connection options by using properties of the
