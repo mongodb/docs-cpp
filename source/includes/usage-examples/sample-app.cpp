@@ -12,7 +12,7 @@ using bsoncxx::builder::basic::make_document;
 
 int main() {
     try {
-        mongocxx::instance instance{};
+        mongocxx::instance instance;
 
         mongocxx::uri uri("<connection string>");
         mongocxx::client client(uri);

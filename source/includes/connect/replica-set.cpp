@@ -4,7 +4,7 @@
 
 int main()
 {
-    mongocxx::instance instance{};
+    mongocxx::instance instance;
     mongocxx::uri uri("mongodb://host1:27017/?replicaSet=sampleRS");
     mongocxx::client client(uri);
 }
