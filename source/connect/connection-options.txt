@@ -7,7 +7,7 @@ Specify Connection Options
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. facet::
@@ -161,7 +161,7 @@ TLS Options
 .. tip::
 
    You can set most TLS options by using the ``client_options`` parameter. See the
-   `mongocxx::tls <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1options_1_1tls.html>`__
+   `mongocxx::options::tls <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1options_1_1tls.html>`__
    API documentation for more information.
 
 Timeout Options
