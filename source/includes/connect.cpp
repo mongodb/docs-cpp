@@ -1,7 +1,7 @@
 // start-instance
 #include <mongocxx/instance.hpp>
 
-mongocxx::instance instance{};
+mongocxx::instance instance;
 // end-instance
 
 // start-client

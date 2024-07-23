@@ -52,6 +52,7 @@ the connection URI contains the ``tls`` option with a value of ``true`` and the
    :copyable: true
    :start-after: // start-connection-uri
    :end-before: // end-connection-uri
+   :emphasize-lines: 8
 
 .. _cpp-client-object:
 
@@ -71,6 +72,7 @@ to set connection options:
    :copyable: true
    :start-after: // start-client-options 
    :end-before: // end-client-options
+   :emphasize-lines: 8-12, 15
 
 Read Connection Options
 -----------------------
@@ -87,6 +89,7 @@ by using the ``tls()`` property:
    :copyable: true
    :start-after: // start-uri-object
    :end-before: // end-uri-object
+   :emphasize-lines: 8, 10
 
 The following sections show the corresponding ``mongocxx::uri`` property for
 each connection option that supports it.
