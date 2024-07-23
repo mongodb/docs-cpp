@@ -21,6 +21,11 @@ MongoDB C++ Driver
    /polyfill-selection
    /installation
    /read
+   /write
+   /aggregation
+   /indexes
+   /security
+   /data-formats
    /configuration
    /client-side-encryption
    /tutorial
@@ -32,7 +37,7 @@ MongoDB C++ Driver
    /testing
    /compatibility
    /issues-and-help
-   API Documentation <https://mongocxx.org/api/current/>
+   API Documentation <https://mongocxx.org/api/mongocxx-{+full-version+}>
    Driver Source <https://github.com/mongodb/mongo-cxx-driver>
 
 Welcome to the MongoDB C++ driver.  On this site, you'll find documentation
