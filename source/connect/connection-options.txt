@@ -180,6 +180,8 @@ Timeout Options
    * - :manual:`socketTimeoutMS </reference/connection-string/#mongodb-urioption-urioption.sockettimeoutms>`
      - `socket_timoeout_ms() <https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1uri.html#a3a0bddf7cf54c047bdf6114ceaa4d443>`__
 
+.. _cpp-compression-options:
+
 Compression Options
 ```````````````````
 
