@@ -48,7 +48,7 @@ want to use. The following code shows how to specify the ``snappy``, ``zstd``, a
 .. literalinclude:: /includes/connect/network-compression.cpp
    :language: cpp
    :copyable: true
-   :emphasize-lines: 7
+   :emphasize-lines: 8
    :start-after: // start-all-compression
    :end-before: // end-all-compression
 
@@ -70,7 +70,7 @@ The following code example specifies the ``zlib`` compression algorithm and a va
 .. literalinclude:: /includes/connect/network-compression.cpp
    :language: cpp
    :copyable: true
-   :emphasize-lines: 7
+   :emphasize-lines: 8
    :start-after: // start-zlib-compression
    :end-before: // end-zlib-compression
 
