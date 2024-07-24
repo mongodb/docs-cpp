@@ -59,7 +59,7 @@ The following code example shows how to specify {+stable-api+} version 1:
    :copyable: true
    :start-after: // start-specify-v1
    :end-before: // end-specify-v1
-   :emphasize-lines: 11-14
+   :emphasize-lines: 10-13
 
 .. note::
 
