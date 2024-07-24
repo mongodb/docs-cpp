@@ -93,3 +93,10 @@ This driver version introduces the following breaking changes:
 - Drops support for macOS 10.14, macOS 10.15, and Ubuntu 14.04.
 - Requires MongoDB C Driver v1.25.0 or later.
 - Requires CMake v3.15 or later
+
+Version 3.8 and Earlier
+~~~~~~~~~~~~~~~~~~~~~~~
+
+For driver versions 3.8 and earlier, see the
+release notes and associated JIRA tickets for each release
+on `GitHub. <https://github.com/mongodb/mongo-cxx-driver/releases>`__
