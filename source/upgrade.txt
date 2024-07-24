@@ -73,7 +73,8 @@ Version 3.10 Breaking Changes
 
 This driver version introduces the following breaking changes:
 
-- Drops support for ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``. Use ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
+- Drops support for ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``.
+  Use ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
   instead.
 - Drops support for the ``LIBBSONCXX_*`` and ``LIBMONGOCXX_*`` CMake variables
   provided by the legacy CMake package config files. Use the ``mongo::bsoncxx_*`` and
@@ -88,9 +89,9 @@ Version 3.9 Breaking Changes
 
 This driver version introduces the following breaking changes:
 
-- Removes support for exported targets from the CMake project build tree.
-- Drops support for macOS 10.14, macOS 10.15, and Ubuntu 14.04.
-- Requires MongoDB C Driver v1.25.0 or later.
+- Removes support for exported targets from the CMake project build tree
+- Drops support for macOS 10.14, macOS 10.15, and Ubuntu 14.04
+- Requires MongoDB C Driver v1.25.0 or later
 - Requires CMake v3.15 or later
 
 Version 3.8 and Earlier
