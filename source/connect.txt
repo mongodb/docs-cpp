@@ -24,5 +24,7 @@ Connect to MongoDB
 
    /connect/instance 
    /connect/client
+   /connect/connection-targets
+   /connect/connection-options
 
 .. TODO: Finish page

@@ -7,7 +7,16 @@ intersphinx = [
     "https://www.mongodb.com/docs/atlas/objects.inv",
 ]
 
-toc_landing_pages = ["/installation", "/api-abi-versioning", "/get-started"]
+toc_landing_pages = [
+    "/installation",
+    "/api-abi-versioning",
+    "/get-started",
+    "/read",
+    "/write",
+    "/indexes",
+    "/security",
+    "/data-formats",
+]
 
 sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
 
@@ -18,5 +27,7 @@ driver-short = "C++ driver"
 version = "3.10"
 full-version = "{+version+}.1"
 api = "https://mongocxx.org/api/current"
-mdb-server = "MongoDB Server"
+string-data-type = "``string``"
+int-data-type = "``int``"
 stable-api = "Stable API"
+mdb-server = "MongoDB Server"
