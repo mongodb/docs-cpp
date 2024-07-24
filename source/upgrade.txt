@@ -48,8 +48,8 @@ Breaking Changes
 .. note::
 
    The {+driver-short+} follows :wikipedia:`semantic versioning. <Software_versioning#Schemes>`
-   The driver might break build system or package compatibility in any release, and
-   patch releases can revert accidental API breaking changes.
+   The driver may break build system or package compatibility in any release.
+   Patch releases may revert accidental API breaking changes.
 
    For more information, see :ref:`<cpp-api-abi-versioning>`.
 
@@ -73,8 +73,7 @@ Version 3.10 Breaking Changes
 
 This driver version introduces the following breaking changes:
 
-- Drops support for the ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)`` CMake
-  commands. Call ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
+- Drops support for ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``. Use ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
   instead.
 - Drops support for the ``LIBBSONCXX_*`` and ``LIBMONGOCXX_*`` CMake variables
   provided by the legacy CMake package config files. Use the ``mongo::bsoncxx_*`` and
