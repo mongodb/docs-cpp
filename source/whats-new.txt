@@ -31,18 +31,18 @@ What's New in 3.10
 
 .. warning:: Breaking Changes
 
-   This driver version contains the following breaking changes:
+   The v3.10 driver introduces the following breaking changes:
    
-   - Drops support for ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``.
+   - Drops support for calling ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``.
      Use ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
      instead.
    - Drops support for the ``LIBBSONCXX_*`` and ``LIBMONGOCXX_*`` CMake variables
      provided by the legacy CMake package config files. Use the ``mongo::bsoncxx_*`` and
      ``mongo::mongocxx_*`` CMake targets instead.
-   - Removes the experimental C++ standard library (``BSONCXX_POLY_USE_STD_EXPERIMENTAL``)
+   - Removes the experimental C++ standard library, ``BSONCXX_POLY_USE_STD_EXPERIMENTAL``,
      as a polyfill option.
 
-The v3.10.0 release includes the following new features:
+The v3.10.0 driver release includes the following new features:
 
 - Adds forward headers that provide non-defining declarations of ``bsoncxx`` and
   ``mongocxx`` class types. The driver does not support user-defined forward declarations
@@ -61,7 +61,7 @@ The v3.10.0 release includes the following new features:
   ``mongocxx::v_noabi::client``. Argument-dependent lookup and template instantiations
   are expected to remain equivalent to their prior behavior.
 - By default, when library filenames are compiled with MSVC (as detected by CMake's ``MSVC``
-  variable), they're now embedded with an ABI tag string. These strings are similar to
+  variable), they are embedded with an ABI tag string. These strings are similar to
   the following:
   
   .. code-block:: bash
@@ -81,6 +81,10 @@ The v3.10.0 release includes the following new features:
   To enable this behavior, set ``ENABLE_ABI_TAG_IN_LIBRARY_FILENAMES=ON`` and
   ``ENABLE_ABI_TAG_IN_PKGCONFIG_FILENAMES=ON`` as part of your CMake configuration.
 
+To learn more about this release, see the
+`v3.10 Release Notes <https://github.com/mongodb/mongo-cxx-driver/releases/tag/r3.10.0>`__
+on GitHub.
+
 .. _version-3.9:
 
 What's New in 3.9
@@ -88,7 +92,7 @@ What's New in 3.9
 
 .. warning:: Breaking Changes
 
-   This driver version contains the following breaking changes:
+   The v3.9 driver introduces the following breaking changes:
 
    - Removes support for exported targets from the CMake project build tree
    - Drops support for macOS 10.14, macOS 10.15, and Ubuntu 14.04
@@ -96,10 +100,10 @@ What's New in 3.9
      and for consistency with the MongoDB C Driver
    - Requires CMake v3.15 or later
 
-The v3.9 release includes the following new features:
+The v3.9 driver release includes the following new features:
 
 - The {+driver-short+} container image is now available on
-  `Docker hub. <https://hub.docker.com/r/mongodb/mongo-cxx-driver>`__
+  `Docker hub <https://hub.docker.com/r/mongodb/mongo-cxx-driver>`__.
 - The driver automatically downloads the MongoDB C Driver dependency if you don't provide
   it.
 - The driver no longer builds tests as part of the ``all`` target. To build tests,
@@ -111,13 +115,14 @@ The v3.9 release includes the following new features:
 - Adds the CMake option ``MONGOCXX_OVERRIDE_DEFAULT_INSTALL_PREFIX``. If this option is set to
   ``TRUE``, the ``CMAKE_INSTALL_PREFIX`` option defaults to the build directory.
   The default value of this option is ``TRUE``.
-- Adds API to manage
-  :atlas:`Atlas Search indexes. <atlas-search/index-definitions/#std-label-ref-index-definitions>`
+- Adds methods to programmatically manage
+  :atlas:`Atlas Search indexes <atlas-search/index-definitions/#std-label-ref-index-definitions>`.
 - Adds the ``VERSIONINFO`` resource to ``bsoncxx.dll`` and ``mongocxx.dll``.
 - Explicitly documents that throwing an exception from an APM callback is undefined behavior.
 - Does not prematurely install MNMLSTC Core headers during the CMake build step.
 - Requires that a MongoDB C Driver CMake package is found via ``find_dependency()`` for all
   installed {+driver-short+} package configurations.
-- Documents availability of the {+driver-short+} on
-  `vcpkg <https://vcpkg.io/en/package/mongo-cxx-driver>`__ and
-  `Conan. <https://conan.io/center/recipes/mongo-cxx-driver>`__
+
+To learn more about this release, see the
+`v3.9 Release Notes <https://github.com/mongodb/mongo-cxx-driver/releases/tag/r3.9.0>`__
+on GitHub.
