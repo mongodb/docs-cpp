@@ -19,15 +19,15 @@ What's New
 
 Learn what's new in:
 
-* :ref:`Version 3.10.0 <version-3.10.0>`
+* :ref:`Version 3.10 <version-3.10>`
 * :ref:`Version 3.9 <version-3.9>`
 
 .. _upcoming-breaking-changes:
 
-.. _version-3.10.0:
+.. _version-3.10:
 
-What's New in 3.10.0
---------------------
+What's New in 3.10
+------------------
 
 .. warning:: Breaking Changes
 
@@ -45,10 +45,9 @@ What's New in 3.10.0
 The v3.10.0 release includes the following new features:
 
 - Adds forward headers that provide non-defining declarations of ``bsoncxx`` and
-  ``mongocxx`` class types.
-- -  The driver does not support user-defined forward declarations
-     of any library entity. To obtain the declaration or definition of a library entity,
-     always include the corresponding header.
+  ``mongocxx`` class types. The driver does not support user-defined forward declarations
+  of any library entity. To obtain the declaration or definition of a library entity,
+  always include the corresponding header.
 - The CMake option ``ENABLE_BSONCXX_USE_POLY_IMPLS`` allows selecting
   ``bsoncxx`` implementations of C++17 polyfills by default when no polyfill library is
   requested. This option is ``OFF`` by default.
@@ -105,12 +104,10 @@ The v3.9 release includes the following new features:
   it.
 - The driver no longer builds tests as part of the ``all`` target. To build tests,
   set ``BUILD_TESTING=ON`` as part of your CMake configuration.
-- The driver improves handling of how it downloads the
+- The driver uses the ``FetchContent`` module to download and build the
   `MNMLSTC Core <https://github.com/mnmlstc/core>`__ polyfill library, if not
-  provided by the system, in the following ways:
-- - Uses the ``FetchContent`` module to download and build the library instead
-    of the ``ExternalProject`` module
-- - Does not patch ``include`` directives in MNMLSTC Core headers
+  provided by the system, instead of the ``ExternalProject`` module. It also does not
+  patch ``include`` directives in MNMLSTC Core headers.
 - Adds the CMake option ``MONGOCXX_OVERRIDE_DEFAULT_INSTALL_PREFIX``. If this option is set to
   ``TRUE``, the ``CMAKE_INSTALL_PREFIX`` option defaults to the build directory.
   The default value of this option is ``TRUE``.
