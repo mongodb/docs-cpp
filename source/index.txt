@@ -33,6 +33,7 @@ MongoDB C++ Driver
    /connection-pools
    /working-with-bson
    /api-abi-versioning
+   /whats-new
    /upgrade
    /reporting-bugs
    /testing
