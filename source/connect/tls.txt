@@ -1,5 +1,3 @@
-add additional options to this page
-
 .. _cpp-tls:
 
 ========================================
@@ -254,3 +252,8 @@ API Documentation
 To learn more about configuring TLS for the {+driver-short+},
 see the following API documentation:
 
+- `mongocxx::client <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ 
+- `mongocxx::uri <{+api+}/classmongocxx_1_1v__noabi_1_1uri.html>`__ 
+- `mongocxx::instance <{+api+}/classmongocxx_1_1v__noabi_1_1instance.html>`__ 
+- `mongocxx::options::client <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1client.html>`__
+- `mongocxx::options::tls <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1tls.html>`__
