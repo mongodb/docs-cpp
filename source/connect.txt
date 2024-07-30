@@ -61,7 +61,7 @@ Connection
 Local Deployment
 ~~~~~~~~~~~~~~~~
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-local
@@ -70,7 +70,7 @@ Local Deployment
 Atlas
 ~~~~~
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-atlas
@@ -79,7 +79,7 @@ Atlas
 Replica Set
 ~~~~~~~~~~~
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-replica-set
@@ -91,7 +91,7 @@ Transport Layer Security (TLS)
 Enable TLS
 ~~~~~~~~~~
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-enable-tls
@@ -111,7 +111,7 @@ the TLS configuration guide.
 Disable OCSP Checks
 ~~~~~~~~~~~~~~~~~~~
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-disable-ocsp
@@ -147,7 +147,7 @@ the TLS configuration guide.
 Allow Insecure TLS
 ~~~~~~~~~~~~~~~~~~
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-insecure-tls
@@ -167,7 +167,7 @@ the TLS configuration guide.
 Disable Hostname Verification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-disable-hostname
@@ -182,7 +182,7 @@ Network Compression
 Compression Algorithms
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-compression-all
@@ -194,7 +194,7 @@ To learn more about specifying compression algorithms, see
 zlib Compression Level
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-compression-zlib
@@ -206,7 +206,7 @@ To learn more about setting the zlib compression level, see
 {+stable-api+}
 --------------
 
-.. literalinclude:: /includes/usage-examples/connect-usage-examples.cpp
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
     :dedent:
     :start-after: start-stable-api
