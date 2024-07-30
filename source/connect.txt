@@ -115,7 +115,7 @@ Disable OCSP Checks
     :language: cpp
     :dedent:
     :start-after: start-disable-ocsp
-    :end-before: end-disable-oscp
+    :end-before: end-disable-ocsp
 
 To learn more about disabling OCSP checks, see :ref:`cpp-disable-ocsp` in
 the TLS configuration guide.
