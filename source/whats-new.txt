@@ -7,7 +7,7 @@ What's New
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. facet::
@@ -25,11 +25,11 @@ Learn what's new in:
 * :ref:`Version 3.10 <version-3.10>`
 * :ref:`Version 3.9 <version-3.9>`
 
-Breaking Changes
-~~~~~~~~~~~~~~~~
+Breaking Change Types
+~~~~~~~~~~~~~~~~~~~~~
 
 Breaking changes introduced by new versions of the {+driver-short+} belong to one of the
-following types:
+following groups:
 
 - **API** changes concern the API of the {+driver-short+} libraries. These changes are
   accompanied by an API major version bump. You might need to edit C++ source code
@@ -48,9 +48,9 @@ following types:
 
   .. example::
 
-  - Removed exported symbol for ``v1::func(A)``. Use ``v2::func(A)`` instead.
+     - Removed exported symbol for ``v1::func(A)``. Use ``v2::func(A)`` instead.
 
-- **Build system** changes concern the build system or packaging of the {+driver-short+}
+- **Build System** changes concern the build system or packaging of the {+driver-short+}
   libraries. These changes are not necessarily accompanied by either an API major version
   bump or an ABI version bump.
   To address these changes, you might need to modify your build system configurations,
@@ -69,9 +69,9 @@ following types:
 What's New in 3.10
 ------------------
 
-.. warning:: Breaking Changes
+.. warning:: Build System Breaking Changes
 
-   The v3.10 driver introduces the following breaking changes:
+   The v3.10 driver introduces the following breaking changes to the build system:
    
    - Drops support for calling ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``.
      Use ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
