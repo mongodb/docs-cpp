@@ -49,6 +49,19 @@ int main()
     }
 
     {
+        // start-crl
+        mongocxx::options::client client_options;
+        mongocxx::options::tls tls_options;
+
+        tls_options.crl_file("/path/to/file.pem");
+        client_options.tls_opts(tls_options);
+
+        mongocxx::uri uri("mongodb://<hostname>:<port>/?tls=true");
+        mongocxx::client client(uri, client_options);
+        // end-crl
+    }
+
+    {
         // start-insecure-tls
         mongocxx::uri uri("mongodb://<hostname>:<port>/?tls=true&tlsInsecure=true");
         mongocxx::client client(uri);
