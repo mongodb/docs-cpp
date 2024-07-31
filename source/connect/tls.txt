@@ -155,7 +155,7 @@ Instead of using OCSP, you can instruct the {+driver-short+} to check the server
 against a Certificate Revocation List (CRL) published by the CA.
 
 The following code example shows how to use the ``crl_file`` option to specify the
-path to specify the path to a ``.pem`` file from the CA.
+path to specify the path to a ``.pem`` file from the CA:
 
 .. literalinclude:: /includes/connect/crl-file.cpp
    :language: cpp
