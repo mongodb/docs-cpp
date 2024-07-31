@@ -83,6 +83,7 @@ int main()
     }
 
     {
+        // Enables compression for a MongoDB connection and specifies each compression algorithm
         // start-compression-all
         mongocxx::uri uri("mongodb://<hostname>:<port>/?compressors=snappy,zstd,zlib");
         mongocxx::client client(uri);
@@ -90,7 +91,7 @@ int main()
     }
 
     {
-        // Enables compression for a MongoDB connection and specifies each compression algorithm
+        // Enables zlib compression for a MongoDB connection
         // start-compression-zlib
         mongocxx::uri uri("mongodb://<hostname>:<port>/?compressors=zlib&zlibCompressionLevel=1");
         mongocxx::client client(uri);
