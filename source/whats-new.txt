@@ -28,7 +28,7 @@ Learn what's new in:
 Breaking Change Types
 ~~~~~~~~~~~~~~~~~~~~~
 
-Breaking changes introduced by new versions of the {+driver-short+} belong to one of the
+New versions of the {+driver-short+} can introduce the following types of breaking changes:
 following groups:
 
 - **API** changes concern the API of the {+driver-short+} libraries. These changes are
@@ -50,11 +50,10 @@ following groups:
 
      - Removed exported symbol for ``v1::func(A)``. Use ``v2::func(A)`` instead.
 
-- **Build System** changes concern the build system or packaging of the {+driver-short+}
+- **Build system** changes concern the build system or packaging of the {+driver-short+}
   libraries. These changes are not necessarily accompanied by either an API major version
   bump or an ABI version bump.
-  To address these changes, you might need to modify your build system configurations,
-  or package or dependency management settings in your projects. You also might need to
+  To address these changes, you might need to modify your build system configurations or update your project's package or dependency management settings. You also might need to
   modify or rebuild your C++ source code.
 
   .. example::
