@@ -19,4 +19,4 @@
 
       .. code-block:: cpp
 
-         mongocxx::uri uri("mongodb://<hostname>:<port>/?tls=true&tlsCAFile=path/to/file.pem");
+         mongocxx::uri uri("mongodb://<hostname>:<port>/?tls=true&tlsCAFile=/path/to/file.pem");

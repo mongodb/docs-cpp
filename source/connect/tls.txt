@@ -33,11 +33,19 @@ To learn how to configure your MongoDB deployment for TLS, see the
 :manual:`TLS configuration guide </tutorial/configure-ssl/>` in the
 {+mdb-server+} manual. 
 
-.. important::
+.. note::
 
    This page assumes prior knowledge of TLS/SSL and access to valid certificates.
    A full description of TLS/SSL, PKI (Public Key Infrastructure) certificates, and
    Certificate Authorities (CAs) is beyond the scope of this documentation. 
+
+.. tip::
+
+   The C++ driver delegates most TLS behavior to the MongoDB C Driver.
+   For information about how the C driver handles TLS, including configuration steps
+   and expected behavior, see
+   `Configuring TLS <https://www.mongodb.com/docs/languages/c/c-driver/current/libmongoc/guides/configuring_tls/#supported-libraries>`__
+   in the C driver Documentation.
 
 .. _cpp-enable-tls:
 
@@ -146,15 +154,16 @@ Certificate Revocation List
 Instead of using OCSP, you can instruct the {+driver-short+} to check the server's certificate
 against a Certificate Revocation List (CRL) published by the CA.
 
-To do so, specify the path to a ``.pem`` or ``.der`` file from the CA.
-You can do this in two ways: by setting a property on a ``mongocxx::options::tls`` object,
-or by using the ``tlsCRLFile`` parameter in your connection string.
+The following code example shows how to use the ``crl_file`` option to specify the
+path to specify the path to a ``.pem`` file from the CA.
 
-.. include:: /includes/connect/crl-tabs.rst
+.. literalinclude:: /includes/connect/crl-file.cpp
+   :language: cpp
+   :copyable: true
 
-.. note:: 
-  
-   You can't use both a CRL and :ref:`OCSP <cpp-disable-ocsp>` in the same TLS handshake.
+.. tip::
+
+   You can specify a CRL file in either the ``.pem`` or ``.der`` format.
 
 .. _cpp-client-cert:
 
