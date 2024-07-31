@@ -58,17 +58,6 @@ the relevant values for your MongoDB deployment.
 Connection
 ----------
 
-Local Deployment
-~~~~~~~~~~~~~~~~
-
-The following code shows how to connect to a local MongoDB deployment:
-
-.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
-    :language: cpp
-    :dedent:
-    :start-after: start-local
-    :end-before: end-local
-
 Atlas
 ~~~~~
 
@@ -80,6 +69,23 @@ The following code shows how to connect to a MongoDB Atlas deployment:
     :start-after: start-atlas
     :end-before: end-atlas
 
+To learn more about connecting to an Atlas deployment, see :ref:`cpp-connection-atlas`
+in the Connection Targets guide.
+
+Local Deployment
+~~~~~~~~~~~~~~~~
+
+The following code shows how to connect to a local MongoDB deployment:
+
+.. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
+    :language: cpp
+    :dedent:
+    :start-after: start-local
+    :end-before: end-local
+
+To learn more about connecting to a local deployment, see :ref:`cpp-connection-local`
+in the Connection Targets guide.
+
 Replica Set
 ~~~~~~~~~~~
 
@@ -90,6 +96,9 @@ The following code shows how to connect to a replica set deployment:
     :dedent:
     :start-after: start-replica-set
     :end-before: end-replica-set
+
+To learn more about connecting to a replica set, see :ref:`cpp-connection-replica-set`
+in the Connection Targets guide.
 
 Transport Layer Security (TLS)
 ------------------------------
@@ -255,7 +264,7 @@ connection to your MongoDB instance:
     :start-after: start-stable-api
     :end-before: end-stable-api
 
-To learn more about the {+stable-api+}, see :ref:`cpp-stable-api`.
+To learn more about the {+stable-api+}, see the :ref:`cpp-stable-api` guide.
 
 .. TODO:
  Server Selection
