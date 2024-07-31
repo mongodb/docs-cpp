@@ -53,7 +53,7 @@ the relevant values for your MongoDB deployment.
    :language: cpp
    :copyable: true
    :linenos:
-   :emphasize-lines: 4-6
+   :emphasize-lines: 16-18
 
 Connection
 ----------
@@ -175,8 +175,7 @@ the TLS configuration guide.
 Allow Insecure TLS
 ~~~~~~~~~~~~~~~~~~
 
-The following code shows how to disable certificate verification
-when TLS is enabled:
+The following code shows how to disable certificate verification:
 
 .. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
@@ -190,8 +189,7 @@ the TLS configuration guide.
 Disable Certificate Validation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following code shows how to disable certificate validation
-when TLS is enabled:
+The following code shows how to disable certificate validation:
 
 .. include:: /includes/connect/disable-cert-validation-tabs.rst
 
@@ -201,8 +199,7 @@ the TLS configuration guide.
 Disable Hostname Verification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following code shows how to disable hostname verification
-when TLS is enabled:
+The following code shows how to disable hostname verification:
 
 .. literalinclude:: /includes/usage-examples/connect-code-examples.cpp
     :language: cpp
