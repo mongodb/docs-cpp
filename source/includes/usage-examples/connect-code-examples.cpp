@@ -1,11 +1,6 @@
-#include <mongocxx/instance.hpp>
 #include <mongocxx/client.hpp>
+#include <mongocxx/instance.hpp>
 #include <mongocxx/uri.hpp>
-#include <bsoncxx/json.hpp>
-#include <mongocxx/exception/exception.hpp>
-
-using bsoncxx::builder::basic::kvp;
-using bsoncxx::builder::basic::make_document;
 
 int main()
 {
