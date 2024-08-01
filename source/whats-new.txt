@@ -25,11 +25,10 @@ Learn what's new in:
 * :ref:`Version 3.10 <version-3.10>`
 * :ref:`Version 3.9 <version-3.9>`
 
-Breaking Change Types
-~~~~~~~~~~~~~~~~~~~~~
+Types of Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 New versions of the {+driver-short+} can introduce the following types of breaking changes:
-following groups:
 
 - **API** changes concern the API of the {+driver-short+} libraries. These changes are
   accompanied by an API major version bump. You might need to edit C++ source code
@@ -37,9 +36,11 @@ following groups:
 
   .. example::
 
-     - Removed function ``func(A)``. Use ``func(A, B)`` instead.
-     - Changed redeclaration of ``bsoncxx::foo`` from ``v1::foo`` to ``v2::foo``. Qualify
-       ``bsoncxx::foo`` as ``bsoncxx::v1::foo`` to continue using the old interface.
+     - Removes the declaration of function ``v1::func()``. (The definition is still provided for ABI compatibility.)
+     - Removes the inline function ``v_noabi::func()``.
+     - Removes ``v_noabi::func()``.
+     - Changes the redeclaration of ``bsoncxx::foo`` from ``v1::foo`` to ``v2::foo``.
+       To continue using the old interface, qualify ``bsoncxx::foo`` as ``bsoncxx::v1::foo``.
 
 - **ABI** changes concern the ABI of the {+driver-short+} libraries. These changes are
   accompanied by an ABI version bump, and may also be accompanied by an API major version
@@ -48,7 +49,15 @@ following groups:
 
   .. example::
 
-     - Removed exported symbol for ``v1::func(A)``. Use ``v2::func(A)`` instead.
+     - Removes the exported symbol ``v_noabi::func()``.
+     - Removes the exported symbol ``v1::func()``.
+     - Removes the exported symbols for ``v1::type``.
+
+  .. important
+  
+     ABI stability is not supported for symbols corresponding to entities declared in
+     the ``v_noabi`` namespace. Breaking changes for such symbols are not necessarily
+     accompanied by an ABI version bump.
 
 - **Build system** changes concern the build system or packaging of the {+driver-short+}
   libraries. These changes are not necessarily accompanied by either an API major version
@@ -59,8 +68,10 @@ following groups:
 
   .. example::
 
-     - Removed configuration variable ``ENABLE_FOO``.
-     - Dropped support for platform A / compiler B / architecture C.
+     - Removes the ``ENABLE_FOO`` configuration variable.
+     - Changes the default value of the ``ENABLE_BAR`` configuration variable from
+       ``OFF`` to ``ON``.
+     - Drops support for platform A, compiler B, or architecture C.
 
 .. _upcoming-breaking-changes:
 
@@ -98,8 +109,7 @@ The v3.10.0 driver release includes the following new features:
   Root namespace declarations are still supported and expected to remain equivalent to
   their prior definitions. For example, ``bsoncxx::document`` is still equivalent to
   ``bsoncxx::v_noabi::document``, and ``mongocxx::client`` is still equivalent to
-  ``mongocxx::v_noabi::client``. If this change breaks source or binary compatibility,
-  please submit a :ref:`bug report <cpp-issues-help>`.
+  ``mongocxx::v_noabi::client``.
 - By default, when library filenames are compiled with MSVC (as detected by CMake's ``MSVC``
   variable), they are embedded with an ABI tag string. These strings are similar to
   the following:
