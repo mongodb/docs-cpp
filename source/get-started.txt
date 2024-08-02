@@ -20,6 +20,7 @@ Get Started with the C++ Driver
 
 .. toctree::
 
+   /get-started/polyfill-selection/
    /get-started/download-and-install/
    /get-started/create-a-deployment/
    /get-started/create-a-connection-string/
@@ -44,5 +45,5 @@ Follow this guide to connect a sample C++ application to a MongoDB Atlas
 deployment. If you prefer to connect to MongoDB using a different driver or
 programming language, see our :driver:`list of official drivers <>`.
 
-.. button:: Next: Download and Install
-   :uri: /get-started/download-and-install/
+.. button:: Next: Choose a C++17 Polyfill
+   :uri: /get-started/polyfill-selection/
