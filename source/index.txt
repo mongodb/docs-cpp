@@ -21,8 +21,8 @@ MongoDB C++ Driver
    /installation
    /read
    /write
-   /aggregation
    /indexes
+   /aggregation
    /security
    /data-formats
    /configuration
@@ -64,15 +64,15 @@ Databases and Collections
 Learn how to use the {+driver-short+} to work with MongoDB databases and collections
 in the :ref:`cpp-databases-collections` section.
 
-Write Data to MongoDB
----------------------
-
-Learn how you can write data to MongoDB in the :ref:`cpp-write` section.
-
 Read Data from MongoDB
 ----------------------
 
 Learn how you can retrieve data from MongoDB in the :ref:`cpp-read` section.
+
+Write Data to MongoDB
+---------------------
+
+Learn how you can write data to MongoDB in the :ref:`cpp-write` section.
 
 Optimize Queries with Indexes
 -----------------------------
