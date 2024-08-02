@@ -23,6 +23,8 @@ Overview
 In this guide, you can learn how to use a connection string and ``mongocxx::client`` object
 to connect to different types of MongoDB deployments.
 
+.. _cpp-connection-atlas:
+
 Atlas
 -----
 
@@ -53,6 +55,8 @@ The code also uses the ``server_api_opts`` option to specify a {+stable-api+} ve
    Follow the :atlas:`Atlas driver connection guide </driver-connection>`
    to retrieve your connection string.
 
+.. _cpp-connection-local:
+
 Local Deployments
 -----------------
 
@@ -66,6 +70,8 @@ deployment:
 .. literalinclude:: /includes/connect/client.cpp
       :language: cpp
       :copyable: true
+
+.. _cpp-connection-replica-set:
 
 Replica Sets
 ------------
