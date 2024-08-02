@@ -65,6 +65,3 @@ selection behavior.
 .. warning:: 
    
    The choice of polyfill library has a direct impact on the public API and ABI for the mongocxx library. Changing the polyfill can lead to both source-breaking changes (during compilation) and binary-breaking changes (during linking or execution). To limit reliance on polyfill-specific configuration or behavior, avoid using ``stdx::string_view`` and ``stdx::optional<T>`` with non-mongocxx library interfaces.
-
-.. button:: Next: Download and Install
-   :uri: /get-started/download-and-install/
