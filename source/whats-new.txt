@@ -88,8 +88,7 @@ What's New in 3.10
    - Drops support for the ``LIBBSONCXX_*`` and ``LIBMONGOCXX_*`` CMake variables
      provided by the legacy CMake package config files. Use the ``mongo::bsoncxx_*`` and
      ``mongo::mongocxx_*`` CMake targets instead.
-   - Removes the experimental C++ standard library, ``BSONCXX_POLY_USE_STD_EXPERIMENTAL``,
-     as a polyfill option.
+   - Removes the ``BSONCXX_POLY_USE_STD_EXPERIMENTAL`` CMake option and drops support for selecting the experimental C++ standard library as a polyfill option.
 
 The v3.10.0 driver release includes the following new features:
 
@@ -138,15 +137,14 @@ on GitHub.
 What's New in 3.9
 -----------------
 
-.. warning:: Breaking Changes
+.. warning:: Build System Breaking Changes
 
    The v3.9 driver introduces the following breaking changes:
 
    - Removes support for exported targets from the CMake project build tree
    - Drops support for macOS 10.14, macOS 10.15, and Ubuntu 14.04
-   - Requires MongoDB C Driver v1.25.0 or later to support the ``FetchContent`` module
-     and for consistency with the MongoDB C Driver
-   - Requires CMake v3.15 or later
+   - Requires MongoDB C Driver v1.25.0 or later
+   - Requires CMake v3.15 or later to support the ``FetchContent`` module
 
 The v3.9 driver release includes the following new features:
 
