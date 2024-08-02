@@ -17,7 +17,11 @@ Advanced Configuration and Installation Options
 Additional Options for Integrators
 ----------------------------------
 
-In the event that you are building the BSON C++ library and/or the C++ driver to embed with other components and you wish to avoid the potential for collision with components installed from a standard build or from a distribution package manager, you can make use of the ``BSONCXX_OUTPUT_BASENAME`` and ``MONGOCXX_OUTPUT_BASENAME`` options to ``cmake``.
+In the event that you are building the BSON C++ library and/or the C++ driver to
+embed with other components and you wish to avoid the potential for collision with
+components installed from a standard build or from a distribution package manager,
+you can make use of the ``BSONCXX_OUTPUT_BASENAME`` and ``MONGOCXX_OUTPUT_BASENAME``
+options to ``cmake``.
 
 .. code-block:: bash
 
@@ -27,8 +31,142 @@ In the event that you are building the BSON C++ library and/or the C++ driver to
 
 The above command would produce libraries named ``libcustom_bsoncxx.so`` and ``libcustom_mongocxx.so`` (or with the extension appropriate for the build platform).  Those libraries could be placed in a standard system directory or in an alternate location and could be linked to by specifying something like ``-lcustom_mongocxx -lcustom_bsoncxx`` on the linker command line (possibly adjusting the specific flags to those required by your linker).
 
-Installing the MongoDB C Driver
---------------------------------
+Install with Package Managers
+-----------------------------
+
+You can use the following package managers to install the {+driver-short+}:
+
+- :ref:`vcpkg <cpp-install-vcpkg>`
+- :ref:`Conan <cpp-install-conan>`
+- :ref:`Homebrew <cpp-install-homebrew>`
+
+.. _cpp-install-vcpkg:
+
+Vcpkg Install Instructions
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you do not already have Vcpkg installed, install it with the following command:
+
+.. code-block:: bash
+
+   $ git clone https://github.com/Microsoft/vcpkg.git
+   $ cd vcpkg
+   $ ./bootstrap-vcpkg.sh
+
+Optionally, to install with Visual Studio integration:
+
+.. code-block:: bash
+
+   vcpkg integrate install
+
+Install the driver. You may need to ``git pull`` to get the latest version of
+the driver.
+
+.. code-block:: bash
+
+   $ ./vcpkg install mongo-cxx-driver
+
+You can use the toolchain file, ``vcpkg.cmake``, to instruct CMake where to find
+the development files, for example:
+
+.. code-block:: bash
+
+   -DCMAKE_TOOLCHAIN_FILE=/<path to vcpkg repo>/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+You can find the header files in:
+
+.. code-block:: none
+
+   vcpkg/installed/<CPU ARCHITECTURE>-<OPERATING SYSTEM>/include/
+
+The library files are in:
+
+.. code-block:: none
+
+   vcpkg/installed/<CPU ARCHITECTURE>-<OPERATING SYSTEM>/lib/
+
+.. _cpp-install-conan:
+
+Conan Install Instructions
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Package Specifier: ``mongo-cxx-driver/3.8.0``
+
+If you do not already have Conan installed, then install it and run the Conan
+initalization command below:
+
+.. code-block:: bash
+
+   $ pip install conan
+   $ conan profile detect --force
+
+Add the following to your ``conanfile.txt``:
+
+.. code-block:: none
+
+   [requires]
+   mongo-cxx-driver/3.8.0
+   [generators]
+   CMakeDeps
+   CMakeToolchain
+
+Install the driver via Conan, and build your project:
+
+.. code-block:: bash
+
+   $ conan install conanfile.txt --output-folder=build --build=missing
+   $ cmake \
+     -B build \
+     -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake \
+     -DCMAKE_BUILD_TYPE=Release
+   $ cmake --build build
+
+.. _cpp-install-homebrew:
+
+Homebrew Install Instructions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MacOS users can use Homebrew to install the C++ driver by running
+the following command:
+
+.. code-block:: bash
+
+   brew install mongo-cxx-driver
+
+For an Apple Silicon Mac
+`````````````````````````
+
+Headers can be found in:
+
+.. code-block:: none
+
+   /opt/homebrew/include/mongocxx/v_noabi/
+   /opt/homebrew/include/bsoncxx/v_noabi/
+
+Library files can be found in:
+
+.. code-block:: none
+
+   /opt/homebrew/lib/
+
+For an Intel Mac
+`````````````````
+
+Headers can be found in:
+
+.. code-block:: none
+
+   /usr/local/include/mongocxx/v_noabi/
+   /usr/local/include/bsoncxx/v_noabi/
+
+Library files can be found in:
+
+.. code-block:: none
+
+   /usr/local/lib/
+
+Install the MongoDB C Driver
+----------------------------
 
 The mongocxx driver builds on top of the `MongoDB C driver <https://www.mongodb.com/docs/drivers/c/>`__.
 
