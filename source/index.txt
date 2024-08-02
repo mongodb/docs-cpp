@@ -17,8 +17,8 @@ MongoDB C++ Driver
    :maxdepth: 1
 
    Get Started </get-started>
-   /connect 
-   /installation
+   /polyfill-selection
+   /connect
    /read
    /write
    /indexes

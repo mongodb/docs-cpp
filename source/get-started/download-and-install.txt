@@ -104,6 +104,3 @@ After you complete these steps, you have the {+driver-short+} installed
 on your machine.
 
 .. include:: /includes/get-started/troubleshoot.rst
-
-.. button:: Next: Create a MongoDB Deployment
-   :uri: /get-started/create-a-deployment/

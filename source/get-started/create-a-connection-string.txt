@@ -59,6 +59,3 @@ After completing these steps, you have a connection string that
 corresponds to your Atlas cluster.
 
 .. include:: /includes/get-started/troubleshoot.rst
-
-.. button:: Next: Connect to MongoDB
-   :uri: /get-started/connect-to-mongodb/
