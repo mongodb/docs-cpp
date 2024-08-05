@@ -18,6 +18,7 @@ MongoDB C++ Driver
 
    Get Started </get-started>
    /polyfill-selection
+   /advanced-installation
    /connect
    /read
    /write
@@ -51,6 +52,18 @@ Get Started
 
 Learn how to install the driver, establish a connection to MongoDB, and begin
 working with data in the :ref:`cpp-get-started` tutorial.
+
+Choose a C++17 Polyfill
+-----------------------
+
+Learn how to a choose a polyfill library implementation for
+pre-C++ 17 configurations in the :ref:`cpp-polyfill-selection` section.
+
+Advanced Installation Options
+-----------------------------
+
+Learn about additional configuration and installation options
+in the :ref:`cpp-installation-advanced` section.
 
 Connect to MongoDB
 ------------------
