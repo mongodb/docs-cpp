@@ -20,12 +20,10 @@ MongoDB C++ Driver
    /data-formats
    /polyfill-selection
    /advanced-installation
-   /client-side-encryption
    /thread-safety
    /api-abi-versioning
    /whats-new
    /upgrade
-   /reporting-bugs
    /testing
    /compatibility
    /issues-and-help
