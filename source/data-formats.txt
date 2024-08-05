@@ -33,4 +33,5 @@ sections:
 
 - Learn how to store and interact with time series data in the :ref:`cpp-time-series` guide.
 
-.. TODO: link to BSON data guide
+- Learn how to use BSON types from the ``bsoncxx`` library in the :ref:`cpp-working-with-bson`
+  guide.

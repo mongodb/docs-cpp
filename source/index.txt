@@ -11,8 +11,6 @@ MongoDB C++ Driver
    :maxdepth: 1
 
    Get Started </get-started>
-   /polyfill-selection
-   /advanced-installation
    /connect
    /read
    /write
@@ -20,9 +18,9 @@ MongoDB C++ Driver
    /aggregation
    /security
    /data-formats
-   /configuration
+   /polyfill-selection
+   /advanced-installation
    /client-side-encryption
-   /tutorial
    /thread-safety
    /api-abi-versioning
    /whats-new
@@ -44,18 +42,6 @@ Get Started
 
 Learn how to install the driver, establish a connection to MongoDB, and begin
 working with data in the :ref:`cpp-get-started` tutorial.
-
-Choose a C++17 Polyfill
------------------------
-
-Learn how to a choose a polyfill library implementation for
-pre-C++ 17 configurations in the :ref:`cpp-polyfill-selection` section.
-
-Advanced Installation Options
------------------------------
-
-Learn about additional configuration and installation options
-in the :ref:`cpp-installation-advanced` section.
 
 Connect to MongoDB
 ------------------
@@ -96,6 +82,18 @@ Specialized Data Formats
 
 Learn how to work with specialized data formats and custom types in the
 :ref:`cpp-data-formats` section.
+
+Choose a C++17 Polyfill
+-----------------------
+
+Learn how to a choose a polyfill library implementation for
+pre-C++ 17 configurations in the :ref:`cpp-polyfill-selection` section.
+
+Advanced Installation Options
+-----------------------------
+
+Learn about additional configuration and installation options
+in the :ref:`cpp-installation-advanced` section.
 
 What's New
 ----------
