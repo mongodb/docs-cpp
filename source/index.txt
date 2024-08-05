@@ -92,7 +92,7 @@ pre-C++ 17 configurations in the :ref:`cpp-polyfill-selection` section.
 Advanced Installation Options
 -----------------------------
 
-Learn about additional configuration and installation options
+Learn about advanced configuration and installation options
 in the :ref:`cpp-installation-advanced` section.
 
 What's New
