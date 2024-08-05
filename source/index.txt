@@ -2,12 +2,6 @@
 MongoDB C++ Driver
 ===================
 
-.. contents:: On this page
-   :local:
-   :backlinks: none
-   :depth: 2
-   :class: singlecol
-
 .. facet::
    :name: genre
    :values: reference
@@ -30,8 +24,6 @@ MongoDB C++ Driver
    /client-side-encryption
    /tutorial
    /thread-safety
-   /connection-pools
-   /working-with-bson
    /api-abi-versioning
    /whats-new
    /upgrade
@@ -70,12 +62,6 @@ Connect to MongoDB
 
 Learn how to create and configure a connection to a MongoDB deployment
 in the :ref:`cpp-connect` section.
-
-Databases and Collections
--------------------------
-
-Learn how to use the {+driver-short+} to work with MongoDB databases and collections
-in the :ref:`cpp-databases-collections` section.
 
 Read Data from MongoDB
 ----------------------
@@ -117,17 +103,11 @@ What's New
 For a list of new features and changes in each version, see the :ref:`cpp-whats-new`
 section.
 
-Upgrade {+driver-short+} Versions
----------------------------
+Upgrade Driver Versions
+-----------------------
 
 Learn what changes you might need to make to your application to upgrade driver versions
 in the :ref:`cpp-upgrade` section.
-
-Previous Versions
------------------
-
-For documentation on versions of the driver v3.9.x and earlier, see the
-:ref:`cpp-previous-versions` section.
 
 Issues & Help
 -------------
@@ -146,7 +126,7 @@ API Documentation
 -----------------
 
 For detailed information about types and methods in the {+driver-short+}, see
-the `{+driver-short+} API documentation <{+api-root+}>`__.
+the `{+driver-short+} API documentation <{+api+}>`__.
 
 
 Driver Status by Family and Version
