@@ -1,11 +1,11 @@
 // start-scram-sha-256
-auto uri = mongocxx::uri("mongodb://<username>:<password>@<hostname>:<port>/?"
+auto uri = mongocxx::uri("mongodb://<db_username>:<db_password>@<hostname>:<port>/?"
                          "authSource=admin&authMechanism=SCRAM-SHA-256");
 auto client = mongocxx::client(uri);
 // end-scram-sha-256
 
 // start-scram-sha-1
-auto uri = mongocxx::uri("mongodb://<username>:<password>@<hostname>:<port>/?"
+auto uri = mongocxx::uri("mongodb://<db_username>:<db_password>@<hostname>:<port>/?"
                          "authSource=admin&authMechanism=SCRAM-SHA-1");
 auto client = mongocxx::client(uri);
 // end-scram-sha-1
@@ -42,7 +42,7 @@ auto client = mongocxx::client(uri);
 // end-kerberos
 
 // start-plain
-auto uri = mongocxx::uri("mongodb://<username>:<password>@<hostname>:<port>/?"
+auto uri = mongocxx::uri("mongodb://<db_username>:<db_password>@<hostname>:<port>/?"
                          "authMechanism=PLAIN&tls=true");
 auto client = mongocxx::client(uri);
 // end-plain
