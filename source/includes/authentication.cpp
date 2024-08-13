@@ -35,7 +35,7 @@ auto client = mongocxx::client(uri);
 // end-aws-environment
 
 // start-kerberos
-auto uri = mongocxx::uri("mongodb://mongodbuser%40EXAMPLE.COM@<hostname>:<port>/?"
+auto uri = mongocxx::uri("mongodb://<Kerberos principal>@<hostname>:<port>/?"
                          "authMechanism=GSSAPI"
                          "&authMechanismProperties=SERVICE_NAME:<authentication service name>");
 auto client = mongocxx::client(uri);
