@@ -10,7 +10,6 @@ raw: ${prefix}/master -> ${base}/upcoming/
 raw: /docs/languages/cxx -> /docs/languages/cpp
 
 [*-v3.10]: ${prefix}/${version}/get-started/ -> ${base}/${version}/
-[*-v3.10]: ${prefix}/${version}/get-started/* -> ${base}/${version}/
 [*-v3.10]: ${prefix}/${version}/connect/ -> ${base}/${version}/installation/
 [*-v3.10]: ${prefix}/${version}/read/ -> ${base}/${version}/
 [*-v3.10]: ${prefix}/${version}/write/ -> ${base}/${version}/
