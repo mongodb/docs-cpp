@@ -147,7 +147,7 @@ For documentation about previous releases, see the `legacy documentation <https:
      - Active development
      - New feature development
 
-   * - mongocxx 3.11.0
+   * - mongocxx 3.11.x
      - Stable
      - Bug fixes only
      - Current stable C++ driver release 
