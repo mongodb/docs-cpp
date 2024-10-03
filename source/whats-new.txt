@@ -84,7 +84,7 @@ What's New in 3.11
    The v3.11 driver introduces the following breaking changes to the build
    system:
    
-   - Drops support for {+mdb-server+} v3.6
+   - Drops support for {+mdb-server+} v3.6.
    - Removes export of the following private member functions in the bsoncxx
      ABI:
    
@@ -112,7 +112,7 @@ The v3.11 driver release includes the following new features:
   more information about Queryable Encryption, see :manual:`Queryable
   Encryption </core/queryable-encryption>` in the {+mdb-server+} manual.
 - Adds ``empty()`` member function for ``mongocxx::v_noabi::bulk_write``.
-- The minimum C driver version is now 1.28.0
+- The minimum C driver version is now 1.28.0.
 - Dependencies are populated by using the ``FetchContent_MakeAvailable()``
   function instead of ``FetchContent_Populate()``.
 - The test suite now uses Catch2 v3 by using ``FetchContent()`` instead of the
