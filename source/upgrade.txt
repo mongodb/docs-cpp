@@ -72,6 +72,7 @@ Version 3.11 Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Drops support for {+mdb-server+} v3.6.
+- Requires MongoDB C Driver v1.28.0 or later.
 - Removes export of the following private member functions in the bsoncxx
   ABI:
    
