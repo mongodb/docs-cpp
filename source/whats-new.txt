@@ -79,7 +79,7 @@ New versions of the {+driver-short+} can introduce the following types of breaki
 What's New in 3.11
 ------------------
 
-.. warning:: Build System Breaking Changes
+.. warning:: Breaking Changes
 
    The v3.11 driver introduces the following breaking changes:
    
@@ -112,10 +112,6 @@ The v3.11 driver release includes the following new features:
   more information about Queryable Encryption, see :manual:`Queryable
   Encryption </core/queryable-encryption>` in the {+mdb-server+} manual.
 - Adds ``empty()`` member function for ``mongocxx::v_noabi::bulk_write``.
-- Dependencies are populated by using the ``FetchContent_MakeAvailable()``
-  function instead of ``FetchContent_Populate()``.
-- The test suite now uses Catch2 v3 by using ``FetchContent()`` instead of the
-  bundled Catch2 v2 standalone header.
 
 To learn more about this release, see the
 `v3.11 Release Notes <https://github.com/mongodb/mongo-cxx-driver/releases/tag/r3.11.0>`__
