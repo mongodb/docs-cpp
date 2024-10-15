@@ -33,6 +33,10 @@ int main() {
 
         // start-replace-options
 
+        auto query_filter = make_document(kvp("name", "Bagels N Buns"));
+        auto replace_doc = make_document(kvp("name", "2 Bagels 2 Buns"));
+
+        auto result = collection.replace_one(query_filter.view(), replace_doc.view());
             // - bypass_document_validation ()
             // - collation () 
             // - upsert ()
