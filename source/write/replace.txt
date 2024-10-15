@@ -1,0 +1,218 @@
+.. _cpp-write-replace:
+
+================
+Replace Documents
+================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: modify, change, bulk, code example
+
+Overview
+--------
+
+In this guide, you can learn how to use the {+driver-short+} to run a replace operation on a MongoDB collection.
+A replace operation removes *all* fields in the target document and replaces them with new ones.
+You can call the ``replace_one()`` method to replace a single document.
+
+Sample Data
+~~~~~~~~~~~
+
+The examples in this guide use the ``restaurants`` collection in the ``sample_restaurants``
+database from the :atlas:`Atlas sample datasets </sample-data>`. To access this collection
+from your C++ application, instantiate a ``mongocxx::client`` that connects to an Atlas cluster
+and assign the following values to your ``db`` and ``collection`` variables:
+
+.. literalinclude:: /includes/write/replace.cpp
+    :start-after: start-db-coll
+    :end-before: end-db-coll
+    :language: cpp
+    :dedent:
+
+To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
+:atlas:`Get Started with Atlas </getting-started>` guide.
+
+Replace Operation
+-----------------
+
+You can perform a replace operation by calling the ``replace_one()`` method.
+This method removes all fields except the ``_id`` field from the first document that
+matches the search criteria. It then inserts the fields and values you specify into the document. 
+
+Each replace method requires the following parameters:
+
+- **Query filter** document: Specifies which document to replace. For
+  more information about query filters, see the 
+  :manual:`Query Filter Documents section </core/document/#query-filter-documents>` in
+  the {+mdb-server+} manual.
+
+- **Replace** document: Specifies the fields and values to insert in the new document. 
+
+Replace One Document
+~~~~~~~~~~~~~~~~~~~
+
+The following example uses the ``replace_one()`` method to replace the fields and values
+of a document in which the ``name`` field value is ``Bagels N Buns``:
+
+.. literalinclude:: /includes/write/replace.cpp
+   :start-after: start-replace-one
+   :end-before: end-replace-one
+   :language: cpp
+   :dedent:
+
+
+Customize the Replace Operation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can modify the behavior of the ``replace_one()`` method by
+passing an instance of the ``mongocxx::options::replace`` class as an optional
+parameter. The following table describes the fields you can set in a
+``mongocxx::options::replace`` instance:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Field
+     - Description
+
+   * - ``upsert``
+     - | Specifies whether the replace operation performs an upsert operation if no 
+         documents match the query filter. For more information, see the :manual:`upsert
+         statement </reference/command/replace/#std-label-replace-command-upsert>`
+         in the {+mdb-server+} manual.
+       | Defaults to ``false``.
+
+   * - ``bypass_document_validation``
+     - | Specifies whether the replace operation bypasses document validation. This lets you 
+         replace documents that don't meet the schema validation requirements, if any 
+         exist. For more information about schema validation, see :manual:`Schema
+         Validation </core/schema-validation/#schema-validation>` in the MongoDB
+         Server manual.
+       | Defaults to ``false``.
+
+   * - ``collation``
+     - | Specifies the kind of language collation to use when sorting
+         results. For more information, see :manual:`Collation </reference/collation/#std-label-collation>`
+         in the {+mdb-server+} manual.
+
+   * - ``array_filters``
+     - | Specifies which array elements an replace applies to if the operation modifies
+         array fields.
+
+   * - ``hint``
+     - | Sets the index to scan for documents. 
+         For more information, see the :manual:`hint statement </reference/command/replace/#std-label-replace-command-hint>`
+         in the {+mdb-server+} manual.
+
+   * - ``write_concern``
+     - | Sets the write concern for the operation.
+         For more information, see :manual:`Write Concern </reference/write-concern/>`
+         in the {+mdb-server+} manual.
+
+   * - ``let``
+     - | Specifies a document with a list of values to improve operation readability.
+         Values must be constant or closed expressions that don't reference document
+         fields. For more information, see the :manual:`let statement
+         </reference/command/replace/#std-label-replace-let-syntax>` in the
+         {+mdb-server+} manual.
+
+   * - ``comment``
+     - | A comment to attach to the operation. For more information, see the :manual:`insert command
+         fields </reference/command/insert/#command-fields>` guide in the
+         {+mdb-server+} manual for more information.
+
+:red:`CHANGE THIS CHANGE THIS CHANGE THIS` 
+You want to modify your restaurant list to exactly one burger restaurant, preferably in Manhattan. 
+The following example uses the ``replace_one()`` method to replace the first document that it encounters with a 
+``borough`` value of ``Manhattan`` with a different document containing information about a restaurant with the 
+``name`` value ``Chicken Fingers`` and the ``borough`` value ``Brooklyn``.  and replace a document that has
+a ``borough`` value of ``"Manhattan"``.
+
+Because the ``upsert`` option is
+set to ``true``, the {+driver-short+} inserts a new document if the query filter doesn't 
+match any existing documents.
+
+.. literalinclude:: /includes/write/replace.cpp
+   :start-after: start-replace-options
+   :end-before: end-replace-options
+   :language: cpp
+   :dedent:
+
+:red:`CHANGE THIS CHANGE THIS CHANGE THIS` 
+
+Return Value
+~~~~~~~~~~~~
+
+The ``replace_one()`` method returns an instance of
+the ``mongocxx::result::replace`` class. This class contains the following
+member functions:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Function
+     - Description
+
+   * - ``matched_count()``
+     - | Returns the number of documents that matched the query filter, regardless of
+         how many were replaced.
+
+   * - ``modified_count()``
+     - | Returns number of documents modified by the replace operation. If a replaced
+         document is identical to the original, it is not included in this
+         count.
+         
+   * - ``result()``
+     - | Returns the bulk write result for the operation.
+
+   * - ``upserted_count()``
+     - | Returns the number of documents that were upserted into the database.
+
+   * - ``upserted_id()``
+     - | Returns the ID of the document that was upserted in the database, if the driver
+         performed an upsert.
+        
+The following example uses the ``replace_one()`` method to replace the fields and values
+of the first document in which the  ``borough`` field value is ``Brooklyn`` with a different
+document for a restaurant with the ``name`` field value ``McDonald's``. It calls the
+``modified_count()`` member function to print the number of modified documents 
+and the ``matched_documents()`` member function to print the number of matched documents: 
+
+.. io-code-block::
+
+   .. input:: /includes/write/replace.cpp
+      :start-after: start-replace-result
+      :end-before: end-replace-result
+      :language: cpp
+      :dedent:
+
+   .. output:: 
+
+      Modified documents: 1
+      Matched documents: 10
+
+Additional Information 
+----------------------
+
+To learn more about creating query filters, see the :ref:`cpp-specify-query` guide.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about any of the methods or types discussed in this
+guide, see the following API documentation:
+
+- `replace_one() <{+api+}/classmongocxx_1_1model_1_1replace__one.html>`__
+- `mongocxx::options::replace <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1replace.html>`__
+- `mongocxx::result::replace <{+api+}/classmongocxx_1_1v__noabi_1_1result_1_1replace__one.html>`__
