@@ -7,7 +7,7 @@ Replace Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 2
+   :depth: 3
    :class: singlecol
 
 .. facet::
@@ -130,7 +130,9 @@ instance of the class using the dot operator ``(.)``.
      - | Sets the write concern for the operation.
          For more information, see :manual:`Write Concern </reference/write-concern/>`
          in the {+mdb-server+} manual.
-
+         
+Examples 
+^^^^^^^^
 
 The following code uses the ``replace_one()`` method to find a document with a ``name`` value of 
 ``In-N-Out Burger`` and replace it with a new document describing a restaurant with a ``name`` value of ``7th Street Burger``.
@@ -190,7 +192,7 @@ member functions:
 
 Examples 
 ^^^^^^^^
-       
+
 The following example uses the ``replace_one()`` method with an instance of the ``mongocxx::options::replace`` class as an optional
 parameter to replace the fields and values
 of the first document in which the  ``borough`` field value is ``Brooklyn`` with a different
