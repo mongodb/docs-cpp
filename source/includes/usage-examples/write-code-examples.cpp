@@ -58,6 +58,13 @@ int main() {
     }
 
     {
+
+        // start-replace-one
+
+        // end-replace-one 
+    }
+
+    {
         // Deletes a document that matches the specified criteria
         // start-delete-one
         auto result = collection.delete_one(make_document(kvp("<field name>", "<value>")));
