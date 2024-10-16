@@ -1,8 +1,8 @@
 .. _cpp-write-replace:
 
-================
+=================
 Replace Documents
-================
+=================
 
 .. contents:: On this page
    :local:
@@ -58,7 +58,7 @@ Each replace method requires the following parameters:
 - **Replace** document: Specifies the fields and values to insert in the new document. 
 
 Replace One Document
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 The following example uses the ``replace_one()`` method to replace the fields and values
 of a document in which the ``name`` field value is ``Bagels N Buns``:
@@ -71,7 +71,7 @@ of a document in which the ``name`` field value is ``Bagels N Buns``:
 
 
 Customize the Replace Operation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can modify the behavior of the ``replace_one()`` method by
 passing an instance of the ``mongocxx::options::replace`` class as an optional
@@ -96,7 +96,7 @@ instance of the class using the dot operator ``(.)``.
 
    * - ``collation(<document::view_or_value collation>)``
      - | Specifies the kind of language collation to use when sorting
-         results. Accepts a `collation document </reference/collation/#collation-document>` as its argument.
+         results. Accepts a :manual:`collation document </reference/collation/#collation-document>` as its argument.
        | For more information, see :manual:`Collation </reference/collation/#std-label-collation>`
          in the {+mdb-server+} manual.
 
@@ -143,12 +143,6 @@ the {+driver-short+} inserts a new document into the collection rather than repl
    :language: cpp
    :dedent:
 
-.. The following example uses the ``replace_one()`` method to search for a *Query-Filter* document 
-.. with the ``name`` field value of ``Nobu`` and replace it with a *Replace* document with the
-.. ``name`` field value of ``La Bernadin``. To find the *Query-Filter* document 
-.. The following example uses the ``hint`` option to search for a *Query-Filter* document 
-.. with a ``name`` field value indexed in an ascending single-field index. 
-
 
 The following code shows how to use the ``hint`` option to optimize the query performance of the ``replace_one()`` method:
 
@@ -158,14 +152,10 @@ The following code shows how to use the ``hint`` option to optimize the query pe
    :language: cpp
    :dedent:
 
-The above example uses `create_index() <cpp-indexes>` to create an ascending single-field index using the ``name`` field. 
+The above example uses :ref:`create_index() <cpp-indexes>` to create an ascending single-field index using the ``name`` field. 
 The name of this index, ``name_1``, is then passed as an argument to the ``hint`` member function of ``opts``, an instance of the 
 ``mongocxx::options::replace`` class. ``opts`` is then passed as the third argument to the ``replace_one()`` function, which replaces
  a document with a ``name`` field value of ``Nobu` with a new document with a ``name`` field value of ``La Bernadin``.
-
-.. to optimize the search for a *Query-Filter* document with a ``name`` field value of ``Nobu``. When this document 
-.. is found, it is replaced by a new document with a ``name`` field value of ``La Bernadin``. 
-.. created using the ``name`` field. 
 
 Return Value
 ~~~~~~~~~~~~
