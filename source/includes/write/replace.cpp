@@ -29,17 +29,28 @@ int main() {
         auto result = collection.replace_one(query_filter.view(), replace_doc.view());
         // end-replace-one
     }
+
+    // 
+    {
+        // start-replace-options-upsert
+        std::cout << "Number of documents before replace: " << collection.count_documents({}) << std::endl;
+
+        mongocxx::options::replace opts; 
+        opts.upsert(true);
+
+        auto query_filter = make_document(kvp("name", "In-N-Out Burger"));
+        auto replace_doc = make_document(kvp("name", "Shake Shack"));
+
+        auto result = collection.replace_one(query_filter.view(), replace_doc.view(), opts);
+        std::cout << "Number of documents after replace: " << collection.count_documents({}) << std::endl;
+        // end-replace-options-upsert
+    }
+
     {
 
-        // start-replace-options
+        // start-replace-options-validation
 
-            // - bypass_document_validation ()
-            // - collation () 
-            // - upsert ()
-            // - write concern ()
-            // more: https://mongocxx.org/api/current/classmongocxx_1_1v__noabi_1_1options_1_1replace.html
-
-        // end-replace-options
+        // end-replace-options-validation
     }
     {
 

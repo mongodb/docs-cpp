@@ -75,48 +75,41 @@ Customize the Replace Operation
 
 You can modify the behavior of the ``replace_one()`` method by
 passing an instance of the ``mongocxx::options::replace`` class as an optional
-parameter. The following table describes the fields you can set in a
-``mongocxx::options::replace`` instance:
+parameter. The following table describes the public member functions of the 
+``mongocxx::options::replace`` class. You can call these public functions on an 
+instance of the class using the dot operator ``(.)``. 
 
 .. list-table::
    :widths: 30 70
    :header-rows: 1
 
-   * - Field
+   * - Public Member Function 
      - Description
 
-   * - ``upsert``
-     - | Specifies whether the replace operation performs an upsert operation if no 
-         documents match the query filter. For more information, see the :manual:`upsert
-         statement </reference/command/replace/#std-label-replace-command-upsert>`
-         in the {+mdb-server+} manual.
-       | Defaults to ``false``.
-
-   * - ``bypass_document_validation``
-     - | Specifies whether the replace operation bypasses document validation. This lets you 
-         replace documents that don't meet the schema validation requirements, if any 
-         exist. For more information about schema validation, see :manual:`Schema
+   * - ``bypass_document_validation(<bool bypass_document_validation>)``
+     - | Specifies whether the replace operation bypasses document validation. When set to ``true``,
+         this lets you replace a document with a new document that doesn't meet the schema validation requirements. 
+         For more information about schema validation, see :manual:`Schema
          Validation </core/schema-validation/#schema-validation>` in the MongoDB
          Server manual.
        | Defaults to ``false``.
 
-   * - ``collation``
+   * - ``collation(<document::view_or_value collation>)``
      - | Specifies the kind of language collation to use when sorting
-         results. For more information, see :manual:`Collation </reference/collation/#std-label-collation>`
+         results. Accepts a `collation document </reference/collation/#collation-document>` as its argument.
+       | For more information, see :manual:`Collation </reference/collation/#std-label-collation>`
          in the {+mdb-server+} manual.
 
-   * - ``array_filters``
-     - | Specifies which array elements an replace applies to if the operation modifies
-         array fields.
+   * - ``comment(<bson_value::view_or_value comment>)``
+     - | Specifies a comment to attach to the operation. Accepts a comment of any BSON type as its argument.
+       | For more information, see the :manual:`insert command
+         fields </reference/command/insert/#command-fields>` guide in the
+         {+mdb-server+} manual for more information.
 
    * - ``hint``
-     - | Sets the index to scan for documents. 
-         For more information, see the :manual:`hint statement </reference/command/replace/#std-label-replace-command-hint>`
-         in the {+mdb-server+} manual.
-
-   * - ``write_concern``
-     - | Sets the write concern for the operation.
-         For more information, see :manual:`Write Concern </reference/write-concern/>`
+     - | Sets the index to scan for documents. Accepts an instance of the mongocxx::v_noabi::hint class representing an
+         index name.
+         For more information, see the :manual:`hint statement </reference/command/update/#std-label-update-command-hint>`
          in the {+mdb-server+} manual.
 
    * - ``let``
@@ -126,29 +119,29 @@ parameter. The following table describes the fields you can set in a
          </reference/command/replace/#std-label-replace-let-syntax>` in the
          {+mdb-server+} manual.
 
-   * - ``comment``
-     - | A comment to attach to the operation. For more information, see the :manual:`insert command
-         fields </reference/command/insert/#command-fields>` guide in the
-         {+mdb-server+} manual for more information.
+   * - ``upsert``
+     - | Specifies whether the replace operation performs an upsert operation if no 
+         documents match the query filter. For more information, see the :manual:`upsert
+         statement </reference/command/replace/#std-label-replace-command-upsert>`
+         in the {+mdb-server+} manual.
+       | Defaults to ``false``.
 
-:red:`CHANGE THIS CHANGE THIS CHANGE THIS` 
-You want to modify your restaurant list to exactly one burger restaurant, preferably in Manhattan. 
-The following example uses the ``replace_one()`` method to replace the first document that it encounters with a 
-``borough`` value of ``Manhattan`` with a different document containing information about a restaurant with the 
-``name`` value ``Chicken Fingers`` and the ``borough`` value ``Brooklyn``.  and replace a document that has
-a ``borough`` value of ``"Manhattan"``.
+   * - ``write_concern``
+     - | Sets the write concern for the operation.
+         For more information, see :manual:`Write Concern </reference/write-concern/>`
+         in the {+mdb-server+} manual.
 
-Because the ``upsert`` option is
-set to ``true``, the {+driver-short+} inserts a new document if the query filter doesn't 
-match any existing documents.
+The following uses the ``replace_one()`` method to attempt to replace a document with a ``name`` value of 
+``In-N-Out Burger`` with a new document describing a restaurant with a ``name`` value of ``7th Street Burger``.
+Because the ``upsert`` option is set to ``true`` and the ``sample_restaurants.restaurants`` collection 
+does not contain a document with a ``name`` value of ``In-N-Out Burger``,
+the {+driver-short+} inserts a new document into the collection rather than replacing an existing document: 
 
 .. literalinclude:: /includes/write/replace.cpp
-   :start-after: start-replace-options
-   :end-before: end-replace-options
+   :start-after: start-replace-options-upsert
+   :end-before: end-replace-options-upsert
    :language: cpp
    :dedent:
-
-:red:`CHANGE THIS CHANGE THIS CHANGE THIS` 
 
 Return Value
 ~~~~~~~~~~~~
@@ -176,14 +169,12 @@ member functions:
    * - ``result()``
      - | Returns the bulk write result for the operation.
 
-   * - ``upserted_count()``
-     - | Returns the number of documents that were upserted into the database.
-
    * - ``upserted_id()``
      - | Returns the ID of the document that was upserted in the database, if the driver
          performed an upsert.
         
-The following example uses the ``replace_one()`` method to replace the fields and values
+The following example uses the ``replace_one()`` method with an instance of the ``mongocxx::options::replace`` class as an optional
+parameter to replace the fields and values
 of the first document in which the  ``borough`` field value is ``Brooklyn`` with a different
 document for a restaurant with the ``name`` field value ``McDonald's``. It calls the
 ``modified_count()`` member function to print the number of modified documents 
