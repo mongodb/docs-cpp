@@ -47,10 +47,24 @@ int main() {
     }
 
     {
-
         // start-replace-options-validation
 
         // end-replace-options-validation
+    }
+
+    {
+        // start-replace-options-hint
+        auto index_specification = make_document(kvp("name", 1));
+        collection.create_index(index_specification.view());
+
+        mongocxx::options::replace opts; 
+        opts.hint(mongocxx::hint{"name_1"});
+
+        auto query_filter = make_document(kvp("name", "Nobu"));
+        auto replace_doc = make_document(kvp("name", "La Bernadin"));
+
+        auto result = collection.replace_one(query_filter.view(), replace_doc.view(), opts);
+        // end-replace-options-hint 
     }
     {
 

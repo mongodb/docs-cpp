@@ -107,9 +107,9 @@ instance of the class using the dot operator ``(.)``.
          {+mdb-server+} manual for more information.
 
    * - ``hint``
-     - | Sets the index to scan for documents. Accepts an instance of the mongocxx::v_noabi::hint class representing an
+     - | Specifies the index to search for the **Query Filter** document. Accepts an instance of the mongocxx::v_noabi::hint class representing an
          index name.
-         For more information, see the :manual:`hint statement </reference/command/update/#std-label-update-command-hint>`
+       | For more information, see the :manual:`hint statement </reference/command/update/#std-label-update-command-hint>`
          in the {+mdb-server+} manual.
 
    * - ``let``
@@ -131,8 +131,8 @@ instance of the class using the dot operator ``(.)``.
          For more information, see :manual:`Write Concern </reference/write-concern/>`
          in the {+mdb-server+} manual.
 
-The following uses the ``replace_one()`` method to attempt to replace a document with a ``name`` value of 
-``In-N-Out Burger`` with a new document describing a restaurant with a ``name`` value of ``7th Street Burger``.
+The following code uses the ``replace_one()`` method to find a document with a ``name`` value of 
+``In-N-Out Burger`` and replace it with a new document describing a restaurant with a ``name`` value of ``7th Street Burger``.
 Because the ``upsert`` option is set to ``true`` and the ``sample_restaurants.restaurants`` collection 
 does not contain a document with a ``name`` value of ``In-N-Out Burger``,
 the {+driver-short+} inserts a new document into the collection rather than replacing an existing document: 
@@ -142,6 +142,30 @@ the {+driver-short+} inserts a new document into the collection rather than repl
    :end-before: end-replace-options-upsert
    :language: cpp
    :dedent:
+
+.. The following example uses the ``replace_one()`` method to search for a *Query-Filter* document 
+.. with the ``name`` field value of ``Nobu`` and replace it with a *Replace* document with the
+.. ``name`` field value of ``La Bernadin``. To find the *Query-Filter* document 
+.. The following example uses the ``hint`` option to search for a *Query-Filter* document 
+.. with a ``name`` field value indexed in an ascending single-field index. 
+
+
+The following code shows how to use the ``hint`` option to optimize the query performance of the ``replace_one()`` method:
+
+.. literalinclude:: /includes/write/replace.cpp
+   :start-after: start-replace-options-hint
+   :end-before: end-replace-options-hint
+   :language: cpp
+   :dedent:
+
+The above example uses `create_index() <cpp-indexes>` to create an ascending single-field index using the ``name`` field. 
+The name of this index, ``name_1``, is then passed as an argument to the ``hint`` member function of ``opts``, an instance of the 
+``mongocxx::options::replace`` class. ``opts`` is then passed as the third argument to the ``replace_one()`` function, which replaces
+ a document with a ``name`` field value of ``Nobu` with a new document with a ``name`` field value of ``La Bernadin``.
+
+.. to optimize the search for a *Query-Filter* document with a ``name`` field value of ``Nobu``. When this document 
+.. is found, it is replaced by a new document with a ``name`` field value of ``La Bernadin``. 
+.. created using the ``name`` field. 
 
 Return Value
 ~~~~~~~~~~~~
