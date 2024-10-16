@@ -57,8 +57,8 @@ Each replace method requires the following parameters:
 
 - **Replace** document: Specifies the fields and values to insert in the new document. 
 
-Replace One Document
-~~~~~~~~~~~~~~~~~~~~
+Replace One Document Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following example uses the ``replace_one()`` method to replace the fields and values
 of a document in which the ``name`` field value is ``Bagels N Buns``:
@@ -70,8 +70,8 @@ of a document in which the ``name`` field value is ``Bagels N Buns``:
    :dedent:
 
 
-Customize the Replace Operation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Options 
+~~~~~~~
 
 You can modify the behavior of the ``replace_one()`` method by
 passing an instance of the ``mongocxx::options::replace`` class as an optional
@@ -131,6 +131,7 @@ instance of the class using the dot operator ``(.)``.
          For more information, see :manual:`Write Concern </reference/write-concern/>`
          in the {+mdb-server+} manual.
 
+
 The following code uses the ``replace_one()`` method to find a document with a ``name`` value of 
 ``In-N-Out Burger`` and replace it with a new document describing a restaurant with a ``name`` value of ``7th Street Burger``.
 Because the ``upsert`` option is set to ``true`` and the ``sample_restaurants.restaurants`` collection 
@@ -186,7 +187,10 @@ member functions:
    * - ``upserted_id()``
      - | Returns the ID of the document that was upserted in the database, if the driver
          performed an upsert.
-        
+
+Examples 
+^^^^^^^^
+       
 The following example uses the ``replace_one()`` method with an instance of the ``mongocxx::options::replace`` class as an optional
 parameter to replace the fields and values
 of the first document in which the  ``borough`` field value is ``Brooklyn`` with a different
