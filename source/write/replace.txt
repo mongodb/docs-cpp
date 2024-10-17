@@ -75,15 +75,13 @@ Options
 
 You can modify the behavior of the ``replace_one()`` method by
 passing an instance of the ``mongocxx::options::replace`` class as an optional
-parameter. The following table describes the public member functions of the 
-``mongocxx::options::replace`` class. You can call these public functions on an 
-instance of the class using the dot operator ``(.)``. 
+parameter. This class contains the following member functions:
 
 .. list-table::
    :widths: 30 70
    :header-rows: 1
 
-   * - Public Member Function 
+   * - Function 
      - Description
 
    * - ``bypass_document_validation(<bool bypass_document_validation>)``
@@ -130,10 +128,10 @@ instance of the class using the dot operator ``(.)``.
      - | Sets the write concern for the operation.
          For more information, see :manual:`Write Concern </reference/write-concern/>`
          in the {+mdb-server+} manual.
-         
+
 Examples 
 ^^^^^^^^
-
+.. example:: 
 The following code uses the ``replace_one()`` method to find a document with a ``name`` value of 
 ``In-N-Out Burger`` and replace it with a new document describing a restaurant with a ``name`` value of ``7th Street Burger``.
 Because the ``upsert`` option is set to ``true`` and the ``sample_restaurants.restaurants`` collection 
@@ -193,10 +191,9 @@ member functions:
 Examples 
 ^^^^^^^^
 
-The following example uses the ``replace_one()`` method with an instance of the ``mongocxx::options::replace`` class as an optional
-parameter to replace the fields and values
-of the first document in which the  ``borough`` field value is ``Brooklyn`` with a different
-document for a restaurant with the ``name`` field value ``McDonald's``. It calls the
+The following example uses the ``replace_one()`` to replace the fields and values
+of a document in which the ``name`` field value is ``Nobu`` with a new
+document in which the ``name`` field value is ``La Bernadin``. It calls the
 ``modified_count()`` member function to print the number of modified documents 
 and the ``matched_documents()`` member function to print the number of matched documents: 
 

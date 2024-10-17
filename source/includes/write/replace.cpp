@@ -70,8 +70,8 @@ int main() {
 
         // Replaces the matching document and prints the number of modified documents
         // start-replace-result
-        auto query_filter = make_document(kvp("name", "Dunkin' Donuts"));
-        auto replace_doc = make_document(kvp("name", "Dunkin'"));
+        auto query_filter = make_document(kvp("name", "Nobu"));
+        auto replace_doc = make_document(kvp("name", "La Bernadin'"));
 
         auto result = collection.replace_one(query_filter.view(), replace_doc.view());
         std::cout << "Modified documents: " << result->modified_count() << std::endl;
