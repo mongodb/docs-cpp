@@ -85,11 +85,9 @@ parameter. This class contains the following member functions:
      - Description
 
    * - ``bypass_document_validation(<bool bypass_document_validation>)``
-     - | Specifies whether the replace operation bypasses document validation. When set to ``true``,
-         this lets you replace a document with a new document that doesn't meet the schema validation requirements. 
-         For more information about schema validation, see :manual:`Schema
-         Validation </core/schema-validation/#schema-validation>` in the MongoDB
-         Server manual.
+     - | Specifies whether the replace operation bypasses document validation. Accepts a boolean value as its argument. 
+       | When set to ``true``, this lets you replace a document with a new document that doesn't meet the schema validation requirements. 
+       | For more information, see :manual:`Schema Validation </core/schema-validation/#schema-validation>` in the {+mdb-server+} manual.
        | Defaults to ``false``.
 
    * - ``collation(<document::view_or_value collation>)``
@@ -99,10 +97,14 @@ parameter. This class contains the following member functions:
          in the {+mdb-server+} manual.
 
    * - ``comment(<bson_value::view_or_value comment>)``
-     - | Specifies a comment to attach to the operation. Accepts a comment of any BSON type as its argument.
+     - | Specifies a comment to attach to the operation. Accepts a comment of any valid BSON type as its argument (string, integer, object, array, etc).
+       | Once set, this comment appears alongside records of this command in the following locations:
+         - mongod log messages, in the attr.command.cursor.comment field.
+         - Database profiler output, in the command.comment field.
+         - currentOp output, in the command.comment field. 
        | For more information, see the :manual:`insert command
          fields </reference/command/insert/#command-fields>` guide in the
-         {+mdb-server+} manual for more information.
+         {+mdb-server+} manual. 
 
    * - ``hint``
      - | Specifies the index to search for the **Query Filter** document. Accepts an instance of the mongocxx::v_noabi::hint class representing an
@@ -111,30 +113,32 @@ parameter. This class contains the following member functions:
          in the {+mdb-server+} manual.
 
    * - ``let``
-     - | Specifies a document with a list of values to improve operation readability.
-         Values must be constant or closed expressions that don't reference document
-         fields. For more information, see the :manual:`let statement
-         </reference/command/replace/#std-label-replace-let-syntax>` in the
+     - | Specifies variables and their values to be used in the ``replace_one()`` method. 
+         Accepts a document containing variable-value pairs. To access the value of a variable in the method, 
+         use the double dollar sign prefix ($$) together with your variable name in the form ``$$<variable-name>``. 
+       | This allows you to improve command readability by separating 
+         the variables from the query text.
+       | For more information, see :manual:`let 
+         </reference/command/update/#std-label-replace-let-syntax>` in the
          {+mdb-server+} manual.
 
    * - ``upsert``
      - | Specifies whether the replace operation performs an upsert operation if no 
-         documents match the query filter. For more information, see the :manual:`upsert
-         statement </reference/command/replace/#std-label-replace-command-upsert>`
-         in the {+mdb-server+} manual.
+         documents match the query filter. Accepts a boolean value as its argument. 
        | Defaults to ``false``.
 
    * - ``write_concern``
      - | Sets the write concern for the operation.
-         For more information, see :manual:`Write Concern </reference/write-concern/>`
+       | For more information, see :manual:`Write Concern </reference/write-concern/>`
          in the {+mdb-server+} manual.
 
 Examples 
 ^^^^^^^^
-.. example:: 
-The following code uses the ``upsert`` option set to ``true`` in order to insert a new document with a ``name``
-value of ``Shake Shack`` if its search for a *Query Filter* document with a ``name`` value of ``In-N-Out Burger`` 
-does not match any existing documents. 
+
+The following code uses the ``replace_one()`` function with an ``upsert`` option set to ``true``
+to insert a new document with a ``name`` value of ``Shake Shack`` into the ``sample_restaurants.restaurants`` collection 
+when its search for a document with a ``name`` value of ``In-N-Out Burger`` 
+does not match an existing document: 
  
 .. The following code uses the ``replace_one()`` method to find a document with a ``name`` value of 
 .. ``In-N-Out Burger`` and replace it with a new document with a ``name`` value of ``Shake Shack``.
@@ -150,7 +154,7 @@ does not match any existing documents.
    :dedent:
 
 
-The following code shows how to use the ``hint`` option to optimize the query performance of the ``replace_one()`` method:
+The following code uses the ``hint`` option to optimize query performance when performing a replace operation. 
 
 .. literalinclude:: /includes/write/replace.cpp
    :start-after: start-replace-options-hint
@@ -158,10 +162,11 @@ The following code shows how to use the ``hint`` option to optimize the query pe
    :language: cpp
    :dedent:
 
-The above example uses :ref:`create_index() <cpp-indexes>` to create an ascending single-field index using the ``name`` field. 
+The above code uses :ref:`create_index() <cpp-indexes>` to create an ascending single-field index using the ``name`` field. 
 The name of this index, ``name_1``, is then passed as an argument to the ``hint`` member function of ``opts``, an instance of the 
-``mongocxx::options::replace`` class. ``opts`` is then passed as the third argument to the ``replace_one()`` function, which replaces
- a document with a ``name`` field value of ``Nobu` with a new document with a ``name`` field value of ``La Bernadin``.
+``mongocxx::options::replace`` class. Because ``opts`` is passed in as its third argument, the ``replace_one()`` method searches through the 
+``name_1`` index for a ``name`` value of ``Nobu``. The matching document is then replaced with a new document with a ``name`` value of ``La Bernadin``. 
+To learn more about indexes, see :ref:`Optimize Queries with Indexes <cpp-indexes>`.
 
 Return Value
 ~~~~~~~~~~~~
@@ -196,24 +201,46 @@ member functions:
 Examples 
 ^^^^^^^^
 
-The following example uses the ``replace_one()`` to replace the fields and values
-of a document in which the ``name`` field value is ``Nobu`` with a new
-document in which the ``name`` field value is ``La Bernadin``. It calls the
-``modified_count()`` member function to print the number of modified documents 
-and the ``matched_documents()`` member function to print the number of matched documents: 
+.. The following example uses the ``replace_one()`` to replace the fields and values
+.. of a document in which the ``name`` field value is ``Nobu`` with a new
+.. document in which the ``name`` field value is ``La Bernadin``. It calls the
+.. ``modified_count()`` member function to print the number of modified documents 
+.. and the ``matched_documents()`` member function to print the number of matched documents: 
+
+The following code uses the ``matched_documents()`` member functiotn to return the number of 
+documents that the ``replace_one()`` method found while searching for a 
+document with a ``name`` field value of ``Shake Shack``. It then uses the
+``modified_documents()`` member function to print the number of documents that the ``replace_one()`` function
+replaced with a new document with a ``name`` value of ``In-N-Out Burger``: 
 
 .. io-code-block::
 
    .. input:: /includes/write/replace.cpp
-      :start-after: start-replace-result
-      :end-before: end-replace-result
+      :start-after: start-replace-result-matched
+      :end-before: end-replace-result-matched
       :language: cpp
       :dedent:
 
    .. output:: 
 
+      Matched documents: 11
       Modified documents: 1
-      Matched documents: 10
+
+The following code uses the ``upserted_id()`` member function to return the ``_id`` field value of 
+the document that the ``replace_one()`` method upserts into the database when it does not match any 
+existing document with a ``name`` field value of ``In-N-Out Burger``:
+
+.. io-code-block::
+
+   .. input:: /includes/write/replace.cpp
+      :start-after: start-replace-result-upsert
+      :end-before: end-replace-result-upsert
+      :language: cpp
+      :dedent:
+
+   .. output:: 
+
+      Upserted ID: 67128c5ecc1f8c15ea26fcf8
 
 Additional Information 
 ----------------------

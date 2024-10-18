@@ -69,13 +69,30 @@ int main() {
     {
 
         // Replaces the matching document and prints the number of modified documents
-        // start-replace-result
-        auto query_filter = make_document(kvp("name", "Nobu"));
-        auto replace_doc = make_document(kvp("name", "La Bernadin'"));
+        // start-replace-result-matched
+        auto query_filter = make_document(kvp("name", "Shake Shack"));
+        auto replace_doc = make_document(kvp("name", "In-N-Out Burger"));
 
         auto result = collection.replace_one(query_filter.view(), replace_doc.view());
-        std::cout << "Modified documents: " << result->modified_count() << std::endl;
         std::cout << "Matched documents: " << result->matched_count() << std::endl;        
-        // end-replace-result
+        std::cout << "Modified documents: " << result->modified_count() << std::endl;
+        // end-replace-result-matched
+    }
+
+    {
+
+        // Replaces the matching document and prints the number of modified documents
+        // start-replace-result-upsert
+        mongocxx::options::replace opts; 
+        opts.upsert(true);
+
+        auto query_filter = make_document(kvp("name", "In-N-Out Burger"));
+        auto replace_doc = make_document(kvp("name", "Shake Shack"));
+
+        auto result = collection.replace_one(query_filter.view(), replace_doc.view(), opts);
+        auto id = result->upserted_id()->get_value();
+                
+        std::cout << "Upserted ID: " << id.get_oid().value.to_string() << std::endl;
+            // end-replace-result-upsert
     }
 }
