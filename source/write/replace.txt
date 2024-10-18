@@ -132,11 +132,16 @@ parameter. This class contains the following member functions:
 Examples 
 ^^^^^^^^
 .. example:: 
-The following code uses the ``replace_one()`` method to find a document with a ``name`` value of 
-``In-N-Out Burger`` and replace it with a new document describing a restaurant with a ``name`` value of ``7th Street Burger``.
-Because the ``upsert`` option is set to ``true`` and the ``sample_restaurants.restaurants`` collection 
-does not contain a document with a ``name`` value of ``In-N-Out Burger``,
-the {+driver-short+} inserts a new document into the collection rather than replacing an existing document: 
+The following code uses the ``upsert`` option set to ``true`` in order to insert a new document with a ``name``
+value of ``Shake Shack`` if its search for a *Query Filter* document with a ``name`` value of ``In-N-Out Burger`` 
+does not match any existing documents. 
+ 
+.. The following code uses the ``replace_one()`` method to find a document with a ``name`` value of 
+.. ``In-N-Out Burger`` and replace it with a new document with a ``name`` value of ``Shake Shack``.
+.. Because the ``upsert`` option is set to ``true`` and the ``sample_restaurants.restaurants`` collection 
+.. does not contain a document with a ``name`` value of ``In-N-Out Burger``,
+.. the {+driver-short+} inserts a new document into the collection when the operation can not find
+.. an existing document with a ``name`` value of ``In-N-Out Burger``.  than replacing an existing document: 
 
 .. literalinclude:: /includes/write/replace.cpp
    :start-after: start-replace-options-upsert
