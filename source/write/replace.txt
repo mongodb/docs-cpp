@@ -62,7 +62,8 @@ Replace One Document Example
 
 The following example uses the ``replace_one()`` method to find 
 a document with a ``name`` field value of ``Nobu`` and replace it 
-with a new document with a ``name`` field value of ``La Bernadin``:
+with a new document with a ``name`` field value of ``La Bernadin``. 
+It then prints the resulting document: 
 
 .. io-code-block::
 
@@ -81,7 +82,7 @@ Options
 
 You can modify the behavior of the ``replace_one()`` method by
 passing an instance of the ``mongocxx::options::replace`` class as an optional
-parameter. The following table describes the fields you can set in a
+argument. The following table describes the fields you can set in a
 ``mongocxx::options::update`` instance:
 
 .. list-table::
@@ -96,12 +97,12 @@ parameter. The following table describes the fields you can set in a
          For more information, see :manual:`Schema Validation </core/schema-validation/#schema-validation>` in the {+mdb-server+} manual.
        | Defaults to ``false``.
 
-   * - ``collation(<document::view_or_value collation>)``
+   * - ``collation``
      - | Specifies the kind of language collation to use when sorting
          results. For more information, see :manual:`Collation </reference/collation/#std-label-collation>`
          in the {+mdb-server+} manual.
 
-   * - ``comment(<bson_value::view_or_value comment>)``
+   * - ``comment``
      - | Specifies a comment of any valid BSON type to attach to the operation. 
          Once set, this comment appears alongside records of this command in the following locations:
 
