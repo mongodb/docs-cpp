@@ -57,6 +57,11 @@ Each replace method requires the following parameters:
 
 - **Replace** document: Specifies the fields and values to insert in the new document. 
 
+.. important:: 
+
+   The values of ``_id`` fields are immutable. If your replacement document specifies a value for the _id field, 
+   it must match the _id value of the existing document.
+
 Replace One Document Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -136,8 +141,8 @@ argument. The following table describes the fields you can set in a
          For more information, see :manual:`Write Concern </reference/write-concern/>`
          in the {+mdb-server+} manual.
 
-``hint`` Example 
-^^^^^^^^^^^^^^^^
+Example: ``hint``
+^^^^^^^^^^^^^^^^^
 
 The following example uses the :ref:`create_index() <cpp-indexes>` method to create an ascending single-field index 
 on the ``name`` field. It then instantiates a ``mongocxx::options::replace`` object called ``opts``
@@ -154,8 +159,8 @@ then replaced with a new document that has a ``name`` field value of ``La Bernad
 To learn more about indexes, see :ref:`Optimize Queries with Indexes <cpp-indexes>`.
 
 
-``upsert`` Example  
-^^^^^^^^^^^^^^^^^^
+Example: ``upsert`` 
+^^^^^^^^^^^^^^^^^^^
 
 The following example instantiates a ``mongocxx::options::replace`` object called ``opts``
 and sets ``opts``'s ``upsert`` field to ``true``. It passes ``opts`` to the ``replace_one()`` 
@@ -206,8 +211,8 @@ member functions:
      - | Returns the ID of the document that was upserted in the database, if the driver
          performed an upsert.
 
-``matched_documents()`` Example
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example: ``matched_count()``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example uses the ``replace_one()`` to replace a document with 
 a ``name`` field value of ``Shake Shack`` with a new document with a ``name`` 
@@ -226,7 +231,7 @@ function to print the number of matched documents:
 
       Matched documents: 11
 
-``upserted_id()`` Example
+Example: ``upserted_id()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example uses the ``upserted_id()`` member function to return the ``_id`` field value of 
