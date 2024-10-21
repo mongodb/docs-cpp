@@ -110,7 +110,7 @@ argument. The following table describes the fields you can set in a
      - | Specifies a comment of any valid BSON type to attach to the operation. 
          Once set, this comment appears alongside records of this command in the following locations:
 
-         - mongod log messages, in the attr.command.cursor.comment field.
+       | - mongod log messages, in the attr.command.cursor.comment field.
          - Database profiler output, in the command.comment field.
          - currentOp output, in the command.comment field. 
 
@@ -164,7 +164,7 @@ Example: ``upsert``
 
 The following example instantiates a ``mongocxx::options::replace`` object called ``opts``
 and sets ``opts``'s ``upsert`` field to ``true``. It passes ``opts`` to the ``replace_one()`` 
-method, which then scans the ``sample_restaurants.restaurants`` collection for a document with a ``name`` field value of ``In-N-Out Burger`. 
+method, which then scans the ``sample_restaurants.restaurants`` collection for a document with a ``name`` field value of ``In-N-Out Burger``. 
 Because there is no matching document in the collection, the ``replace_one()`` method upserts
 a new document with a ``name`` field value of ``Shake Shack`` into the collection. 
 
@@ -214,8 +214,8 @@ member functions:
 Example: ``matched_count()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example uses the ``replace_one()`` to replace a document with 
-a ``name`` field value of ``Shake Shack`` with a new document with a ``name`` 
+The following example uses the ``replace_one()`` to replace a document that has
+a ``name`` field value of ``Shake Shack`` with a new document that has a ``name`` 
 field value of ``In-N-Out Burger``. It calls the ``matched_count()`` member 
 function to print the number of matched documents:
 
@@ -232,7 +232,7 @@ function to print the number of matched documents:
       Matched documents: 11
 
 Example: ``upserted_id()``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example uses the ``upserted_id()`` member function to return the ``_id`` field value of 
 the document that the ``replace_one()`` method upserts into the database when it can not find any 
