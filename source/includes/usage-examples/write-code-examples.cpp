@@ -60,7 +60,10 @@ int main() {
     {
 
         // start-replace-one
+        auto query_filter = make_document(kvp("<field to match>", "<value to match>"));
+        auto update_doc = make_document(make_document(kvp("<field name>", "<value>")));
 
+        auto result = collection.update_many(query_filter.view(), update_doc.view());
         // end-replace-one 
     }
 

@@ -107,14 +107,14 @@ parameter. This class contains the following member functions:
          {+mdb-server+} manual. 
 
    * - ``hint``
-     - | Specifies the index to search for the **Query Filter** document. Accepts an instance of the mongocxx::v_noabi::hint class representing an
+     - | Specifies the index to search for the **Query Filter** document. Accepts as its argument an instance of the mongocxx::v_noabi::hint class representing an
          index name.
        | For more information, see the :manual:`hint statement </reference/command/update/#std-label-update-command-hint>`
          in the {+mdb-server+} manual.
 
    * - ``let``
      - | Specifies variables and their values to be used in the ``replace_one()`` method. 
-         Accepts a document containing variable-value pairs. To access the value of a variable in the method, 
+         Accepts as its argument a document containing variable-value pairs. To access the value of a variable in the method, 
          use the double dollar sign prefix ($$) together with your variable name in the form ``$$<variable-name>``. 
        | This allows you to improve command readability by separating 
          the variables from the query text.
