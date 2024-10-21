@@ -60,10 +60,9 @@ Each replace method requires the following parameters:
 Replace One Document Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following example uses the ``replace_one()`` method to find 
-a document with a ``name`` field value of ``Nobu`` and replace it 
-with a new document with a ``name`` field value of ``La Bernadin``. 
-It then prints the resulting document: 
+The following example uses the ``replace_one()`` method to replace 
+a document that has a ``name`` field value of ``Nobu`` with a new document 
+that has a ``name`` field value of ``La Bernadin``:
 
 .. io-code-block::
 
@@ -141,11 +140,10 @@ argument. The following table describes the fields you can set in a
 ^^^^^^^^^^^^^^^^
 
 The following example uses the :ref:`create_index() <cpp-indexes>` method to create an ascending single-field index 
-on the ``name`` field. Then, it instantiates a ``mongocxx::options::replace`` object called ``opts``
-and sets ``opts``'s ``hint`` field to the name of the new index, ``name_1``. 
-It passes ``opts`` to the ``replace_one()`` method, which then scans the ``name_1`` index 
-to find a document with a ``name`` field value of ``Nobu`` and replace it with a 
-new document with a ``name`` field value of ``La Bernadin``.  
+on the ``name`` field. It then instantiates a ``mongocxx::options::replace`` object called ``opts``
+and sets ``opts``'s ``hint`` field to the name of the new index, ``name_1``. With ``opts`` passed in as an argument, the 
+``replace_one()`` method searches the ``name_1`` index for a document with a ``name`` field value of ``Nobu``. This document is 
+then replaced with a new document that has a ``name`` field value of ``La Bernadin``.
 
 .. literalinclude:: /includes/write/replace.cpp
    :start-after: start-replace-options-hint
