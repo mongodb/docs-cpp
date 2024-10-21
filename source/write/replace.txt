@@ -110,20 +110,22 @@ argument. The following table describes the fields you can set in a
          - Database profiler output, in the command.comment field.
          - currentOp output, in the command.comment field. 
 
-         For more information, see ``comment`` in the {+mdb-server+} manual :manual:` insert command
-         fields guide </reference/command/insert/#command-fields>`.
+         For more information, see the :manual:`insert command
+         fields guide </reference/command/insert/#command-fields>` in the {+mdb-server+} manual.
 
    * - ``hint``
      - | Specifies the index to scan for documents that match the query filter.
-         For more information, see ``hint`` in the {+mdb-server+} manual 
-         :manual:`update statement fields guide </reference/command/update/#std-label-update-statement-documents>`. 
+         For more information, see the
+         :manual:`update statement fields guide </reference/command/update/#std-label-update-statement-documents>`
+         in the {+mdb-server+} manual. 
 
    * - ``let``
      - | Specifies a document containing variables and their values to be used in the ``replace_one()`` method. 
          This allows you to improve code readability by separating the variables from the operation text. 
        | Values must be constant or closed expressions that don't reference document fields. 
-         For more information, see ``let`` in the {+mdb-server+} manual 
-         :manual:`update command fields guide </reference/command/update/#std-label-replace-let-syntax>`.
+         For more information, see the 
+         :manual:`update command fields guide </reference/command/update/#std-label-replace-let-syntax>`
+         in the {+mdb-server+} manual.
 
    * - ``upsert``
      - | Specifies whether the replace operation performs an upsert operation if no 
