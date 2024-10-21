@@ -61,9 +61,9 @@ int main() {
         // Replaces a document that matches the specified criteria
         // start-replace-one
         auto query_filter = make_document(kvp("<field to match>", "<value to match>"));
-        auto update_doc = make_document(make_document(kvp("<field name>", "<value>")));
+        auto replace_doc = make_document(make_document(kvp("<field name>", "<value>")));
 
-        auto result = collection.replace_one(query_filter.view(), update_doc.view());
+        auto result = collection.replace_one(query_filter.view(), replace_doc.view());
         // end-replace-one 
     }
 
