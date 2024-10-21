@@ -163,10 +163,15 @@ Example: ``upsert``
 ^^^^^^^^^^^^^^^^^^^
 
 The following example instantiates a ``mongocxx::options::replace`` object called ``opts``
-and sets ``opts``'s ``upsert`` field to ``true``. It passes ``opts`` to the ``replace_one()`` 
-method, which then scans the ``sample_restaurants.restaurants`` collection for a document with a ``name`` field value of ``In-N-Out Burger``. 
+and sets its ``upsert`` field value to ``true``. It then passes ``opts`` to the ``replace_one()`` 
+method, which scans the ``sample_restaurants.restaurants`` collection for a document with a ``name`` field value of ``In-N-Out Burger``. 
 Because there is no matching document in the collection, the ``replace_one()`` method upserts
 a new document with a ``name`` field value of ``Shake Shack`` into the collection. 
+
+.. The following example uses the ``replace_one()`` method to find and replace a document with a ``name`` field value of ``In-N-Out Burger``. 
+.. Because the upsert option is set to true, the {+driver-short+} inserts a new document when the query filter doesn't match any existing documents. 
+.. The following example then uses the ``upserted_id()`` member function to print the ``_id`` field value of 
+.. the upserted document, which has a ``name`` field value of ``Shake Shack``. 
 
 .. io-code-block::
 
@@ -234,10 +239,9 @@ function to print the number of matched documents:
 Example: ``upserted_id()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example uses the ``upserted_id()`` member function to return the ``_id`` field value of 
-the document that the ``replace_one()`` method upserts into the database when it can not find any 
-existing document with a ``name`` field value of ``In-N-Out Burger``. The upserted document
-has a ``name`` field value of ``Shake Shack``. 
+The following example uses the ``replace_one()`` method to find and replace a document with a ``name`` field value of ``In-N-Out Burger``. 
+Because the upsert option is set to true, the {+driver-short+} inserts a new document when the query filter doesn't match any existing documents. 
+Then, the ``upserted_id()`` member function is called to print the ``_id`` field value of the upserted document. 
 
 .. io-code-block::
 

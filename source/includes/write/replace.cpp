@@ -38,7 +38,7 @@ int main() {
         auto index_specification = make_document(kvp("name", 1));
         collection.create_index(index_specification.view());
 
-        mongocxx::options::replace opts; 
+        mongocxx::options::replace opts{}; 
         opts.hint(mongocxx::hint{"name_1"});
 
         auto query_filter = make_document(kvp("name", "Nobu"));
@@ -50,7 +50,7 @@ int main() {
     
     {
         // start-replace-options-upsert
-        mongocxx::options::replace opts; 
+        mongocxx::options::replace opts{}; 
         opts.upsert(true);
 
         auto query_filter = make_document(kvp("name", "In-N-Out Burger"));
@@ -77,7 +77,7 @@ int main() {
 
         // Replaces the matching document and prints the number of modified documents
         // start-replace-result-upsert
-        mongocxx::options::replace opts; 
+        mongocxx::options::replace opts{}; 
         opts.upsert(true);
 
         auto query_filter = make_document(kvp("name", "In-N-Out Burger"));
