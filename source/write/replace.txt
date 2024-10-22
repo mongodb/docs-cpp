@@ -110,11 +110,10 @@ argument. The following table describes the fields you can set in a
      - | Specifies a comment of any valid BSON type to attach to the operation. 
          Once set, this comment appears alongside records of this command in the following locations:
 
-       | - mongod log messages, in the attr.command.cursor.comment field.
-         - Database profiler output, in the command.comment field.
-         - currentOp output, in the command.comment field. 
-
-         For more information, see the :manual:`insert command
+       - mongod log messages, in the ``attr.command.cursor.comment`` field.
+       - Database profiler output, in the ``command.comment`` field.
+       - currentOp output, in the ``command.comment`` field. 
+       | For more information, see the :manual:`insert command
          fields guide </reference/command/insert/#command-fields>` in the {+mdb-server+} manual.
 
    * - ``hint``
