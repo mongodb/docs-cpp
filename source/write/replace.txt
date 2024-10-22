@@ -197,7 +197,7 @@ member functions:
    :widths: 30 70
    :header-rows: 1
 
-   * - Function
+   * - Field
      - Description
 
    * - ``matched_count()``
