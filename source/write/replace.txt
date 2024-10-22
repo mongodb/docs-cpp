@@ -122,10 +122,9 @@ argument. The following table describes the fields you can set in a
 
         - :ref:`mongod log messages <log-messages-ref>`, in the
           ``attr.command.cursor.comment`` field
-        - :ref:`Database profiler <profiler>` output, in the :data:`command.comment
-          <system.profile.command>` field
-        - :dbcommand:`currentOp` output, in the :data:`command.comment
-          <currentOp.command>` field
+        - :ref:`Database profiler output <profiler>`, in the :data:`system.profile.command <system.profile.command>` ``comment`` field
+        - :dbcommand:`currentOp` output, in the :data:`currentOp.command
+          <currentOp.command>` ``comment`` field
 
        | For more information, see the :manual:`insert Command
          Fields guide </reference/command/insert/#command-fields>` in the {+mdb-server+} manual.
