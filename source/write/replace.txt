@@ -75,7 +75,7 @@ that has a ``name`` field value of ``La Bernadin``:
    :language: cpp
    :dedent:
 
-To check if you successfully replaced the document, you can use the ``find_one()`` method to print out the new document:
+To check if you successfully replaced the document, you can use the :ref:`find_one() <cpp-retrieve-find-one>` method to print out the new document:
 
 .. io-code-block::
 
@@ -157,7 +157,7 @@ argument. The following table describes the fields you can set in a
 Example: ``hint``
 ^^^^^^^^^^^^^^^^^
 
-The following example uses the ``:ref:`create_index() <cpp-indexes>``` method to create an ascending single-field index 
+The following example uses the :ref:`create_index() <cpp-indexes>` method to create an ascending single-field index 
 on the ``name`` field. It then instantiates a ``mongocxx::options::replace`` object called ``opts`` and sets its ``hints`` field value to the name 
 of the new index, ``name_1``. It then passes ``opts`` in to the ``replace_one()`` method, which searches the ``name_1`` index for a
 ``name`` field value of ``Nobu`` and replaces the associated document with a new document that has a ``name`` field value of ``La Bernadin``.  
@@ -241,6 +241,8 @@ function to print the number of documents that match the search for a ``name`` f
       :dedent:
 
    .. output:: 
+      :language: cli
+      :visible: false
 
       Matched documents: 11
 
@@ -260,6 +262,8 @@ It then cals the ``upserted_id()`` member function to print the ``_id`` field va
       :dedent:
 
    .. output:: 
+      :language: cli
+      :visible: false
 
       Upserted ID: 67128c5ecc1f8c15ea26fcf8
 
