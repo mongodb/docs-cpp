@@ -55,15 +55,17 @@ int main() {
     
     {
         // start-replace-options-upsert
+        std::cout << "Total document count before replace_one(): " << collection.count_documents({}) << std::endl;
+
         mongocxx::options::replace opts{}; 
         opts.upsert(true);
 
         auto query_filter = make_document(kvp("name", "In-N-Out Burger"));
         auto replace_doc = make_document(kvp("name", "Shake Shack"));
 
-        std::cout << "Number of documents before replace: " << collection.count_documents({}) << std::endl;
         auto result = collection.replace_one(query_filter.view(), replace_doc.view(), opts);
-        std::cout << "Number of documents after replace: " << collection.count_documents({}) << std::endl;
+        
+        std::cout << "Total document count after replace_one(): " << collection.count_documents({}) << std::endl;
         // end-replace-options-upsert
     }
 
