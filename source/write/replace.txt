@@ -38,8 +38,8 @@ and assign the following values to your ``db`` and ``collection`` variables:
     :language: cpp
     :dedent:
 
-To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
-:atlas:`Get Started with Atlas </getting-started>` guide.
+To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see
+:atlas:`Get Started with Atlas </getting-started>`.
 
 Replace Operation
 -----------------
@@ -51,8 +51,8 @@ matches the search criteria. It then inserts the fields and values you specify i
 Each replace method requires the following parameters:
 
 - **Query filter** document: Specifies which document to replace. For
-  more information about query filters, see the 
-  :manual:`Query Filter Documents section </core/document/#query-filter-documents>` in
+  more information about query filters, see 
+  :manual:`Query Filter Documents </core/document/#query-filter-documents>` in
   the {+mdb-server+} manual.
 
 - **Replace** document: Specifies the fields and values to insert in the new document. 
@@ -270,7 +270,7 @@ It then cals the ``upserted_id()`` member function to print the ``_id`` field va
 Additional Information 
 ----------------------
 
-To learn more about creating query filters, see the :ref:`cpp-specify-query` guide.
+To learn more about creating query filters, see :ref:`cpp-specify-query`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
