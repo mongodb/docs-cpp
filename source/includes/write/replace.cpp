@@ -23,17 +23,20 @@ int main() {
         // replaces the fields and values of a document with the name "Bagels N Buns" with a document 
         // with the same _id value and no fields other than the name "2 Bagels 2 Buns"
         // start-replace-one
-        // Create inputs 
         auto query_filter = make_document(kvp("name", "Nobu"));
         auto replace_doc = make_document(kvp("name", "La Bernadin"));
 
-        // Call replace_one()
         auto result = collection.replace_one(query_filter.view(), replace_doc.view());
+        // end-replace-one
+    }
 
-        // Print new document 
+    {
+        // replaces the fields and values of a document with the name "Bagels N Buns" with a document 
+        // with the same _id value and no fields other than the name "2 Bagels 2 Buns"
+        // start-replace-one-iox
         auto new_doc = collection.find_one(make_document(kvp("name", "La Bernadin")));
         std::cout << "New document: " << bsoncxx::to_json(*new_doc) << std::endl;
-        // end-replace-one
+        // end-replace-one-io
     }
 
     {

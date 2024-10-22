@@ -69,17 +69,28 @@ The following example uses the ``replace_one()`` method to replace
 a document that has a ``name`` field value of ``Nobu`` with a new document 
 that has a ``name`` field value of ``La Bernadin``:
 
+.. literalinclude:: /includes/write/replace.cpp
+   :start-after: start-replace-one
+   :end-before: end-replace-one
+   :language: cpp
+   :dedent:
+
+To check if you successfully created the collection, you can print out a list of all collections in the database:
+
 .. io-code-block::
 
    .. input:: /includes/write/replace.cpp
-      :start-after: start-replace-one
-      :end-before: end-replace-one
+      :start-after: start-replace-one-io
+      :end-before: end-replace-one-io
       :language: cpp
       :dedent:
    
    .. output:: 
+      :language: cli
+      :visible: false
       
-      New document: { "_id" : { "$oid" : "5eb3d668b31de5d588f42e34" }, "name" : "La Bernadin" }
+      New document: { "_id" : { "$oid" : "5eb3d668b31de5d588f42e34" }, "name" : "La Bernadin" }  
+
 
 Options 
 ~~~~~~~
@@ -111,12 +122,12 @@ argument. The following table describes the fields you can set in a
          Once set, this comment appears alongside records of this command in the following locations:
 
         - :ref:`mongod log messages <log-messages-ref>`, in the
-          ``attr.command.cursor.comment`` field.
+          ``attr.command.cursor.comment`` field
         - :ref:`Database profiler <profiler>` output, in the :data:`command.comment
-          <system.profile.command>` field.
+          <system.profile.command>` field
         - :dbcommand:`currentOp` output, in the :data:`command.comment
-        <currentOp.command>` field.
-        
+          <currentOp.command>` field
+
        | For more information, see the :manual:`insert Command
          Fields guide </reference/command/insert/#command-fields>` in the {+mdb-server+} manual.
 
