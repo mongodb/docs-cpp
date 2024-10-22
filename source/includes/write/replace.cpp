@@ -32,7 +32,7 @@ int main() {
 
     {
         // Print replace_one() output
-        // start-replace-one-iox
+        // start-replace-one-io
         auto new_doc = collection.find_one(make_document(kvp("name", "La Bernadin")));
         std::cout << "New document: " << bsoncxx::to_json(*new_doc) << std::endl;
         // end-replace-one-io

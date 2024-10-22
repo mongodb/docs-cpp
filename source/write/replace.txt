@@ -227,10 +227,10 @@ member functions:
 Example: ``matched_count()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example uses the ``replace_one()`` to replace a document that has
+The following example uses the ``replace_one()`` method to replace a document that has
 a ``name`` field value of ``Shake Shack`` with a new document that has a ``name`` 
-field value of ``In-N-Out Burger``. It calls the ``matched_count()`` member 
-function to print the number of matched documents:
+field value of ``In-N-Out Burger``. It then calls the ``matched_count()`` member 
+function to print the number of documents that match the search for a ``name`` field value of ``Shake Shack``:
 
 .. io-code-block::
 
@@ -249,7 +249,7 @@ Example: ``upserted_id()``
 
 The following example uses the ``replace_one()`` method to find and replace a document with a ``name`` field value of ``In-N-Out Burger``. 
 Because the upsert option is set to true, the {+driver-short+} inserts a new document when the query filter doesn't match any existing documents. 
-Then, the ``upserted_id()`` member function is called to print the ``_id`` field value of the upserted document. 
+It then cals the ``upserted_id()`` member function to print the ``_id`` field value of the upserted document. 
 
 .. io-code-block::
 
