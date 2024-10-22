@@ -159,7 +159,7 @@ Example: ``hint``
 
 The following example uses the :ref:`create_index() <cpp-indexes>` method to create an ascending single-field index 
 on the ``name`` field. It then instantiates a ``mongocxx::options::replace`` object called ``opts`` and sets its ``hints`` field value to the name 
-of the new index, ``name_1``. It then passes ``opts`` in to the ``replace_one()`` method, which searches the ``name_1`` index for a
+of the new index, ``name_1``. When ``opts`` is passed in as an optional argument, the ``replace_one()`` method searches the ``name_1`` index for a
 ``name`` field value of ``Nobu`` and replaces the associated document with a new document that has a ``name`` field value of ``La Bernadin``.  
 
 .. literalinclude:: /includes/write/replace.cpp
@@ -174,9 +174,9 @@ Example: ``upsert``
 ^^^^^^^^^^^^^^^^^^^
 
 The following example instantiates a ``mongocxx::options::replace`` object called ``opts``
-and sets its ``upsert`` field value to ``true``. It then passes ``opts`` to the ``replace_one()`` 
-method, which searches the collection for a document with a ``name`` field value of ``In-N-Out Burger``. 
-Because the ``sample_restaurants.restaurants`` collection does not contain a document that matches this query filter,
+and sets its ``upsert`` field value to ``true``.  When ``opts`` is passed in as an optional argument, the ``replace_one()`` method
+searches the ``sample_restaurants.restaurants`` collection for a document with a ``name`` field value of ``In-N-Out Burger``. 
+Because this sample collection does not contain a document matching this query filter,
 the ``replace_one()`` method upserts a new document with a ``name`` field value of ``Shake Shack`` into the collection. 
 
 .. io-code-block::
