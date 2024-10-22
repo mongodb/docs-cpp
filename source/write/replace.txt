@@ -110,29 +110,33 @@ argument. The following table describes the fields you can set in a
      - | Specifies a comment of any valid BSON type to attach to the operation. 
          Once set, this comment appears alongside records of this command in the following locations:
 
-       - mongod log messages, in the ``attr.command.cursor.comment`` field.
-       - Database profiler output, in the ``command.comment`` field.
-       - currentOp output, in the ``command.comment`` field. 
-       | For more information, see the :manual:`insert command
-         fields guide </reference/command/insert/#command-fields>` in the {+mdb-server+} manual.
+        - :ref:`mongod log messages <log-messages-ref>`, in the
+          ``attr.command.cursor.comment`` field.
+        - :ref:`Database profiler <profiler>` output, in the :data:`command.comment
+          <system.profile.command>` field.
+        - :dbcommand:`currentOp` output, in the :data:`command.comment
+        <currentOp.command>` field.
+        
+       | For more information, see the :manual:`insert Command
+         Fields guide </reference/command/insert/#command-fields>` in the {+mdb-server+} manual.
 
    * - ``hint``
      - | Specifies the index to scan for documents that match the query filter.
          For more information, see the
-         :manual:`update statement fields guide </reference/command/update/#std-label-update-statement-documents>`
+         :manual:`Update Statement fields guide </reference/command/update/#std-label-update-statement-documents>`
          in the {+mdb-server+} manual. 
 
    * - ``let``
      - | Specifies a document containing variables and their values to be used in the ``replace_one()`` method. 
          This allows you to improve code readability by separating the variables from the operation text. 
-       | Values must be constant or closed expressions that don't reference document fields. 
+         Values must be constant or closed expressions that don't reference document fields. 
          For more information, see the 
-         :manual:`update command fields guide </reference/command/update/#std-label-replace-let-syntax>`
+         :manual:`update Command Fields guide </reference/command/update/#std-label-replace-let-syntax>`
          in the {+mdb-server+} manual.
 
    * - ``upsert``
      - | Specifies whether the replace operation performs an upsert operation if no 
-         documents match the query filter. Accepts a boolean value as its argument. 
+         documents match the query filter.
        | Defaults to ``false``.
 
    * - ``write_concern``
