@@ -1,7 +1,7 @@
 .. _cpp-work-with-indexes:
 
 =================
-Work With Indexes
+Work with Indexes
 =================
 
 .. contents:: On this page
@@ -141,7 +141,7 @@ Remove an Index
 You can remove any unused index except the default unique index on the
 ``_id`` field using the following methods: 
 
-- ``drop_one()``, which removes a single index from the collection
+- ``drop_one()``, which removes a single specified index from the collection
 - ``drop_all()``, which removes *all indexes* from the collection 
 
 Remove a Single Index

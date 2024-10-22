@@ -21,7 +21,7 @@ Optimize Queries with Indexes
 .. toctree::
    :titlesonly:
    :maxdepth: 1
-
+   
    /work-with-indexes
 
 Overview
