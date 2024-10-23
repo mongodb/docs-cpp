@@ -154,8 +154,8 @@ argument. The following table describes the fields you can set in a
          For more information, see :manual:`Write Concern </reference/write-concern/>`
          in the {+mdb-server+} manual.
 
-Example: hint
-^^^^^^^^^^^^^^^^^
+Example: hint Option
+^^^^^^^^^^^^^^^^^^^^
 
 The following example uses the ``create_index()`` method to create an ascending single-field index 
 on the ``name`` field. It then passes a ``mongocxx::options::replace`` object to the ``replace_one()``
@@ -170,8 +170,8 @@ field index when replacing a document that has a ``name`` field value of ``"Nobu
 
 To learn more about indexes, see :ref:`Optimize Queries with Indexes <cpp-indexes>`.
 
-Example: upsert 
-^^^^^^^^^^^^^^^^^^^
+Example: upsert Option
+^^^^^^^^^^^^^^^^^^^^^^
 
 The following example passes a ``mongocxx::options::replace`` object to the ``replace_one()`` method 
 after setting its ``upsert`` field value to ``true``.  
@@ -224,7 +224,7 @@ member functions:
          performed an upsert.
 
 Example: matched_count()
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example uses the ``replace_one()`` method to replace a document that has
 a ``name`` field value of ``"Shake Shack"`` with a new document that has a ``name`` 
@@ -246,7 +246,7 @@ function to print the number of documents that match the query filter:
       Matched documents: 11
 
 Example: upserted_id()
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 The following example uses the ``replace_one()`` method to replace a document that has a ``name`` field value of ``"In-N-Out Burger"``. 
 Because the ``upsert`` option is set to ``true``, the {+driver-short+} inserts a new document when the query filter doesn't match any existing documents. 
