@@ -105,7 +105,7 @@ argument. The following table describes the fields you can set in a
    :widths: 30 70
    :header-rows: 1
 
-   * - Function 
+   * - Field 
      - Description
 
    * - ``bypass_document_validation``
@@ -206,7 +206,7 @@ member functions:
    :widths: 30 70
    :header-rows: 1
 
-   * - Field
+   * - Function
      - Description
 
    * - ``matched_count()``
