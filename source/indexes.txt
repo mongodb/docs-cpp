@@ -23,6 +23,8 @@ Optimize Queries with Indexes
    :maxdepth: 1
    
    /indexes/work-with-indexes
+   /indexes/single-field-index
+   /indexes/compound-index
 
 Overview
 --------
