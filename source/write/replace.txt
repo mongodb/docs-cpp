@@ -48,7 +48,7 @@ You can perform a replace operation by calling the ``replace_one()`` method.
 This method removes all fields except the ``_id`` field from the first document that
 matches the search criteria. It then inserts the fields and values you specify into the document. 
 
-Each replace method requires the following parameters:
+The ``replace_one()`` method requires the following parameters:
 
 - **Query filter** document: Specifies which document to replace. For
   more information about query filters, see 

@@ -54,7 +54,7 @@ int main() {
     }
     
     {
-        // Replaces a document that has a "name" value of "Nobu" and instructs the operation to use the "name_1" field index
+        // Replaces a document that has a "name" value of "Nobu" and instructs the operation to use the "name" field index
         // start-replace-options-upsert
         std::cout << "Total document count before replace_one(): " << collection.count_documents({}) << std::endl;
 
