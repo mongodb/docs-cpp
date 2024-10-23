@@ -25,10 +25,9 @@ Indexes can improve the efficiency of queries and add additional functionality
 to querying and storing documents.
 
 Without indexes, MongoDB must scan every document in a collection to find the
-documents that match each query. These collection scans are
-slow and can negatively affect the performance of your application. However, if an
-appropriate index exists for a query, MongoDB can use the index to limit the
-documents it must inspect.
+documents that match each query. If an appropriate index exists for a query, 
+MongoDB can use the index to limit the documents it must inspect and 
+improve potential query performance. 
 
 Operational Considerations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
