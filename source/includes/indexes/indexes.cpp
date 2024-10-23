@@ -27,6 +27,12 @@ int main(){
         collection.create_index(index_specification.view());
         // end-index-single
     }
+    {
+        // start-index-single-query
+        auto document = collection.find_one(make_document(kvp("title","The Hunchback of Notre Dame")));
+        std::cout << bsoncxx::to_json(*document) << std::endl;
+        // end-index-single-query 
+    }
 
     {
         // start-index-compound

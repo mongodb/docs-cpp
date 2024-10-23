@@ -69,45 +69,12 @@ To learn how to create a free MongoDB Atlas cluster and load the sample datasets
 Create an Index
 ---------------
 
-MongoDB supports several different index types to support querying your data.
-The following sections describe the most common index types and provide sample
-code for creating each index type:
+MongoDB supports several index types to help query your data.
+The following pages describe different index types and provide sample
+code to create each type of index:
 
 - :ref:`cpp-single-field-index`
 - :ref:`cpp-compound-index`
-
-.. _cpp-single-field-index:
-
-Single-Field Indexes
-~~~~~~~~~~~~~~~~~~~~
-
-:manual:`Single-field indexes </core/index-single/>` are indexes with a
-reference to a single field within a collection's
-documents, improving query and sort performance. Single-field indexes support
-:manual:`TTL (time to live) indexes </core/index-ttl>`, which
-automatically remove documents from a collection after a certain amount of time
-or at a specific clock time.
-
-To create a single-field index, call the ``create_index()`` method and specify: 
-
-- The field on which to create the index
-- The sort order for the indexed values (``1`` for ascending or ``-1`` for descending)
-
-.. note::
-
-   The ``_id_`` index is an example of a single-field index. This index is
-   automatically created on the ``_id`` field when a new collection is created.
-
-The following example creates an ascending single-field index on the ``title`` field:
-
-.. literalinclude:: /includes/indexes/indexes.cpp
-   :start-after: start-index-single
-   :end-before: end-index-single
-   :language: cpp
-   :copyable:
-
-To learn more about single-field indexes, see :manual:`Single Field Indexes
-</core/index-single>` in the {+mdb-server+} manual.
 
 .. _cpp-compound-index:
 
