@@ -99,7 +99,7 @@ Options
 You can modify the behavior of the ``replace_one()`` method by
 passing an instance of the ``mongocxx::options::replace`` class as an optional
 argument. The following table describes the fields you can set in a
-``mongocxx::options::update`` instance:
+``mongocxx::options::replace`` instance:
 
 .. list-table::
    :widths: 30 70
