@@ -66,8 +66,8 @@ Replace One Document Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following example uses the ``replace_one()`` method to replace 
-a document that has a ``name`` field value of ``Nobu`` with a new document 
-that has a ``name`` field value of ``La Bernadin``:
+a document that has a ``name`` field value of ``"Nobu"`` with a new document 
+that has a ``name`` field value of ``"La Bernadin"``:
 
 .. literalinclude:: /includes/write/replace.cpp
    :start-after: start-replace-one
@@ -159,7 +159,7 @@ Example: ``hint``
 The following example uses the :ref:`create_index() <cpp-indexes>` method to create an ascending single-field index 
 on the ``name`` field. It then instantiates a ``mongocxx::options::replace`` object called ``opts`` and sets its ``hints`` field value to the name 
 of the new index, ``name_1``. When ``opts`` is passed in as an optional argument, the ``replace_one()`` method searches the ``name_1`` index for a
-``name`` field value of ``Nobu`` and replaces the associated document with a new document that has a ``name`` field value of ``La Bernadin``.  
+``name`` field value of ``"Nobu"`` and replaces the associated document with a new document that has a ``name`` field value of ``"La Bernadin"``.  
 
 .. literalinclude:: /includes/write/replace.cpp
    :start-after: start-replace-options-hint
@@ -174,9 +174,9 @@ Example: ``upsert``
 
 The following example instantiates a ``mongocxx::options::replace`` object called ``opts``
 and sets its ``upsert`` field value to ``true``.  When ``opts`` is passed in as an optional argument, the ``replace_one()`` method
-searches the ``sample_restaurants.restaurants`` collection for a document with a ``name`` field value of ``In-N-Out Burger``. 
+searches the ``sample_restaurants.restaurants`` collection for a document with a ``name`` field value of ``"In-N-Out Burger"``. 
 Because this sample collection does not contain a document matching this query filter,
-the ``replace_one()`` method upserts a new document with a ``name`` field value of ``Shake Shack`` into the collection. 
+the ``replace_one()`` method upserts a new document with a ``name`` field value of ``"Shake Shack"`` into the collection. 
 
 .. io-code-block::
 
@@ -227,9 +227,9 @@ Example: ``matched_count()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example uses the ``replace_one()`` method to replace a document that has
-a ``name`` field value of ``Shake Shack`` with a new document that has a ``name`` 
-field value of ``In-N-Out Burger``. It then calls the ``matched_count()`` member 
-function to print the number of documents that match the search for a ``name`` field value of ``Shake Shack``:
+a ``name`` field value of ``"Shake Shack"`` with a new document that has a ``name`` 
+field value of ``"In-N-Out Burger"``. It then calls the ``matched_count()`` member 
+function to print the number of documents that match the search for a ``name`` field value of ``"Shake Shack"``:
 
 .. io-code-block::
 
@@ -248,7 +248,7 @@ function to print the number of documents that match the search for a ``name`` f
 Example: ``upserted_id()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example uses the ``replace_one()`` method to find and replace a document that has a ``name`` field value of ``In-N-Out Burger``. 
+The following example uses the ``replace_one()`` method to find and replace a document that has a ``name`` field value of ``"In-N-Out Burger"``. 
 Because the upsert option is set to true, the {+driver-short+} inserts a new document when the query filter doesn't match any existing documents. 
 It then cals the ``upserted_id()`` member function to print the ``_id`` field value of the upserted document. 
 
