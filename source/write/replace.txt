@@ -20,7 +20,7 @@ Replace Documents
 Overview
 --------
 
-In this guide, you can learn how to use the {+driver-short+} to run a replace operation on a MongoDB collection.
+In this guide, you can learn how to use the {+driver-short+} to run a **replace operation** on a MongoDB collection.
 A replace operation removes all fields except the ``_id`` field in the target document and replaces them with new ones.
 You can call the ``replace_one()`` method to replace a single document.
 
@@ -133,8 +133,7 @@ argument. The following table describes the fields you can set in a
 
    * - ``hint``
      - | Specifies the index to scan for documents that match the query filter.
-         For more information, see the
-         :manual:`Update Statement fields guide </reference/command/update/#std-label-update-statement-documents>`
+         For more information, see the :manual:`hint field </reference/command/update/#std-label-update-command-hint>`
          in the {+mdb-server+} manual. 
 
    * - ``let``
