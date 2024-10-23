@@ -38,8 +38,8 @@ and assign the following values to your ``db`` and ``collection`` variables:
     :language: cpp
     :dedent:
 
-To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see
-:atlas:`Get Started with Atlas </getting-started>`.
+To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
+:atlas:`Get Started with Atlas </getting-started>` guide.
 
 Replace Operation
 -----------------
