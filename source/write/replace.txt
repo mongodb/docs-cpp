@@ -158,10 +158,10 @@ argument. The following table describes the fields you can set in a
 Example: hint
 ^^^^^^^^^^^^^^^^^
 
-The following example uses the :ref:`create_index() <cpp-indexes>` method to create an ascending single-field index 
-on the ``name`` field. It then instantiates a ``mongocxx::options::replace`` object called ``opts`` and sets its ``hints`` field value to the name 
-of the new index, ``name_1``. When ``opts`` is passed in as an optional argument, the ``replace_one()`` method searches the ``name_1`` index for a
-``name`` field value of ``"Nobu"`` and replaces the associated document with a new document that has a ``name`` field value of ``"La Bernadin"``.  
+The following example uses the ``create_index()`` method to create an ascending single-field index 
+on the ``name`` field. It then passes a ``mongocxx::options::replace`` object to the ``replace_one()``
+method after setting its ``hint`` field to the new index. This instructs the replace operation to search the ``name`` 
+field index when replacing a document that has a ``name`` field value of ``"Nobu"``:
 
 .. literalinclude:: /includes/write/replace.cpp
    :start-after: start-replace-options-hint
