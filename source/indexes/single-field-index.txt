@@ -82,9 +82,9 @@ created in the preceding code example:
    .. output::
       :language: cli
       :visible: false
-
-      { "_id" :..., "plot" : "The timeless tale of the seductive gypsy Esmeralda...",
-      "genres" : [ "Drama", "History", "Horror" ], "runtime" : 104,...} 
+      
+      { "_id" :..., "plot" : "Peter Pan enters the nursery of the Darling children...",
+      "genres" : [ "Adventure", "Fantasy", "Family" ], "runtime" : 105,...}
 
 Additional Information
 ----------------------

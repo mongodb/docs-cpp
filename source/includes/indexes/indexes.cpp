@@ -29,7 +29,7 @@ int main(){
     }
     {
         // start-index-single-query
-        auto document = collection.find_one(make_document(kvp("title","The Hunchback of Notre Dame")));
+        auto document = collection.find_one(make_document(kvp("title","Peter Pan")));
         std::cout << bsoncxx::to_json(*document) << std::endl;
         // end-index-single-query 
     }
