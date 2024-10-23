@@ -75,7 +75,7 @@ that has a ``name`` field value of ``"La Bernadin"``:
    :language: cpp
    :dedent:
 
-To check if you successfully replaced the document, you can use the :ref:`find_one() <cpp-retrieve-find-one>` method to print out the new document:
+To check if you successfully replaced the document, you can use the find_one() method to print out the new document:
 
 .. io-code-block::
 
@@ -90,6 +90,8 @@ To check if you successfully replaced the document, you can use the :ref:`find_o
       :visible: false
       
       New document: { "_id" : { "$oid" : "5eb3d668b31de5d588f42e34" }, "name" : "La Bernadin" }  
+
+To learn more about the find_one() method, see :ref:`cpp-retrieve-find-one` in the Retrieve Data guide.
 
 Options 
 ~~~~~~~
