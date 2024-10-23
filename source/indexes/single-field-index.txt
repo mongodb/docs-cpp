@@ -57,7 +57,7 @@ To learn how to create a free MongoDB Atlas cluster and load the sample datasets
 Create Single-Field Index
 -------------------------
 
-The following example uses the ``create_one()`` method to 
+The following example uses the ``create_index()`` method to 
 create an ascending single-field index on the ``title`` field:
 
 .. literalinclude:: /includes/indexes/indexes.cpp
@@ -73,26 +73,30 @@ created in the preceding code example:
 .. io-code-block::
    :copyable: true
 
-   .. input:: /includes/indexes/indexes.php
+   .. input:: /includes/indexes/indexes.cpp
       :start-after: start-index-single-query
       :end-before: end-index-single-query
       :language: php
       :dedent:
    
    .. output::
+      :language: cli
       :visible: false
 
-      {"_id":...,"plot":"A musical comedy duo...",
-      "genres":["Musical"],...,"title":"Sweethearts",...}
+      { "_id" :..., "plot" : "The timeless tale of the seductive gypsy Esmeralda...",
+      "genres" : [ "Drama", "History", "Horror" ], "runtime" : 104,...} 
 
 Additional Information
 ----------------------
 
+To learn more about single field indexes, see :manual:`Single Field
+Indexes </core/index-single>` in the {+mdb-server+} manual.
+
 To view runnable examples that demonstrate how to manage indexes, see
 :ref:`cpp-indexes`.
 
-To learn more about single field indexes, see :manual:`Single Field
-Indexes </core/index-single>` in the {+mdb-server+} manual.
+To learn more about indexes in MongoDB, see the :manual:`Indexes </indexes>`
+guide in the {+mdb-server+} manual.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
@@ -100,5 +104,5 @@ API Documentation
 To learn more about any of the methods discussed in this guide, see the
 following API documentation:
 
-- :cppmethod:`MongoDB\Collection::create_one()`
-- :cppmethod:`MongoDB\Collection::findOne()`
+- `create_index() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a39cf05fd8da3a7993929c8bfd3de9b46>`__
+- `find_one() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a85f4d18d0d3bb3426109a445196ac587>`__
