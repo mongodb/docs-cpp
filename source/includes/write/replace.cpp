@@ -39,6 +39,7 @@ int main() {
     }
 
     {
+        // Replaces a document that has a "name" value of "Nobu" and instructs the operation to use the "name" field index
         // start-replace-options-hint
         auto index_specification = make_document(kvp("name", 1));
         collection.create_index(index_specification.view());
@@ -54,7 +55,8 @@ int main() {
     }
     
     {
-        // Replaces a document that has a "name" value of "Nobu" and instructs the operation to use the "name" field index
+        // Replaces a document that has a "name" value of "In-N-Out Burger" 
+        // and instructs the operation to insert a new operation if none match.
         // start-replace-options-upsert
         std::cout << "Total document count before replace_one(): " << collection.count_documents({}) << std::endl;
 
