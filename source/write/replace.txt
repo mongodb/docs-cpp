@@ -174,11 +174,10 @@ To learn more about indexes, see :ref:`Optimize Queries with Indexes <cpp-indexe
 Example: upsert 
 ^^^^^^^^^^^^^^^^^^^
 
-The following example instantiates a ``mongocxx::options::replace`` object called ``opts``
-and sets its ``upsert`` field value to ``true``.  When ``opts`` is passed in as an optional argument, the ``replace_one()`` method
-searches the ``sample_restaurants.restaurants`` collection for a document with a ``name`` field value of ``"In-N-Out Burger"``. 
-Because this sample collection does not contain a document matching this query filter,
-the ``replace_one()`` method upserts a new document with a ``name`` field value of ``"Shake Shack"`` into the collection. 
+The following example passes a ``mongocxx::options::replace`` object to the ``replace_one()`` method 
+after setting its ``upsert`` field value to ``true``.  
+Because no documents match the query filter, this instructs the replace operation to insert a new document
+with a ``name`` field value of ``"Shake Shack"`` into the collection:
 
 .. io-code-block::
 
