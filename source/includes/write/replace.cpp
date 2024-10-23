@@ -20,8 +20,8 @@ int main() {
     // end-db-coll
 
     {
-        // replaces the fields and values of a document with the name "Bagels N Buns" with a document 
-        // with the same _id value and no fields other than the name "2 Bagels 2 Buns"
+        // replaces a document that has a "name" value of "Nobu"
+        // with a document that has a "name" of "La Bernadin"
         // start-replace-one
         auto query_filter = make_document(kvp("name", "Nobu"));
         auto replace_doc = make_document(kvp("name", "La Bernadin"));
@@ -31,7 +31,7 @@ int main() {
     }
 
     {
-        // Print replace_one() output
+        // Retrieves a document to verify the replacement operation
         // start-replace-one-io
         auto new_doc = collection.find_one(make_document(kvp("name", "La Bernadin")));
         std::cout << "New document: " << bsoncxx::to_json(*new_doc) << std::endl;
@@ -54,6 +54,7 @@ int main() {
     }
     
     {
+        // Replaces a document that has a "name" value of "Nobu" and instructs the operation to use the "name_1" field index
         // start-replace-options-upsert
         std::cout << "Total document count before replace_one(): " << collection.count_documents({}) << std::endl;
 
@@ -82,7 +83,8 @@ int main() {
 
     {
 
-        // Replaces the matching document and prints the number of modified documents
+        // Replaces a document that has a "name" value of "In-N-Out Burger" and instructs the operation
+        // to insert a new document if none match.
         // start-replace-result-upsert
         mongocxx::options::replace opts{}; 
         opts.upsert(true);
