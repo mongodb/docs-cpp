@@ -21,8 +21,10 @@ Optimize Queries with Indexes
 .. toctree::
    :titlesonly:
    :maxdepth: 1
-
-   /work-with-indexes
+   
+   /indexes/work-with-indexes
+   /indexes/single-field-index
+   /indexes/compound-index
 
 Overview
 --------
