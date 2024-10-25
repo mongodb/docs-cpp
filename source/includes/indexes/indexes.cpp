@@ -36,9 +36,16 @@ int main(){
 
     {
         // start-index-compound
-        auto index_specification = make_document(kvp("title", 1), kvp("year", -1));
+        auto index_specification = make_document(kvp("title", 1), kvp("year", 1));
         collection.create_index(index_specification.view());
         // end-index-compound
+    }
+
+    {
+        // start-index-compound-query
+        auto document = collection.find_one(make_document(kvp("title","Peter Pan"), kvp("year", 1924)));
+        std::cout << bsoncxx::to_json(*document) << std::endl;
+        // end-index-compound-query 
     }
 
     {

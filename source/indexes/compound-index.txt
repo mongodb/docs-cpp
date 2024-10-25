@@ -20,12 +20,11 @@ Compound Indexes
 Overview
 --------
 
-Single field indexes are indexes with a reference to a single field of a
-document in a collection. They also support :manual:`TTL Indexes </core/index-ttl>`
-that automatically remove documents from a collection after a certain
-amount of time or at a specified clock time.
+**Compound indexes** are indexes that hold references to multiple
+fields within a collection's documents. These indexes improve multi-field query and
+sort performance.
 
-To create a compound index, call the ``create_index()`` method and specify: 
+To create a compound index, call the ``create_index()`` method and specify a document containing: 
 
 - The fields on which to create the index
 - The sort order for the indexed values, ``1`` for ascending or ``-1`` for descending.
@@ -50,8 +49,7 @@ To learn how to create a free MongoDB Atlas cluster and load the sample datasets
 Create Compound Index
 ---------------------
 
-The following example creates a compound index that sorts the ``title`` field in ascending order and the 
-``year`` field in descending order: 
+The following example creates an ascending compound index on the ``title`` and ``year`` fields:
 
 .. literalinclude:: /includes/indexes/indexes.cpp
    :start-after: start-index-compound
@@ -66,17 +64,17 @@ created in the preceding code example:
    :copyable: true
 
    .. input:: /includes/indexes/indexes.cpp
-      :start-after: start-index-single-query
-      :end-before: end-index-single-query
+      :start-after: start-index-compound-query
+      :end-before: end-index-compound-query
       :language: php
       :dedent:
    
    .. output::
       :language: cli
       :visible: false
-      
-      { "_id" :..., "plot" : "Peter Pan enters the nursery of the Darling children...",
-      "genres" : [ "Adventure", "Fantasy", "Family" ], "runtime" : 105,...}
+
+      { "_id" : { "$oid" : "..." }, "plot" : "Peter Pan enters the nursery of the Darling children...", 
+      ..., "year" : 1924, "imdb" : ...,...}
 
 Additional Information
 ----------------------

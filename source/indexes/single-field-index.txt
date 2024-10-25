@@ -20,13 +20,13 @@ Single Field Indexes
 Overview
 --------
 
-Single field indexes are indexes with a reference to a single field of a
+**Single field indexes** are indexes that hold a reference to a single field of a
 document in a collection. These indexes improve single field query and
 sort performance. They also support :manual:`TTL Indexes </core/index-ttl>`
 that automatically remove documents from a collection after a certain
 amount of time or at a specified clock time.
 
-To create a single-field index, call the ``create_index()`` method and specify: 
+To create a single-field index, call the ``create_index()`` method and specify a document containing:
 
 - The field on which to create the index
 - The sort order for the indexed values, ``1`` for ascending or ``-1`` for descending
