@@ -25,6 +25,7 @@ Optimize Queries with Indexes
    Work with Indexes </indexes/work-with-indexes>
    Single Field Indexes </indexes/single-field-index>
    Compound Indexes </indexes/compound-index>
+   Atlas Search Indexes </indexes/atlas-search-index>
 
 Overview
 --------
