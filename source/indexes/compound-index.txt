@@ -1,4 +1,4 @@
-.. _cpp-compound-indexes:
+.. _cpp-compound-index:
 
 ================
 Compound Indexes
