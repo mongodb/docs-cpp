@@ -41,6 +41,7 @@ and assign the following values to your ``db`` and ``collection`` variables:
     :start-after: start-db-coll
     :end-before: end-db-coll
     :language: cpp
+    :copyable:
     :dedent:
 
 To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
@@ -56,6 +57,7 @@ The following example creates an ascending compound index on the ``title`` and `
    :end-before: end-index-compound
    :language: cpp
    :copyable:
+   :dedent:
 
 The following is an example of a query that is covered by the index
 created in the preceding code example:
