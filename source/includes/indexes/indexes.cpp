@@ -24,7 +24,7 @@ int main(){
     {
         // start-index-single
         auto index_specification = make_document(kvp("title", 1));
-        collection.create_index(index_specification.view());
+        auto result = collection.create_index(index_specification.view());
         // end-index-single
     }
     {
@@ -37,7 +37,7 @@ int main(){
     {
         // start-index-compound
         auto index_specification = make_document(kvp("title", 1), kvp("year", 1));
-        collection.create_index(index_specification.view());
+        auto result = collection.create_index(index_specification.view());
         // end-index-compound
     }
 
