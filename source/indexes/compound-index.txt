@@ -75,9 +75,9 @@ created in the preceding code example:
       :language: cli
       :visible: false
 
-      { "_id" : { "$oid" : "..." }, "plot" : "Peter Pan enters the nursery of the Darling children...", 
-      ..., "year" : 1924, "imdb" : ...,...}
-
+      { "_id" :..., "plot" : "Peter Pan enters the nursery of the Darling children...", 
+      ..., "year" : 1924, "imdb" : ..., "type", "movie",...}
+      
 Additional Information
 ----------------------
 
