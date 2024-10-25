@@ -82,10 +82,9 @@ Remove an Index
 ---------------
 
 You can remove any unused index except the default unique index on the
-``_id`` field using the following methods: 
+``_id`` field.
 
-- ``drop_one()``, which removes a single specified index from the collection
-- ``drop_all()``, which removes *all indexes* from the collection 
+The following sections provide examples that show how to remove one or more indexes from a collection.
 
 Remove a Single Index
 ~~~~~~~~~~~~~~~~~~~~~
