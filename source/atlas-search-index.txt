@@ -173,4 +173,4 @@ following API documentation:
 - :phpmethod:`MongoDB\Collection::listSearchIndexes()`
 - :phpmethod:`MongoDB\Collection::updateSearchIndex()`
 - :phpmethod:`MongoDB\Collection::dropSearchIndex()`
-- `search_index_view.create_one() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.html>`__
+- `search_index_view.create_one() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.htmll#a5b564dda9e19d0bc69a3f77ea0df7e8e>`__
