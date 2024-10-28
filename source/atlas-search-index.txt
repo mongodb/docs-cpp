@@ -37,6 +37,9 @@ to manage your Atlas Search indexes:
 - ``update_one()``
 - ``drop_one()``
 
+To get a ``search_index_view`` to your collection, 
+call the ``search_indexes()`` method on your ``mongocxx::collection`` instance.
+
 .. note:: Atlas Search Index Management is Asynchronous
 
    The {+php-library+} manages Atlas Search indexes asynchronously. The
@@ -52,16 +55,40 @@ each Atlas Search index management method.
 Create a Search Index
 ---------------------
 
-To create a single Atlas Search Index on a collection, use the ``create_one()`` method 
-on ``mongocxx::search_index_view`` instance. 
+To create a single Atlas Search Index on a collection, call the ``create_one()`` method 
+on a ``mongocxx::search_index_view`` instance. The ``create_one()`` method requires the following parameters:
 
-The following example uses the ``create_one()`` method to create a single Atlas Search
-index:
+- ``name``, a string that specifies the name for your search index
+- ``mappings``, a document that specifies how to index fields at different paths for this index. For a list of ``mappings`` fields, 
+see the Atlas Search Index Syntax guide in the MongoDB Atlas documentation. 
 
-.. literalinclude:: /includes/indexes/c
-   :language: php
-   :start-after: start-create-search-index
-   :end-before: end-create-search-index
+The following example calls the ``create_one()`` method to create a single Atlas Search
+index with dynamic mappings:
+
+.. io-code-block::
+
+   .. input:: /includes/indexes.cpp
+      :start-after: start-create-search-index
+      :end-before: end-create-search-index
+      :language: cpp
+      :copyable:
+      :dedent:
+   
+   .. output:: 
+      :language: cli
+      :visible: false
+      
+      New index name: my-first-index
+
+To use static mappings, you must explicitly include the fields in the collection that you want to index. To learn more, 
+see Define Field Mappings in the MongoDB Atlas documentation. 
+
+The following example shows how to create a single Atlas Search index with static mappings: 
+
+To create multiple Atlas Search indexes, call the ``create_many()`` method 
+on a ``mongocxx::search_index_view`` instance and pass in a ``mappings`` document listing the index models 
+to create. 
+
 
 The following code example shows how to create multiple Atlas Search
 indexes:
