@@ -28,14 +28,14 @@ fields to index and how they are indexed.
 To learn more about Atlas Search, see the :atlas:`Atlas Search Overview
 </atlas-search/atlas-search-overview/>`.
 
-You can use the following methods on a ``MongoDB\Collection`` instance
+You can use the following methods on a ``mongocxx::search_index_view`` instance
 to manage your Atlas Search indexes:
 
-- ``MongoDB\Collection::createSearchIndex()``
-- ``MongoDB\Collection::createSearchIndexes()``
-- ``MongoDB\Collection::listSearchIndexes()``
-- ``MongoDB\Collection::updateSearchIndex()``
-- ``MongoDB\Collection::dropSearchIndex()``
+- ``create_one()``
+- ``create_many()``
+- ``list()``
+- ``update_one()``
+- ``drop_one()``
 
 .. note:: Atlas Search Index Management is Asynchronous
 
@@ -59,7 +59,7 @@ create multiple indexes simultaneously.
 The following code example shows how to create a single Atlas Search
 index:
 
-.. literalinclude:: /includes/indexes/indexes.php
+.. literalinclude:: /includes/indexes/c
    :language: php
    :start-after: start-create-search-index
    :end-before: end-create-search-index
@@ -147,3 +147,4 @@ following API documentation:
 - :phpmethod:`MongoDB\Collection::listSearchIndexes()`
 - :phpmethod:`MongoDB\Collection::updateSearchIndex()`
 - :phpmethod:`MongoDB\Collection::dropSearchIndex()`
+- `search_index_view.create_one() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.html>`__
