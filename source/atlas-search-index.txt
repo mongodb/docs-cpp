@@ -60,14 +60,14 @@ on a ``mongocxx::search_index_view`` instance. The ``create_one()`` method requi
 
 - ``name``, a string that specifies the name for your search index
 - ``mappings``, a document that specifies how to index fields at different paths for this index. For a list of ``mappings`` fields, 
-see the Atlas Search Index Syntax guide in the MongoDB Atlas documentation. 
+  see the Atlas Search Index Syntax guide in the MongoDB Atlas documentation. 
 
 The following example calls the ``create_one()`` method to create a single Atlas Search
 index with dynamic mappings:
 
 .. io-code-block::
 
-   .. input:: /includes/indexes.cpp
+   .. input:: /includes/indexes/indexes.cpp
       :start-after: start-create-search-index
       :end-before: end-create-search-index
       :language: cpp
