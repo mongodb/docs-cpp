@@ -137,7 +137,7 @@ guide in the {+mdb-server+} manual.
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-To learn more about any of the methods or types discussed in this
+To learn more about the methods or types discussed in this
 guide, see the following API documentation:
 
 - `create_index() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a39cf05fd8da3a7993929c8bfd3de9b46>`__
