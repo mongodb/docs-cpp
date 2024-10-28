@@ -52,11 +52,10 @@ each Atlas Search index management method.
 Create a Search Index
 ---------------------
 
-You can use the ``createSearchIndex()`` method to create a single Atlas
-Search index on a collection, or the ``createSearchIndexes()`` method to
-create multiple indexes simultaneously.
+To create a single Atlas Search Index on a collection, use the ``create_one()`` method 
+on ``mongocxx::search_index_view`` instance. 
 
-The following code example shows how to create a single Atlas Search
+The following example uses the ``create_one()`` method to create a single Atlas Search
 index:
 
 .. literalinclude:: /includes/indexes/c
