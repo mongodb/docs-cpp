@@ -1,4 +1,4 @@
-.. _cpp-single field-index:
+.. _cpp-single-field-index:
 
 ====================
 Single Field Indexes
