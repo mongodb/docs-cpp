@@ -24,7 +24,7 @@ Overview
 fields within a collection's documents. These indexes improve multi-field query and
 sort performance.
 
-To create a compound index, call the ``create_index()`` method and specify a document containing: 
+To create a compound index, call the ``create_index()`` method and specify a document containing the following information: 
 
 - The fields on which to create the index
 - The sort order for the indexed values, ``1`` for ascending or ``-1`` for descending.
