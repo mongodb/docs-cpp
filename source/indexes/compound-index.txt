@@ -59,7 +59,7 @@ The following example creates an ascending compound index on the ``title`` and `
    :copyable:
    :dedent:
 
-The following is an example of a query that is covered by the index
+The following query is covered by the index
 created in the preceding code example:
 
 .. io-code-block::
@@ -81,13 +81,13 @@ created in the preceding code example:
 Additional Information
 ----------------------
 
-To learn more about compound indexes, see :manual:`Compound Indexes </core/index-compound>` in the {+mdb-server+} manual.
-
 To view runnable examples that demonstrate how to manage indexes, see
 :ref:`cpp-indexes`.
 
-To learn more about indexes in MongoDB, see the :manual:`Indexes </indexes>`
-guide in the {+mdb-server+} manual.
+To learn more about indexes, see the following resources in the {+mdb-server+} manual: 
+
+- :manual:`Indexes </indexes>` 
+- :manual:`Compound Indexes </core/index-compound>` 
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
