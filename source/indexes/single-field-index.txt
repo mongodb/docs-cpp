@@ -28,8 +28,8 @@ amount of time or at a specified clock time.
 
 To create a single-field index, call the ``create_index()`` method and specify a document containing the following information:
 
-- The field on which to create the index
-- The sort order for the indexed values, ``1`` for ascending or ``-1`` for descending
+- Fields on which to create the index
+- Sort order for the indexed values, ``1`` for ascending or ``-1`` for descending
 
 .. note::
 
