@@ -259,12 +259,12 @@ Because the ``upsert`` option is set to ``true``, the {+driver-short+} inserts a
 Then, the code calls the ``upserted_id()`` member function to print the ``_id`` field value of the upserted document: 
 
 .. io-code-block::
+   :copyable: true
 
    .. input:: /includes/write/replace.cpp
       :start-after: start-replace-result-upsert
       :end-before: end-replace-result-upsert
       :language: cpp
-      :copyable:
       :dedent:
 
    .. output:: 
