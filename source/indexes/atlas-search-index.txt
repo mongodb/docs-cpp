@@ -77,6 +77,7 @@ see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` gu
 The following example shows how to create a single Atlas Search index with static mappings: 
 
 .. io-code-block::
+   :copyable: true
 
    .. input:: /includes/indexes/indexes.cpp
       :start-after: start-create-static-search-index

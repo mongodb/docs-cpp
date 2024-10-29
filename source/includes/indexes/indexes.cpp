@@ -118,5 +118,6 @@ int main(){
         for (const std::string& name : result) {
             std::cout << name << std::endl;
         }
+        // end-create-multiple-search-indexes
     }
 }

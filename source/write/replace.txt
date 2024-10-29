@@ -80,12 +80,12 @@ that has a ``name`` field value of ``"La Bernadin"``:
 To check if you successfully replaced the document, you can use the ``find_one()`` method to print out the new document:
 
 .. io-code-block::
+   :copyable: true
 
    .. input:: /includes/write/replace.cpp
       :start-after: start-replace-one-io
       :end-before: end-replace-one-io
       :language: cpp
-      :copyable:
       :dedent:
    
    .. output:: 
@@ -183,12 +183,12 @@ Because no documents match the query filter, this instructs the replace operatio
 with a ``name`` field value of ``"Shake Shack"`` into the collection:
 
 .. io-code-block::
+   :copyable: true
 
    .. input:: /includes/write/replace.cpp
       :start-after: start-replace-options-upsert
       :end-before: end-replace-options-upsert
       :language: cpp
-      :copyable:
       :dedent:
 
    .. output:: 
@@ -237,12 +237,12 @@ field value of ``"In-N-Out Burger"``. It then calls the ``matched_count()`` memb
 function to print the number of documents that match the query filter:
 
 .. io-code-block::
+   :copyable: true
 
    .. input:: /includes/write/replace.cpp
       :start-after: start-replace-result-matched
       :end-before: end-replace-result-matched
       :language: cpp
-      :copyable:
       :dedent:
 
    .. output:: 
