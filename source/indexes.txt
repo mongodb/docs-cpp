@@ -64,7 +64,7 @@ The following code shows how to create an ascending single-field index:
    .. input:: /includes/usage-examples/index-code-examples.cpp
       :start-after: start-single-field
       :end-before: end-single-field
-      :language: php
+      :language: cpp
       :dedent:
    
    .. output::
@@ -87,7 +87,7 @@ The following code shows how to create a descending compound index:
    .. input:: /includes/usage-examples/index-code-examples.cpp
       :start-after: start-compound-field
       :end-before: end-compound-field
-      :language: php
+      :language: cpp
       :dedent:
    
    .. output::
@@ -110,7 +110,7 @@ The following code shows how to remove an index:
    .. input:: /includes/usage-examples/index-code-examples.cpp
       :start-after: start-remove-index
       :end-before: end-remove-index
-      :language: php
+      :language: cpp
       :dedent:
    
    .. output::
@@ -133,7 +133,7 @@ The following code shows how to remove all indexes in a collection:
    .. input:: /includes/usage-examples/index-code-examples.cpp
       :start-after: start-remove-all-indexes
       :end-before: end-remove-all-indexes
-      :language: php
+      :language: cpp
       :dedent:
    
    .. output::

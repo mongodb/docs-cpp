@@ -68,7 +68,7 @@ created in the preceding code example:
    .. input:: /includes/indexes/indexes.cpp
       :start-after: start-index-compound-query
       :end-before: end-index-compound-query
-      :language: php
+      :language: cpp
       :dedent:
    
    .. output::

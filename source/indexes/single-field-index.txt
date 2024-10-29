@@ -77,7 +77,7 @@ created in the preceding code example:
    .. input:: /includes/indexes/indexes.cpp
       :start-after: start-index-single-query
       :end-before: end-index-single-query
-      :language: php
+      :language: cpp
       :dedent:
    
    .. output::
