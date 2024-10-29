@@ -43,15 +43,15 @@ defined in the GridFS specification:
 - The ``chunks`` collection stores the binary file chunks.
 - The ``files`` collection stores the file metadata.
 
-When you create a new GridFS bucket, the driver creates the preceding 
-collections, prefixed with the default bucket name ``fs``, unless
-you specify a different name. The driver also creates an index on each
-collection to ensure efficient retrieval of the files and related
-metadata. The driver creates the GridFS bucket, if it doesn't exist, only when the first write
-operation is performed. The driver creates indexes only if they don't exist and when the
-bucket is empty. For more information about
-GridFS indexes, see :manual:`GridFS Indexes </core/gridfs/#gridfs-indexes>`
-in the {+mdb-server+} manual.
+The driver creates the GridFS bucket, if it doesn't exist, when you perform
+the first write operation. The bucket contains the preceding collections
+prefixed with the default bucket name ``fs``, unless you specify a different
+name. To ensure efficient retrieval of the files and related metadata, the driver
+also creates an index on each collection if they don't exist and when the
+bucket is empty. 
+	
+For more information about GridFS indexes, see :manual:`GridFS Indexes
+</core/gridfs/#gridfs-indexes>` in the {+mdb-server+} manual.
 
 When using GridFS to store files, the driver splits the files into smaller
 chunks, each represented by a separate document in the ``chunks`` collection.
@@ -60,8 +60,8 @@ a file ID, file name, and other file metadata. You can upload the file by passin
 a stream to the {+driver-short+} to consume or creating a new stream and writing to it
 directly.
 
-View the following diagram to see how GridFS splits the files when uploaded to
-a bucket:
+The following diagram shows how GridFS splits files when they are
+uploaded to a bucket:
 
 .. figure:: /includes/figures/GridFS-upload.png
    :alt: A diagram that shows how GridFS uploads a file to a bucket
@@ -147,9 +147,9 @@ Upload Files
 
 You can upload files to a GridFS bucket by using the following methods:
 
-- ``open_upload_stream()``: Opens a new upload stream to which
+- :ref:`open_upload_stream() <gridfs-open-upload-stream>`: Opens a new upload stream to which
   you can write file contents
-- ``upload_from_stream()``: Uploads the contents of an existing
+- :ref:`upload_from_stream() <gridfs-upload-from-stream>`: Uploads the contents of an existing
   stream to a GridFS file
 
 .. _gridfs-open-upload-stream:
@@ -176,6 +176,8 @@ actions:
    :dedent:
    :start-after: start-open-upload-stream
    :end-before: end-open-upload-stream
+
+.. _gridfs-upload-from-stream:
 
 Upload an Existing Stream
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -254,10 +256,12 @@ Download Files
 
 You can download files from a GridFS bucket by using the following methods:
 
-- ``open_download_stream()``: Opens a new download stream
+- :ref:`open_download_stream() <gridfs-open-download-stream>`: Opens a new download stream
   from which you can read the file contents
-- ``download_to_stream()``: Writes the entire file to an
+- :ref:`download_to_stream() <gridfs-download_to_stream>`: Writes the entire file to an
   existing download stream
+
+.. _gridfs-open-download-stream:
 
 Read From a Download Stream
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -280,15 +284,7 @@ This example uses a download stream to perform the following actions:
    :start-after: start-open-download-stream
    :end-before: end-open-download-stream
 
-.. note::
-
-   The GridFS streaming API cannot load partial chunks. When a download
-   stream needs to pull a chunk from MongoDB, it pulls the entire chunk
-   into memory. The 255-kilobyte default chunk size is usually
-   sufficient, but you can reduce the chunk size to reduce memory
-   overhead or increase the chunk size when working with larger files.
-   For more information about setting the chunk size, see the 
-   :ref:`gridfs-create-custom-bucket` section of this page.
+.. _gridfs-download_to_stream:
 
 Download to an Existing Stream
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
