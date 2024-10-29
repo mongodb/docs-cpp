@@ -59,29 +59,20 @@ To create a single Atlas Search Index on a collection, call the ``create_one()``
 on a ``mongocxx::search_index_view`` instance. The ``create_one()`` method requires the following parameters:
 
 - ``name``, a string that specifies the name for your search index
-- ``mappings``, a document that specifies how to index fields at different paths for this index. For a list of ``mappings`` fields, 
-  see the Atlas Search Index Syntax guide in the MongoDB Atlas documentation. 
+- ``mappings``, a document that specifies how to index fields at different paths for this index. For a full list of ``mappings`` fields, 
+  see the :atlas:`Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation 
 
-The following example calls the ``create_one()`` method to create a single Atlas Search
-index with dynamic mappings:
+After you create a Search index, you can perform Atlas Search queries on
+your collection. To learn more, see :atlas:`Create and Run Atlas Search
+Queries </atlas-search/searching/>` in the Atlas documentation.
 
-.. io-code-block::
+Create a Search Index with Static Mappings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   .. input:: /includes/indexes/indexes.cpp
-      :start-after: start-create-search-index
-      :end-before: end-create-search-index
-      :language: cpp
-      :copyable:
-      :dedent:
-   
-   .. output:: 
-      :language: cli
-      :visible: false
-      
-      New index name: my-first-index
+Use static mappings to configure index options for fields that you don't want indexed dynamically, or to configure a single field independently from others in an index.
 
-To use static mappings, you must explicitly include the fields in the collection that you want to index. To learn more, 
-see Define Field Mappings in the MongoDB Atlas documentation. 
+To use static mappings, set ``mappings.dynamic`` to ``false`` and specify the fields to index using ``mappings.fields``. To learn more about static mappings, 
+see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide in the Atlas documentation. 
 
 The following example shows how to create a single Atlas Search index with static mappings: 
 
@@ -107,9 +98,40 @@ indexes:
       
       New index name: my-first-index
 
-After you create a Search index, you can perform Atlas Search queries on
-your collection. To learn more, see :atlas:`Create and Run Atlas Search
-Queries </atlas-search/searching/>` in the Atlas documentation.
+Create a Search Index with Dynamic Mappings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use dynamic mappings if your schema changes regularly or is unknown, or when experimenting with Atlas Search. 
+
+To create a dynamic Atlas Search index, set the ``mappings.dynamic`` field value to ``true``. This tells Atlas Search to 
+recursively index the fields of supported types in each document. For a list of BSON data types that are not dynamically indexable, see the Data Types 
+section of the Atlas Define Field Mappings guide. 
+
+The following example calls the ``create_one()`` method to create a single Atlas Search
+index with dynamic mappings:
+
+.. io-code-block::
+
+   .. input:: /includes/indexes/indexes.cpp
+      :start-after: start-create-search-index
+      :end-before: end-create-search-index
+      :language: cpp
+      :copyable:
+      :dedent:
+   
+   .. output:: 
+      :language: cli
+      :visible: false
+      
+      New index name: myIndex
+
+Create Multiple Atlas Search Indexes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To create multiple Atlas Search indexes, call the ``create_many()`` method and pass in a vector of the
+search index models to create. 
+
+
 
 .. _php-atlas-search-index-list:
 
@@ -167,9 +189,8 @@ Additional Information
 To view runnable examples that demonstrate how to manage indexes, see
 :ref:`php-indexes`.
 
-To view tutorials that explain how to use the Atlas Search feature, see
-:atlas:`Get Started with Atlas Search </atlas-search/tutorial/>` in the
-Atlas documentation.
+To view tutorials that explain how to use the Atlas Search feature, see the
+:atlas:`Get Started with Atlas Search </atlas-search/tutorial/>` gudie.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
@@ -177,9 +198,10 @@ API Documentation
 To learn more about any of the methods discussed in this guide, see the
 following API documentation:
 
-- :phpmethod:`MongoDB\Collection::createSearchIndex()`
-- :phpmethod:`MongoDB\Collection::createSearchIndexes()`
-- :phpmethod:`MongoDB\Collection::listSearchIndexes()`
-- :phpmethod:`MongoDB\Collection::updateSearchIndex()`
-- :phpmethod:`MongoDB\Collection::dropSearchIndex()`
+- ``create_one()``
+- ``create_many()``
+- ``list()``
+- ``update_one()``
+- ``drop_one()``
+- search_indexes()
 - `search_index_view.create_one() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.htmll#a5b564dda9e19d0bc69a3f77ea0df7e8e>`__
