@@ -237,11 +237,10 @@ the returned cursor and display the contents of the files uploaded in the
    .. output::
       :visible: false
 
-      { "_id" : { "$oid" : "..." }, "chunkSize" : 261120, "filename" : "my_file",
-      "length" : 13, "uploadDate" : { ... }, "metadata" : { "contentType" : "text/plain" },
-      "md5" : "6b24249b03ea3dd176c5a04f037a658c" }
-      { "_id" : { "$oid" : "..." }, "chunkSize" : 261120, "filename" : "new_file",
-      "length" : 13, "uploadDate" : { ... }, "md5" : "6b24249b03ea3dd176c5a04f037a658c" }
+      { "_id" : { "$oid" : "..." }, "length" : 13, "chunkSize" : 261120, "uploadDate" :
+      { "$date" : ... }, "filename" : "new_file" }
+      { "_id" : { "$oid" : "..." }, "length" : 50, "chunkSize" : 1048576, "uploadDate" :
+      { "$date" : ... }, "filename" : "my_file" }
 
 The ``find()`` method accepts various query specifications. You can use its
 ``mongocxx::options::find`` parameter to specify the sort order, maximum number of
@@ -268,8 +267,9 @@ You can download files from your MongoDB database by using the
 
 This example uses a download stream to perform the following actions:
 
-- Selects a GridFS file with the specified ``_id`` value and opens it
-  as a readable stream 
+- Retrieves the ``_id`` value of the GridFS file named ``"new_file"``
+- Passes the ``_id`` value to the ``open_download_stream()`` method to
+  open the file as a readable stream 
 - Creates a ``buffer`` vector to store the file contents
 - Calls the ``read()`` method to read the file contents from the ``downloader``
   stream into the vector
@@ -300,8 +300,9 @@ This example performs the following actions:
 
 - Opens a file located at ``/path/to/output_file`` as a stream in binary write
   mode
-- Downloads a GridFS file that has the specified ``_id`` value to the
-  stream
+- Retrieves the ``_id`` value of the GridFS file named ``"new_file"``
+- Passes the ``_id`` value to ``download_to_stream()`` to download the file
+  to the stream
 
 .. literalinclude:: /includes/write/gridfs.cpp
    :language: cpp
@@ -318,8 +319,8 @@ Use the ``delete_file()`` method to remove a file's collection document
 and associated chunks from your bucket. This effectively deletes the file.
 You must specify the file by its ``_id`` field rather than its file name.
 
-The following example shows you how to delete a file by referencing its ``_id``
-field:
+The following example shows you how to delete a file named ``"my_file"`` by
+passing its ``_id`` value to ``delete_file()``:
 
 .. literalinclude:: /includes/write/gridfs.cpp
    :language: cpp
@@ -329,10 +330,10 @@ field:
 
 .. note:: File Revisions
 
-   The ``delete()`` method supports deleting only one file at a time. If
+   The ``delete_file()`` method supports deleting only one file at a time. If
    you want to delete each file revision, or files with different upload
    times that share the same file name, collect the ``_id`` values of each revision.
-   Then, pass each value in separate calls to the ``delete()`` method.
+   Then, pass each value in separate calls to the ``delete_file()`` method.
 
 API Documentation
 -----------------
