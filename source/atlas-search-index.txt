@@ -71,17 +71,10 @@ Create a Search Index with Static Mappings
 
 Use static mappings to configure index options for fields that you don't want indexed dynamically, or to configure a single field independently from others in an index.
 
-To use static mappings, set ``mappings.dynamic`` to ``false`` and specify the fields to index using ``mappings.fields``. To learn more about static mappings, 
+To create a single Atlas Search index with static mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``false`` and specify the fields to index using ``mappings.fields``. To learn more about static mappings, 
 see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide in the Atlas documentation. 
 
 The following example shows how to create a single Atlas Search index with static mappings: 
-
-To create multiple Atlas Search indexes, call the ``create_many()`` method 
-on a ``mongocxx::search_index_view`` instance and pass in a ``mappings`` document listing the index models 
-to create. 
-
-The following code example shows how to create multiple Atlas Search
-indexes:
 
 .. io-code-block::
 
@@ -103,12 +96,11 @@ Create a Search Index with Dynamic Mappings
 
 Use dynamic mappings if your schema changes regularly or is unknown, or when experimenting with Atlas Search. 
 
-To create a dynamic Atlas Search index, set the ``mappings.dynamic`` field value to ``true``. This tells Atlas Search to 
+To create a single Atlas Search index with dynamic mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``true``. This tells Atlas Search to 
 recursively index the fields of supported types in each document. For a list of BSON data types that are not dynamically indexable, see the Data Types 
 section of the Atlas Define Field Mappings guide. 
 
-The following example calls the ``create_one()`` method to create a single Atlas Search
-index with dynamic mappings:
+The following example shows how to to create a single Atlas Search index with dynamic mappings:
 
 .. io-code-block::
 
