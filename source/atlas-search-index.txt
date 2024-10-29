@@ -122,6 +122,23 @@ Create Multiple Atlas Search Indexes
 To create multiple Atlas Search indexes, call the ``create_many()`` method and pass in a vector of the
 search index models to create. 
 
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/indexes/indexes.cpp
+      :start-after: start-create-multiple-search-indexes
+      :end-before: end-create-multiple-search-indexes
+      :language: cpp
+      :dedent:
+   
+   .. output:: 
+      :language: cli
+      :visible: false
+      
+      New index names:
+      myDynamicIndex
+      myStaticIndex
+
 .. _php-atlas-search-index-list:
 
 List Search Indexes
