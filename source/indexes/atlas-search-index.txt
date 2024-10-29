@@ -68,13 +68,13 @@ For a full list of optional and conditional fields for an Atlas Search index, se
 
 When you create an Atlas Search index, you can specify the fields to index using static mappings, 
 or configure Atlas Search to automatically index all supported field types using dynamic mappings. 
-To learn more about field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas documentation. 
+To learn more about when to use static or dynamic field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas documentation. 
 
-When you create an Atlas Search index, you can choose to index only fields that you specify, 
-or configure Atlas Search to automatically index all supported field types. 
-Use static mappings to instruct Atlas Search to only index the field names you provide in ``mappings.fields``, or to configure a single field independently from others in an index. 
-Alternatively, use dynamic mappings to automatically index the fields of supported types in each document. For a list of BSON data types that are not dynamically indexable, 
-see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide. 
+.. When you create an Atlas Search index, you can choose to index only fields that you specify, 
+.. or configure Atlas Search to automatically index all supported field types. 
+.. Use static mappings to instruct Atlas Search to only index the field names you provide in ``mappings.fields``, or to configure a single field independently from others in an index. 
+.. Alternatively, use dynamic mappings to automatically index the fields of supported types in each document. For a list of BSON data types that are not dynamically indexable, 
+.. see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide. 
 
 The following sections show how to create a single Atlas Search index with static or dynamic mappings. 
 
@@ -82,8 +82,6 @@ The following sections show how to create a single Atlas Search index with stati
 
 Create a Search Index with Static Mappings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Use static mappings to configure index options for fields that you don't want indexed dynamically, or to configure a single field independently from others in an index.
 
 To create a single Atlas Search index with static mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``false``. 
 You must specify the names of the fields you want to index in ``mappings.fields``. To learn more about static mappings, 
@@ -111,12 +109,12 @@ The following example shows how to create a single Atlas Search index with stati
 Create a Search Index with Dynamic Mappings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use dynamic mappings to automatically index the supported fields in your collection. This is suggested if your schema changes regularly or is unknown, or when experimenting with Atlas Search. For a list of BSON data types that are not dynamically indexable, 
-see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide. 
+.. Use dynamic mappings to automatically index the supported fields in your collection. This is suggested if your schema changes regularly or is unknown, or when experimenting with Atlas Search. For a list of BSON data types that are not dynamically indexable, 
+.. see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide. 
 
 To create a single Atlas Search index with dynamic mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``true``. This tells Atlas Search to 
-recursively index the fields of supported types in each document. For a list of BSON data types that are not dynamically indexable, see the Data Types 
-section of the Atlas Define Field Mappings guide. 
+recursively index the fields of supported types in each document. For a list of BSON data types that are not dynamically indexable, 
+see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide. 
 
 The following example shows how to to create a single Atlas Search index with dynamic mappings:
 
