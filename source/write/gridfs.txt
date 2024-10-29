@@ -40,8 +40,8 @@ that contain the chunks of files and information describing them. The
 bucket contains the following collections, named using the convention
 defined in the GridFS specification:
 
-- The ``chunks`` collection stores the binary file chunks.
-- The ``files`` collection stores the file metadata.
+- ``chunks`` collection, which stores the binary file chunks
+- ``files`` collection, which stores the file metadata
 
 The driver creates the GridFS bucket, if it doesn't exist, when you perform
 the first write operation. The bucket contains the preceding collections
