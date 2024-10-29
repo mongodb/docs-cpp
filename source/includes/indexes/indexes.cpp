@@ -69,7 +69,7 @@ int main(){
         // start-create-static-search-index
         // Create an index model with your index name and definition containing the fields you want to index
         auto siv = collection.search_indexes();
-        auto name = "myIndex";
+        auto name = "myStaticIndex";
         auto fields = make_document(kvp("title", make_document(kvp("type", "string"), kvp("analyzer","lucene.standard"))), kvp("year", make_document(kvp("type","number"))));
         auto definition = make_document(kvp("mappings", make_document(kvp("dynamic", false), kvp("fields", fields))));
         auto model = mongocxx::search_index_model(name, definition.view());
@@ -83,7 +83,7 @@ int main(){
         // start-create-dynamic-search-index
         // Create an index model with your index name and definition
         auto siv = collection.search_indexes();
-        auto name = "myIndex";
+        auto name = "myDynamicIndex";
         auto definition = make_document(kvp("mappings", make_document(kvp("dynamic", true))));
         auto model = search_index_model(name, definition.view());
 
@@ -119,5 +119,19 @@ int main(){
             std::cout << name << std::endl;
         }
         // end-create-multiple-search-indexes
+    }
+
+    {
+        // start-list-search-indexes
+        auto siv = collection.search_indexes();
+        auto result = siv.list(); 
+        // end-list-search-indexes   
+    }
+    {
+        // start-list-search-indexes-output
+        for (const auto &idx : result) {
+            std::cout << bsoncxx::to_json(idx) << std::endl;
+        }
+        // end-list-search-indexes-output
     }
 }

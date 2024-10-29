@@ -60,11 +60,13 @@ on a ``mongocxx::search_index_view`` instance. The ``create_one()`` method requi
 
 - ``name``, a string that specifies the name for your search index
 - ``mappings``, a document that specifies how to index fields at different paths for this index. For a full list of ``mappings`` fields, 
-  see the :atlas:`Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation 
+  see the :atlas:`Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation. 
 
 After you create a Search index, you can perform Atlas Search queries on
 your collection. To learn more, see :atlas:`Create and Run Atlas Search
 Queries </atlas-search/searching/>` in the Atlas documentation.
+
+.. _cpp-atlas-search-index-create-static:
 
 Create a Search Index with Static Mappings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -89,7 +91,9 @@ The following example shows how to create a single Atlas Search index with stati
       :language: cli
       :visible: false
       
-      New index name: myIndex
+      New index name: myDynamicIndex
+
+.. _cpp-atlas-search-index-create-dynamic:
 
 Create a Search Index with Dynamic Mappings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -115,7 +119,9 @@ The following example shows how to to create a single Atlas Search index with dy
       :language: cli
       :visible: false
       
-      New index name: myIndex
+      New index name: myStaticIndex
+
+.. _cpp-atlas-search-index-create-multiple:
 
 Create Multiple Atlas Search Indexes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -140,19 +146,44 @@ search index models to create.
       myDynamicIndex
       myStaticIndex
 
-.. _php-atlas-search-index-list:
+.. _cpp-atlas-search-index-list:
 
 List Search Indexes
 -------------------
 
-You can use the ``listSearchIndexes()`` method to return an array of the
-Atlas Search indexes on a collection:
+To return a cursor to the list of Atlas Search indexes on a collection, call the ``list()`` method. You can pass in the name of 
+an index you would like to list or pass in nothing to list all Atlas Search indexes on a collection. 
+
+The following example shows how to return a cursor to the index named ``myDyanmicIndex`` 
+created in the :ref:`Create a Search Index with Dynamic Mappings <cpp-atlas-search-index-create-dynamic>` section. 
 
 .. literalinclude:: /includes/indexes/indexes.php
    :language: php
    :dedent:
+   :copyable: true
    :start-after: start-list-search-indexes
    :end-before: end-list-search-indexes
+
+
+The following code uses the cursor returned by ``list()`` in the above example to print the indexes created by the 
+example code in the :ref:`Create Multiple Atlas Search Indexes <cpp-atlas-search-index-create-multiple>` section: 
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/indexes/indexes.cpp
+      :start-after: start-list-search-indexes-output
+      :end-before: end-list-search-indexes-output
+      :language: cpp
+      :dedent:
+
+   .. output:: 
+      :language: cli
+      :visible: false
+      
+
+      { "id" :..., "name" : "myDynamicIndex", "type" : "search",...}
+      { "id" :..., "name" : "myStaticIndex", "type" : "search",...}
 
 .. _php-atlas-search-index-update:
 
