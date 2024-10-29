@@ -71,7 +71,7 @@ Create a Search Index with Static Mappings
 
 Use static mappings to configure index options for fields that you don't want indexed dynamically, or to configure a single field independently from others in an index.
 
-To create a single Atlas Search index with static mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``false`` and specify the fields to index using ``mappings.fields``. To learn more about static mappings, 
+To create a single Atlas Search index with static mappings, call the ``create_one()`` method with ``mappings.dynamic`` set to ``false`` and specify the fields you want to index in ``mappings.fields``. To learn more about static mappings, 
 see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide in the Atlas documentation. 
 
 The following example shows how to create a single Atlas Search index with static mappings: 
@@ -79,8 +79,8 @@ The following example shows how to create a single Atlas Search index with stati
 .. io-code-block::
 
    .. input:: /includes/indexes/indexes.cpp
-      :start-after: start-create-many-search-indexes
-      :end-before: end-create-many-search-indexes
+      :start-after: start-create-static-search-index
+      :end-before: end-create-static-search-index
       :language: cpp
       :copyable:
       :dedent:
@@ -89,7 +89,7 @@ The following example shows how to create a single Atlas Search index with stati
       :language: cli
       :visible: false
       
-      New index name: my-first-index
+      New index name: myIndex
 
 Create a Search Index with Dynamic Mappings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -105,8 +105,8 @@ The following example shows how to to create a single Atlas Search index with dy
 .. io-code-block::
 
    .. input:: /includes/indexes/indexes.cpp
-      :start-after: start-create-search-index
-      :end-before: end-create-search-index
+      :start-after: start-create-dynamic-search-index
+      :end-before: end-create-dynamic-search-index
       :language: cpp
       :copyable:
       :dedent:
@@ -122,8 +122,6 @@ Create Multiple Atlas Search Indexes
 
 To create multiple Atlas Search indexes, call the ``create_many()`` method and pass in a vector of the
 search index models to create. 
-
-
 
 .. _php-atlas-search-index-list:
 
