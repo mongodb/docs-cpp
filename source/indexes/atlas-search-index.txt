@@ -131,10 +131,10 @@ The following example shows how to to create a single Atlas Search index with dy
 Create Multiple Search Indexes
 ------------------------------
 
-To create multiple Atlas Search indexes, call the ``create_many()`` method on a ``mongocxx::search_index_view`` instance
+To create multiple Atlas Search indexes, call the ``create_many()`` method 
 and pass in a vector of ``mongocxx::search_index_model`` instances specifying the Atlas Search indexes you would like to create. 
 
-The following example shows how to create multiple Atlas Search indexes by calling the ``create_many()`` method:
+The following example shows how to create multiple Atlas Search indexes using the ``create_many()`` method:
 
 .. io-code-block::
    :copyable: true
@@ -165,7 +165,7 @@ List Search Indexes
 
 To return a cursor to the list of Atlas Search indexes on a collection, call the ``list()`` method. 
 
-The following example uses ``list()`` to print the Atlas Search indexes created in the 
+The following example uses the ``list()`` method to print the Atlas Search indexes created in the 
 :ref:`Create Multiple Atlas Search Indexes <cpp-atlas-search-index-create-multiple>` section: 
 
 .. io-code-block::
@@ -186,7 +186,7 @@ The following example uses ``list()`` to print the Atlas Search indexes created 
 
 Alternatively, you can pass an index name into the ``list()`` method to return a cursor to the specified index. 
 
-The following example uses ``list()`` to print the Atlas Search index
+The following example uses the ``list()`` method to print the Atlas Search index
 created in the :ref:`Create a Search Index with Dynamic Mappings <cpp-atlas-search-index-create-dynamic>` section: 
 
 .. io-code-block::
@@ -251,13 +251,6 @@ see the following Atlas documentation pages:
 - :atlas:`Create an Atlas Search Index </atlas-search/create-index/>` 
 - :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>`
 - :atlas:`Review Atlas Search Index Syntax <atlas-search/index-definitions/>`
-
-.. To view tutorials that explain how to use the Atlas Search feature, see the
-.. :atlas:`Get Started with Atlas Search </atlas-search/tutorial/>` guide.
-
-.. To see a full list of fields that can be set in your Atlas Search index definition, 
-.. see the :atlas:`Review Atlas Search Index Syntax <atlas-search/index-definitions/>` guide. 
-.. To learn more about creating a Search index, see the :atlas:`Create an Atlas Search Index </atlas-search/create-index/>` guide in the Atlas documentation.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
