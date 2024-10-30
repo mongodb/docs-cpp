@@ -134,7 +134,7 @@ Create Multiple Search Indexes
 To create multiple Atlas Search indexes, call the ``create_many()`` method 
 and pass in a vector of ``mongocxx::search_index_model`` instances specifying the Atlas Search indexes you would like to create. 
 
-The following example shows how to create multiple Atlas Search indexes using the ``create_many()`` method:
+The following example shows how to create multiple Atlas Search indexes:
 
 .. io-code-block::
    :copyable: true
