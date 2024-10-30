@@ -105,11 +105,10 @@ To learn more about the options you can configure in your ``mappings.fields`` do
 Create a Search Index with Dynamic Mappings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Rather than specifying the individual fields you want to index when you create an Atlas Search index, you can use dynamic mappings to automatically index all supported field types. 
-For a list of BSON data types that support dynamic indexing, see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide. 
+Instead of specifying the individual fields you want to index when you create an Atlas Search index, you can use dynamic mappings to automatically index all fields of supported types. 
+For a list of BSON data types that support dynamic indexing, see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas Field Mappings guide. 
 
-To create a single Atlas Search index with dynamic mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``true``. This tells Atlas Search to 
-recursively index the fields of supported types in each document. 
+To create a single Atlas Search index with dynamic mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``true``. 
 
 The following example shows how to to create a single Atlas Search index with dynamic mappings:
 
