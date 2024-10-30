@@ -59,12 +59,12 @@ To create a single Atlas Search Index on a collection, call the ``create_one()``
 on a ``mongocxx::search_index_view`` instance and pass in a ``mongocxx::search_index_model`` instance specifying the Atlas Search index 
 you want to create. 
 
-A ``mongocxx::search_index_model`` instance requires the following fields:
+A ``mongocxx::search_index_model`` instance requires values for the following fields:
 
 - ``name``, a string that specifies the name for your search index
 - ``mappings``, a document that specifies how to index fields at different paths for this index. 
 
-For a full list of optional and conditional fields for an Atlas Search index, see the :atlas:`Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation.
+For a full list of optional fields for an Atlas Search index, see the :atlas:`Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation.
 
 When you create an Atlas Search index, you can specify the fields to index using static mappings, 
 or configure Atlas Search to automatically index all supported field types using dynamic mappings. 
@@ -84,7 +84,7 @@ Create a Search Index with Static Mappings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To create a single Atlas Search index with static mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``false``. 
-You must specify the names of the fields you want to index in ``mappings.fields``. To learn more about static mappings, 
+You must specify the names and index configurations for the fields you want to index in ``mappings.fields``. To learn more about static mappings, 
 see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide in the Atlas documentation. 
 
 The following example shows how to create a single Atlas Search index with static mappings: 
