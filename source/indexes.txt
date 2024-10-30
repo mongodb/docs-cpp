@@ -171,3 +171,42 @@ The following code shows how to create an Atlas Search index that dynamically in
       :visible: false
       
       New index name: <searchIndexName>
+
+Create Multiple Search Indexes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+List Search Indexes
+~~~~~~~~~~~~~~~~~~~
+
+The following code prints a list of Atlas Search indexes in the specified collection: 
+
+.. literalinclude:: /includes/indexes/indexes.cpp
+   :start-after: start-list-search-indexes
+   :end-before: end-list-search-indexes
+   :language: cpp
+   :copyable:
+   :dedent:
+
+Update Search Indexes
+~~~~~~~~~~~~~~~~~~~~~
+
+The following code updates an existing Atlas Search index with the specified new index definition. 
+
+.. literalinclude:: /includes/indexes/indexes.cpp
+   :start-after: start-update-search-indexes
+   :end-before: end-update-search-indexes
+   :language: cpp
+   :copyable:
+   :dedent:
+
+Delete Search Indexes 
+~~~~~~~~~~~~~~~~~~~~~
+
+The following code deletes an Atlas Search index with the specified name: 
+
+.. literalinclude:: /includes/indexes/indexes.cpp
+   :start-after: start-delete-search-index
+   :end-before: end-delete-search-index
+   :language: cpp
+   :copyable:
+   :dedent:

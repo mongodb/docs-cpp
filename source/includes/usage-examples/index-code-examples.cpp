@@ -34,3 +34,23 @@ auto model = mongocxx::search_index_model(name, definition.view());
 auto result = siv.create_one(model);
 std::cout << "New index name: " << result << std::endl;
 // end-create-search-index
+
+// start-list-search-indexes
+auto siv = collection.search_indexes();
+auto result = siv.list(); 
+for (const auto &idx : result) {
+    std::cout << bsoncxx::to_json(idx) << std::endl;
+}
+// end-list-search-indexes
+
+// start-update-search-index
+auto siv = collection.search_indexes();
+auto update_fields = make_document(kvp("fieldName", make_document(kvp("type", "<fieldType>"))));
+auto update_definition = make_document(kvp("mappings", make_document(kvp("dynamic", false), kvp("fields", update_fields))));
+siv.update_one(<searchIndexName>, update_definition.view());
+// end-update-search-index
+
+// start-delete-search-index
+auto siv = collection.search_indexes();
+siv.drop_one("<searchIndexName>");
+// end-delete-search-index

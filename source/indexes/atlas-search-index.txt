@@ -222,8 +222,8 @@ analyzer on the ``title`` field:
 .. literalinclude:: /includes/indexes/indexes.cpp
    :language: cpp
    :dedent:
-   :start-after: start-update-search-indexes
-   :end-before: end-update-search-indexes
+   :start-after: start-update-search-index
+   :end-before: end-update-search-index
 
 .. _cpp-atlas-search-index-drop:
 
