@@ -97,7 +97,7 @@ int main(){
         auto siv = collection.search_indexes();
         std::vector<mongocxx::search_index_model> models; 
 
-        // Add an index model with dyanmic mappings to the input vector
+        // Add an index model with dynamic mappings to the input vector
         auto name_1 = "myDynamicIndex";
         auto definition_1 = make_document(kvp("mappings", make_document(kvp("dynamic", true))));
         auto model_1 = mongocxx::search_index_model(name_1, definition_1.view()); 
@@ -139,4 +139,19 @@ int main(){
         }
         // end-list-search-index
     }
+    {
+        // start-update-search-indexes
+        auto siv = collection.search_indexes();
+        auto update_fields = make_document(kvp("title", make_document(kvp("type", "string"), kvp("analyzer","lucene.simple"))));
+        auto update_definition = make_document(kvp("mappings", make_document(kvp("dynamic", false), kvp("fields", update_fields))));
+        siv.update_one("myStaticIndex", update_definition.view());
+        // end-update-search-indexes
+    }
+    {
+        // start-delete-search-index
+        auto siv = collection.search_indexes();
+        siv.drop_one("myDynamicIndex");
+        // end-delete-search-index
+    }
+
 }

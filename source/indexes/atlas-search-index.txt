@@ -172,8 +172,8 @@ List Search Indexes
 
 To return a cursor to the list of Atlas Search indexes on a collection, call the ``list()`` method. 
 
-The following example shows how to return a cursor to the Atlas Search indexes on the collection
-in the :ref:`Create Multiple Atlas Search Indexes <cpp-atlas-search-index-create-multiple>` section: 
+The following example uses ``list()`` to print the Atlas Search indexes created in the 
+:ref:`Create Multiple Atlas Search Indexes <cpp-atlas-search-index-create-multiple>` section: 
 
 .. io-code-block::
    :copyable: true
@@ -192,9 +192,9 @@ in the :ref:`Create Multiple Atlas Search Indexes <cpp-atlas-search-index-create
       { "id" :..., "name" : "myDynamicIndex", "type" : "search",...}
       { "id" :..., "name" : "myStaticIndex", "type" : "search",...}
 
-Alternatively, you can pass the name of an index into the ``list()`` method to return a cursor to the specified index. 
+Alternatively, you can pass an index name into the ``list()`` method to return a cursor to the specified index. 
 
-The following example shows how to return a cursor to the index named ``myDyanmicIndex`` 
+The following example uses ``list()`` to print the Atlas Search index
 created in the :ref:`Create a Search Index with Dynamic Mappings <cpp-atlas-search-index-create-dynamic>` section: 
 
 .. io-code-block::
@@ -212,38 +212,36 @@ created in the :ref:`Create a Search Index with Dynamic Mappings <cpp-atlas-sear
       
       { "id" :..., "name" : "myDynamicIndex", "type" : "search", "status" : "READY", "queryable" : true, "latestDefinitionVersion" : { "version" : 0, "createdAt" : { "$date" : 1730226204344 } }, "latestDefinition" : { "mappings" : { "dynamic" : true } }, "statusDetail" : [ { "hostname" : "atlas-o598y8-shard-00-00", "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : 1730226204000 } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } }, { "hostname" : "atlas-o598y8-shard-00-01", "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : 1730226204000 } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } }, { "hostname" : "atlas-o598y8-shard-00-02", "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : 1730226204000 } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } } ] }
 
-.. _php-atlas-search-index-update:
+.. _cpp-atlas-search-index-update:
 
 Update a Search Index
 ---------------------
 
-You can use the ``updateSearchIndex()``
-method to update an Atlas Search index. You can use this method to
-change the name of a Search index or change the configuration of the
-index.
+To update an Atlas Search index, call the ``update_one()`` method and pass in the name of the search index 
+you want to update and the definition to update the search index to. This tells Atlas Search to replace the 
+existing definition of the given search index with the definition you provide. 
 
-The following code shows how to update a search index to use a simple
-analyzer on the ``title`` field:
+The following example shows how to update a Search index to use a simple 
+analyzer on the ``title`` field: 
 
-.. literalinclude:: /includes/indexes/indexes.php
-   :language: php
+.. literalinclude:: /includes/indexes/indexes.cpp
+   :language: cpp
    :dedent:
    :start-after: start-update-search-indexes
    :end-before: end-update-search-indexes
 
-.. _php-atlas-search-index-drop:
+.. cpp-atlas-search-index-drop:
 
 Delete a Search Index
 ---------------------
 
-You can use the ``dropSearchIndex()`` method to remove an Atlas Search
-index from a collection.
+To remove an Atlas Search index from a collection, call the ``drop_one()`` method and pass in 
+the name of the Search index you want to delete. 
 
-The following code shows how to delete the Atlas Search index named
-``mySearchIdx``:
+The following example shows how to delete an Atlas Search index named ``myDynamicIndex``: 
 
-.. literalinclude:: /includes/indexes/indexes.php
-   :language: php
+.. literalinclude:: /includes/indexes/indexes.cpp
+   :language: cpp
    :dedent:
    :start-after: start-delete-search-index
    :end-before: end-delete-search-index
@@ -252,7 +250,7 @@ Additional Information
 ----------------------
 
 To view runnable examples that demonstrate how to manage indexes, see
-:ref:`php-indexes`.
+:ref:`cpp-indexes`.
 
 To view tutorials that explain how to use the Atlas Search feature, see the
 :atlas:`Get Started with Atlas Search </atlas-search/tutorial/>` gudie.
@@ -269,4 +267,3 @@ following API documentation:
 - ``update_one()``
 - ``drop_one()``
 - search_indexes()
-- `search_index_view.create_one() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.htmll#a5b564dda9e19d0bc69a3f77ea0df7e8e>`__
