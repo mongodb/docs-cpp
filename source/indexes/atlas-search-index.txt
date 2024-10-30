@@ -42,7 +42,7 @@ call the ``search_indexes()`` method on your ``mongocxx::collection`` instance.
 
 .. note:: Atlas Search Index Management is Asynchronous
 
-   The {+php-library+} manages Atlas Search indexes asynchronously. The
+   The {+driver-long+} manages Atlas Search indexes asynchronously. The
    library methods described in the following sections return the server
    response immediately, but the changes to your Search indexes take
    place in the background and might not complete until some time later.
@@ -66,10 +66,16 @@ A ``mongocxx::search_index_model`` instance requires the following fields:
 
 For a full list of fields you can configure in an Atlas Search index, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation.
 
-When you create an Atlas Search index, you can either specify the fields to index using static mappings, 
-or configure Atlas Search to automatically index all supported field types using dynamic mappings. 
-To learn more about when to use static or dynamic field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas documentation. 
+.. When you create an Atlas Search index, you can either specify the fields to index using static mappings, 
+.. or configure Atlas Search to automatically index all supported field types using dynamic mappings. 
+.. To learn more about when to use static or dynamic field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas documentation. 
 
+When you create an Atlas Search index, you can choose to either: 
+
+- use static mappings to specify the fields you want to index 
+- use dynamic mappings to automatically index all supported field types 
+
+To learn more abbout when to use static or dynamic field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas documentation. 
 .. When you create an Atlas Search index, you can choose to index only fields that you specify, 
 .. or configure Atlas Search to automatically index all supported field types. 
 .. Use static mappings to instruct Atlas Search to only index the field names you provide in ``mappings.fields``, or to configure a single field independently from others in an index. 
@@ -101,7 +107,7 @@ The following example shows how to create a single Atlas Search index with stati
       :language: cli
       :visible: false
       
-      New index name: myDynamicIndex
+      New index name: myStaticIndex
 
 .. _cpp-atlas-search-index-create-dynamic:
 
@@ -127,7 +133,7 @@ The following example shows how to to create a single Atlas Search index with dy
       :language: cli
       :visible: false
       
-      New index name: myStaticIndex
+      New index name: myDynamicIndex
 
 .. _cpp-atlas-search-index-create-multiple:
 
