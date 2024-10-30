@@ -72,10 +72,9 @@ For a full list of fields you can configure in an Atlas Search index, see the :a
 
 When you create an Atlas Search index, you can choose to either: 
 
-- use static mappings to specify the fields you want to index 
+- use static mappings to specify the fields you want to index and configure index options for individual fields
 - use dynamic mappings to automatically index all supported field types 
 
-To learn more abbout when to use static or dynamic field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas documentation. 
 
 .. When you create an Atlas Search index, you can choose to index only fields that you specify, 
 .. or configure Atlas Search to automatically index all supported field types. 
@@ -84,6 +83,8 @@ To learn more abbout when to use static or dynamic field mappings, see the :atla
 .. see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide. 
 
 The following sections show how to create a single Atlas Search index with static or dynamic mappings. 
+To learn more abbout when to use static or dynamic field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas documentation. 
+
 
 .. _cpp-atlas-search-index-create-static:
 
