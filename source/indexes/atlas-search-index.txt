@@ -64,9 +64,9 @@ A ``mongocxx::search_index_model`` instance requires the following fields:
 - ``name``, a string specifying the name for your search index
 - ``definition``, a document containing the required field ``mappings``, which specifies how to index fields for this index
 
-For a full list of optional fields for an Atlas Search index, see the :atlas:`Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation.
+For a full list of fields you can configure in an Atlas Search index, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation.
 
-When you create an Atlas Search index, you can specify the fields to index using static mappings, 
+When you create an Atlas Search index, you can either specify the fields to index using static mappings, 
 or configure Atlas Search to automatically index all supported field types using dynamic mappings. 
 To learn more about when to use static or dynamic field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas documentation. 
 
@@ -81,11 +81,10 @@ The following sections show how to create a single Atlas Search index with stati
 .. _cpp-atlas-search-index-create-static:
 
 Create a Search Index with Static Mappings
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To create a single Atlas Search index with static mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``false``. 
-You must specify the names and index configurations for the fields you want to index in ``mappings.fields``. To learn more about static mappings, 
-see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide in the Atlas documentation. 
+To create a single Atlas Search index with static mappings, call the ``create_one()`` method with ``mappings.dynamic`` set to ``false`` and specify
+the names and configurations for the fields you want to index in ``mappings.fields``. 
 
 The following example shows how to create a single Atlas Search index with static mappings: 
 
@@ -107,10 +106,7 @@ The following example shows how to create a single Atlas Search index with stati
 .. _cpp-atlas-search-index-create-dynamic:
 
 Create a Search Index with Dynamic Mappings
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. Use dynamic mappings to automatically index the supported fields in your collection. This is suggested if your schema changes regularly or is unknown, or when experimenting with Atlas Search. For a list of BSON data types that are not dynamically indexable, 
-.. see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>` guide. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To create a single Atlas Search index with dynamic mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``true``. This tells Atlas Search to 
 recursively index the fields of supported types in each document. For a list of BSON data types that are not dynamically indexable, 
@@ -230,7 +226,7 @@ analyzer on the ``title`` field:
    :start-after: start-update-search-indexes
    :end-before: end-update-search-indexes
 
-.. cpp-atlas-search-index-drop:
+.. _cpp-atlas-search-index-drop:
 
 Delete a Search Index
 ---------------------
@@ -252,8 +248,24 @@ Additional Information
 To view runnable examples that demonstrate how to manage indexes, see
 :ref:`cpp-indexes`.
 
-To view tutorials that explain how to use the Atlas Search feature, see the
-:atlas:`Get Started with Atlas Search </atlas-search/tutorial/>` gudie.
+For more detailed guides on how to use the Atlas Search feature and define Atlas Search indexes,
+see the following Atlas documentation pages: 
+
+- :atlas:`Get Started with Atlas Search </atlas-search/tutorial/>`
+- :atlas:`Create an Atlas Search Index </atlas-search/create-index/>` 
+- :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>`
+- :atlas:`Review Atlas Search Index Syntax <atlas-search/index-definitions/>`
+
+.. To view tutorials that explain how to use the Atlas Search feature, see the
+.. :atlas:`Get Started with Atlas Search </atlas-search/tutorial/>` guide.
+
+.. To see a full list of fields that can be set in your Atlas Search index definition, 
+.. see the :atlas:`Review Atlas Search Index Syntax <atlas-search/index-definitions/>` guide. 
+.. To learn more about creating a Search index, see the :atlas:`Create an Atlas Search Index </atlas-search/create-index/>` guide in the Atlas documentation.
+.. To learn more about the fields you can set in an Atlas Search index, see the following Atlas documentation pages: 
+
+.. - ``mappings.fields.analyzer``: :atlas:`Process Data with Analyzers </atlas-search/analyzers/>`
+.. - ``mappings.dynamic``: :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
