@@ -180,10 +180,9 @@ The following example uses ``list()`` to print the Atlas Search indexes created 
    .. output:: 
       :language: cli
       :visible: false
-      
 
-      { "id" :..., "name" : "myDynamicIndex", "type" : "search",...}
-      { "id" :..., "name" : "myStaticIndex", "type" : "search",...}
+      { "id" :..., "name" : "myDynamicIndex", "type" : "search", "status" : "READY", "queryable" : true, "latestDefinitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "latestDefinition" : { "mappings" : { "dynamic" : true } }, "statusDetail" : [ { "hostname" : ..., "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } }, { "hostname" : ..., "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } }, { "hostname" : ..., "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } } ] }
+      { "id" :..., "name" : "myStaticIndex", "type" : "search", "status" : "READY", "queryable" : true, "latestDefinitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "latestDefinition" : { "mappings" : { "dynamic" : false, "fields" : { "title" : { "type" : "string", "analyzer" : "lucene.standard" } } } }, "statusDetail" : [ { "hostname" : ..., "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "definition" : { "mappings" : { "dynamic" : false, "fields" : { "title" : { "type" : "string", "analyzer" : "lucene.standard", "indexOptions" : "offsets", "store" : true, "norms" : "include" } } } } } }, { "hostname" : ..., "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "definition" : { "mappings" : { "dynamic" : false, "fields" : { "title" : { "type" : "string", "analyzer" : "lucene.standard", "indexOptions" : "offsets", "store" : true, "norms" : "include" } } } } } }, { "hostname" : ..., "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "definition" : { "mappings" : { "dynamic" : false, "fields" : { "title" : { "type" : "string", "analyzer" : "lucene.standard", "indexOptions" : "offsets", "store" : true, "norms" : "include" } } } } } } ] }
 
 Alternatively, you can pass an index name into the ``list()`` method to return a cursor to the specified index. 
 
@@ -203,7 +202,7 @@ created in the :ref:`Create a Search Index with Dynamic Mappings <cpp-atlas-sear
       :language: cli
       :visible: false
       
-      { "id" :..., "name" : "myDynamicIndex", "type" : "search", "status" : "READY", "queryable" : true, "latestDefinitionVersion" : { "version" : 0, "createdAt" : { "$date" : 1730226204344 } }, "latestDefinition" : { "mappings" : { "dynamic" : true } }, "statusDetail" : [ { "hostname" : "atlas-o598y8-shard-00-00", "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : 1730226204000 } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } }, { "hostname" : "atlas-o598y8-shard-00-01", "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : 1730226204000 } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } }, { "hostname" : "atlas-o598y8-shard-00-02", "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : 1730226204000 } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } } ] }
+      { "id" :..., "name" : "myDynamicIndex", "type" : "search", "status" : "READY", "queryable" : true, "latestDefinitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "latestDefinition" : { "mappings" : { "dynamic" : true } }, "statusDetail" : [ { "hostname" : ..., "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } }, { "hostname" : ..., "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } }, { "hostname" : ..., "status" : "READY", "queryable" : true, "mainIndex" : { "status" : "READY", "queryable" : true, "definitionVersion" : { "version" : 0, "createdAt" : { "$date" : ... } }, "definition" : { "mappings" : { "dynamic" : true, "fields" : {  } } } } } ] }
 
 .. _cpp-atlas-search-index-update:
 
@@ -263,12 +262,12 @@ see the following Atlas documentation pages:
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-To learn more about any of the methods discussed in this guide, see the
+To learn more about the methods discussed in this guide, see the
 following API documentation:
 
-- ``create_one()``
-- ``create_many()``
-- ``list()``
-- ``update_one()``
-- ``drop_one()``
-- search_indexes()
+- `search_indexes() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a1ff18a94afc676f1d85f4aa9570e9c0f>`__
+- `create_one() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.html#a980873272536347345ef68cc2d5d7408>`__
+- `create_many() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.html#aad93b8f9fe525bf7c133d4408f5d1e5f>`__
+- `list() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.html#a54caee8c3c16ad099d823270086dceef>`__
+- `drop_one() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.html#a184088ce06247b26c44c3c0d2ee8b99b>`__
+- `update_one() <{+api+}/classmongocxx_1_1v__noabi_1_1search__index__view.html#aec3f5a861d36d573c8489d8e488597c8>`__
