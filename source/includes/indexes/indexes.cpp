@@ -85,7 +85,7 @@ int main(){
         auto siv = collection.search_indexes();
         auto name = "myDynamicIndex";
         auto definition = make_document(kvp("mappings", make_document(kvp("dynamic", true))));
-        auto model = search_index_model(name, definition.view());
+        auto model = mongocxx::search_index_model(name, definition.view());
 
         // Create the search index
         auto result = siv.create_one(model);
@@ -125,13 +125,18 @@ int main(){
         // start-list-search-indexes
         auto siv = collection.search_indexes();
         auto result = siv.list(); 
-        // end-list-search-indexes   
-    }
-    {
-        // start-list-search-indexes-output
         for (const auto &idx : result) {
             std::cout << bsoncxx::to_json(idx) << std::endl;
         }
-        // end-list-search-indexes-output
+        // end-list-search-indexes   
+    }
+    {
+        // start-list-search-index
+        auto siv = collection.search_indexes();
+        auto result = siv.list("myDynamicIndex"); 
+        for (const auto &idx : result) {
+            std::cout << bsoncxx::to_json(idx) << std::endl;
+        }
+        // end-list-search-index
     }
 }
