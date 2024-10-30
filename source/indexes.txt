@@ -145,3 +145,29 @@ The following code shows how to remove all indexes in a collection:
 
 To learn more about removing indexes, see the
 :ref:`cpp-indexes-remove` section of the Work With Indexes guide.
+
+Atlas Search Index Management
+-----------------------------
+
+The following sections contain code examples taht describe how to manage Atlas Search indexes. 
+To learn more about Atlas Search indexes, see the :ref:`Atlas Search Indexes <cpp-atlas-search-index>` guide. 
+
+Create Search Index
+~~~~~~~~~~~~~~~~~~~
+
+The following code shows how to create an Atlas Search index that dynamically indexes all supported fields in the specified collection: 
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/usage-examples/index-code-examples.cpp
+      :start-after: start-create-search-index
+      :end-before: end-create-search-index
+      :language: cpp
+      :dedent:
+   
+   .. output:: 
+      :language: cli
+      :visible: false
+      
+      New index name: <searchIndexName>

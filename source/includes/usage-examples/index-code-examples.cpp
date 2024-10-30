@@ -23,3 +23,14 @@ collection.indexes().drop_all();
 
 std::cout << "All indexes removed." << std::endl;
 // end-remove-all-indexes
+
+// start-create-search-index
+auto siv = collection.search_indexes();
+auto name = "<searchIndexName>";
+auto definition = make_document(kvp("mappings", make_document(kvp("dynamic", true))));
+auto model = mongocxx::search_index_model(name, definition.view());
+
+// Create the search index
+auto result = siv.create_one(model);
+std::cout << "New index name: " << result << std::endl;
+// end-create-search-index
