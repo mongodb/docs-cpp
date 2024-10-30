@@ -64,7 +64,7 @@ A ``mongocxx::search_index_model`` instance requires the following fields:
 - ``name``, a string specifying the name for your search index
 - ``definition``, a document containing the ``mappings`` field, which specifies how how to configure fields in your search index
 
-.. note:: 
+.. tip:: 
 
    For a full list of fields you can configure in an Atlas Search index, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation.
 
@@ -78,7 +78,7 @@ Create a Search Index with Static Mappings
 
 When you create an Atlas Search index, you can use static mappings to specify the fields you want to index and configure index options for individual fields.
 
-To create a single Atlas Search index with static mappings, call the ``create_one()`` method with ``mappings.dynamic`` set to ``false`` and specify
+To create a single Atlas Search index with static mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``false``. You must specify
 the names and configurations for the fields you want to index in ``mappings.fields``. 
 
 The following example shows how to create a single Atlas Search index with static mappings: 
@@ -135,7 +135,7 @@ Create Multiple Search Indexes
 ------------------------------
 
 To create multiple Atlas Search indexes, call the ``create_many()`` method 
-and pass in a vector of ``mongocxx::search_index_model`` instances specifying the Atlas Search indexes you would like to create. 
+and pass in a vector of ``mongocxx::search_index_model`` instances specifying the Atlas Search indexes you want to create. 
 
 The following example shows how to create multiple Atlas Search indexes:
 
