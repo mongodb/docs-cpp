@@ -23,12 +23,12 @@ Overview
 In this guide, you can learn how to store and retrieve large files in
 MongoDB by using **GridFS**. GridFS is a specification implemented by 
 the {+driver-short+} that describes how to split files into chunks when storing them
-and reassemble them when retrieving them. The driver's implementation of
+and reassemble those files when retrieving them. The driver's implementation of
 GridFS is an abstraction that manages the operations and organization of
 the file storage. 
 
 Use GridFS if the size of your files exceeds the BSON document
-size limit of 16MB. For more detailed information on whether GridFS is
+size limit of 16MB. For more detailed information about whether GridFS is
 suitable for your use case, see :manual:`GridFS </core/gridfs>` in the
 {+mdb-server+} manual.
 
@@ -43,8 +43,8 @@ defined in the GridFS specification:
 - ``chunks`` collection, which stores the binary file chunks
 - ``files`` collection, which stores the file metadata
 
-The driver creates the GridFS bucket, if it doesn't exist, when you perform
-the first write operation. The bucket contains the preceding collections
+The driver creates the GridFS bucket, if it doesn't exist, when you first
+write data to it. The bucket contains the preceding collections
 prefixed with the default bucket name ``fs``, unless you specify a different
 name. To ensure efficient retrieval of the files and related metadata, the driver
 also creates an index on each collection if they don't exist and when the
@@ -57,7 +57,7 @@ When using GridFS to store files, the driver splits the files into smaller
 chunks, each represented by a separate document in the ``chunks`` collection.
 It also creates a document in the ``files`` collection that contains
 a file ID, file name, and other file metadata. You can upload the file by passing
-a stream to the {+driver-short+} to consume or creating a new stream and writing to it
+a stream to the {+driver-short+} to consume or by creating a new stream and writing to it
 directly.
 
 The following diagram shows how GridFS splits files when they are
@@ -69,7 +69,7 @@ uploaded to a bucket:
 When retrieving files, GridFS fetches the metadata from the ``files``
 collection in the specified bucket and uses the information to reconstruct
 the file from documents in the ``chunks`` collection. You can read the file
-by writing its contents to an existing stream or creating a new stream that points
+by writing its contents to an existing stream or by creating a new stream that points
 to the file.
 
 .. _gridfs-create-bucket:
@@ -97,8 +97,8 @@ Customize the Bucket
 
 You can customize the GridFS bucket configuration by passing an instance
 of the ``mongocxx::options::gridfs::bucket`` class as an optional argument to 
-``gridfs_bucket()``. The following table describes the fields you can set
-in a ``mongocxx::options::gridfs::bucket`` instance:
+the ``gridfs_bucket()`` method. The following table describes the fields you
+can set in a ``mongocxx::options::gridfs::bucket`` instance:
 
 .. list-table::
    :widths: 30 70
@@ -212,7 +212,7 @@ about the file it refers to, including:
 - The name of the file
 - The length/size of the file
 - The upload date and time
-- A ``metadata`` document in which you can store any other information
+- A ``metadata`` document in which you can store other information
 
 To retrieve files from a GridFS bucket, call the ``mongocxx::gridfs::bucket::find()``
 method on your bucket. The method returns a ``mongocxx::cursor`` instance from
@@ -222,7 +222,7 @@ which you can access the results. To learn more about cursors, see the
 Example 
 ~~~~~~~
 
-The following code example shows you how to retrieve and print file metadata
+The following code example shows how to retrieve and print file metadata
 from files in a GridFS bucket. It uses a ``for`` loop to iterate through
 the returned cursor and display the contents of the files uploaded in the
 :ref:`gridfs-upload-files` examples:
@@ -315,7 +315,7 @@ Use the ``delete_file()`` method to remove a file's collection document
 and associated chunks from your bucket. This effectively deletes the file.
 You must specify the file by its ``_id`` field rather than its file name.
 
-The following example shows you how to delete a file named ``"my_file"`` by
+The following example shows how to delete a file named ``"my_file"`` by
 passing its ``_id`` value to ``delete_file()``:
 
 .. literalinclude:: /includes/write/gridfs.cpp
@@ -329,7 +329,7 @@ passing its ``_id`` value to ``delete_file()``:
    The ``delete_file()`` method supports deleting only one file at a time. If
    you want to delete each file revision, or files with different upload
    times that share the same file name, collect the ``_id`` values of each revision.
-   Then, pass each value in separate calls to the ``delete_file()`` method.
+   Then, pass each ``_id`` value in separate calls to the ``delete_file()`` method.
 
 API Documentation
 -----------------
