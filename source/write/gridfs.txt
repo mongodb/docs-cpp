@@ -47,8 +47,8 @@ The driver creates the GridFS bucket, if it doesn't exist, when you first
 write data to it. The bucket contains the preceding collections
 prefixed with the default bucket name ``fs``, unless you specify a different
 name. To ensure efficient retrieval of the files and related metadata, the driver
-also creates an index on each collection if they don't exist and when the
-bucket is empty. 
+creates an index on each collection. The driver ensures that these indexes exist
+before performing read and write operations on the GridFS bucket.
 	
 For more information about GridFS indexes, see :manual:`GridFS Indexes
 </core/gridfs/#gridfs-indexes>` in the {+mdb-server+} manual.
