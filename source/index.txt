@@ -19,9 +19,9 @@ MongoDB C++ Driver
    Security </security>
    Specialized Data Formats </data-formats>
    C++17 Polyfill </polyfill-selection>
-   Advanced Configuration and Installation </advanced-installation>
-   Thread and Fork Safety </thread-safety>
-   API and ABI Versioning </api-abi-versioning>
+   Advanced Configuration & Installation </advanced-installation>
+   Thread & Fork Safety </thread-safety>
+   API & ABI Versioning </api-abi-versioning>
    What's New </whats-new>
    Upgrade </upgrade>
    Testing </testing>
