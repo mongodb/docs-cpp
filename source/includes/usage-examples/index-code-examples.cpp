@@ -45,7 +45,7 @@ for (const auto &idx : result) {
 
 // start-update-search-index
 auto siv = collection.search_indexes();
-auto update_fields = make_document(kvp("fieldName", make_document(kvp("type", "<fieldType>"))));
+auto update_fields = make_document(kvp("<fieldName>", make_document(kvp("type", "<fieldType>"))));
 auto update_definition = make_document(kvp("mappings", make_document(kvp("dynamic", false), kvp("fields", update_fields))));
 siv.update_one(<searchIndexName>, update_definition.view());
 // end-update-search-index
