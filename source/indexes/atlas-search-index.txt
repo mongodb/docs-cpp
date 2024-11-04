@@ -68,6 +68,7 @@ A ``mongocxx::search_index_model`` instance requires the following fields:
    For a full list of fields you can configure in an Atlas Search index, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation.
 
 The following sections show how to create a single Atlas Search index with static or dynamic mappings. 
+
 .. To learn more about when to use static or dynamic field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas documentation. 
 
 .. _cpp-atlas-search-index-create-static:
@@ -105,7 +106,7 @@ The following example shows how to create a single Atlas Search index with stati
 
    You can't index fields that contain the dollar (``$``) sign at the start of the field name.
 
-To learn more about when to use static mappings, see the :ref:`Static Mappings </atlas-search/define-field-mappings/#static-mappings>` section in the Atlas Search Define Field Mappings guide.
+To learn more about when to use static mappings, see the :atlas:`Static Mappings </atlas-search/define-field-mappings/#static-mappings>` section in the Atlas Search Define Field Mappings guide.
 
 .. _cpp-atlas-search-index-create-dynamic:
 
@@ -136,7 +137,7 @@ The following example shows how to to create a single Atlas Search index with dy
       
       New index name: myDynamicIndex
 
-To learn more about when to use dynamic mappings, see the :ref:`Dynamic Mappings </atlas-search/define-field-mappings/#dynamic-mappings>` section in the Atlas Search Define Field Mappings guide.
+To learn more about when to use dynamic mappings, see the :atlas:`Dynamic Mappings </atlas-search/define-field-mappings/#dynamic-mappings>` section in the Atlas Search Define Field Mappings guide.
 
 .. _cpp-atlas-search-index-create-multiple:
 
