@@ -126,13 +126,10 @@ int main(){
         // start-list-search-indexes
         auto siv = collection.search_indexes();
         auto cursor = siv.list(); 
-        // end-list-search-indexes   
-
-        // start-list-search-indexes-print
         for (mongocxx::cursor::iterator it = cursor.begin(); it != cursor.end(); ++it) {
             std::cout << bsoncxx::to_json(*it) << std::endl;
         }
-        // end-list-search-indexes-print
+        // end-list-search-indexes
     }
     {
         // start-list-search-index
