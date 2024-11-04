@@ -69,14 +69,10 @@ A ``mongocxx::search_index_model`` instance requires the following fields:
 
 The following sections show how to create a single Atlas Search index with static or dynamic mappings. 
 
-.. To learn more about when to use static or dynamic field mappings, see the :atlas:`Define Field Mappings </atlas-search/define-field-mappings>` guide in the Atlas Search Documentation. 
-
 .. _cpp-atlas-search-index-create-static:
 
 Create a Search Index with Static Mappings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-..   When you create an Atlas Search index, you can use static mappings to specify the fields you want to index and configure index options for individual fields.
 
 Use static mappings in your Atlas Search index to specify the fields you want to index and configure index options for individual fields.
 
@@ -110,8 +106,6 @@ To learn more about when to use static mappings, see the :atlas:`Static Mappings
 
 Create a Search Index with Dynamic Mappings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. If you don't want to specify individual fields to index when you create an Atlas Search index, you can use dynamic mappings to automatically index all fields of supported types. 
 
 Use dynamic mappings in your Atlas Search index to automatically index all fields of supported types.
 For a list of supported BSON data types, see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas Search documentation. 
@@ -226,8 +220,7 @@ Update a Search Index
 ---------------------
 
 To update an Atlas Search index, call the ``update_one()`` method on a ``mongocxx::search_index_view`` instance and pass in the name of the search index 
-you want to update and the definition to update the search index to. This tells Atlas Search to replace the 
-existing definition of the given search index with the definition you provide. 
+you want to update and the definition to update the search index to.
 
 The following example shows how to update the Search index from :ref:`Create a Search Index with Static Mappings <cpp-atlas-search-index-create-static>` to use a simple 
 analyzer on the ``title`` field: 
