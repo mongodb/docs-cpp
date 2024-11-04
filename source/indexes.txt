@@ -180,7 +180,7 @@ List Search Indexes
 
 The following code prints a list of Atlas Search indexes in the specified collection: 
 
-.. literalinclude:: /includes/indexes/indexes.cpp
+.. literalinclude:: /includes/usage-examples/index-code-examples.cpp
    :start-after: start-list-search-indexes
    :end-before: end-list-search-indexes
    :language: cpp
@@ -192,9 +192,9 @@ Update Search Indexes
 
 The following code updates an existing Atlas Search index with the specified new index definition. 
 
-.. literalinclude:: /includes/indexes/indexes.cpp
-   :start-after: start-update-search-indexes
-   :end-before: end-update-search-indexes
+.. literalinclude:: /includes/usage-examples/index-code-examples.cpp
+   :start-after: start-update-search-index
+   :end-before: end-update-search-index
    :language: cpp
    :copyable:
    :dedent:
@@ -205,8 +205,8 @@ Delete Search Indexes
 The following code deletes an Atlas Search index with the specified name: 
 
 .. literalinclude:: /includes/indexes/indexes.cpp
-   :start-after: start-delete-search-index
-   :end-before: end-delete-search-index
+   :start-after: start-remove-search-index
+   :end-before: end-remove-search-index
    :language: cpp
    :copyable:
    :dedent:

@@ -50,7 +50,7 @@ auto update_definition = make_document(kvp("mappings", make_document(kvp("dynami
 siv.update_one(<searchIndexName>, update_definition.view());
 // end-update-search-index
 
-// start-delete-search-index
+// start-remove-search-index
 auto siv = collection.search_indexes();
 siv.drop_one("<searchIndexName>");
-// end-delete-search-index
+// end-remove-search-index
