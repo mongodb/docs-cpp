@@ -227,7 +227,7 @@ To update an Atlas Search index, call the ``update_one()`` method on a ``mongocx
 you want to update and the definition to update the search index to. This tells Atlas Search to replace the 
 existing definition of the given search index with the definition you provide. 
 
-The following example shows how to update a Search index to use a simple 
+The following example shows how to update the Search index created in :ref:`Create a Search Index with Static Mappings <cpp-atlas-search-index-create-static>` to use a simple 
 analyzer on the ``title`` field: 
 
 .. literalinclude:: /includes/indexes/indexes.cpp
