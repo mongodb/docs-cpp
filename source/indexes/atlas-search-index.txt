@@ -174,8 +174,6 @@ Queries </atlas-search/searching/>` in the Atlas Search Documentation.
 List Search Indexes
 -------------------
 
-.. To get a ``mongocxx::cursor`` to the list of Atlas Search indexes on a collection, call the ``list()`` method. 
-
 To list the Atlas Search indexes on a collection, call the ``list()`` method on a ``mongocxx::search_index_view`` instance. This returns a ``mongocxx::cursor`` instance that you can
 use to iterate over Search indexes. 
 

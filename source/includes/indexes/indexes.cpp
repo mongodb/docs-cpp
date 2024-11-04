@@ -135,10 +135,16 @@ int main(){
         // start-list-search-index
         auto siv = collection.search_indexes();
         auto cursor = siv.list("myDynamicIndex"); 
-        for (const auto &idx : cursor) {
-            std::cout << bsoncxx::to_json(idx) << std::endl;
+        for (mongocxx::cursor::iterator it = cursor.begin(); it != cursor.end(); ++it) {
+            std::cout << bsoncxx::to_json(*it) << std::endl;
         }
         // end-list-search-index
+    }
+    // Print list() output using a range-based for loop
+    {
+        for (const auto &idx : cursor) {
+                std::cout << bsoncxx::to_json(idx) << std::endl;
+        }
     }
     {
         // start-update-search-index
