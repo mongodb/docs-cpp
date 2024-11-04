@@ -37,7 +37,7 @@ to manage your Atlas Search indexes:
 - ``update_one()``
 - ``drop_one()``
 
-To get a ``search_index_view`` to your collection, 
+To get a ``mongocxx::search_index_view`` to your collection, 
 call the ``search_indexes()`` method on your ``mongocxx::collection`` instance.
 
 .. note:: Atlas Search Index Management is Asynchronous
@@ -176,7 +176,7 @@ Queries </atlas-search/searching/>` in the Atlas documentation.
 List Search Indexes
 -------------------
 
-To return a cursor to the list of Atlas Search indexes on a collection, call the ``list()`` method. 
+To get a ``mongocxx::cursor`` to the list of Atlas Search indexes on a collection, call the ``list()`` method. 
 
 The following example uses the ``list()`` method to print the Atlas Search indexes created in the 
 :ref:`Create Multiple Atlas Search Indexes <cpp-atlas-search-index-create-multiple>` section: 
@@ -261,6 +261,7 @@ For more detailed guides on how to use the Atlas Search feature and define Atlas
 see the following Atlas documentation pages: 
 
 - :atlas:`Get Started with Atlas Search </atlas-search/tutorial/>`
+- :atlas:`Create and Run Atlas Search Queries </atlas-search/searching/>`
 - :atlas:`Create an Atlas Search Index </atlas-search/create-index/>` 
 - :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>`
 - :atlas:`Review Atlas Search Index Syntax <atlas-search/index-definitions/>`
