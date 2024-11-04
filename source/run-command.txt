@@ -30,27 +30,48 @@ initializing a replica set, or running an aggregation pipeline.
    commands, as it provides a consistent interface between the shell and
    drivers.
 
+Sample Data
+~~~~~~~~~~~
+
+The examples in this guide use the ``movies`` collection in the ``sample_mflix``
+database from the :atlas:`Atlas sample datasets </sample-data>`. To access this collection
+from your C++ application, instantiate a ``mongocxx::client`` that connects to an Atlas cluster
+and assign the following values to your ``db`` and ``collection`` variables:
+
+.. literalinclude:: /includes/run-command.cpp
+    :start-after: start-db-coll
+    :end-before: end-db-coll
+    :language: cpp
+    :dedent:
+
+To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
+:atlas:`Get Started with Atlas </getting-started>` guide.
+
 Execute a Command
 -----------------
 
 To run a database command, you must specify the command and any relevant
-parameters in a document, then pass this document to a
-command execution method. The {+driver-short+} provides the following methods
-to run database commands:
+parameters in a document, then pass this document to the ``run_command()`` execution method. 
+This returns the command response as a ``bsoncxx::document::value`` type. You can use this method with any database command.
 
-- ``command()``, which returns the command response as a
-  ``Document`` type. You can use this method with any database command.
-- ``runCursorCommand()``, which returns the command response as an iterable
-  ``RunCommandCursor`` type. You can use this method only if your database command
-  returns multiple result documents.
+.. The {+driver-short+} provides the following methods
+.. to run database commands:
 
-The following code shows how you can use the ``command()``
+.. - ``run_command()``, which returns the command response as a
+..   ``bsoncxx::document::value`` type. You can use this method with any database command.
+.. - ``runCursorCommand()``, which returns the command response as an iterable
+..   ``RunCommandCursor`` type. You can use this method only if your database command
+..   returns multiple result documents.
+
+The following example shows how you can use the ``run_command()``
 method to run the ``hello`` command, which returns information about
 the current member's role in the replica set, on a database:
 
 .. code-block:: cpp
 
-   const result = await myDB.command({ hello: 1 });
+    auto db = client["sample_mflix"];
+    auto collection = db["movies"];
+   auto result = await myDB.command({ hello: 1 });
 
 For a full list of database commands and corresponding parameters, see
 the :ref:`Additional Information section <addl-info-runcommand>`.
