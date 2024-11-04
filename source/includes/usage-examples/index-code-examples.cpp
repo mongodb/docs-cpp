@@ -1,19 +1,19 @@
 // start-single-field
-auto index_specification = make_document(kvp("<field name>", 1));
+auto index_specification = make_document(kvp("<fieldName>", 1));
 auto result = collection.create_index(index_specification.view());
 
 std::cout << "Index created: " << bsoncxx::to_json(result) << std::endl;
 // end-single-field
 
 // start-compound-field
-auto index_specification = make_document(kvp("<field name 1>", -1), kvp("<field name 2>", -1));
+auto index_specification = make_document(kvp("<fieldName1>", -1), kvp("<fieldName2>", -1));
 auto result = collection.create_index(index_specification.view());
 
 std::cout << "Index created: " << bsoncxx::to_json(result) << std::endl;
 // end-compound-field
 
 // start-remove-index
-collection.indexes().drop_one("<index name>");
+collection.indexes().drop_one("<indexName>");
 
 std::cout << "Index dropped." << std::endl;
 // end-remove-index
