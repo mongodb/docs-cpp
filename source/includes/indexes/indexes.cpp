@@ -148,10 +148,10 @@ int main(){
         // end-update-search-index
     }
     {
-        // start-delete-search-index
+        // start-remove-search-index
         auto siv = collection.search_indexes();
         siv.drop_one("myDynamicIndex");
-        // end-delete-search-index
+        // end-remove-search-index
     }
 
 }

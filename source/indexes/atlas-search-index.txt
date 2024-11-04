@@ -226,19 +226,19 @@ analyzer on the ``title`` field:
 
 .. _cpp-atlas-search-index-drop:
 
-Delete a Search Index
+Remove a Search Index
 ---------------------
 
 To remove an Atlas Search index from a collection, call the ``drop_one()`` method and pass in 
-the name of the Search index you want to delete. 
+the name of the Search index you want to remove. 
 
-The following example shows how to delete an Atlas Search index named ``myDynamicIndex``: 
+The following example shows how to remove an Atlas Search index named ``myDynamicIndex``: 
 
 .. literalinclude:: /includes/indexes/indexes.cpp
    :language: cpp
    :dedent:
-   :start-after: start-delete-search-index
-   :end-before: end-delete-search-index
+   :start-after: start-remove-search-index
+   :end-before: end-remove-search-index
 
 Additional Information
 ----------------------
