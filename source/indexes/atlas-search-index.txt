@@ -100,7 +100,7 @@ The following example shows how to create a single Atlas Search index with stati
       
       New index name: myStaticIndex
 
-.. note:: 
+.. important:: 
 
    You can't index fields that contain the dollar (``$``) sign at the start of the field name.
 
