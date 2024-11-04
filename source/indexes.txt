@@ -172,9 +172,6 @@ The following code shows how to create an Atlas Search index that dynamically in
       
       New index name: searchIndexName
 
-Create Multiple Search Indexes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 List Search Indexes
 ~~~~~~~~~~~~~~~~~~~
 
