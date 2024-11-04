@@ -178,7 +178,7 @@ To list the Atlas Search indexes on a collection, call the ``list()`` method on 
 use to iterate over Search indexes. 
 
 The following example prints a list of Search indexes by iterating over a ``cursor::iterator`` 
-that points to the Search indexes created in :ref:`Create Multiple Atlas Search Indexes <cpp-atlas-search-index-create-multiple>`: 
+that points to the Search indexes from :ref:`Create Multiple Atlas Search Indexes <cpp-atlas-search-index-create-multiple>`: 
 
 .. io-code-block::
    :copyable: true
@@ -196,7 +196,7 @@ that points to the Search indexes created in :ref:`Create Multiple Atlas Search 
       { "id" : ..., "name" : "myDynamicIndex", "type" : "search", ...,
         "latestDefinition" : { "mappings" : { "dynamic" : true } }, ...} 
 
-      { "id" : ..., "name" : "myStaticIndex", "type" : "search", "status" : "READY", ...,
+      { "id" : ..., "name" : "myStaticIndex", "type" : "search", ...,
         "latestDefinition" : { "mappings" : { "dynamic" : false, "fields" : { "title" : { "type" : "string", "analyzer" : "lucene.standard" }, "year" : { "type" : "number" } } } }, ...} 
 
 Alternatively, you can list a specific Search index by passing an index name into the ``list()`` method. 
@@ -229,7 +229,7 @@ To update an Atlas Search index, call the ``update_one()`` method on a ``mongocx
 you want to update and the definition to update the search index to. This tells Atlas Search to replace the 
 existing definition of the given search index with the definition you provide. 
 
-The following example shows how to update the Search index created in :ref:`Create a Search Index with Static Mappings <cpp-atlas-search-index-create-static>` to use a simple 
+The following example shows how to update the Search index from :ref:`Create a Search Index with Static Mappings <cpp-atlas-search-index-create-static>` to use a simple 
 analyzer on the ``title`` field: 
 
 .. literalinclude:: /includes/indexes/indexes.cpp

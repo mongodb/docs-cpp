@@ -149,7 +149,7 @@ int main(){
     {
         // start-update-search-index
         auto siv = collection.search_indexes();
-        auto update_fields = make_document(kvp("title", make_document(kvp("type", "string"), kvp("analyzer","lucene.simple"))));
+        auto update_fields = make_document(kvp("title", make_document(kvp("type", "string"), kvp("analyzer","lucene.simple"))), kvp("year", make_document(kvp("type","number"))));
         auto update_definition = make_document(kvp("mappings", make_document(kvp("dynamic", false), kvp("fields", update_fields))));
         siv.update_one("myStaticIndex", update_definition.view());
         // end-update-search-index
