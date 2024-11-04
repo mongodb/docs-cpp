@@ -55,8 +55,7 @@ each Atlas Search index management method.
 Create a Search Index
 ---------------------
 
-To create a single Atlas Search Index on a collection, call the ``create_one()`` method 
-on a ``mongocxx::search_index_view`` instance and pass in a ``mongoxcc::search_index_model`` 
+To create a single Atlas Search Index on a collection, call the ``create_one()`` method and pass in a ``mongoxcc::search_index_model`` 
 instance specifying the Search index you want to create. 
 
 A ``mongocxx::search_index_model`` instance requires the following fields:
@@ -98,7 +97,11 @@ The following example shows how to create a single Atlas Search index with stati
       
       New index name: myStaticIndex
 
-To learn more about the options you can configure in your ``mappings.fields`` document, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation. 
+.. To learn more about the options you can configure in your ``mappings.fields`` document, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation. 
+
+.. note:: 
+
+   You can't index fields that contain the dollar (``$``) sign at the start of the field name.
 
 .. _cpp-atlas-search-index-create-dynamic:
 
