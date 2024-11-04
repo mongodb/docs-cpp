@@ -94,7 +94,7 @@ int main(){
     }
     {
         // start-create-multiple-search-indexes
-        // Instantiate a vector to store Search index models
+        // Create a vector to store Search index models
         auto siv = collection.search_indexes();
         std::vector<mongocxx::search_index_model> models; 
 
