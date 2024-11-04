@@ -204,7 +204,7 @@ Delete Search Indexes
 
 The following code deletes an Atlas Search index with the specified name: 
 
-.. literalinclude:: /includes/indexes/indexes.cpp
+.. literalinclude:: /includes/usage-examples/index-code-examples.cpp
    :start-after: start-remove-search-index
    :end-before: end-remove-search-index
    :language: cpp
