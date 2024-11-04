@@ -125,23 +125,20 @@ int main(){
     {
         // start-list-search-indexes
         auto siv = collection.search_indexes();
-        auto result = siv.list(); 
-        for (mongocxx::cursor::iterator it = result.begin(); it != result.end(); ++it) {
+        auto cursor = siv.list(); 
+        // end-list-search-indexes   
+
+        // start-list-search-indexes-print
+        for (mongocxx::cursor::iterator it = cursor.begin(); it != cursor.end(); ++it) {
             std::cout << bsoncxx::to_json(*it) << std::endl;
         }
-        for (const auto &idx : result) {
-            std::cout << bsoncxx::to_json(idx) << std::endl;
-        }
-        // end-list-search-indexes   
+        // end-list-search-indexes-print
     }
     {
         // start-list-search-index
         auto siv = collection.search_indexes();
-        auto result = siv.list("myDynamicIndex"); 
-        for (mongocxx::cursor::iterator it = result.begin(); it != result.end(); ++it) {
-            std::cout << bsoncxx::to_json(*it) << std::endl;
-        }
-        for (const auto &idx : result) {
+        auto cursor = siv.list("myDynamicIndex"); 
+        for (const auto &idx : cursor) {
             std::cout << bsoncxx::to_json(idx) << std::endl;
         }
         // end-list-search-index
