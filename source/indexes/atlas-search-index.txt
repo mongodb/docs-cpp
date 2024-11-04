@@ -205,7 +205,7 @@ that points to the Search indexes created in :ref:`Create Multiple Atlas Search 
 Alternatively, you can list a specific Search index by passing an index name into the ``list()`` method. 
 This returns a ``mongocxx::cursor`` that points to a result set containing only the specified index. 
 
-The following example uses a range-based for loop to print an index with the name ``myDynamicIndex``.
+The following example uses the ``list()`` method to print an index with the name ``myDynamicIndex``:
 
 .. io-code-block::
    :copyable: true
