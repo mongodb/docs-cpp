@@ -37,7 +37,7 @@ to manage your Atlas Search indexes:
 - ``update_one()``
 - ``drop_one()``
 
-To get a ``mongocxx::search_index_view`` to your collection, 
+To get a ``search_index_view`` to your collection, 
 call the ``search_indexes()`` method on your ``mongocxx::collection`` instance.
 
 .. note:: Atlas Search Index Management is Asynchronous
@@ -55,7 +55,7 @@ each Atlas Search index management method.
 Create a Search Index
 ---------------------
 
-To create a single Atlas Search Index on a collection, call the ``create_one()`` method and pass in a ``mongoxcc::search_index_model`` 
+To create a single Atlas Search Index on a collection, call the ``create_one()`` method on a ``mongocxx::search_index_view`` instance and pass in a ``mongoxcc::search_index_model`` 
 instance specifying the Search index you want to create. 
 
 A ``mongocxx::search_index_model`` instance requires the following fields:
@@ -100,13 +100,11 @@ The following example shows how to create a single Atlas Search index with stati
       
       New index name: myStaticIndex
 
-.. To learn more about the options you can configure in your ``mappings.fields`` document, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas documentation. 
-
 .. note:: 
 
    You can't index fields that contain the dollar (``$``) sign at the start of the field name.
 
-To learn more about when to use static mappings, see the :atlas:`Static Mappings </atlas-search/define-field-mappings/#static-mappings>` section in the Atlas Search Define Field Mappings guide.
+To learn more about when to use static mappings, see the :atlas:`Static Mappings </atlas-search/define-field-mappings/#static-mappings>` section in the Atlas documentation.
 
 .. _cpp-atlas-search-index-create-dynamic:
 
@@ -137,14 +135,14 @@ The following example shows how to to create a single Atlas Search index with dy
       
       New index name: myDynamicIndex
 
-To learn more about when to use dynamic mappings, see the :atlas:`Dynamic Mappings </atlas-search/define-field-mappings/#dynamic-mappings>` section in the Atlas Search Define Field Mappings guide.
+To learn more about when to use dynamic mappings, see the :atlas:`Dynamic Mappings </atlas-search/define-field-mappings/#dynamic-mappings>` section in the Atlas documentation.
 
 .. _cpp-atlas-search-index-create-multiple:
 
 Create Multiple Search Indexes
 ------------------------------
 
-To create multiple Atlas Search indexes, call the ``create_many()`` method 
+To create multiple Atlas Search indexes, call the ``create_many()`` method on a ``mongocxx::search_index_view`` instance
 and pass in a vector of ``mongocxx::search_index_model`` instances specifying the Atlas Search indexes you want to create. 
 
 The following example shows how to create multiple Atlas Search indexes:
@@ -178,7 +176,7 @@ List Search Indexes
 
 .. To get a ``mongocxx::cursor`` to the list of Atlas Search indexes on a collection, call the ``list()`` method. 
 
-To list the Atlas Search indexes on a collection, call the ``list()`` method. This returns an instance of ``mongocxx::cursor``, which 
+To list the Atlas Search indexes on a collection, call the ``list()`` method on a ``mongocxx::search_index_view`` instance. This returns an instance of ``mongocxx::cursor``, which 
 is an object that allows you to iterate over database results while holding only a subset of them in memory at a given time. 
 
 The following example uses the ``list()`` method to return a cursor for the list of Atlas Search indexes on a collection: 
@@ -233,7 +231,7 @@ The following example uses the ``list()`` method and a ``range-based for loop`` 
 Update a Search Index
 ---------------------
 
-To update an Atlas Search index, call the ``update_one()`` method and pass in the name of the search index 
+To update an Atlas Search index, call the ``update_one()`` method on a ``mongocxx::search_index_view`` instance and pass in the name of the search index 
 you want to update and the definition to update the search index to. This tells Atlas Search to replace the 
 existing definition of the given search index with the definition you provide. 
 
@@ -251,7 +249,7 @@ analyzer on the ``title`` field:
 Remove a Search Index
 ---------------------
 
-To remove an Atlas Search index from a collection, call the ``drop_one()`` method and pass in 
+To remove an Atlas Search index from a collection, call the ``drop_one()`` method on a ``mongocxx::search_index_view`` instance and pass in 
 the name of the Search index you want to remove. 
 
 The following example shows how to remove an Atlas Search index named ``myDynamicIndex``: 
@@ -265,8 +263,7 @@ The following example shows how to remove an Atlas Search index named ``myDynami
 Additional Information
 ----------------------
 
-To view runnable examples that demonstrate how to manage indexes, see
-:ref:`cpp-indexes`.
+To view runnable examples that demonstrate how to manage indexes, see :ref:`cpp-indexes`.
 
 For more detailed guides on how to use the Atlas Search feature and define Atlas Search indexes,
 see the following Atlas documentation pages: 
@@ -275,7 +272,7 @@ see the following Atlas documentation pages:
 - :atlas:`Create and Run Atlas Search Queries </atlas-search/searching/>`
 - :atlas:`Create an Atlas Search Index </atlas-search/create-index/>` 
 - :atlas:`Define Field Mappings </atlas-search/define-field-mappings/>`
-- :atlas:`Review Atlas Search Index Syntax <atlas-search/index-definitions/>`
+- :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>`
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
