@@ -48,7 +48,7 @@ The following code shows how you can use the ``command()``
 method to run the ``hello`` command, which returns information about
 the current member's role in the replica set, on a database:
 
-.. code-block:: javascript
+.. code-block:: cpp
 
    const result = await myDB.command({ hello: 1 });
 
