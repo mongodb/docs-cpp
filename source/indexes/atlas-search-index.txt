@@ -67,6 +67,10 @@ A ``mongocxx::search_index_model`` instance requires the following fields:
 
    For a full list of fields you can configure in an Atlas Search index, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas Search Documentation.
 
+After you create a Search index, you can perform Atlas Search queries on
+your collection. To learn more, see :atlas:`Create and Run Atlas Search
+Queries </atlas-search/searching/>` in the Atlas Search Documentation.
+
 The following sections show how to create a single Atlas Search index with static or dynamic mappings. 
 
 .. _cpp-atlas-search-index-create-static:
@@ -157,11 +161,6 @@ The following example shows how to create multiple Atlas Search indexes:
       New index names:
       myDynamicIndex
       myStaticIndex
-
-
-After you create a Search index, you can perform Atlas Search queries on
-your collection. To learn more, see :atlas:`Create and Run Atlas Search
-Queries </atlas-search/searching/>` in the Atlas Search Documentation.
 
 .. _cpp-atlas-search-index-list:
 
