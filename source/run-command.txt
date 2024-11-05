@@ -51,8 +51,14 @@ Execute a Command
 -----------------
 
 To run a database command, call the ``run_command()`` execution method on a ``mongocxx::database`` instance 
-and pass in a document specifying the command and any relevant parameters. You can use this method with any database command.
-The ``run_command()`` method returns the command response as a ``bsoncxx::document::value`` type. 
+and pass in a document specifying the command and any relevant parameters. The document's key is the command to run, 
+and the value is typically supplied as ``1``. The value does not affect the command response, which is returned as a 
+``bsoncxx::document::value`` type. 
+
+You can use the ``run_command()`` method with any database command. 
+For a full list of database commands and corresponding parameters, see :manual:`Database Commands </reference/command/>` in the {+mdb-server+} manual. 
+
+.. The ``run_command()`` method returns the command response as a ``bsoncxx::document::value`` type. 
 
 The following example shows how you can use the ``run_command()``
 method to run the ``hello`` command, which returns information about
@@ -74,11 +80,10 @@ the current member's role in the replica set, on a database:
       { "topologyVersion" : ..., "hosts" : [ ... ], "setName" : ..., ..., 
         "lastWrite" : ..., "majorityWriteDate" : ..., "maxBsonObjectSize" : ..., ...,
         "readOnly" : ..., "ok" : ..., "$clusterTime" : ..., "operationTime" : ... }
-      { "topologyVersion" : { "processId" : ..., "counter" : ... }, "hosts" : [ ... ], "setName" : ..., "setVersion" : ..., 
-        "isWritablePrimary" : ..., "secondary" : ..., "primary" : ..., "tags" : ..., "me" : ..., "electionId" : ...,  
-        "lastWrite" : ..., "lastWriteDate" : ..., "majorityOpTime" : ..., "majorityWriteDate" : ..., "maxBsonObjectSize" : ..., ...} 
+      { "topologyVersion" : { "processId" : ..., "counter" : ... }, "hosts" : [ ... ], ...,
+        "isWritablePrimary" : ..., "secondary" : ..., "primary" : ..., ...,
+        "readOnly" : ..., "ok" : ..., "$clusterTime" : ..., "operationTime" : ... } 
         
-For a full list of database commands and corresponding parameters, see :manual:`Database Commands </reference/command/>` in the {+mdb-server+} manual. 
 
 .. cpp-command-options:
 
@@ -91,6 +96,25 @@ a command and the options that it accepts, locate the command and follow the
 corresponding link on the :manual:`Database Commands </reference/command/>` page 
 in the {+mdb-server+} manual. 
 
+For example, you can instruct the ``connectionStatus`` command 
+to return the full set of privileges that currently-authenticated users possess by setting the ``showPrivileges`` 
+option to ``true`` in the command document: 
+
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/run-command.cpp
+      :start-after: start-run-connectionStatus
+      :end-before: end-run-connectionStatus
+      :language: cpp
+      :dedent:
+   
+   .. output:: 
+      :language: cli
+      :visible: false
+
+ run the ``connectionStatus`` command 
+by passing in a boolean value for 
 For example, you can set read preference to run the command with 
 You can specify optional command behavior for the ``command()``
 and ``runCursorCommand()`` methods.
