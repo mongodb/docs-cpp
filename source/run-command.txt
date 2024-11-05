@@ -80,7 +80,46 @@ the current member's role in the replica set, on a database:
       { "topologyVersion" : ..., "hosts" : [ ... ], "setName" : ..., ..., 
         "isWritablePrimary" : ..., "secondary" : ..., "primary" : ..., ...,
         "readOnly" : ..., "ok" : ..., "$clusterTime" : ..., "operationTime" : ... } 
-        
+
+     { 
+        "topologyVersion" : { 
+                                "processId" : { "$oid" : ... }, 
+                                "counter" : ... 
+        }, 
+        "hosts" : [ "<clusterName>-shard-00-00-XXXXX.mongodb.net:27017", 
+                    "<clusterName>-shard-00-01.XXXXX.mongodb.net:27017", 
+                    "<clusterName>-shard-00-02.XXXXX.mongodb.net:27017" ],
+        "setName" : "atlas-XXXXXX-shard-0", 
+        "setVersion" : ..., 
+        "isWritablePrimary" :  ** booolean ** , 
+        "secondary" :  ** boolean ** , 
+        "primary" : "<clusterName>-shard-00-0X.XXXXX.mongodb.net:27017", 
+        "tags" : { 
+                    "region" : "<region>", 
+                    "availabilityZone" : "<availabilityZone>", 
+                    "provider" : "<provider>", 
+                    "workloadType" : "<workloadType>", 
+                    "nodeType" : "<nodeType>", 
+                    "diskState" : "<diskState>" 
+        }, 
+        "me" : "<clusterName>-shard-00-0X.XXXXX.mongodb.net:27017", 
+        "electionId" : { "$oid" : ... }, 
+        "lastWrite" : { "opTime" : { "ts" : { "$timestamp" : { "t" : 1730832471, "i" : 18 } }, "t" : 422 }, 
+        "lastWriteDate" : { "$date" : 1730832471000 }, 
+        "majorityOpTime" : { "ts" : { "$timestamp" : { "t" : 1730832471, "i" : 18 } }, "t" : 422 }, 
+        "majorityWriteDate" : { "$date" : 1730832471000 } },
+        "maxBsonObjectSize" : 16777216, 
+        "maxMessageSizeBytes" : 48000000, 
+        "maxWriteBatchSize" : 100000, 
+        "localTime" : { "$date" : 1730832471576 }, 
+        "logicalSessionTimeoutMinutes" : 30, 
+        "connectionId" : 2841, 
+        "minWireVersion" : 0, 
+        "maxWireVersion" : 21, 
+        "readOnly" : false, 
+        "ok" : 1.0, 
+        "$clusterTime" : { "clusterTime" : { "$timestamp" : { "t" : 1730832471, "i" : 18 } }, 
+        "signature" : { "hash" : { "$binary" : "2kKtfTEFULg/e7Wm+W9R6ZQxHPg=", "$type" : "00" }, "keyId" : 7390947037702782977 } }, "operationTime" : { "$timestamp" : { "t" : 1730832471, "i" : 18 } } } 
 
 .. cpp-command-options:
 
@@ -110,7 +149,10 @@ option to ``true`` in the command document:
       :language: cli
       :visible: false
 
- run the ``connectionStatus`` command 
+      { "authInfo" : { "authenticatedUsers" : [ { "user" : <user-name>, "db" : "admin" } ], "authenticatedUserRoles" : [ { "role" : "atlasAdmin", "db" : "admin" } ], 
+        "authenticatedUserPrivileges" : [ { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "viewRole", "moveChunk", ... ] ], { "resource" : { "db" : "config", "collection" : "system.sessions" }, "actions" : [ "moveChunk", "splitChunk", "splitVector" ] }, { "resource" : { "cluster" : true }, "actions" : [ "listDatabases", "applyOps", "appendOplogNote", "getParameter", "serverStatus", "setUserWriteBlockMode", "useUUID", "allCollectionStats", "connPoolStats", "getDefaultRWConcern", "getCmdLineOpts", "getLog", "getShardMap", "hostInfo", "inprog", "listSampledQueries", "listSessions", "listShards", "netstat", "operationMetrics", "queryStatsRead", "queryStatsReadTransformed", "replSetGetConfig", "replSetGetStatus", "shardedDataDistribution", "shardingState", "top" ] }, { "resource" : { "db" : "", "collection" : "system.js" }, "actions" : [ "changeStream", "collStats", "compactStructuredEncryptionData", "convertToCapped", "createCollection", "createIndex", "createSearchIndexes", "dbHash", "dbStats", "dropCollection", "dropIndex", "dropSearchIndex", "find", "insert", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "updateSearchIndex", "planCacheRead", "remove", "renameCollectionSameDB", "update" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "changeStream", "collStats", "compactStructuredEncryptionData", "convertToCapped", "createCollection", "createIndex", "createSearchIndexes", "dbHash", "dbStats", "dropCollection", "dropIndex", "dropSearchIndex", "find", "insert", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "updateSearchIndex", "planCacheRead", "remove", "renameCollectionSameDB", "update", "analyze", "bypassDocumentValidation", "collMod", "compact", "configureQueryAnalyzer", "dropDatabase", "enableProfiler", "planCacheIndexFilter", "planCacheWrite", "reIndex", "storageDetails", "validate" ] }, { "resource" : { "db" : "", "collection" : "system.profile" }, "actions" : [ "changeStream", "collStats", "convertToCapped", "createCollection", "dbHash", "dbStats", "dropCollection", "find", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "collStats", "listCollections", "listIndexes", "listSearchIndexes" ] }, { "resource" : { "db" : "config", "collection" : "" }, "actions" : [ "find", "changeStream", "collStats", "dbHash", "dbStats", "getDatabaseVersion", "getShardVersion", "indexStats", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "local", "collection" : "" }, "actions" : [ "find", "changeStream", "collStats", "dbHash", "dbStats", "getDatabaseVersion", "getShardVersion", "indexStats", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "local", "collection" : "replset.election" }, "actions" : [ "find" ] }, { "resource" : { "db" : "local", "collection" : "replset.minvalid" }, "actions" : [ "find" ] }, { "resource" : { "db" : "", "collection" : "system.users" }, "actions" : [ "find" ] }, { "resource" : { "db" : "admin", "collection" : "system.backup_users" }, "actions" : [ "find" ] }, { "resource" : { "db" : "admin", "collection" : "system.roles" }, "actions" : [ "find" ] }, { "resource" : { "db" : "admin", "collection" : "system.version" }, "actions" : [ "find" ] }, { "resource" : { "db" : "config", "collection" : "settings" }, "actions" : [ "find", "insert", "update" ] }, { "resource" : { "db" : "config", "collection" : "system.js" }, "actions" : [ "changeStream", "collStats", "dbHash", "dbStats", "find", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "local", "collection" : "system.js" }, "actions" : [ "changeStream", "collStats", "dbHash", "dbStats", "find", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "config", "collection" : "system.sessions" }, "actions" : [ "collStats", "dbStats", "getDatabaseVersion", "getShardVersion", "indexStats" ] }, { "resource" : { "db" : "local", "collection" : "system.replset" }, "actions" : [ "find" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "changeStream", "collStats", "compactStructuredEncryptionData", "convertToCapped", "createCollection", "createIndex", "createSearchIndexes", "dbHash", "dbStats", "dropCollection", "dropIndex", "dropSearchIndex", "find", "insert", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "updateSearchIndex", "planCacheRead", "remove", "renameCollectionSameDB", "update" ] }, { "resource" : { "cluster" : true }, "actions" : [ "listDatabases" ] }, { "resource" : { "cluster" : true }, "actions" : [ "listDatabases", "applyOps" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "analyze", "bypassDocumentValidation", "collMod", "collStats", "compact", "configureQueryAnalyzer", "convertToCapped", "createCollection", "createIndex", "createSearchIndexes", "dbStats", "dropCollection", "dropDatabase", "dropIndex", "dropSearchIndex", "enableProfiler", "listCollections", "listIndexes", "listSearchIndexes", "updateSearchIndex", "planCacheIndexFilter", "planCacheRead", "planCacheWrite", "reIndex", "renameCollectionSameDB", "storageDetails", "validate" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "analyzeShardKey", "enableSharding", "refineCollectionShardKey", "reshardCollection" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "find" ] }, { "resource" : { "cluster" : true }, "actions" : [ "appendOplogNote", "getParameter", "listDatabases", "serverStatus", "setUserWriteBlockMode", "useUUID" ] }, { "resource" : { "db" : "config", "collection" : "" }, "actions" : [ "find" ] }, { "resource" : { "db" : "local", "collection" : "" }, "actions" : [ "find" ] }, { "resource" : { "db" : "", "collection" : "system.js" }, "actions" : [ "find" ] }, { "resource" : { "db" : "", "collection" : "system.profile" }, "actions" : [ "find" ] }, { "resource" : { "db" : "config", "collection" : "" }, "actions" : [ "changeStream", "collStats", "dbHash", "dbStats", "find", "getDatabaseVersion", "getShardVersion", "indexStats", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "local", "collection" : "" }, "actions" : [ "changeStream", "collStats", "dbHash", "dbStats", "find", "getDatabaseVersion", "getShardVersion", "indexStats", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "cluster" : true }, "actions" : [ "allCollectionStats", "connPoolStats", "getDefaultRWConcern", "getCmdLineOpts", "getLog", "getParameter", "getShardMap", "hostInfo", "inprog", "listDatabases", "listSampledQueries", "listSessions", "listShards", "netstat", "operationMetrics", "queryStatsRead", "queryStatsReadTransformed", "replSetGetConfig", "replSetGetStatus", "serverStatus", "shardedDataDistribution", "shardingState", "top", "useUUID" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "collStats", "dbStats", "getDatabaseVersion", "getShardVersion", "indexStats" ] } ] }, "ok" : 1 }
+
+run the ``connectionStatus`` command 
 by passing in a boolean value for 
 For example, you can set read preference to run the command with 
 You can specify optional command behavior for the ``command()``

@@ -21,12 +21,19 @@ int main() {
 
     {
         // start-run-hello
-        auto command = make_document(kvp("hello",1));
+        auto command = make_document(kvp("hello" , 1));
         auto result = db.run_command(command.view());       
 
         std::cout << bsoncxx::to_json(result) << std::endl; 
         // end-run-hello 
+    }
+    {
+        // start-run-connectionStatus
+        auto command = make_document(kvp("connectionStatus" , 1), kvp("showPrivileges", true));
+        auto result = db.run_command(command.view());
 
+        std::cout << bsoncxx::to_json(result) << std::endl;
+        // end-run-connectionStatus
     }
 
 }
