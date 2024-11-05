@@ -59,11 +59,11 @@ on your ``collection`` variable to instantiate a ``mongocxx::search_index_view``
 
 The ``mongocxx::search_index_view`` class contains the following member functions that allow you to interact with Atlas Search indexes: 
 
-- `create_one() <cpp-atlas-search-index-create>`, which creates an Atlas Search index with the specified configuration 
-- `create_many() <cpp-atlas-search-index-create-static>`, which creates multiple Atlas Search indexes with the specified configurations
-- `list() <cpp-atlas-search-index-list>`, which returns a ``mongocxx::cursor`` instance that points to a list of Atlas Search indexes on the collection
-- `update_one() <cpp-atlas-search-index-update>`, which updates the definition of the specified Atlas Search index
-- `drop_one() <cpp-atlas-search-index-drop>`, which removes the specified index from the collection 
+- :ref:`create_one() <cpp-atlas-search-index-create>`: Creates an Atlas Search index with the specified configuration 
+- :ref:`create_many() <cpp-atlas-search-index-create-static>`: Creates multiple Atlas Search indexes with the specified configurations
+- :ref:`list() <cpp-atlas-search-index-list>`: Returns a ``mongocxx::cursor`` instance that points to a list of Atlas Search indexes on the collection
+- :ref:`update_one() <cpp-atlas-search-index-update>`: Updates the definition of the specified Atlas Search index
+- :ref:`drop_one() <cpp-atlas-search-index-drop>`: Removes the specified index from the collection 
 
 .. note:: Atlas Search Index Management is Asynchronous
 
@@ -80,19 +80,19 @@ each Atlas Search index management method.
 Create a Search Index
 ---------------------
 
-To create a single Atlas Search Index on a collection, call the ``create_one()`` method on a ``mongocxx::search_index_view`` instance and pass in a ``mongoxcc::search_index_model`` 
-instance specifying the Search index you want to create. 
+To create a single Atlas Search index on a collection, call the ``create_one()`` method on a ``mongocxx::search_index_view`` instance and pass in a ``mongoxcc::search_index_model`` 
+instance specifying the index you want to create. 
 
 A ``mongocxx::search_index_model`` instance requires the following fields:
 
-- ``name``, a string specifying the name for your search index
-- ``definition``, a document containing the ``mappings`` field, which specifies how how to configure fields in your search index
+- ``name``: String specifying the name for your index
+- ``definition``: Document containing the ``mappings`` field, which specifies how how to configure fields in your index
 
 .. tip:: 
 
    For a full list of fields you can configure in an Atlas Search index, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas Search Documentation.
 
-After you create a Search index, you can perform Atlas Search queries on
+After you create an Atlas Search index, you can perform Atlas Search queries on
 your collection. To learn more, see :atlas:`Create and Run Atlas Search
 Queries </atlas-search/searching/>` in the Atlas Search Documentation.
 
@@ -105,8 +105,13 @@ Create a Search Index with Static Mappings
 
 Use static mappings in your Atlas Search index to specify the fields you want to index and configure index options for individual fields.
 
-To create a single Atlas Search index with static mappings, call the ``create_one()`` method and set ``mappings.dynamic`` to ``false``. You must specify
-the names and configurations for the fields you want to index in ``mappings.fields``. 
+To create a single Atlas Search index with static mappings, first create a document containing the ``mappings`` field. The ``mappings`` field should contain the following fields with the described values: 
+
+-  ``dynamic``: which stores the boolean value ``false``
+- ``fields``: which stores a document listing the fields you want to index and their index configurations. 
+  To learn more about ``mappings.fields`` syntax, see the :atlas:`Static Mapping Example </atlas-search/define-field-mappings/#static-mapping-example>` in the Atlas documentation. 
+
+Then, pass this document to the ``create_one()`` method. When an index is successfully created, the ``create_one()`` method will return a document containing the name of your newly created Atlas Search index. 
 
 The following example shows how to create a single Atlas Search index with static mappings: 
 
