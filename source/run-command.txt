@@ -78,9 +78,6 @@ the current member's role in the replica set, on a database:
       :visible: false
       
       { "topologyVersion" : ..., "hosts" : [ ... ], "setName" : ..., ..., 
-        "lastWrite" : ..., "majorityWriteDate" : ..., "maxBsonObjectSize" : ..., ...,
-        "readOnly" : ..., "ok" : ..., "$clusterTime" : ..., "operationTime" : ... }
-      { "topologyVersion" : { "processId" : ..., "counter" : ... }, "hosts" : [ ... ], ...,
         "isWritablePrimary" : ..., "secondary" : ..., "primary" : ..., ...,
         "readOnly" : ..., "ok" : ..., "$clusterTime" : ..., "operationTime" : ... } 
         
