@@ -67,14 +67,24 @@ The following example shows how you can use the ``run_command()``
 method to run the ``hello`` command, which returns information about
 the current member's role in the replica set, on a database:
 
-.. code-block:: cpp
+.. io-code-block::
+   :copyable: true
 
-    auto db = client["sample_mflix"];
-    auto collection = db["movies"];
-   auto result = await myDB.command({ hello: 1 });
+   .. input:: /includes/run-command.cpp
+      :start-after: start-run-hello
+      :end-before: end-run-hello
+      :language: cpp
+      :dedent:
+   
+   .. output:: 
+      :language: cli
+      :visible: false
+      
+      { "topologyVersion" : ..., "hosts" : [ ... ], "setName" : ..., ..., 
+        "lastWrite" : ..., "majorityWriteDate" : ..., "maxBsonObjectSize" : ..., ...,
+        "readOnly" : ..., "ok" : ..., "$clusterTime" : ..., "operationTime" : ... }
 
-For a full list of database commands and corresponding parameters, see
-the :ref:`Additional Information section <addl-info-runcommand>`.
+For a full list of database commands and corresponding parameters, see :manual:`Database Commands </reference/command/>` in the {+mdb-server+} Manual. 
 
 .. _node-command-options:
 

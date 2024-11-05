@@ -21,7 +21,6 @@ int main() {
 
     {
         // start-run-hello
-        // Build the "hello" command 
         auto command = make_document(kvp("hello",1));
         auto result = db.run_command(command.view());       
 
