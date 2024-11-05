@@ -21,6 +21,9 @@ int main(){
     auto collection = db["movies"];
     // end-db-coll
 
+    // start-siv
+    auto siv = collection.search_indexes();
+    // end-siv
     {
         // start-index-single
         auto index_specification = make_document(kvp("title", 1));
@@ -68,7 +71,6 @@ int main(){
     {
         // start-create-static-search-index
         // Create an index model with your index name and definition containing the fields you want to index
-        auto siv = collection.search_indexes();
         auto name = "myStaticIndex";
         auto fields = make_document(kvp("title", make_document(kvp("type", "string"), kvp("analyzer","lucene.standard"))), kvp("year", make_document(kvp("type","number"))));
         auto definition = make_document(kvp("mappings", make_document(kvp("dynamic", false), kvp("fields", fields))));
@@ -82,7 +84,6 @@ int main(){
     {
         // start-create-dynamic-search-index
         // Create an index model with your index name and definition
-        auto siv = collection.search_indexes();
         auto name = "myDynamicIndex";
         auto definition = make_document(kvp("mappings", make_document(kvp("dynamic", true))));
         auto model = mongocxx::search_index_model(name, definition.view());
@@ -95,7 +96,6 @@ int main(){
     {
         // start-create-multiple-search-indexes
         // Create a vector to store Search index models
-        auto siv = collection.search_indexes();
         std::vector<mongocxx::search_index_model> models; 
 
         // Add an index model with dynamic mappings to the input vector
@@ -124,7 +124,6 @@ int main(){
 
     {
         // start-list-search-indexes
-        auto siv = collection.search_indexes();
         auto cursor = siv.list(); 
         for (mongocxx::cursor::iterator it = cursor.begin(); it != cursor.end(); ++it) {
             std::cout << bsoncxx::to_json(*it) << std::endl;
@@ -133,7 +132,6 @@ int main(){
     }
     {
         // start-list-search-index
-        auto siv = collection.search_indexes();
         auto cursor = siv.list("myDynamicIndex"); 
         for (mongocxx::cursor::iterator it = cursor.begin(); it != cursor.end(); ++it) {
             std::cout << bsoncxx::to_json(*it) << std::endl;
@@ -148,7 +146,6 @@ int main(){
     }
     {
         // start-update-search-index
-        auto siv = collection.search_indexes();
         auto update_fields = make_document(kvp("title", make_document(kvp("type", "string"), kvp("analyzer","lucene.simple"))), kvp("year", make_document(kvp("type","number"))));
         auto update_definition = make_document(kvp("mappings", make_document(kvp("dynamic", false), kvp("fields", update_fields))));
         siv.update_one("myStaticIndex", update_definition.view());
@@ -156,7 +153,6 @@ int main(){
     }
     {
         // start-remove-search-index
-        auto siv = collection.search_indexes();
         siv.drop_one("myDynamicIndex");
         // end-remove-search-index
     }

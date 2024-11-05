@@ -187,7 +187,7 @@ The following code prints a list of Atlas Search indexes in the specified collec
 Update Search Indexes
 ~~~~~~~~~~~~~~~~~~~~~
 
-The following code updates an existing Atlas Search index with the specified new index definition. 
+The following code updates an existing Atlas Search index with the specified new index definition: 
 
 .. literalinclude:: /includes/usage-examples/index-code-examples.cpp
    :start-after: start-update-search-index

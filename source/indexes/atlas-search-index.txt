@@ -25,26 +25,51 @@ searches on collections hosted on Atlas. Before you can perform Atlas
 Search queries, you must create indexes that specify which
 fields to index and how they are indexed.
 
-To learn more about Atlas Search, see the :atlas:`Atlas Search Overview
-</atlas-search/atlas-search-overview/>`.
+To learn more about Atlas Search, see the :atlas:`Atlas Search Overview.
+</atlas-search/atlas-search-overview/>`
 
-You can use the following methods on a ``mongocxx::search_index_view`` instance
-to manage your Atlas Search indexes:
+Sample Data
+~~~~~~~~~~~
 
-- ``create_one()``
-- ``create_many()``
-- ``list()``
-- ``update_one()``
-- ``drop_one()``
+The examples in this guide use the ``movies`` collection in the ``sample_mflix``
+database from the :atlas:`Atlas sample datasets </sample-data>`. 
+To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
+:atlas:`Get Started with Atlas </getting-started>` guide.
 
-To get a ``search_index_view`` to your collection, 
-call the ``search_indexes()`` method on your ``mongocxx::collection`` instance.
+To manage Atlas Search indexes on the ``sample_mflix`` collection from your C++ application, 
+first instantiate a ``mongocxx::client`` that connects to an Atlas cluster
+and assign the following values to your ``db`` and ``collection`` variables: 
+
+.. literalinclude:: /includes/indexes/indexes.cpp
+    :start-after: start-db-coll
+    :end-before: end-db-coll
+    :language: cpp
+    :copyable:
+    :dedent:
+
+Then, call the ``search_indexes()`` method
+on your ``collection`` variable to instantiate a ``mongocxx::search_index_view`` on your collection: 
+
+.. literalinclude:: /includes/indexes/indexes.cpp
+    :start-after: start-siv
+    :end-before: end-siv
+    :language: cpp
+    :copyable:
+    :dedent:
+
+The ``mongocxx::search_index_view`` class contains the following member functions that allow you to interact with Atlas Search indexes: 
+
+- `create_one() <cpp-atlas-search-index-create>`, which creates an Atlas Search index with the specified configuration 
+- `create_many() <cpp-atlas-search-index-create-static>`, which creates multiple Atlas Search indexes with the specified configurations
+- `list() <cpp-atlas-search-index-list>`, which returns a ``mongocxx::cursor`` instance that points to a list of Atlas Search indexes on the collection
+- `update_one() <cpp-atlas-search-index-update>`, which updates the definition of the specified Atlas Search index
+- `drop_one() <cpp-atlas-search-index-drop>`, which removes the specified index from the collection 
 
 .. note:: Atlas Search Index Management is Asynchronous
 
    The {+driver-long+} manages Atlas Search indexes asynchronously. The
    library methods described in the following sections return the server
-   response immediately, but the changes to your Search indexes take
+   response immediately, but the changes to your Atlas Search indexes take
    place in the background and might not complete until some time later.
 
 The following sections provide code examples that demonstrate how to use
@@ -249,7 +274,7 @@ The following example shows how to remove an Atlas Search index named ``myDynami
 Additional Information
 ----------------------
 
-To view runnable examples that demonstrate how to manage indexes, see :ref:`cpp-indexes`.
+To view runnable examples that demonstrate how to manage indexes, see :ref:`cpp-indexes.`
 
 For more detailed guides on how to use the Atlas Search feature and define Atlas Search indexes,
 see the following Atlas Search Documentation pages: 
