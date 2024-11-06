@@ -105,31 +105,17 @@ Create a Search Index with Static Mappings
 
 Use static mappings in your Atlas Search index to specify the fields you want to index and configure index options for individual fields.
 
-To create a single Atlas Search index with static mappings, first instantiate a ``mongocxx::search_index_model`` by passing a ``name`` string and ``definition`` document into the ``mongocxx::search_index_model`` constructor. 
-The  ``definition`` document must contain the ``mappings`` field, which is a document containing the following fields:
+To create a single Atlas Search index with static mappings, call the ``create_one()`` method and pass in a ``mongocxx::search_index_model`` with a ``definition`` document containing
+the following fields and values: 
 
--  ``dynamic``: which stores the boolean value ``false``
-- ``fields``: which stores a document listing the fields you want to index and their index configurations. 
-  To learn more about ``mappings.fields`` syntax, see the :atlas:`Static Mapping Example </atlas-search/define-field-mappings/#static-mapping-example>` in the Atlas documentation. 
-
-Then, pass this ``mongocxx::search_index_modell`` into the ``create_one()`` method. 
-When an index is successfully created, the ``create_one()`` method will return a document containing the name of your newly created Atlas Search index. 
-
-The following example shows how to create a single Atlas Search index with static mappings: 
-
-
-To create a single Atlas Search index with static mappings, first create a ``definition`` document that contains the ``mappings`` field.
-Set the value of the ``mappings`` field to an embedded document containing the following fields and values: 
-
--  ``dynamic``: ``false`` 
-- ``fields``: Document describing the fields you want to index and their index configurations
-
-Then, instantiate a ``mongocxx::search_index_model`` by passing a ``name`` string and your ``definition`` document into a ``mongocxx::search_index_model`` constructor. 
-Pass your Search index model into the ``create_one()`` method to create the specified Atlas Search index. When an index is successfully created, the ``create_one()`` method will return a document containing the name of your newly created Atlas Search index. 
+-  ``mappings.dynamic``: ``false`` 
+- ``mappings.fields``: Document specifying the names of the fields you want to index and their index configurations
 
 .. tip:: 
 
    To learn more about ``mappings.fields`` syntax, see the :atlas:`Static Mapping Example </atlas-search/define-field-mappings/#static-mapping-example>` in the Atlas documentation.
+   
+The following example shows how to create a single Atlas Search index with static mappings: 
 
 .. io-code-block::
    :copyable: true
@@ -151,7 +137,6 @@ Pass your Search index model into the ``create_one()`` method to create the spec
    You can't index fields that contain the dollar (``$``) sign at the start of the field name.
 
 To learn more about when to use static mappings, see the :atlas:`Static Mappings </atlas-search/define-field-mappings/#static-mappings>` section in the Atlas Search Documentation.
-
 
 .. _cpp-atlas-search-index-create-dynamic:
 
