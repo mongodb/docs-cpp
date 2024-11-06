@@ -104,12 +104,9 @@ Use static mappings in your Atlas Search index to specify the fields that you wa
 To create a single Atlas Search index with static mappings, first create a ``definition`` document containing the ``mappings`` field.
 In this field, specify a document containing the following fields and values: 
 
--  ``dynamic``: ``false`` 
-- ``fields``: Document specifying the names of the fields that you want to index and their index configurations
-
-.. tip:: 
-
-   To learn more about ``mappings.fields`` syntax, see the :atlas:`Static Mapping Example </atlas-search/define-field-mappings/#static-mapping-example>` in the Atlas Search documentation.
+-  ``dynamic``: Set to ``false``. 
+- ``fields``: Document specifying the names of the fields that you want to index and their index configurations. To learn more about ``mappings.fields`` 
+  options, see the :atlas:`Static Mapping Example </atlas-search/define-field-mappings/#static-mapping-example>` in the Atlas Search documentation.
 
 Then, pass a ``name`` string and the ``definition`` document you just created into a ``mongocxx::earch_index_model`` constructor to instantiate a ``mongocxx::search_index_model``. 
 Pass this ``mongocxx::search_index_model`` instance into the ``create_one()`` method to add the specified Atlas Search index to your collection.
