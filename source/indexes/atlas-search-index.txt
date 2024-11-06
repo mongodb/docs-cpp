@@ -144,7 +144,7 @@ For a list of supported BSON data types, see the :atlas:`Data Types </atlas-sear
 
 To create a single Atlas Search index with dynamic mappings, first create a ``definition`` document containing the ``mappings`` field. 
 In this field, specify a document containing the ``dynamic`` field with its value set to ``true``. 
-Then, pass a ``name`` string and the ``definition`` document you just created into a ``mongocxx::earch_index_model`` constructor to instantiate a ``mongocxx::search_index_model``. 
+Then, pass a ``name`` string and the ``definition`` document you just created into a ``mongocxx::search_index_model`` constructor to instantiate a ``mongocxx::search_index_model``. 
 Pass this ``mongocxx::search_index_model`` instance into the ``create_one()`` method to add the specified Atlas Search index to your collection.
 
 The following example shows how to to create a single Atlas Search index with dynamic mappings:
