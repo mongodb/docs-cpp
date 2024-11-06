@@ -25,8 +25,8 @@ searches on collections hosted on Atlas. Before you can perform Atlas
 Search queries, you must create indexes that specify which
 fields to index and how they are indexed.
 
-To learn more about Atlas Search, see the :atlas:`Atlas Search Overview.
-</atlas-search/atlas-search-overview/>`
+To learn more about Atlas Search, see the :atlas:`Atlas Search Overview
+</atlas-search/atlas-search-overview/>` in the Atlas Search documentation. 
 
 Sample Data
 ~~~~~~~~~~~
@@ -90,11 +90,7 @@ A ``mongocxx::search_index_model`` instance requires the following fields:
 
 .. tip:: 
 
-   For a full list of fields you can configure in an Atlas Search index, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas Search Documentation.
-
-After you create an Atlas Search index, you can perform Atlas Search queries on
-your collection. To learn more, see :atlas:`Create and Run Atlas Search
-Queries </atlas-search/searching/>` in the Atlas Search Documentation.
+   For a full list of fields you can configure in an Atlas Search index, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas Search documentation.
 
 The following sections show how to create a single Atlas Search index with static or dynamic mappings. 
 
@@ -113,7 +109,7 @@ Set the ``mappings`` field value to an embedded document containing the followin
 
 .. tip:: 
 
-   To learn more about ``mappings.fields`` syntax, see the :atlas:`Static Mapping Example </atlas-search/define-field-mappings/#static-mapping-example>` in the Atlas documentation.
+   To learn more about ``mappings.fields`` syntax, see the :atlas:`Static Mapping Example </atlas-search/define-field-mappings/#static-mapping-example>` in the Atlas Search documentation.
 
 Then, instantiate a ``mongocxx::search_index_model`` by passing in a ``name`` string and the ``definition`` document you just created. 
 Pass this ``search_index_model`` instance into the ``create_one()`` method to add the specified Atlas Search index to your collection.
@@ -139,7 +135,7 @@ The following example shows how to create a single Atlas Search index with stati
 
    You can't index fields that contain the dollar (``$``) sign at the start of the field name.
 
-To learn more about when to use static mappings, see the :atlas:`Static Mappings </atlas-search/define-field-mappings/#static-mappings>` section in the Atlas Search Documentation.
+To learn more about when to use static mappings, see the :atlas:`Static Mappings </atlas-search/define-field-mappings/#static-mappings>` section in the Atlas Search documentation.
 
 .. _cpp-atlas-search-index-create-dynamic:
 
@@ -290,6 +286,7 @@ To view runnable examples that demonstrate how to manage indexes, see :ref:`cpp-
 For more detailed guides about how to use the Atlas Search feature and define Atlas Search indexes,
 see the following Atlas Search documentation pages: 
 
+- :atlas:`Atlas Search Overview </atlas-search/atlas-search-overview/>`
 - :atlas:`Get Started with Atlas Search </atlas-search/tutorial/>`
 - :atlas:`Create and Run Atlas Search Queries </atlas-search/searching/>`
 - :atlas:`Create an Atlas Search Index </atlas-search/create-index/>` 
