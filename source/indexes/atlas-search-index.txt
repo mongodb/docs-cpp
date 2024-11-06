@@ -101,11 +101,11 @@ Create a Search Index with Static Mappings
 
 Use static mappings in your Atlas Search index to specify the fields that you want to index and configure index options for individual fields.
 
-To create a single Atlas Search index with static mappings, first create an index ``definition`` document containing the ``mappings`` field. 
-Set the ``mappings`` field value to an embedded document containing the following fields and values: 
+To create a single Atlas Search index with static mappings, first create a document containing the ``mappings`` field.
+In this field, specify a document containing the following fields and values: 
 
--  ``mappings.dynamic``: ``false`` 
-- ``mappings.fields``: Document specifying the names of the fields that you want to index and their index configurations
+-  ``dynamic``: ``false`` 
+- ``fields``: Document specifying the names of the fields that you want to index and their index configurations
 
 .. tip:: 
 
@@ -146,7 +146,7 @@ Use dynamic mappings in your Atlas Search index to automatically index all field
 For a list of supported BSON data types, see the :atlas:`Data Types </atlas-search/define-field-mappings/#data-types>` section in the Atlas Search documentation. 
 
 To create a single Atlas Search index with dynamic mappings, first create an index ``definition`` document containing the ``mappings`` field. 
-Set the ``mappings`` field value to an embedded document with the ``dynamic`` field value set to ``true``. 
+In this ``mappings`` field, specify a document containing the ``dynamic`` field with its value set to ``true``.
 
 The following example shows how to to create a single Atlas Search index with dynamic mappings:
 
