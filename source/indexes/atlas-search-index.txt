@@ -281,7 +281,8 @@ The following example shows how to remove an Atlas Search index named ``myDynami
 Additional Information
 ----------------------
 
-To view runnable examples that demonstrate how to manage indexes, see :ref:`cpp-indexes.`
+To view runnable examples that demonstrate how to manage indexes, see :ref:`Optimize Queries with Indexes.
+<cpp-indexes>`
 
 For more detailed guides about how to use the Atlas Search feature and define Atlas Search indexes,
 see the following Atlas Search documentation pages: 
