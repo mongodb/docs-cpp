@@ -195,4 +195,4 @@ For more information about the concepts in this guide, see the following documen
 To learn more about the methods or types discussed in this
 guide, see the following API documentation:
 
-- `run_command() <{+api+}/classmongocxx_1_1database.html#a1ce8581871d060bce35739a682fc35e9>`__
+- `run_command() <{+api+}/classmongocxx_1_1database.html#a1ce8581871d060bce35739a682fc35e9`__
