@@ -35,12 +35,4 @@ int main() {
         std::cout << bsoncxx::to_json(result) << std::endl;
         // end-run-connectionStatus
     }
-    {
-        // start-run-readPreferences
-        auto command = make_document(kvp("hello" , 1), kvp("readPreference", "secondaryPreferred"));
-        auto result = db.run_command(command.view());     
-
-        std::cout << bsoncxx::to_json(result) << std::endl;  
-        // end-run-readPreferences
-    }
 }

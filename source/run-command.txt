@@ -150,37 +150,12 @@ option to ``true`` in the command document:
         "authenticatedUserPrivileges" : [ 
                                           { "resource" : { "db" : "", "collection" : "" }, "actions" : [ ... ] }, 
                                           { "resource" : { "db" : "config", "collection" : "system.sessions" }, "actions" : [ ... ] }, 
-                                          { "resource" : { "cluster" : true }, "actions" : [ ... ] }, 
                                           ..., 
+                                          { "resource" : { "db" : "", "collection" : "" }, "actions" : [ ... ] }
         ] 
       }, 
          "ok" : 1 
       }
-      
-.. note:: Read Preference
-
-   The ``run_command()`` method ignores
-   the read preference setting you may have set on your ``db`` object.
-   By default, this method uses the ``primary`` read preference.
-
-   The following code shows how to specify a read preference in the command 
-   document that you pass to the ``run_command()`` method: 
-   
-  .. io-code-block::
-     :copyable: true
-
-     .. input:: /includes/run-command.cpp
-        :start-after: start-run-readPreferences
-        :end-before: end-run-readPreferences
-        :language: cpp
-        :dedent:
-     
-     .. output:: 
-        :language: cli
-        :visible: false
-   
-   For more information on read preference options, see :manual:`Read
-   Preference </core/read-preference/>` in the Server manual.
 
 Response
 --------
