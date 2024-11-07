@@ -81,7 +81,7 @@ the current member's role in the replica set, on a database:
         "isWritablePrimary" : ..., "secondary" : ..., "primary" : ..., ...,
         "readOnly" : ..., "ok" : ..., "$clusterTime" : ..., "operationTime" : ... } 
 
-     { 
+      { 
         "topologyVersion" : { 
                                 "processId" : { "$oid" : ... }, 
                                 "counter" : ... 
@@ -120,7 +120,7 @@ the current member's role in the replica set, on a database:
         "ok" : 1.0, 
         "$clusterTime" : { "clusterTime" : { "$timestamp" : { "t" : ..., "i" : ... } }, 
         "signature" : { "hash" : { "$binary" : ..., "$type" : "00" }, "keyId" : ... } }, "operationTime" : { "$timestamp" : { "t" : ..., "i" : ... } } 
-      } 
+       } 
 
 .. cpp-command-options:
 
