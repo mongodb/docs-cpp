@@ -30,23 +30,6 @@ initializing a replica set, or running an aggregation pipeline.
    commands, as it provides a consistent interface between the shell and
    drivers.
 
-Sample Data
-~~~~~~~~~~~
-
-The examples in this guide use the ``movies`` collection in the ``sample_mflix``
-database from the :atlas:`Atlas sample datasets </sample-data>`. To access this collection
-from your C++ application, instantiate a ``mongocxx::client`` that connects to an Atlas cluster
-and assign the following values to your ``db`` and ``collection`` variables:
-
-.. literalinclude:: /includes/run-command.cpp
-    :start-after: start-db-coll
-    :end-before: end-db-coll
-    :language: cpp
-    :dedent:
-
-To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
-:atlas:`Get Started with Atlas </getting-started>` guide.
-
 Execute a Command
 -----------------
 
@@ -57,8 +40,6 @@ and the value is typically supplied as ``1``. The value does not affect the comm
 
 You can use the ``run_command()`` method with any database command. 
 For a full list of database commands and corresponding parameters, see :manual:`Database Commands </reference/command/>` in the {+mdb-server+} manual. 
-
-.. The ``run_command()`` method returns the command response as a ``bsoncxx::document::value`` type. 
 
 The following example shows how you can use the ``run_command()``
 method to run the ``hello`` command, which returns information about

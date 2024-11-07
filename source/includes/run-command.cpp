@@ -14,13 +14,11 @@ int main() {
     mongocxx::uri uri("<connection string>");
     mongocxx::client client(uri);
   
-    // start-db-coll
-    auto db = client["sample_mflix"];
-    auto collection = db["movies"];
-    // end-db-coll
 
     {
         // start-run-hello
+        auto db = client["my_database"];
+
         auto command = make_document(kvp("hello" , 1));
         auto result = db.run_command(command.view());       
 
@@ -29,6 +27,8 @@ int main() {
     }
     {
         // start-run-connectionStatus
+        auto db = client["my_database"];
+
         auto command = make_document(kvp("connectionStatus" , 1), kvp("showPrivileges", true));
         auto result = db.run_command(command.view());
 
