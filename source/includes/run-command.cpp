@@ -35,5 +35,9 @@ int main() {
         std::cout << bsoncxx::to_json(result) << std::endl;
         // end-run-connectionStatus
     }
+    {
+        // start-run-readPreferences
 
+        // end-run-readPreferences
+    }
 }
