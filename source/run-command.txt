@@ -104,22 +104,23 @@ the current member's role in the replica set, on a database:
         }, 
         "me" : "<clusterName>-shard-00-0X.XXXXX.mongodb.net:27017", 
         "electionId" : { "$oid" : ... }, 
-        "lastWrite" : { "opTime" : { "ts" : { "$timestamp" : { "t" : 1730832471, "i" : 18 } }, "t" : 422 }, 
-        "lastWriteDate" : { "$date" : 1730832471000 }, 
-        "majorityOpTime" : { "ts" : { "$timestamp" : { "t" : 1730832471, "i" : 18 } }, "t" : 422 }, 
-        "majorityWriteDate" : { "$date" : 1730832471000 } },
+        "lastWrite" : { "opTime" : ..., "t" : ... }, 
+        "lastWriteDate" : { "$date" : ... }, 
+        "majorityOpTime" : { "ts" : { "$timestamp" : { "t" : ..., "i" : ... } }, "t" : ... }, 
+        "majorityWriteDate" : { "$date" : ... } },
         "maxBsonObjectSize" : 16777216, 
         "maxMessageSizeBytes" : 48000000, 
         "maxWriteBatchSize" : 100000, 
-        "localTime" : { "$date" : 1730832471576 }, 
-        "logicalSessionTimeoutMinutes" : 30, 
-        "connectionId" : 2841, 
-        "minWireVersion" : 0, 
-        "maxWireVersion" : 21, 
-        "readOnly" : false, 
+        "localTime" : { "$date" : ... }, 
+        "logicalSessionTimeoutMinutes" : ..., 
+        "connectionId" : ..., 
+        "minWireVersion" : ..., 
+        "maxWireVersion" : ..., 
+        "readOnly" : ** boolean **, 
         "ok" : 1.0, 
-        "$clusterTime" : { "clusterTime" : { "$timestamp" : { "t" : 1730832471, "i" : 18 } }, 
-        "signature" : { "hash" : { "$binary" : "2kKtfTEFULg/e7Wm+W9R6ZQxHPg=", "$type" : "00" }, "keyId" : 7390947037702782977 } }, "operationTime" : { "$timestamp" : { "t" : 1730832471, "i" : 18 } } } 
+        "$clusterTime" : { "clusterTime" : { "$timestamp" : { "t" : ..., "i" : ... } }, 
+        "signature" : { "hash" : { "$binary" : ..., "$type" : "00" }, "keyId" : ... } }, "operationTime" : { "$timestamp" : { "t" : ..., "i" : ... } } 
+      } 
 
 .. cpp-command-options:
 
