@@ -148,41 +148,6 @@ option to ``true`` in the command document:
         "authenticatedUserRoles" : [ { "role" : "atlasAdmin", "db" : "admin" } ], 
         "authenticatedUserPrivileges" : [ { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "viewRole", "moveChunk", ... ] ], { "resource" : { "db" : "config", "collection" : "system.sessions" }, "actions" : [ "moveChunk", "splitChunk", "splitVector" ] }, { "resource" : { "cluster" : true }, "actions" : [ "listDatabases", "applyOps", "appendOplogNote", "getParameter", "serverStatus", "setUserWriteBlockMode", "useUUID", "allCollectionStats", "connPoolStats", "getDefaultRWConcern", "getCmdLineOpts", "getLog", "getShardMap", "hostInfo", "inprog", "listSampledQueries", "listSessions", "listShards", "netstat", "operationMetrics", "queryStatsRead", "queryStatsReadTransformed", "replSetGetConfig", "replSetGetStatus", "shardedDataDistribution", "shardingState", "top" ] }, { "resource" : { "db" : "", "collection" : "system.js" }, "actions" : [ "changeStream", "collStats", "compactStructuredEncryptionData", "convertToCapped", "createCollection", "createIndex", "createSearchIndexes", "dbHash", "dbStats", "dropCollection", "dropIndex", "dropSearchIndex", "find", "insert", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "updateSearchIndex", "planCacheRead", "remove", "renameCollectionSameDB", "update" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "changeStream", "collStats", "compactStructuredEncryptionData", "convertToCapped", "createCollection", "createIndex", "createSearchIndexes", "dbHash", "dbStats", "dropCollection", "dropIndex", "dropSearchIndex", "find", "insert", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "updateSearchIndex", "planCacheRead", "remove", "renameCollectionSameDB", "update", "analyze", "bypassDocumentValidation", "collMod", "compact", "configureQueryAnalyzer", "dropDatabase", "enableProfiler", "planCacheIndexFilter", "planCacheWrite", "reIndex", "storageDetails", "validate" ] }, { "resource" : { "db" : "", "collection" : "system.profile" }, "actions" : [ "changeStream", "collStats", "convertToCapped", "createCollection", "dbHash", "dbStats", "dropCollection", "find", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "collStats", "listCollections", "listIndexes", "listSearchIndexes" ] }, { "resource" : { "db" : "config", "collection" : "" }, "actions" : [ "find", "changeStream", "collStats", "dbHash", "dbStats", "getDatabaseVersion", "getShardVersion", "indexStats", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "local", "collection" : "" }, "actions" : [ "find", "changeStream", "collStats", "dbHash", "dbStats", "getDatabaseVersion", "getShardVersion", "indexStats", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "local", "collection" : "replset.election" }, "actions" : [ "find" ] }, { "resource" : { "db" : "local", "collection" : "replset.minvalid" }, "actions" : [ "find" ] }, { "resource" : { "db" : "", "collection" : "system.users" }, "actions" : [ "find" ] }, { "resource" : { "db" : "admin", "collection" : "system.backup_users" }, "actions" : [ "find" ] }, { "resource" : { "db" : "admin", "collection" : "system.roles" }, "actions" : [ "find" ] }, { "resource" : { "db" : "admin", "collection" : "system.version" }, "actions" : [ "find" ] }, { "resource" : { "db" : "config", "collection" : "settings" }, "actions" : [ "find", "insert", "update" ] }, { "resource" : { "db" : "config", "collection" : "system.js" }, "actions" : [ "changeStream", "collStats", "dbHash", "dbStats", "find", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "local", "collection" : "system.js" }, "actions" : [ "changeStream", "collStats", "dbHash", "dbStats", "find", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "config", "collection" : "system.sessions" }, "actions" : [ "collStats", "dbStats", "getDatabaseVersion", "getShardVersion", "indexStats" ] }, { "resource" : { "db" : "local", "collection" : "system.replset" }, "actions" : [ "find" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "changeStream", "collStats", "compactStructuredEncryptionData", "convertToCapped", "createCollection", "createIndex", "createSearchIndexes", "dbHash", "dbStats", "dropCollection", "dropIndex", "dropSearchIndex", "find", "insert", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "updateSearchIndex", "planCacheRead", "remove", "renameCollectionSameDB", "update" ] }, { "resource" : { "cluster" : true }, "actions" : [ "listDatabases" ] }, { "resource" : { "cluster" : true }, "actions" : [ "listDatabases", "applyOps" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "analyze", "bypassDocumentValidation", "collMod", "collStats", "compact", "configureQueryAnalyzer", "convertToCapped", "createCollection", "createIndex", "createSearchIndexes", "dbStats", "dropCollection", "dropDatabase", "dropIndex", "dropSearchIndex", "enableProfiler", "listCollections", "listIndexes", "listSearchIndexes", "updateSearchIndex", "planCacheIndexFilter", "planCacheRead", "planCacheWrite", "reIndex", "renameCollectionSameDB", "storageDetails", "validate" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "analyzeShardKey", "enableSharding", "refineCollectionShardKey", "reshardCollection" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "find" ] }, { "resource" : { "cluster" : true }, "actions" : [ "appendOplogNote", "getParameter", "listDatabases", "serverStatus", "setUserWriteBlockMode", "useUUID" ] }, { "resource" : { "db" : "config", "collection" : "" }, "actions" : [ "find" ] }, { "resource" : { "db" : "local", "collection" : "" }, "actions" : [ "find" ] }, { "resource" : { "db" : "", "collection" : "system.js" }, "actions" : [ "find" ] }, { "resource" : { "db" : "", "collection" : "system.profile" }, "actions" : [ "find" ] }, { "resource" : { "db" : "config", "collection" : "" }, "actions" : [ "changeStream", "collStats", "dbHash", "dbStats", "find", "getDatabaseVersion", "getShardVersion", "indexStats", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "db" : "local", "collection" : "" }, "actions" : [ "changeStream", "collStats", "dbHash", "dbStats", "find", "getDatabaseVersion", "getShardVersion", "indexStats", "killCursors", "listCollections", "listIndexes", "listSearchIndexes", "planCacheRead" ] }, { "resource" : { "cluster" : true }, "actions" : [ "allCollectionStats", "connPoolStats", "getDefaultRWConcern", "getCmdLineOpts", "getLog", "getParameter", "getShardMap", "hostInfo", "inprog", "listDatabases", "listSampledQueries", "listSessions", "listShards", "netstat", "operationMetrics", "queryStatsRead", "queryStatsReadTransformed", "replSetGetConfig", "replSetGetStatus", "serverStatus", "shardedDataDistribution", "shardingState", "top", "useUUID" ] }, { "resource" : { "db" : "", "collection" : "" }, "actions" : [ "collStats", "dbStats", "getDatabaseVersion", "getShardVersion", "indexStats" ] } ] }, "ok" : 1 }
 
-.. The ``command()`` method accepts a ``RunCommandOptions`` object. To learn
-.. more about the ``RunCommandOptions`` type, see the `API documentation <{+api+}/types/RunCommandOptions.html>`__.
-
-.. The ``runCursorCommand() method`` accepts a ``RunCursorCommandOptions``
-.. object. To learn more about the ``RunCursorCommandOptions`` type, see
-.. the `API documentation <{+api+}/types/RunCursorCommandOptions.html>`__.
-
-.. Starting in version 6.0 of the {+driver-short+}, you can pass only the
-.. following options to the ``command()`` method:
-
-.. - ``comment``
-.. - ``enableUtf8Validation``
-.. - ``raw``
-.. - ``readPreference``
-.. - ``session``
-
-.. You can set additional options in the document that you pass to
-.. the ``command()`` method. To learn more about a command and the
-.. additional options that it accepts, locate the command and follow the
-.. link on the :manual:`Database Commands </reference/command/>` section of
-.. the Server manual.
-
-.. The following code shows how to specify a ``grantRolesToUser`` command
-.. that executes with a ``majority`` write concern:
-
-.. .. code-block:: javascript
-..    :emphasize-lines: 4
-
-..    const commandDoc = {
-..        grantRolesToUser: "user011",
-..        roles: [ "readWrite" ],
-..        writeConcern: { w: "majority" }
-..    };
-..    const result = await myDB.command(commandDoc);
-
 .. note:: Read Preference
 
    The ``run_command()`` method ignores
@@ -211,7 +176,7 @@ option to ``true`` in the command document:
 Response
 --------
 
-Each method returns a ``Document`` object or a cursor that contains
+The ``run_command()`` method returns a ``bsoncxx::document::value`` object that contains
 the response from the database after the command has been executed. Each
 database command performs a different function, so the response content
 can vary across commands. However, every response contains documents
@@ -237,10 +202,8 @@ with the following fields:
      - Indicates the logical time of the operation. MongoDB uses the
        logical time to order operations.
        
-       .. seealso::
-  
-          To learn more about logical time, see our :website:`blog post about
-          the Global Logical Clock </blog/post/transactions-background-part-4-the-global-logical-clock>`.
+       To learn more about logical time, see our :website:`blog post about
+       the Global Logical Clock </blog/post/transactions-background-part-4-the-global-logical-clock>`.
 
    * - ``$clusterTime``
      - Provides a document that returns the signed cluster time. Cluster time is a
@@ -252,52 +215,6 @@ with the following fields:
        - ``signature``, which is a document that contains the hash of the cluster time and the ID
          of the key used to sign the cluster time.
 
-Example
--------
-
-The following code shows how you can use the ``runCursorCommand()`` method to
-run the ``checkMetadataConsistency`` command on the ``testDB`` database
-and iterate through the results:
-
-.. literalinclude:: /code-snippets/crud/runCommand.js
-   :language: javascript
-   :dedent:
-   :start-after: start-runcommand
-   :end-before: end-runcommand
-
-Output
-~~~~~~
-
-The output contains the contents of the cursor object. The documents
-describe any metadata inconsistencies in the database:
-
-.. code-block:: javascript
-
-   {
-     type: ...,
-     description: ...,
-     details: {
-       namespace: ...,
-       info: ...
-     }
-   }
-   {
-     type: ...,
-     description: ...,
-     details: {
-       namespace: ...,
-       collectionUUID: ...,
-       maxKeyObj: ...,
-       ...
-     }
-   }
-
-.. note::
-
-   If you store the command response in a cursor, you see only the
-   command result documents when you access the contents of the cursor. You won't
-   see the ``ok``, ``operationTime``, and ``$clusterTime`` fields.
-
 .. _addl-info-runcommand:
 
 Additional Information
@@ -308,12 +225,7 @@ For more information about the concepts in this guide, see the following documen
 - :manual:`db.runCommand() </reference/method/db.runCommand/>`
 - :manual:`Database Commands </reference/command/>`
 - :manual:`hello Command </reference/command/hello/>`
-- :manual:`find Command </reference/command/find/>`
-
-.. - :manual:`checkMetadataConsistency Command </reference/command/checkMetadataConsistency/>`
-
-To learn how to retrieve data from a cursor, see the
-:ref:`node-access-cursor` fundamentals page.
+- :manual:`connectionStatus Command </reference/command/connectionStatus/>`
 
 To learn more about the methods or types discussed in this
 guide, see the following API documentation:
