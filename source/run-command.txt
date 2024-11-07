@@ -35,15 +35,15 @@ Execute a Command
 
 To run a database command, call the ``run_command()`` execution method on a ``mongocxx::database`` instance 
 and pass in a document specifying the command and any relevant parameters. The document's key is the command to run, 
-and the value is typically supplied as ``1``. The value does not affect the command response, which is returned as a 
-``bsoncxx::document::value`` type. 
+and the value is typically supplied as ``1``. The value does not affect the command response, which the ``run_command()`` method
+returns as a ``bsoncxx::document::value`` type. 
 
 You can use the ``run_command()`` method with any database command. 
 For a full list of database commands and corresponding parameters, see :manual:`Database Commands </reference/command/>` in the {+mdb-server+} manual. 
 
 The following example shows how you can use the ``run_command()``
-method to run the ``hello`` command, which returns information about
-the current member's role in the replica set, on a database:
+method to run the ``hello`` command on a database, which returns information about
+the current member's role in the replica set:
 
 .. io-code-block::
    :copyable: true
