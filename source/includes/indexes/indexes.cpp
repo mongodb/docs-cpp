@@ -137,9 +137,7 @@ int main(){
             std::cout << bsoncxx::to_json(*it) << std::endl;
         }
         // end-list-search-index
-    }
-    // Print list() output using a range-based for loop
-    {
+        // Print list() output using a range-based for loop
         for (const auto &idx : cursor) {
                 std::cout << bsoncxx::to_json(idx) << std::endl;
         }
