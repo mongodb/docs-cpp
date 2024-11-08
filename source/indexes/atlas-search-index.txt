@@ -92,7 +92,7 @@ The ``mongocxx::search_index_model`` constructor requires the following argument
 
    For a full list of fields that you can configure in an Atlas Search index, see the :atlas:`Review Atlas Search Index Syntax </atlas-search/index-definitions/>` guide in the Atlas Search documentation.
 
-The following sections show how to create a single Atlas Search index with static or dynamic mappings. 
+The following sections show how to create a single Atlas Search index that uses static or dynamic mappings. 
 
 .. _cpp-atlas-search-index-create-static:
 
