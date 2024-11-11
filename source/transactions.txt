@@ -21,19 +21,16 @@ Overview
 --------
 
 In this guide, you can learn how to use the {+driver-long+} to perform
-**transactions**. :manual:`Transactions </core/transactions/>` allow
+**transactions**. Transactions allow
 you to run a series of operations that do not change any data until the
 transaction is committed. If any operation in the transaction returns an
 error, the driver cancels the transaction and discards all data changes
 before they ever become visible.
 
 In MongoDB, transactions run within logical **sessions**. A
-:manual:`session </reference/server-sessions/>` is a grouping of related
-read or write operations that you intend to run sequentially. Sessions
-enable :manual:`causal consistency
-</core/read-isolation-consistency-recency/#causal-consistency>` for a
-group of operations or allow you to execute operations in an
-:website:`ACID transaction </basics/acid-transactions>`. MongoDB
+session is a grouping of related read or write operations that you intend to run sequentially. 
+Sessions enable causal consistency for a group of operations 
+or allow you to execute operations in an ACID transaction. MongoDB
 guarantees that the data involved in your transaction operations remains
 consistent, even if the operations encounter unexpected errors.
 
@@ -51,7 +48,7 @@ instantiating a new client each time.
 
 .. warning::
    
-   Implementations of ``mongocxx::`` are not thread-safe for concurrent use by multiple threads.
+   Implementations of ``mongocxx::client_session`` are not thread-safe for concurrent use by multiple threads.
 
 Methods
 -------
@@ -74,7 +71,7 @@ following table describes these methods:
          this method, see the :manual:`startTransaction() page
          </reference/method/Session.startTransaction/>`  in the Server manual.
        |
-       | **Parameter Type**: ``transaction_opts``
+       | **Parameter Type**:  ** optional ** ``mongocxx::options::transaction``
 
    * - ``abort_transcaction()``
      - | Ends the active transaction for this session. Returns an
@@ -131,8 +128,8 @@ following steps:
    errors, ``WithTransaction()`` handles canceling the transaction.
 #. Close the transaction and session using the ``EndSession()`` method.
 
-.. literalinclude:: /includes/fundamentals/code-snippets/transaction.go
-   :language: go
+.. literalinclude:: /includes/usage-examples/transactions.cpp
+   :language: cpp
    :dedent:
    :emphasize-lines: 5,10,14-15
    :start-after: start-session
@@ -150,8 +147,7 @@ Server manual:
 
 - :manual:`Transactions </core/transactions/>`
 - :manual:`session </reference/server-sessions/>`
-- :manual:`causal consistency
-</core/read-isolation-consistency-recency/#causal-consistency>`
+- :manual:`causal consistency </core/read-isolation-consistency-recency/#causal-consistency>`
 
 To learn more about ACID complicance, see the :website:`ACID Properties in Database Management Systems </basics/acid-transactions>`
 guide on the MongoDB website. 
@@ -167,16 +163,9 @@ API Documentation
 To learn more about any of the types or methods discussed in this
 guide, see the following API Documentation:
 
-- `Session <{+api+}/mongo#Session>`__
-- `Client <{+api+}/mongo#Client>`__
-- `StartSession() <{+api+}/mongo#Client.StartSession>`__
-- `TransactionOptions <{+api+}/mongo/options#TransactionOptions>`__
-- `SetWriteConcern() <{+api+}/mongo/options#TransactionOptions.SetWriteConcern>`__
-- `InsertMany() <{+api+}/mongo#Collection.InsertMany>`__
-
 - `mongocxx::client <{+api+}/classmongocxx_1_1client.html>`__
 - `mongocxx::client_session <{+api+}/mongocxx-3.3.2/classmongocxx_1_1client__session.html>`__
-- `start_session() <{+api+}/classmongocxx_1_1client.html#a42a89f74fb0015751a3015a677aae099>`__
+- `start_session() <{+api+}/classmongocxx_1_1v__noabi_1_1client.html#a03535128dbe5be973a08764b7741f24e>`__
 - `start_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a84ea5613813e6efbe065e3f39e1f972b>`__
 - `abort_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#aabb8247a655741af6fe0f78bef8116e1>`__
 - `commit_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#ad2d1a8f7c77542db6ec7629d162761ff>`__
