@@ -38,27 +38,26 @@ guarantees that the data involved in your transaction operations remains
 consistent, even if the operations encounter unexpected errors.
 
 When using the {+driver-short+}, you can create a new session from a
-``Client`` instance as a ``Session`` type. We recommend that you reuse
+``mongocxx::client`` instance as a ``mongocxx::client_session`` type. We recommend that you reuse
 your client for multiple sessions and transactions instead of
 instantiating a new client each time.
 
 .. warning::
 
-   Use a ``Session`` only with the ``Client`` (or associated
-   ``Database`` or ``Collection``) that created it. Using a
-   ``Session`` with a different ``Client`` results in operation
+   Use a ``mongocxx::client_session`` only with the ``mongocxx::client`` (or associated
+   ``mongocxx::database`` or ``mongocxx::collection``) that created it. Using a
+   ``client_session`` with a different ``client`` results in operation
    errors.
 
 .. warning::
    
-   Implementations of ``Session`` are not safe for concurrent use by multiple `goroutines
-   <https://www.golang-book.com/books/intro/10>`__.
+   Implementations of ``mongocxx::`` are not thread-safe for concurrent use by multiple threads.
 
 Methods
 -------
 
-After you start a session by using the ``StartSession()`` method, you can modify
-the session state by using the method set provided by the ``Session`` interface. The
+After you start a session by using the ``start_session()`` method, you can modify
+the session state by using the method set provided by the ``mongocxx::client_session`` interface. The
 following table describes these methods:
 
 .. list-table::
@@ -68,27 +67,25 @@ following table describes these methods:
    * - Method
      - Description
 
-   * - ``StartTransaction()``
+   * - ``start_transaction()``
      - | Starts a new transaction, configured with the given options, on
-         this session. Returns an error if there is already
+         the current client session. Returns an error if there is already
          a transaction in progress for the session. To learn more about
          this method, see the :manual:`startTransaction() page
          </reference/method/Session.startTransaction/>`  in the Server manual.
        |
-       | **Parameter**: ``TransactionOptions``
-       | **Return Type**: ``error``
+       | **Parameter Type**: ``transaction_opts``
 
-   * - ``AbortTransaction()``
+   * - ``abort_transcaction()``
      - | Ends the active transaction for this session. Returns an
          error if there is no active transaction for the session or the
          transaction has been committed or ended. To learn more about
          this method, see the :manual:`abortTransaction() page
          </reference/method/Session.abortTransaction/>`  in the Server manual.
        |
-       | **Parameter**: ``Context``
-       | **Return Type**: ``error``
+       | **Parameter Type**: ``Context``
 
-   * - ``CommitTransaction()``
+   * - ``commit_transaction()``
      - | Commits the active transaction for this session. Returns an
          error if there is no active transaction for the session or if the
          transaction was ended. To learn more about
@@ -103,21 +100,18 @@ following table describes these methods:
          your data is not changed by the repeat attempts.
 
        |
-       | **Parameter**: ``Context``
-       | **Return Type**: ``error``
+       | **Parameter Type**: ``Context``
 
-   * - ``WithTransaction()``
+   * - ``with_transaction()``
      - | Starts a transaction on this session and runs the ``fn``
          callback.
        |
-       | **Parameters**: ``Context``, ``fn func(ctx SessionContext)``, ``TransactionOptions``
-       | **Return Type**: ``interface{}``, ``error``
+       | **Parameter Types**: ``callback``, ``transaction_opts``
 
-   * - ``EndSession()``
-     - | Ends any existing transactions and closes the session.
+   * - ``~client_session()``
+     - | Destructor for the ``mongocxx::client_session`` class. Ends any existing transactions and closes the session.
        |
-       | **Parameter**: ``Context``
-       | **Return Type**: none
+       | **Parameter Type**: ``Context``
 
 The ``Session`` interface also has methods to retrieve session
 properties and modify mutable session properties. Find more information
@@ -151,15 +145,19 @@ showing how to manually create, commit, and end transactions in the
 Additional Information
 ----------------------
 
+To learn more about the concepts discussed in this guide, see the following pages in the 
+Server manual: 
+
+- :manual:`Transactions </core/transactions/>`
+- :manual:`session </reference/server-sessions/>`
+- :manual:`causal consistency
+</core/read-isolation-consistency-recency/#causal-consistency>`
+
+To learn more about ACID complicance, see the :website:`ACID Properties in Database Management Systems </basics/acid-transactions>`
+guide on the MongoDB website. 
+
 For more information about insert operations, see the
-:ref:`golang-insert-guide` fundamentals page.
-
-For more information about specifying write concerns in the
-{+driver-short+}, see :ref:`Write Concern <golang-writeconcern>`.
-
-For an additional example using sessions and transactions with the {+driver-short+}, see the
-:website:`developer blog post on Multi-Document ACID Transactions
-</developer/languages/go/golang-multi-document-acid-transactions/>`.
+:ref:`Insert cpp-write-insert` guide page.
 
 .. _api-docs-transaction:
 
@@ -175,3 +173,13 @@ guide, see the following API Documentation:
 - `TransactionOptions <{+api+}/mongo/options#TransactionOptions>`__
 - `SetWriteConcern() <{+api+}/mongo/options#TransactionOptions.SetWriteConcern>`__
 - `InsertMany() <{+api+}/mongo#Collection.InsertMany>`__
+
+- `mongocxx::client <{+api+}/classmongocxx_1_1client.html>`__
+- `mongocxx::client_session <{+api+}/mongocxx-3.3.2/classmongocxx_1_1client__session.html>`__
+- `start_session() <{+api+}/classmongocxx_1_1client.html#a42a89f74fb0015751a3015a677aae099>`__
+- `start_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a84ea5613813e6efbe065e3f39e1f972b>`__
+- `abort_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#aabb8247a655741af6fe0f78bef8116e1>`__
+- `commit_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#ad2d1a8f7c77542db6ec7629d162761ff>`__
+- `with_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a3dcdf91bf72e69bf7e63a7c8ad859b93>`__
+- `insert_one() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#af040f1fcb1ac406037bf1cbcdb300061>`__
+- `insert_many() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a61ebaa0c63296761637ce45115512085>`__
