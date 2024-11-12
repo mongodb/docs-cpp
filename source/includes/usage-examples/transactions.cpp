@@ -5,8 +5,7 @@
 mongocxx::instance instance{};
 mongocxx::client client(mongocxx::uri uri("<connection string>"));
 
-// Define the database and collection
-// Connect to the movies collection in the preloaded Atlas sample_mflix database
+// Define database and collection variables
 auto db = client["sample_mflix"];
 auto collection = db["movies"];
 
@@ -28,11 +27,11 @@ client_session::with_transaction_cb callback = [&](client_session* session) {
 // Call the with_transaction() method and pass in the callback function 
 // and an options object that sets the write concern for the transaction operations
 try {
-    // Define an options object that sets the write concern for the transaction operations
+    // Define an options instance to set the write concern for the transaction operations
     options::transaction opts;
     opts.write_concern(wc_majority);
 
-    // Call with_transactions to run and commit the insert operations defined in the callback function  
+    // Run and commit the insert operations defined in the callback function  
     session.with_transaction(callback, opts);
 } catch (const mongocxx::exception& e) {
     std::cout << "An exception occurred: " << e.what() << std::endl;

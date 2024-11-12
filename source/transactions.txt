@@ -135,7 +135,6 @@ destructor to close the transaction and client session.
 .. literalinclude:: /includes/usage-examples/transactions.cpp
    :language: cpp
    :dedent:
-   :emphasize-lines: 5,10,14-15
    :start-after: start-session
    :end-before: end-session
 
