@@ -124,8 +124,8 @@ following steps:
 1. Create a session from the client using the ``start_session()`` method.
 #. Create a callback function with the series of operations you want to 
 run in your transaction. 
-# Define any options you want to add to your transaction. 
-# Call the ``with_transactions()`` method and pass in your callback function and 
+#. Define any options you want to add to your transaction. 
+#. Call the ``with_transactions()`` method and pass in your callback function and 
 options to start a transaction. The ``with_transactions()`` method executes and 
 commits the transaction. If any operation results in 
 errors, ``with_transactions()`` handles canceling the transaction.
