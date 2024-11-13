@@ -19,7 +19,6 @@ MongoDB C++ Driver
    Run a Command </run-command>
    Security </security>
    Specialized Data Formats </data-formats>
-   C++17 Polyfill </polyfill-selection>
    Advanced Configuration & Installation </advanced-installation>
    Thread & Fork Safety </thread-safety>
    API & ABI Versioning </api-abi-versioning>
@@ -82,12 +81,6 @@ Specialized Data Formats
 
 Learn how to work with specialized data formats and custom types in the
 :ref:`cpp-data-formats` section.
-
-Choose a C++17 Polyfill
------------------------
-
-Learn how to a choose a polyfill library implementation for
-pre-C++ 17 configurations in the :ref:`cpp-polyfill-selection` section.
 
 Advanced Installation Options
 -----------------------------

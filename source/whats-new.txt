@@ -22,6 +22,7 @@ Overview
 
 Learn what's new in:
 
+* :ref:`Version 4.0 <version-4.0>`
 * :ref:`Version 3.11 <version-3.11>`
 * :ref:`Version 3.10 <version-3.10>`
 * :ref:`Version 3.9 <version-3.9>`
@@ -73,6 +74,22 @@ New versions of the {+driver-short+} can introduce the following types of breaki
      - Drops support for platform A, compiler B, or architecture C.
 
 .. _upcoming-breaking-changes:
+.. _version-4.0:
+
+What's New in 4.0
+-----------------
+
+.. warning:: Breaking Changes
+
+   The v4.0 driver introduces the following breaking changes:
+   
+   - Drops support for the Boost and MNMLSTC/core external polyfill libraries. You can no
+     longer set the following configuration options:
+
+     - ``ENABLE_BSONCXX_POLY_USE_IMPLS``. This option is implicitly set to ``ON``.
+     - ``BSONCXX_POLY_USE_MNMLSTC``.
+     - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
+     - ``BSONCXX_POLY_USE_BOOST``.
 
 .. _version-3.11:
 

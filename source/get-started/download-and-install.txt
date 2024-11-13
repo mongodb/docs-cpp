@@ -24,12 +24,13 @@ Download and Install
       - `CMake <https://cmake.org/>`__ v3.15 or later
       - `pkg-config <https://www.freedesktop.org/wiki/Software/pkg-config/>`__
 
-      .. note:: C++17 Polyfills
+      .. note:: Pre-C++17 Configurations
 
          This tutorial configures the {+driver-short+} to use the C++17 standard
          library. If you want to install the driver for pre-C++17 configurations,
-         you must choose a C++17 polyfill library. To learn more about C++17
-         polyfills, see the :ref:`cpp-polyfill-selection` guide.
+         set the ``CMAKE_CXX_STANDARD`` configuration option to your C++ version.
+         By default, the driver enables the bsoncxx polyfill library for pre-C++17
+         configurations.
 
    .. step:: Download the {+driver-short+}
 
