@@ -71,6 +71,8 @@ and upgrade versions.
 Version 4.0 Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+This driver version introduces the following breaking changes:
+
 - Drops support for the Boost and MNMLSTC/core external polyfill libraries. You can no
   longer set the following configuration options:
 
@@ -83,6 +85,8 @@ Version 4.0 Breaking Changes
 
 Version 3.11 Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This driver version introduces the following breaking changes:
 
 - Drops support for {+mdb-server+} v3.6.
 - Requires MongoDB C Driver v1.28.0 or later.
