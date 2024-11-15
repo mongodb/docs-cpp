@@ -36,6 +36,19 @@ Overview
 
 Welcome to the documentation site for the official {+driver-long+}.
 
+C++17 Polyfill Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The {+driver-long+} uses C++17 features ``std::optional<T>`` and ``std::string_view``.
+If you configure the driver with a pre-C++17 standard, the bsoncxx library provides
+polyfill implementations for these C++17 features. To limit reliance on polyfill-specific
+behavior, avoid using ``stdx::optional<T>`` and ``stdx::string_view`` for pre-C++17 configurations.
+The driver uses the bsoncxx polyfill implementations when ``CMAKE_CXX_STANDARD`` is less than ``17``
+(set to ``11`` by default).
+
+We recommend using the C++17 standard library implementations whenever possible. To use
+these implementations, set ``CMAKE_CXX_STANDARD`` to ``17`` during CMake configuration.
+
 Get Started
 -----------
 
