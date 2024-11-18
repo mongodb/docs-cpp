@@ -16,7 +16,6 @@ MongoDB C++ Driver
    Write Data </write>
    Indexes </indexes>
    Aggregation </aggregation>
-   Transactions </transactions>
    Security </security>
    Specialized Data Formats </data-formats>
    C++17 Polyfill </polyfill-selection>

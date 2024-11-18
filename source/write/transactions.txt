@@ -1,0 +1,180 @@
+.. _cpp-transactions:
+
+============
+Transactions
+============
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: code example, rollback, undo operation
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to use the {+driver-long+} to perform
+**transactions**. Transactions allow
+you to run a series of operations that do not change any data until the
+transaction is committed. If any operation in the transaction returns an
+error, the driver cancels the transaction and discards all data changes
+before they ever become visible.
+
+In MongoDB, transactions run within logical **sessions**. A
+session is a grouping of related read or write operations that you intend to run sequentially. 
+Sessions enable causal consistency for a group of operations in an  **ACID-compliant**  transaction, which is a 
+transaction that meets an expectation of atomicity, consistency, isolation, and durability. MongoDB
+guarantees that the data involved in your transaction operations remains
+consistent, even if the operations encounter unexpected errors.
+
+When using the {+driver-short+}, you can create a new session from a ``mongocxx::client`` instance.
+Then, you can use the resulting ``mongocxx::client_session`` instance to perform transactions. 
+We recommend that you reuse your client for multiple sessions and transactions instead of
+instantiating a new client each time.
+
+.. warning::
+
+   Use a ``mongocxx::client_session`` only with the ``mongocxx::client`` that created it. 
+   Using a ``client_session`` with a different ``client`` results in operation errors.
+
+.. warning::
+   
+   Each ``mongoxcc::client`` object and all of its child objects, including ``mongocxx::client_session``, should be used by a single thread at a time. 
+   To learn more, see the :ref:`Thread and Fork Safety <cpp-thread-safety>` page. 
+
+Methods
+-------
+
+To perform a transaction, you must first start a session by using the ``start_session()`` method. Then, you can 
+modify the session state using the following methods that are provided by the ``mongocxx::client_session`` interface: 
+
+.. list-table::
+   :widths: 25 75
+   :header-rows: 1
+
+   * - Method
+     - Description
+
+   * - ``start_transaction()``
+     - | Starts a new transaction, configured with the given options, on
+         the current client session. Returns an error if there is already
+         a transaction in progress for the session. To learn more about
+         this method, see the :manual:`startTransaction() page
+         </reference/method/Session.startTransaction/>`  in the Server manual.
+       |
+       | **Parameter Type**:  ``stdx::optional<mongocxx::options::transaction>``
+
+   * - ``commit_transaction()``
+     - | Commits the active transaction for this session. Returns an
+         error if there is no active transaction for the session, if the transaction 
+         was previously ended, or if there is a write conflict. To learn more about
+         this method, see the :manual:`commitTransaction() page
+         </reference/method/Session.commitTransaction/>`  in the Server manual. 
+       |
+       | **Parameter Type**: None
+
+   * - ``abort_transcaction()``
+     - | Ends the active transaction for this session. Returns an
+         error if there is no active transaction for the session or the
+         transaction has been committed or ended. To learn more about
+         this method, see the :manual:`abortTransaction() page
+         </reference/method/Session.abortTransaction/>`  in the Server manual.
+       |
+       | **Parameter Type**: None
+
+   * - ``with_transaction()``
+     - | Starts a new transaction on this client session, runs the provided callback function, 
+         then commits the transaction. If it cannot commit the transaction, the entire sequence may be 
+         retried, and the callback function may be run multiple times. 
+       | Accepts a callback function as its first argument, which may contain a sequence of driver methods that run 
+         operations against the server. 
+       |
+       | **Parameter Types**: ``mongocxx::client_session::with_transaction_cb``, ``stdx::optional<mongocxx::options::transaction>``
+
+The ``mongocxx::client_session`` interface also has methods to retrieve and modify session properties. 
+To learn more, see `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html>`__ in the API documentation. 
+
+Examples
+--------
+The {+driver-long+} provides a convenient transaction API to manage the transaction lifestyle.
+To use this API, call the ``mongocxx::client_session::with_transaction()`` method. 
+The ``with_transaction()`` method performs the following tasks: 
+
+- Starts a new transaction on this client session 
+- Runs the provided callback function, handling errors by either ending the transaction or retrying the transaction sequence so that
+  the callback function may be run multiple times
+- Commits the transaction 
+
+The following example shows how you can use the ``with_transaction()`` method to 
+start and commit a transaction that performs a multi-document insert operation: 
+
+1. Start a session from the client using the ``start_session()`` method.
+#. Define a callback function with the series of operations that you want to 
+run in your transaction. 
+#. Define any options that you want to add to your transaction. 
+#. Call the ``with_transactions()`` method and pass in your callback function and 
+options to start a transaction. The ``with_transactions()`` method executes and 
+commits the transaction. If any operation results in 
+errors, ``with_transactions()`` handles canceling the transaction.
+#. Return from your operation. This will automatically call the ``~end_session()`` 
+destructor to close the transaction and client session. 
+
+.. literalinclude:: /includes/write/transactions.cpp
+   :language: cpp
+   :dedent:
+   :start-after: start-with-transaction
+   :end-before: end-with-transaction
+
+
+If you want more control over your transactions, you can use the core API methods provided by the ``mongocxx::client_session`` class
+to manually start, commit, and abort transactions. 
+
+The following example shows how you can use the ``start_transaction()`` and ``commit_transaction()`` 
+methods to perform a transaction that executes a multi-document insert operation: 
+
+.. literalinclude:: /includes/write/transactions.cpp
+   :language: cpp
+   :dedent:
+   :start-after: start-start-transaction
+   :end-before: end-start-transaction
+
+Additional Information
+----------------------
+
+To learn more about the concepts discussed in this guide, see the following pages in the 
+Server manual: 
+
+- :manual:`Transactions </core/transactions/>`
+- :manual:`Server Sessions </reference/server-sessions/>`
+- :manual:`Causal Consistency </core/read-isolation-consistency-recency/#causal-consistency>`
+
+To learn more about ACID complicance, see the :website:`ACID Properties in Database Management Systems </basics/acid-transactions>`
+guide on the MongoDB website. 
+
+To learn more about insert operations, see the
+:ref:`Insert Documents <cpp-write-insert>` guide.
+
+.. _api-docs-transaction:
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about any of the types or methods discussed in this
+guide, see the following API Documentation:
+
+- `mongocxx::client <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__
+- `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html>`__
+- `start_session() <{+api+}/classmongocxx_1_1v__noabi_1_1client.html#a03535128dbe5be973a08764b7741f24e>`__
+- `start_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a84ea5613813e6efbe065e3f39e1f972b>`__
+- `abort_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#aabb8247a655741af6fe0f78bef8116e1>`__
+- `commit_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#ad2d1a8f7c77542db6ec7629d162761ff>`__
+- `with_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a3dcdf91bf72e69bf7e63a7c8ad859b93>`__
+- `insert_one() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#af040f1fcb1ac406037bf1cbcdb300061>`__
+- `insert_many() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a61ebaa0c63296761637ce45115512085>`__
