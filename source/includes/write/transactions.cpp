@@ -15,8 +15,7 @@ int main() {
     {
         // start-with-transaction
         
-        // Create a mongocxx::instance to initialize the drive and initialize a mongocxx::client
-        // using your MongoDB deployment connection string to establish a connection to the MongoDB server
+        // Establish a connection to the MongoDB deployment 
         mongocxx::instance instance{};
         mongocxx::client client(mongocxx::uri{"<connectionString>"});
 
@@ -28,16 +27,16 @@ int main() {
         // Start a client session
         auto session = client.start_session();
 
-        // Define a callback function to specify the sequence of operations to perform during the transaction
+        // Define a callback specifying the sequence of operations to perform during the transaction
         mongocxx::client_session::with_transaction_cb callback = [&](mongocxx::client_session* session) {
             // Important::  You must pass the session to the operations.
             movies_collection.insert_one(*session, make_document(kvp("title", "Parasite")));
-            comments_collection.insert_one(*session, make_document(kvp("name", "Rhaenyra Targaryen"), kvp("text", "Dracarys II")));
+            comments_collection.insert_one(*session, make_document(kvp("name", "Rhaenyra Targaryen"), kvp("text", "Dracarys.")));
         };
 
 
         try {
-            // Define an options instance to set the write concern for the transaction operations
+            // Define an options instance to set the majority write concern for the transaction operations explicitly 
             mongocxx::options::transaction opts;
             mongocxx::write_concern wc{};
             wc.acknowledge_level(mongocxx::write_concern::level::k_majority);
