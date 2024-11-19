@@ -41,13 +41,23 @@ C++17 Polyfill Configuration
 
 The {+driver-long+} uses C++17 features ``std::optional<T>`` and ``std::string_view``.
 If you configure the driver with a pre-C++17 standard, the bsoncxx library provides
-polyfill implementations for these C++17 features. To limit reliance on polyfill-specific
-behavior, avoid using ``stdx::optional<T>`` and ``stdx::string_view`` for pre-C++17 configurations.
-The driver uses the bsoncxx polyfill implementations when ``CMAKE_CXX_STANDARD`` is less than ``17``
-(set to ``11`` by default).
+polyfill implementations for these C++17 features. The driver uses the bsoncxx polyfill
+implementations when the ``CMAKE_CXX_STANDARD`` configuration option is set to a number
+less than ``17``. By default, this option is set to ``11``.
 
-We recommend using the C++17 standard library implementations whenever possible. To use
-these implementations, set ``CMAKE_CXX_STANDARD`` to ``17`` during CMake configuration.
+C++ standard conformance and supported behavior of polyfill features might vary depending
+on the selected polyfill library. The purpose of these polyfills is to support pre-C++17
+configurations by providing stand-ins for their C++17 equivalents. We recommend
+using the C++17 standard library whenever possible by setting the ``CMAKE_CXX_STANDARD``
+configuration option to ``17`` or newer.
+
+.. warning:: 
+
+   The choice of polyfill library has a direct impact on the public API and ABI for the mongocxx
+   library. Changing the polyfill can lead to both source-breaking changes during compilation
+   and binary-breaking changes during linking or execution. To limit reliance on polyfill-specific
+   behavior, avoid using ``stdx::string_view`` and ``stdx::optional<T>`` with non-bsoncxx and non-mongocxx
+   library interfaces.
 
 Get Started
 -----------
