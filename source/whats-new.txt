@@ -79,6 +79,8 @@ New versions of the {+driver-short+} can introduce the following types of breaki
 What's New in 4.0
 -----------------
 
+.. _version-4.0-build-system-breaking:
+
 .. warning:: Build System Breaking Changes
 
    The v4.0 driver introduces the following breaking changes to the build system:
@@ -91,6 +93,23 @@ What's New in 4.0
      - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
      - ``BSONCXX_POLY_USE_BOOST``.
 
+.. warning:: API Breaking Changes
+
+   The v4.0 driver introduces the following breaking changes to the API:
+
+   - Drops support for configuring ``bsoncxx::stdx::string_view`` and
+     ``bsoncxx::stdx::optional<T>`` as aliases for Boost or MNMLSTC/core
+     library equivalents. For more information, see the :ref:`Build System Breaking Changes
+     <version-4.0-build-system-breaking>` admonition.
+
+.. warning:: ABI Breaking Changes
+
+   The v4.0 driver introduces the following breaking changes to the ABI:
+
+   - Drops support for configuring ``bsoncxx::stdx::string_view`` and
+     ``bsoncxx::stdx::optional<T>`` as aliases for Boost or MNMLSTC/core
+     library equivalents. For more information, see the :ref:`Build System Breaking Changes
+     <version-4.0-build-system-breaking>` admonition.
 
 .. _version-3.11:
 

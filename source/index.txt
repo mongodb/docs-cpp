@@ -36,20 +36,21 @@ Overview
 
 Welcome to the documentation site for the official {+driver-long+}.
 
+.. _cpp-polyfill-config:
+
 C++17 Polyfill Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. important::
+
+   We recommend using the C++17 standard library whenever possible by setting the
+   ``CMAKE_CXX_STANDARD`` configuration option to ``17`` or newer.
 
 The {+driver-long+} uses C++17 features ``std::optional<T>`` and ``std::string_view``.
 If you configure the driver with a pre-C++17 standard, the bsoncxx library provides
 polyfill implementations for these C++17 features. The driver uses the bsoncxx polyfill
 implementations when the ``CMAKE_CXX_STANDARD`` configuration option is set to a number
 less than ``17``. By default, this option is set to ``11``.
-
-C++ standard conformance and supported behavior of polyfill features might vary depending
-on the selected polyfill library. The purpose of these polyfills is to support pre-C++17
-configurations by providing stand-ins for their C++17 equivalents. We recommend
-using the C++17 standard library whenever possible by setting the ``CMAKE_CXX_STANDARD``
-configuration option to ``17`` or newer.
 
 .. warning:: 
 
