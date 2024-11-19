@@ -99,7 +99,7 @@ What's New in 4.0
 
    - Drops support for configuring ``bsoncxx::stdx::string_view`` and
      ``bsoncxx::stdx::optional<T>`` as aliases for Boost or MNMLSTC/core
-     library equivalents. For more information, see the :ref:`Build System Breaking Changes
+     library equivalents. For context, see the :ref:`Build System Breaking Changes
      <version-4.0-build-system-breaking>` admonition.
 
 .. warning:: ABI Breaking Changes
@@ -108,7 +108,7 @@ What's New in 4.0
 
    - Drops support for configuring ``bsoncxx::stdx::string_view`` and
      ``bsoncxx::stdx::optional<T>`` as aliases for Boost or MNMLSTC/core
-     library equivalents. For more information, see the :ref:`Build System Breaking Changes
+     library equivalents. For context, see the :ref:`Build System Breaking Changes
      <version-4.0-build-system-breaking>` admonition.
 
 .. _version-3.11:
