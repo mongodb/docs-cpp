@@ -34,14 +34,13 @@ int main() {
             comments_collection.insert_one(*session, make_document(kvp("name", "Rhaenyra Targaryen"), kvp("text", "Dracarys.")));
         };
 
+        // Define an options instance to set the majority write concern for the transaction operations explicitly 
+        mongocxx::options::transaction opts;
+        mongocxx::write_concern wc{};
+        wc.acknowledge_level(mongocxx::write_concern::level::k_majority);
+        opts.write_concern(wc);
 
         try {
-            // Define an options instance to set the majority write concern for the transaction operations explicitly 
-            mongocxx::options::transaction opts;
-            mongocxx::write_concern wc{};
-            wc.acknowledge_level(mongocxx::write_concern::level::k_majority);
-            opts.write_concern(wc);
-
             // Start a transaction, execute the operations in the callback function, and commit the results 
             session.with_transaction(callback, opts);
         } catch (const mongocxx::exception& e) {
@@ -64,22 +63,22 @@ int main() {
         auto movies_collection = db["movies"];
         auto comments_collection = db["comments"];
 
+        // Define an options instance to prepare to set majority write explicitly
+        mongocxx::options::transaction opts;
+        mongocxx::write_concern wc{};
+        wc.acknowledge_level(mongocxx::write_concern::level::k_majority);
+        opts.write_concern(wc);
+
        // Start a client session
         auto session = client.start_session();
 
         try {
-            // Define an options instance to set the write concern for the transaction operations
-            mongocxx::options::transaction opts;
-            mongocxx::write_concern wc{};
-            wc.acknowledge_level(mongocxx::write_concern::level::k_majority);
-            opts.write_concern(wc);
-
             // Start a transaction
-            session.start_transaction();
+            session.start_transaction(opts);
 
             // Specify the series of database operations to perform during the transaction
             movies_collection.insert_one(session, make_document(kvp("title", "Parasite")));
-            comments_collection.insert_one(session, make_document(kvp("name", "Rhaenyra Targaryen"), kvp("text", "Dracarys II")));
+            comments_collection.insert_one(session, make_document(kvp("name", "Rhaenyra Targaryen"), kvp("text", "Dracarys")));
 
             // Commit the transaction 
             session.commit_transaction();
