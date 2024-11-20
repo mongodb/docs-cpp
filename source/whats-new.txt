@@ -98,6 +98,8 @@ What's New in 4.0
 
    - Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default. To
      re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
+     To include test targets in the "all" target, you must also set the
+     ``BUILD_TESTING`` option to ``ON``.
 
 .. warning:: API Breaking Changes
 
