@@ -81,13 +81,13 @@ This driver version introduces the following breaking changes:
   - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
   - ``BSONCXX_POLY_USE_BOOST``.
 
-  - Drops support for the ``MONGOCXX_OVERRIDE_DEFAULT_INSTALL_PREFIX`` configuration
-    option. This option is implicitly set to ``OFF``.
+- Drops support for the ``MONGOCXX_OVERRIDE_DEFAULT_INSTALL_PREFIX`` configuration
+  option. This option is implicitly set to ``OFF``.
 
-  - Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default. To
-    re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
-    To include test targets in the "all" target, you must also set the
-    ``BUILD_TESTING`` option to ``ON``.
+- Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default. To
+  re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
+  To include test targets in the "all" target, you must also set the
+  ``BUILD_TESTING`` option to ``ON``.
 
 .. _version-3.11-breaking-changes:
 
