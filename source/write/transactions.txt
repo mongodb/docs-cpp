@@ -144,15 +144,14 @@ The following table describes these methods:
 The ``mongocxx::client_session`` class also provides methods to retrieve and modify session properties.
 To learn more, see the `mongocxx::client_session Class Reference <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ page in the API documentation. 
 
-The following example shows how you can use the core API to perform a transaction that executes a multi-document insert operation that incorporates 
+The following example shows how you can use the core API to perform a transaction that incorporates 
 logic to retry the transaction for transient errors and retry the commit for unknown commit error: 
 
-
-1. Define a wrapper function called ``run_with_retry`` that runs your transaction with incorporated retry logic for ``UnknownTransactionCommitResult``
+1. Define a wrapper function called ``run_with_retry`` that runs your transaction and incorporates retry logic for ``UnknownTransactionCommitResult``
 
    .. Define a wrapper function that accepts as its argument a function that starts and runs your transaction
    .. The wrapper function runs this function and incorporates retry logic for ``TransientTransactionError`` 
-#. Define a wrapper function called ``commit_with_retry`` that commits your transaction with incorporated retry logic for  ``UnknownTransactionCommitResult`` 
+#. Define a wrapper function called ``commit_with_retry`` that commits your transaction and incorporates retry logic for  ``UnknownTransactionCommitResult`` 
 
    .. Define a wrapper function that accepts as its argument a session with an active transaction
    .. This wrapper function commits this transaction and incorporates retry logic for ``UnknownTransactionCommitResult``
