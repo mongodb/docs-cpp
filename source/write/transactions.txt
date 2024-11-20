@@ -124,7 +124,7 @@ The following table describes these methods:
          instance as an argument to set options including read preference, read concern, and write concern. 
        | Throws an exception an error if the options are misconfigured, if there are network or other transient failures, or if there 
          are other errors such as a session with a transaction already in progress.
-       |  To learn more about this method, see the :manual:`startTransaction() page
+       | To learn more about this method, see the :manual:`startTransaction() page
          </reference/method/Session.startTransaction/>`  in the {+mdb-server+} manual.
 
    * - ``commit_transaction()``
