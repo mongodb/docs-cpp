@@ -111,6 +111,11 @@ What's New in 4.0
      library equivalents. For context, see the :ref:`Build System Breaking Changes
      <version-4.0-build-system-breaking>` admonition.
 
+The v4.0 driver release includes the following new features:
+
+- Adds a getter method for the ``start_at_operation_time`` field of a 
+  ``mongocxx::options::change_stream`` instance.
+
 .. _version-3.11:
 
 What's New in 3.11
