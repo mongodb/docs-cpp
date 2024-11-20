@@ -80,7 +80,7 @@ The following code example shows how to use the callback API to perform a transa
 When run, the code performs the following actions: 
 
 1. Starts a session from the client using the ``start_session()`` method.
-#. Defines a callback function that inserts documents into collections from the ``sample_mflix`` database. 
+#. Defines a callback function that inserts documents into collections in the ``sample_mflix`` database. 
 #. Configures an option object to set the write preference for the transaction operations. 
 #. Calls the ``with_transactions()`` method to manage the transaction, passing the callback and client session as arguments. 
 
@@ -154,7 +154,7 @@ When run, the code performs the following actions:
 
 1. Starts a session from the client using the ``start_session()`` method.
 #. Calls the ``start_transaction()`` method to start a transaction 
-#. Attempts to insert documents into collections from the ``sample_mflix`` database. 
+#. Attempts to insert documents into collections in the ``sample_mflix`` database. 
    If an operation encounters an error, the transaction is aborted using the ``abort_transaction()`` method
    and then retried if the error has the label ``TransientTransactionError``.  
 #. Calls the ``commit_transaction()`` method to commit the active transaction. If the commit encounters an error with the label ``UnknownTransactionCommitResult``, the commit is retried. 
