@@ -156,6 +156,7 @@ logic to retry the transaction for transient errors and retry the commit for unk
    .. Define a wrapper function that accepts as its argument a session with an active transaction
    .. This wrapper function commits this transaction and incorporates retry logic for ``UnknownTransactionCommitResult``
 #. Define a function called ``txn_operations`` that starts, executes, and commits a transaction through the following steps:
+
    - Define any options that you want to add to your transaction. For a full list of options, 
      see the `mongocxx::options::transactions Class Reference <{+api+}/mongocxx-3.4.1/classmongocxx_1_1options_1_1transaction.html>`__ page in the API documentation.  
    - Call the ``start_transaction()`` method to start your transaction. 
