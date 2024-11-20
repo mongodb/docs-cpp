@@ -93,6 +93,12 @@ What's New in 4.0
      - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
      - ``BSONCXX_POLY_USE_BOOST``.
 
+   - Drops support for the ``MONGOCXX_OVERRIDE_DEFAULT_INSTALL_PREFIX`` configuration
+     option. This option is implicitly set to ``OFF``.
+
+   - Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default. To
+     re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
+
 .. warning:: API Breaking Changes
 
    The v4.0 driver introduces the following breaking changes to the API:
