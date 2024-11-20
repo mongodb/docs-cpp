@@ -24,9 +24,6 @@ int main() {
         auto movies_collection = db["movies"];
         auto comments_collection = db["comments"]; 
 
-        // Start a client session
-        auto session = client.start_session();
-
         // Define a callback specifying the sequence of operations to perform during the transaction
         mongocxx::client_session::with_transaction_cb callback = [&](mongocxx::client_session* session) {
             // Important::  You must pass the session to the operations.
@@ -39,6 +36,9 @@ int main() {
         mongocxx::write_concern wc;
         wc.acknowledge_level(mongocxx::write_concern::level::k_majority);
         opts.write_concern(wc);
+
+        // Start a client session
+        auto session = client.start_session();
 
         try {
             // Start a transaction, execute the operations in the callback function, and commit the results 
@@ -126,6 +126,7 @@ int main() {
             commit_with_retry(session);
         };
 
+        // Start a client session
         auto session = client.start_session();
         
         try {
