@@ -6,6 +6,7 @@
 #include <mongocxx/exception/exception.hpp>
 #include <mongocxx/instance.hpp>
 #include <mongocxx/uri.hpp>
+#include <mongocxx/exception/operation_exception.hpp>
 
 using bsoncxx::builder::basic::kvp;
 using bsoncxx::builder::basic::make_document;
@@ -56,9 +57,9 @@ int main() {
         mongocxx::instance instance{};
         mongocxx::client client(mongocxx::uri{"<connectionString>"});
 
-        // Define a function to handle TransientTransactionError retry logic
+        // Incorporate TransientTransactionError retry logic
         using transaction_func = std::function<void(mongocxx::client_session& session)>;
-        auto run_transaction_with_retry = [](transaction_func txn_func, mongocxx::client_session& session) {
+        auto run_with_retry = [](transaction_func txn_func, mongocxx::client_session& session) {
             while (true) {
                 try {
                     txn_func(session);  // performs transaction.
@@ -76,7 +77,7 @@ int main() {
             }
         };
 
-        // Define a function to handle UnknownTransactionCommitResult retry logic
+        // Incorporate UnknownTransactionCommitResult retry logic
         auto commit_with_retry = [](mongocxx::client_session& session) {
             while (true) {
                 try {
@@ -96,7 +97,7 @@ int main() {
             }
         };
 
-        auto transaction_operations = [&](mongocxx::client_session& session) {
+        auto txn_operations = [&](mongocxx::client_session& session) {
             auto& client = session.client(); 
 
             // Define database and collection variables
@@ -128,7 +129,7 @@ int main() {
         auto session = client.start_session();
         
         try {
-            run_transaction_with_retry(update_employee_info, session);
+            run_transaction_with_retry(txn_operations, session);
         } catch (const mongocxx::operation_exception& oe) {
             // Do something with error.
             throw oe;

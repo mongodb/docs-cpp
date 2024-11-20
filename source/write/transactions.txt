@@ -147,11 +147,24 @@ To learn more, see the `mongocxx::client_session Class Reference <{+api+}/classm
 The following example shows how you can use the core API to perform a transaction that executes a multi-document insert operation that incorporates 
 logic to retry the transaction for transient errors and retry the commit for unknown commit error: 
 
-1. Start a session from the client using the ``start_session()`` method.
-#. Define any options that you want to add to your transaction. For a full list of options, 
-   see the `mongocxx::options::transactions Class Reference <{+api+}/mongocxx-3.4.1/classmongocxx_1_1options_1_1transaction.html>`__ page in the API documentation. 
-#. Call any database operations that you want to run during your transaction. You must pass in the current ``client_session`` as an argument to each operation. 
-#. Commit the transaction using the ``commit_transaction()`` method
+
+1. Define a wrapper function called ``run_with_retry`` that runs your transaction with incorporated retry logic for ``UnknownTransactionCommitResult``
+
+   .. Define a wrapper function that accepts as its argument a function that starts and runs your transaction
+   .. The wrapper function runs this function and incorporates retry logic for ``TransientTransactionError`` 
+#. Define a wrapper function called ``commit_with_retry`` that commits your transaction with incorporated retry logic for  ``UnknownTransactionCommitResult`` 
+
+   .. Define a wrapper function that accepts as its argument a session with an active transaction
+   .. This wrapper function commits this transaction and incorporates retry logic for ``UnknownTransactionCommitResult``
+#. Define a function called ``txn_operations`` that starts, executes, and commits a transaction through the following steps:
+   - Define any options that you want to add to your transaction. For a full list of options, 
+     see the `mongocxx::options::transactions Class Reference <{+api+}/mongocxx-3.4.1/classmongocxx_1_1options_1_1transaction.html>`__ page in the API documentation.  
+   - Call the ``start_transaction()`` method to start your transaction. 
+   - Using a ``try`` and ``catch`` block, try the series of database operations you want to perform during the transaction and call the ``abort_transaction()`` method 
+     to abort your transaction when an exception is caught. 
+   - Call your ``comit_with_retry`` wrapper function and pass in your current session to commit your active transaction.
+#. Start a session from the client using the ``start_session()`` method
+#. Call your ``run_with_retry`` wrapper function and pass in your ``txn_operations`` function to start, execute, and commit your transaction. 
 
 .. literalinclude:: /includes/write/transactions.cpp
    :language: cpp
