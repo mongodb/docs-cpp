@@ -96,7 +96,7 @@ int main() {
             }
         };
 
-        auto update_employee_info = [&](mongocxx::client_session& session) {
+        auto transaction_operations = [&](mongocxx::client_session& session) {
             auto& client = session.client(); 
 
             // Define database and collection variables

@@ -91,8 +91,8 @@ start and commit a transaction that performs a multi-document insert operation:
 .. literalinclude:: /includes/write/transactions.cpp
    :language: cpp
    :dedent:
-   :start-after: start-with-transaction
-   :end-before: end-with-transaction
+   :start-after: start-callback-api
+   :end-before: end-callback-api
 
 .. tip:: 
 
@@ -156,11 +156,8 @@ logic to retry the transaction for transient errors and retry the commit for unk
 .. literalinclude:: /includes/write/transactions.cpp
    :language: cpp
    :dedent:
-   :start-after: start-start-transaction
-   :end-before: end-start-transaction
-
-Transaction Error Handling
---------------------------
+   :start-after: start-core-api
+   :end-before: end-core-api
 
 Additional Information
 ----------------------
@@ -169,6 +166,7 @@ To learn more about the concepts discussed in this guide, see the following page
 {+mdb-server+} manual: 
 
 - :manual:`Transactions </core/transactions/>`
+- :manual:`Drivers API <//core/transactions-in-applications/>`
 - :manual:`Server Sessions </reference/{+mdb-server+}-sessions/>`
 - :manual:`Causal Consistency </core/read-isolation-consistency-recency/#causal-consistency>`
 - :manual:`Transaction Error Handling </core/transactions-in-applications/#transaction-error-handling/>`
@@ -176,8 +174,7 @@ To learn more about the concepts discussed in this guide, see the following page
 To learn more about ACID complicance, see the :website:`ACID Properties in Database Management Systems </basics/acid-transactions>`
 guide on the MongoDB website. 
 
-To learn more about insert operations, see the
-:ref:`Insert Documents <cpp-write-insert>` guide.
+To learn more about insert operations, see the :ref:`Insert Documents <cpp-write-insert>` guide.
 
 .. _api-docs-transaction:
 
