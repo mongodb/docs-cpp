@@ -55,43 +55,35 @@ Transaction APIs
 
 The {+driver-long+} provides a callback API and a core API to manage the transaction lifestyle. 
 Before you begin a transaction, you must call the ``start_session()`` method to instantiate a ``mongocxx::client_session``. 
-Then, you can choose one of the following APIs to perform your transaction: 
+Then, you can choose a transaction API to start, exeecute, and commit your transaction. 
 
-- :ref:`Callback API <cpp-callback-api>`  
-- :ref:`Core API <cpp-core-api>`  
-
-To learn more about when to use each transaction API, see the :manual:`Drivers API <//core/transactions-in-applications/>` page in the {+mdb-server+} manual. 
+The following sections show how to use the callback API and the core API to manage the transaction lifecycle. 
+To learn more about transaction APIs, see the :manual:`Drivers API </core/transactions-in-applications/>` page in the {+mdb-server+} manual. 
 
 .. _cpp-callback-api: 
 
 Callback API 
 ~~~~~~~~~~~~
 
-Use the callback API to start, execute, and commit the transaction with integrated error handling logic.  
+Use the callback API to start a transaction, execute specified database operations, and commit the transaction with 
+incorporated retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors. 
+Use the callback API to start, execute, and commit the transaction with automatically incorporated error handling logic.  
 To implement this API, call the ``with_transaction()`` method on your ``mongocxx::client_session`` and pass in a 
 callback specifying the sequence of operations you want to run in your transaction. 
-The ``with_transaction()`` method performs the following tasks: 
+.. The ``with_transaction()`` method performs the following tasks: 
 
-- Starts a new transaction on this client session 
-- Runs the provided callback, automatically incorporating retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``
-- Commits the transaction 
+.. - Starts a new transaction on this client session 
+.. - Runs the provided callback, automatically incorporating retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``
+.. - Commits the transaction 
 
-The following code example shows how to use the callback API to perform a transaction. 
+The following code shows how to use the callback API to perform a transaction. 
 When run, the code performs the following actions: 
 
 1. Starts a session from the client using the ``start_session()`` method.
-#. Defines a callback function that inserts documents into collections in the ``sample_mflix`` database. 
-#. Configures an option object to set the write preference for the transaction operations. 
-#. Calls the ``with_transactions()`` method to manage the transaction, passing the callback and client session as arguments. 
-
-.. 1. Starts a session from the client using the ``start_session()`` method.
-.. #. Defines a callback specifying the series of operations to run in the transaction. 
-..    The callback takes the current ``mongocxx::client_session`` as an argument 
-..    and passes it as a variable to all operations in the function body. 
-.. #. Defines a ``mongocxx::options::transactions`` instance to set the write preference for the transaction operations.
-.. #. Calls the ``with_transactions()`` method and passes in the callback and 
-..    options to start a transaction, execute the operations specified in the callback, and commit the transaction.
-..    The ``with_transactions()`` method automatically raises any exceptions and incorporates retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``.
+#. Defines a callback function that specifies the database operations to perform during the transaction.
+   These operations insert documents into collections in the ``sample_mflix`` database. 
+#. Creates an option object to set the write preference for the transaction operations. 
+#. Calls the ``with_transactions()`` method to manage the transaction, passing the callback and option object as arguments. 
 
 .. literalinclude:: /includes/write/transactions.cpp
    :language: cpp
@@ -99,20 +91,14 @@ When run, the code performs the following actions:
    :start-after: start-callback-api
    :end-before: end-callback-api
 
-.. tip:: 
-
-   To learn more about ``TransientTransactionError`` and ``UnknownTransactionCommitResult``, see the :manual:`Transaction Error Handling </core/transactions-in-applications/#transaction-error-handling/>` section in the 
-   {+mdb-server+} manual. 
-
-
 .. _cpp-core-api: 
 
 Core API 
 ~~~~~~~~
 
-Use the core API for more manual control of the transaction lifecycle. The core API doesn't incorporate error handling logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``,
-and instead provides the flexibility to incorporate custom error handling for these errors. To learn how to handle these errors, see the :manual:`Transaction Error Handling </core/transactions-in-applications/#transaction-error-handling/>` 
-section in the {+mdb-server+} manual. 
+Use the core API for more control of the transaction lifecycle. The core API doesn't incorporate error handling logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``,
+and instead provides the flexibility to incorporate custom error handling for these errors. To learn more about how to handle ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors, 
+see the :manual:`Transaction Error Handling </core/transactions-in-applications/#transaction-error-handling/>` section in the {+mdb-server+} manual.
 
 The core API requires explicit calls to start, commit, and abort the transaction using methods provided by the ``mongocxx::client_session`` interface.
 The following table describes these methods:  
@@ -126,58 +112,50 @@ The following table describes these methods:
 
    * - ``start_transaction()``
      - | Starts a new transaction on the current client session. Accepts an optional ``mongocxx::options::transaction`` 
-         instance as an argument to set options including read preference, read concern, and write concern. 
-       | Throws an exception an error if the options are misconfigured, if there are network or other transient failures, or if there 
-         are other errors such as a session with a transaction already in progress.
-       | To learn more about this method, see the :manual:`startTransaction() page
-         </reference/method/Session.startTransaction/>`  in the {+mdb-server+} manual.
+         instance as an argument to set options. For a full list of options, see the `mongocxx::options::transaction <{+api+}/mongocxx-3.4.1/classmongocxx_1_1options_1_1transaction.html>`__
+         API documentation.
+       |
+       | Raises an exception if the options are misconfigured, if there are network or other transient failures, or if there 
+         are other errors such as a session with a transaction already in progress. If an error is returned with the ``TransientTransactionError`` label, 
+         you can end the transaction and then retry it with the expectation that it will succeed. 
+       |
+       | To learn more about this method, see the :manual:`startTransaction()
+         </reference/method/Session.startTransaction/>` guide in the {+mdb-server+} manual.
 
    * - ``commit_transaction()``
      - | Commits the active transaction on the current client session.
-       | Throws an exception if options are misconfigured, if there are network or other transient failures,
-         or if there are other errors such as a session with no transaction in progress. 
-       | To learn more about this method, see the :manual:`commitTransaction() page
-         </reference/method/Session.commitTransaction/>`  in the {+mdb-server+} manual. 
+       |
+       | Raises an exception if options are misconfigured, if there are network or other transient failures,
+         or if there are other errors such as a session with no transaction in progress. If an error is returned with the ``UnknownTransactionCommitResult`` label,
+         you can end the transaction and then retry it with the expectation that it will succeed when the committed transaction satisfies the set write concern. 
+       |
+       | To learn more about this method, see the :manual:`commitTransaction()
+         </reference/method/Session.commitTransaction/>` guide in the {+mdb-server+} manual. 
 
    * - ``abort_transcaction()``
      - | Ends the active transaction on the current client session. 
-       | Throws an exception if the options are misconfigured or if there are other errors such as 
+       |
+       | Raises an exception if the options are misconfigured or if there are other errors such as 
          a session with no transaction in progress.
-       | To learn more about this method, see the :manual:`abortTransaction() page
-         </reference/method/Session.abortTransaction/>`  in the {+mdb-server+} manual.
+       |
+       | To learn more about this method, see the :manual:`abortTransaction()
+         </reference/method/Session.abortTransaction/>` guide in the {+mdb-server+} manual.
 
-The ``mongocxx::client_session`` class also provides methods to retrieve and modify session properties.
-To learn more, see the `mongocxx::client_session Class Reference <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ page in the API documentation. 
+.. tip:: 
+   
+   The ``mongocxx::client_session`` class also provides methods to retrieve and modify session properties.
+   To learn more, see the `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ API documentation. 
 
-The following code example shows how to use the core API to perform a transaction. 
+The following code shows how to use the core API to perform a transaction. 
 When run, the code performs the following actions: 
 
 1. Starts a session from the client using the ``start_session()`` method.
-#. Calls the ``start_transaction()`` method to start a transaction 
+#. Creates an option object to set the write preference for the transaction operations. 
+#. Calls the ``start_transaction()`` method to start a transaction, passing in the option object as an argument.
 #. Attempts to insert documents into collections in the ``sample_mflix`` database. 
-   If an operation encounters an error, the transaction is aborted using the ``abort_transaction()`` method
-   and then retried if the error has the label ``TransientTransactionError``.  
+   If an operation encounters an error, the transaction is aborted and
+   then retried if the error has the label ``TransientTransactionError``.  
 #. Calls the ``commit_transaction()`` method to commit the active transaction. If the commit encounters an error with the label ``UnknownTransactionCommitResult``, the commit is retried. 
-
-
-.. 1. Define a wrapper function called ``run_with_retry`` that runs your transaction and incorporates retry logic for ``UnknownTransactionCommitResult``
-
-..    .. Define a wrapper function that accepts as its argument a function that starts and runs your transaction
-..    .. The wrapper function runs this function and incorporates retry logic for ``TransientTransactionError`` 
-.. #. Define a wrapper function called ``commit_with_retry`` that commits your transaction and incorporates retry logic for  ``UnknownTransactionCommitResult`` 
-
-..    .. Define a wrapper function that accepts as its argument a session with an active transaction
-..    .. This wrapper function commits this transaction and incorporates retry logic for ``UnknownTransactionCommitResult``
-.. #. Define a function called ``txn_operations`` that performs a transaction using the following steps:
-
-..    - Define any options that you want to add to your transaction. For a full list of options, 
-..      see the `mongocxx::options::transactions Class Reference <{+api+}/mongocxx-3.4.1/classmongocxx_1_1options_1_1transaction.html>`__ page in the API documentation.  
-..    - Call the ``start_transaction()`` method to start your transaction. 
-..    - Using a ``try`` and ``catch`` block, try the series of database operations you want to perform during the transaction and call the ``abort_transaction()`` method 
-..      to abort your transaction when an exception is caught. 
-..    - Call your ``comit_with_retry`` wrapper function and pass in your current session to commit your active transaction.
-.. #. Start a session from the client using the ``start_session()`` method
-.. #. Call your ``run_with_retry`` wrapper function and pass in your ``txn_operations`` function to start, execute, and commit your transaction. 
 
 .. literalinclude:: /includes/write/transactions.cpp
    :language: cpp
@@ -192,8 +170,8 @@ To learn more about the concepts discussed in this guide, see the following page
 {+mdb-server+} manual: 
 
 - :manual:`Transactions </core/transactions/>`
-- :manual:`Drivers API <//core/transactions-in-applications/>`
-- :manual:`Server Sessions </reference/{+mdb-server+}-sessions/>`
+- :manual:`Drivers API </core/transactions-in-applications/>`
+- :manual:`Server Sessions </reference/server-sessions/>`
 - :manual:`Causal Consistency </core/read-isolation-consistency-recency/#causal-consistency>`
 
 To learn more about ACID complicance, see the :website:`ACID Properties in Database Management Systems </basics/acid-transactions>`
@@ -211,11 +189,10 @@ guide, see the following API Documentation:
 
 - `mongocxx::client <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__
 - `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html>`__
-- `mongocxx::options::transaction <{+api+}/mongocxx-3.4.1/classmongocxx_1_1options_1_1transaction.html>`__
+- `mongocxx::options::transaction <{+api+}/classmongocxx_1_1options_1_1transaction.html>`__
 - `start_session() <{+api+}/classmongocxx_1_1v__noabi_1_1client.html#a03535128dbe5be973a08764b7741f24e>`__
-- `start_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a84ea5613813e6efbe065e3f39e1f972b>`__
-- `abort_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#aabb8247a655741af6fe0f78bef8116e1>`__
-- `commit_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#ad2d1a8f7c77542db6ec7629d162761ff>`__
 - `with_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a3dcdf91bf72e69bf7e63a7c8ad859b93>`__
-- `insert_one() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#af040f1fcb1ac406037bf1cbcdb300061>`__
-- `insert_many() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a61ebaa0c63296761637ce45115512085>`__
+- `start_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a84ea5613813e6efbe065e3f39e1f972b>`__
+- `commit_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#ad2d1a8f7c77542db6ec7629d162761ff>`__
+- `abort_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#aabb8247a655741af6fe0f78bef8116e1>`__
+- `insert_one() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a839bedb5505e5ce75cbf384e2e2457bd>`__

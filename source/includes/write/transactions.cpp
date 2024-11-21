@@ -97,7 +97,7 @@ int main() {
             }
         };
 
-        auto txn_operations = [&](mongocxx::client_session& session) {
+        auto run_transaction = [&](mongocxx::client_session& session) {
             auto& client = session.client(); 
 
             // Define database and collection variables
@@ -113,8 +113,8 @@ int main() {
 
             session.start_transaction(opts);
 
+            // Attempt to insert documents into database collections
             try {
-                // Specify database operations to run during transaction
                 movies_collection.insert_one(session, make_document(kvp("title", "Parasite")));
                 comments_collection.insert_one(session, make_document(kvp("name", "Rhaenyra Targaryen"), kvp("text", "Dracarys")));
             } catch (const mongocxx::operation_exception& oe) {
@@ -130,9 +130,9 @@ int main() {
         auto session = client.start_session();
         
         try {
-            run_transaction_with_retry(txn_operations, session);
+            run_transaction_with_retry(run_transaction, session);
         } catch (const mongocxx::operation_exception& oe) {
-            // Do something with error.
+            // Do something with error 
             throw oe;
         }
         // end-core-api
