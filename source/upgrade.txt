@@ -132,7 +132,7 @@ Build System Breaking Changes in v4.0
 `````````````````````````````````````
 
 The v4.0 driver introduces the following breaking changes to the build system:
-   
+
 - Drops support for the Boost and MNMLSTC/core external polyfill libraries. You can no
   longer set the following configuration options:
 
