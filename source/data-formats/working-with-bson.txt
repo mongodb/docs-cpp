@@ -14,10 +14,51 @@ Working with BSON
    :name: genre
    :values: reference
 
-.. meta::
-   :keywords: bson, concert, schema, types
+Overview
+--------
 
-The mongocxx driver ships with a new library, bsoncxx.  This article will
+In this guide, you can learn how to use the {+driver-short+} to store
+and interact with **BSON data**. 
+
+
+BSON Data Format 
+----------------
+
+ **BSON**, or Binary JSON, is the data format that MongoDB uses to organize and store data. 
+ This data format includes all JSON data structure types and adds support for types including dates, different size
+ integers, ObjectIds, and binary data. For a complete list of supported types, see the :manual:`BSON Types </reference/bson-types/>` page 
+ in the {+mdb-server+} manual. 
+
+ The code samples in this guide use the following BSON document as an example: 
+
+ .. code-block:: josn 
+
+    {
+      "address" : {
+         "street" : "Pizza St",
+         "zipcode" : "10003"
+      },
+      "coord" : [-73.982419, 41.579505],
+      "cuisine" : "Pizza",
+      "name" : "Mongo's Pizza"
+    }
+
+The {+driver-long+} ships with the ``bsoncxx`` library. 
+The following sections show how you can use classes and methods from the ``bsoncxx`` library to create BSON documents, read BSON from a file, write BSON to a file, and 
+convert BSON documents into JSON documents. 
+
+Create a BSON Document 
+----------------------
+
+To create a BSON document, you can use one of the following methods: 
+
+- List Builder
+- One-off Builder Function 
+- Basic Builder
+- Stream Builder
+
+
+This article will
 go over some of the different types in this library, and how and when to
 use each.  For more information and example code, see our
 `examples <https://github.com/mongodb/mongo-cxx-driver/tree/master/examples/bsoncxx>`__.
@@ -397,3 +438,30 @@ strings, but provide access to the low and high 64-bit values if users need
 to convert to a native decimal128 type.
 
 You can see how to work with ``bsoncxx::decimal128`` in `this example <https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/decimal128.cpp>`__.
+
+.. _cpp-time-series-addtl-info:
+
+Additional Information
+----------------------
+
+To learn more about the concepts mentioned in this guide, see the
+following Server manual entries:
+
+- :manual:`Time Series </core/timeseries-collections/>`
+- :manual:`Create and Query a Time Series Collection </core/timeseries/timeseries-procedures/>`
+- :manual:`Set Granularity for Time Series Data </core/timeseries/timeseries-granularity/>`
+
+To learn more about performing read operations, see :ref:`cpp-read`.
+
+To learn more about performing aggregation operations, see the :ref:`cpp-aggregation`
+guide.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about the methods mentioned in this guide, see the following
+API documentation:
+
+- `create_collection() <{+api+}/classmongocxx_1_1v__noabi_1_1database.html#a8989a894e021e87d704288a8d2522069>`__
+- `list_collections() <{+api+}/classmongocxx_1_1v__noabi_1_1database.html#aacef87f0bc585c536ce0dfae67cfefe8>`__
+- `insert_many() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a533e1d929fb71a6e85303769f3175275>`__
