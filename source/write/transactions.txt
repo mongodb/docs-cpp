@@ -55,9 +55,11 @@ Transaction APIs
 
 The {+driver-long+} provides a callback API and a core API to manage the transaction lifestyle. 
 Before you begin a transaction, you must call the ``start_session()`` method to instantiate a ``mongocxx::client_session``. 
-Then, you can choose a transaction API to start, exeecute, and commit your transaction. 
+Then, you can choose one of the following transaction APIs to perform a transaction:
 
-The following sections show how to use the callback API and the core API to manage the transaction lifecycle. 
+- Callback API <cpp-callback-api>
+- Core API <cpp-core-api> 
+
 To learn more about transaction APIs, see the :manual:`Drivers API </core/transactions-in-applications/>` page in the {+mdb-server+} manual. 
 
 .. _cpp-callback-api: 
@@ -65,25 +67,24 @@ To learn more about transaction APIs, see the :manual:`Drivers API </core/transa
 Callback API 
 ~~~~~~~~~~~~
 
-Use the callback API to start a transaction, execute specified database operations, and commit the transaction with 
+Use the callback API to start a transaction, execute specified operations, and commit the transaction with 
 incorporated retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors. 
-Use the callback API to start, execute, and commit the transaction with automatically incorporated error handling logic.  
 To implement this API, call the ``with_transaction()`` method on your ``mongocxx::client_session`` and pass in a 
 callback specifying the sequence of operations you want to run in your transaction. 
+
 .. The ``with_transaction()`` method performs the following tasks: 
 
 .. - Starts a new transaction on this client session 
 .. - Runs the provided callback, automatically incorporating retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``
 .. - Commits the transaction 
 
-The following code shows how to use the callback API to perform a transaction. 
+The following code shows how to use the callback API to perform a transaction that inserts documents into collections in the ``sample_mflix`` database. 
 When run, the code performs the following actions: 
 
-1. Starts a session from the client using the ``start_session()`` method.
-#. Defines a callback function that specifies the database operations to perform during the transaction.
-   These operations insert documents into collections in the ``sample_mflix`` database. 
-#. Creates an option object to set the write preference for the transaction operations. 
-#. Calls the ``with_transactions()`` method to manage the transaction, passing the callback and option object as arguments. 
+1. Starts a session from the client using the ``start_session()`` method
+#. Defines a callback function that specifies the operations to perform during the transaction
+#. Creates an option object to set the write preference for the transaction operations
+#. Calls the ``with_transactions()`` method to manage the transaction, passing the callback and option object as arguments
 
 .. literalinclude:: /includes/write/transactions.cpp
    :language: cpp
@@ -96,7 +97,7 @@ When run, the code performs the following actions:
 Core API 
 ~~~~~~~~
 
-Use the core API for more control of the transaction lifecycle. The core API doesn't incorporate error handling logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``,
+Use the core API for more manual control of the transaction lifecycle. The core API doesn't incorporate error handling logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``,
 and instead provides the flexibility to incorporate custom error handling for these errors. To learn more about how to handle ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors, 
 see the :manual:`Transaction Error Handling </core/transactions-in-applications/#transaction-error-handling/>` section in the {+mdb-server+} manual.
 
@@ -144,15 +145,15 @@ The following table describes these methods:
 .. tip:: 
    
    The ``mongocxx::client_session`` class also provides methods to retrieve and modify session properties.
-   To learn more, see the `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ API documentation. 
+   To learn more, see `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ in the API documentation. 
 
-The following code shows how to use the core API to perform a transaction. 
+The following code shows how to use the core API to perform a transaction that inserts documents into collections in the ``sample_mflix`` database. 
 When run, the code performs the following actions: 
 
 1. Starts a session from the client using the ``start_session()`` method.
 #. Creates an option object to set the write preference for the transaction operations. 
 #. Calls the ``start_transaction()`` method to start a transaction, passing in the option object as an argument.
-#. Attempts to insert documents into collections in the ``sample_mflix`` database. 
+#. Attempts operations to insert documents into collections in the ``sample_mflix`` database. 
    If an operation encounters an error, the transaction is aborted and
    then retried if the error has the label ``TransientTransactionError``.  
 #. Calls the ``commit_transaction()`` method to commit the active transaction. If the commit encounters an error with the label ``UnknownTransactionCommitResult``, the commit is retried. 
