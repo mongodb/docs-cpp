@@ -81,7 +81,7 @@ This driver version introduces the following breaking changes:
   - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
   - ``BSONCXX_POLY_USE_BOOST``.
 
-- Removes the following ``utf8`` types that have ``string`` equivalents:
+- Removes the following deprecated ``utf8`` types that have ``string`` equivalents:
 
   - ``k_utf8`` from the ``bsoncxx::v_noabi::type`` class. Instead, use ``k_string``.
   - ``b_utf8`` from the ``bsoncxx::v_noabi::types`` class. Instead, use ``b_string``.

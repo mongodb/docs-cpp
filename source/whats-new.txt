@@ -102,7 +102,7 @@ What's New in 4.0
      library equivalents. For context, see the :ref:`Build System Breaking Changes
      <version-4.0-build-system-breaking>` admonition.
 
-   - Removes the following ``utf8`` types that have ``string`` equivalents:
+   - Removes the following deprecated ``utf8`` types that have ``string`` equivalents:
 
      - ``k_utf8`` from the ``bsoncxx::v_noabi::type`` class. Instead, use ``k_string``.
      - ``b_utf8`` from the ``bsoncxx::v_noabi::types`` class. Instead, use ``b_string``.
