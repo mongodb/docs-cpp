@@ -55,28 +55,19 @@ Transaction APIs
 
 The {+driver-long+} provides a callback API and a core API to manage the transaction lifestyle. 
 Before you begin a transaction, you must call the ``start_session()`` method to instantiate a ``mongocxx::client_session``. 
-Then, you can choose one of the following transaction APIs to perform a transaction:
+Then, you can use one of the transaction APIs described in the following sections to perform a transaction:
 
-- Callback API <cpp-callback-api>
-- Core API <cpp-core-api> 
-
-To learn more about transaction APIs, see the :manual:`Drivers API </core/transactions-in-applications/>` page in the {+mdb-server+} manual. 
+- :ref:`Callback API <cpp-callback-api>`
+- :ref:`Core API <cpp-core-api>`
 
 .. _cpp-callback-api: 
 
 Callback API 
 ~~~~~~~~~~~~
 
-Use the callback API to start a transaction, execute specified operations, and commit the transaction with 
-incorporated retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors. 
+Use the callback API to start, execute, and commit a transaction with incorporated retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors. 
 To implement this API, call the ``with_transaction()`` method on your ``mongocxx::client_session`` and pass in a 
 callback specifying the sequence of operations you want to run in your transaction. 
-
-.. The ``with_transaction()`` method performs the following tasks: 
-
-.. - Starts a new transaction on this client session 
-.. - Runs the provided callback, automatically incorporating retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``
-.. - Commits the transaction 
 
 The following code shows how to use the callback API to perform a transaction that inserts documents into collections in the ``sample_mflix`` database. 
 When run, the code performs the following actions: 
@@ -156,7 +147,7 @@ When run, the code performs the following actions:
 #. Attempts operations to insert documents into collections in the ``sample_mflix`` database. 
    If an operation encounters an error, the transaction is aborted and
    then retried if the error has the label ``TransientTransactionError``.  
-#. Calls the ``commit_transaction()`` method to commit the active transaction. If the commit encounters an error with the label ``UnknownTransactionCommitResult``, the commit is retried. 
+#. Commits the active transaction using the ``commit_transaction()`` method. If the commit encounters an error with the label ``UnknownTransactionCommitResult``, the commit is retried. 
 
 .. literalinclude:: /includes/write/transactions.cpp
    :language: cpp
