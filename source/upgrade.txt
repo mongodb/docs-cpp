@@ -7,7 +7,7 @@ Upgrade Driver Versions
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. facet::
@@ -40,10 +40,8 @@ Before you upgrade, perform the following actions:
    upgrading driver versions, use the
    :ref:`{+stable-api+} <cpp-stable-api>`.
 
-.. _cpp-breaking-changes:
-
-Breaking Changes
-----------------
+Breaking Change Definition
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
 
@@ -61,10 +59,11 @@ The breaking changes in this section are categorized by the driver version that 
 them. When upgrading driver versions, address all the breaking changes between the current
 and upgrade versions.
 
-.. example:: Upgrading from Version 3.0
+.. example:: Upgrading to Version 4.0
 
-  If you're upgrading the {+driver-short+} from version 3.0 to version 3.10,
-  address all breaking changes listed for versions 3.1 to 3.10, if any.
+  If you're upgrading the {+driver-short+} from version 3.x to version 4.0,
+  address all breaking changes that are listed for versions 3.x up to and
+  including version 4.0
 
 Types of Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,16 +111,24 @@ New versions of the {+driver-short+} can introduce the following types of breaki
        ``OFF`` to ``ON``.
      - Drops support for platform A, compiler B, or architecture C.
 
+.. _cpp-breaking-changes:
+
+Breaking Changes
+----------------
+
+The following sections describe the breaking changes introduced by 
+each driver version release.
+
 .. _upcoming-breaking-changes:
 .. _version-4.0-breaking-changes:
 
-Version 4.0 Breaking Changes
-----------------------------
+Version 4.0
+~~~~~~~~~~~
 
 .. _version-4.0-build-system-breaking:
 
 Build System Breaking Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`````````````````````````````
 
 The v4.0 driver introduces the following breaking changes to the build system:
 
@@ -134,7 +141,7 @@ The v4.0 driver introduces the following breaking changes to the build system:
   - ``BSONCXX_POLY_USE_BOOST``.
 
 API Breaking Changes
-~~~~~~~~~~~~~~~~~~~~
+````````````````````
 
 The v4.0 driver introduces the following breaking changes to the API:
 
@@ -144,7 +151,7 @@ The v4.0 driver introduces the following breaking changes to the API:
   <version-4.0-build-system-breaking>` section.
 
 ABI Breaking Changes
-~~~~~~~~~~~~~~~~~~~~
+````````````````````
 
 The v4.0 driver introduces the following breaking changes to the ABI:
 
@@ -155,11 +162,11 @@ The v4.0 driver introduces the following breaking changes to the ABI:
 
 .. _version-3.11-breaking-changes:
 
-Version 3.11 Breaking Changes
------------------------------
+Version 3.11
+~~~~~~~~~~~~
 
 Build System Breaking Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`````````````````````````````
 
 The v3.11 driver introduces the following breaking changes to the build system:
 
@@ -167,7 +174,7 @@ The v3.11 driver introduces the following breaking changes to the build system:
 - Requires MongoDB C Driver v1.28.0 or later.
 
 ABI Breaking Changes
-~~~~~~~~~~~~~~~~~~~~
+````````````````````
 
 The v3.11 driver introduces the following breaking changes to the ABI:
 
@@ -192,11 +199,11 @@ The v3.11 driver introduces the following breaking changes to the ABI:
 
 .. _version-3.10-breaking-changes:
 
-Version 3.10 Breaking Changes
------------------------------
+Version 3.10
+~~~~~~~~~~~~
 
 Build System Breaking Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`````````````````````````````
 
 The v3.10 driver introduces the following breaking changes to the build system:
 
@@ -211,11 +218,11 @@ The v3.10 driver introduces the following breaking changes to the build system:
 
 .. _version-3.9-breaking-changes:
 
-Version 3.9 Breaking Changes
-----------------------------
+Version 3.9
+~~~~~~~~~~~
 
 Build System Breaking Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`````````````````````````````
 
 The v3.9 driver introduces the following breaking changes:
 
@@ -225,7 +232,7 @@ The v3.9 driver introduces the following breaking changes:
 - Requires CMake v3.15 or later to support the ``FetchContent`` module
 
 Version 3.8 and Earlier
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 For driver versions 3.8 and earlier, see the
 release notes and associated JIRA tickets for each release
