@@ -58,7 +58,7 @@ Download and Install
 
                 cmake ..                                \
                     -DCMAKE_BUILD_TYPE=Release          \
-                    -DCMAKE_CXX_STANDARD=17                     \
+                    -DCMAKE_CXX_STANDARD=17              
             
              This command instructs CMake to install ``mongocxx`` into the ``/usr/local`` directory.
 
