@@ -55,7 +55,7 @@ Transaction APIs
 
 The {+driver-long+} provides a callback API and a core API to manage the transaction lifestyle. 
 Before you begin a transaction, you must call the ``start_session()`` method to instantiate a ``mongocxx::client_session``. 
-Then, you can use one of the transaction APIs described in the following sections to perform a transaction:
+Then, you can use either of the following APIs to perform a transaction:
 
 - :ref:`Callback API <cpp-callback-api>`
 - :ref:`Core API <cpp-core-api>`
