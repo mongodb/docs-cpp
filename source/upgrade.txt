@@ -40,8 +40,8 @@ Before you upgrade, perform the following actions:
    upgrading driver versions, use the
    :ref:`{+stable-api+} <cpp-stable-api>`.
 
-Breaking Change Definition
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Definition of Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
 
@@ -76,7 +76,8 @@ New versions of the {+driver-short+} can introduce the following types of breaki
 
   .. example::
 
-     - Removes the declaration of function ``v1::func()``. (The definition is still provided for ABI compatibility.)
+     - Removes the declaration of function ``v1::func()``. (The definition is still
+       provided for ABI compatibility.)
      - Removes the inline function ``v_noabi::func()``.
      - Removes ``v_noabi::func()``.
      - Changes the redeclaration of ``bsoncxx::foo`` from ``v1::foo`` to ``v2::foo``.
@@ -127,8 +128,8 @@ Version 4.0
 
 .. _version-4.0-build-system-breaking:
 
-Build System Breaking Changes
-`````````````````````````````
+Build System Breaking Changes in v4.0
+`````````````````````````````````````
 
 The v4.0 driver introduces the following breaking changes to the build system:
 
@@ -140,8 +141,8 @@ The v4.0 driver introduces the following breaking changes to the build system:
   - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
   - ``BSONCXX_POLY_USE_BOOST``.
 
-API Breaking Changes
-````````````````````
+API Breaking Changes in v4.0
+````````````````````````````
 
 The v4.0 driver introduces the following breaking changes to the API:
 
@@ -150,8 +151,8 @@ The v4.0 driver introduces the following breaking changes to the API:
   library equivalents. For context, see the :ref:`Build System Breaking Changes
   <version-4.0-build-system-breaking>` section.
 
-ABI Breaking Changes
-````````````````````
+ABI Breaking Changes in v4.0
+````````````````````````````
 
 The v4.0 driver introduces the following breaking changes to the ABI:
 
@@ -165,32 +166,35 @@ The v4.0 driver introduces the following breaking changes to the ABI:
 Version 3.11
 ~~~~~~~~~~~~
 
-Build System Breaking Changes
-`````````````````````````````
+Build System Breaking Changes in v3.11
+``````````````````````````````````````
 
 The v3.11 driver introduces the following breaking changes to the build system:
 
 - Drops support for {+mdb-server+} v3.6.
 - Requires MongoDB C Driver v1.28.0 or later.
 
-ABI Breaking Changes
-````````````````````
+ABI Breaking Changes in v3.11
+`````````````````````````````
 
 The v3.11 driver introduces the following breaking changes to the ABI:
 
 - Removes export of the following private member functions in the bsoncxx
   ABI:
 
-  - ``bsoncxx::v_noabi::types::bson_value::value::value(const uint8_t*, uint32_t, uint32_t, uint32_t)``
+  - ``bsoncxx::v_noabi::types::bson_value::value::value(const uint8_t*,
+    uint32_t, uint32_t, uint32_t)``
   - ``bsoncxx::v_noabi::types::bson_value::view::_init(void*)``
-  - ``bsoncxx::v_noabi::types::bson_value::view::view(const uint8_t*, uint32_t, uint32_t, uint32_t)``
+  - ``bsoncxx::v_noabi::types::bson_value::view::view(const uint8_t*,
+    uint32_t, uint32_t, uint32_t)``
   - ``bsoncxx::v_noabi::types::bson_value::view::view(void*)``
 
 - Removes export of the following private member functions in the mongocxx
   ABI:
 
   - ``mongocxx::v_noabi::options::change_stream::as_bson()``
-  - ``mongocxx::v_noabi::options::aggregate::append(bsoncxx::v_noabi::builder::basic::document&)``
+  - ``mongocxx::v_noabi::options::aggregate::append(
+    bsoncxx::v_noabi::builder::basic::document&)``
   - ``mongocxx::v_noabi::options::index::storage_options()``
 
 - Declare all exported functions symbols with ``__cdecl`` when compiled with
@@ -202,14 +206,14 @@ The v3.11 driver introduces the following breaking changes to the ABI:
 Version 3.10
 ~~~~~~~~~~~~
 
-Build System Breaking Changes
-`````````````````````````````
+Build System Breaking Changes in v3.10
+``````````````````````````````````````
 
 The v3.10 driver introduces the following breaking changes to the build system:
 
-- Drops support for calling ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``.
-  Use ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
-  instead.
+- Drops support for calling ``find_package(libbsoncxx)`` and
+  ``find_package(libmongocxx)``. Use ``find_package(bsoncxx)`` and
+  ``find_package(mongocxx)`` instead.
 - Drops support for the ``LIBBSONCXX_*`` and ``LIBMONGOCXX_*`` CMake variables
   provided by the legacy CMake package config files. Use the ``mongo::bsoncxx_*`` and
   ``mongo::mongocxx_*`` CMake targets instead.
@@ -221,8 +225,8 @@ The v3.10 driver introduces the following breaking changes to the build system:
 Version 3.9
 ~~~~~~~~~~~
 
-Build System Breaking Changes
-`````````````````````````````
+Build System Breaking Changes in v3.9
+`````````````````````````````````````
 
 The v3.9 driver introduces the following breaking changes:
 
