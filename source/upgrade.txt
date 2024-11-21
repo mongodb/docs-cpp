@@ -7,7 +7,7 @@ Upgrade Driver Versions
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. facet::
@@ -116,108 +116,116 @@ New versions of the {+driver-short+} can introduce the following types of breaki
 .. _version-4.0-breaking-changes:
 
 Version 4.0 Breaking Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 .. _version-4.0-build-system-breaking:
 
-.. warning:: Build System Breaking Changes
+Build System Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   The v4.0 driver introduces the following breaking changes to the build system:
-   
-   - Drops support for the Boost and MNMLSTC/core external polyfill libraries. You can no
-     longer set the following configuration options:
+The v4.0 driver introduces the following breaking changes to the build system:
 
-     - ``ENABLE_BSONCXX_POLY_USE_IMPLS``. This option is implicitly set to ``ON``.
-     - ``BSONCXX_POLY_USE_MNMLSTC``.
-     - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
-     - ``BSONCXX_POLY_USE_BOOST``.
+- Drops support for the Boost and MNMLSTC/core external polyfill libraries. You can no
+  longer set the following configuration options:
 
-.. warning:: API Breaking Changes
+  - ``ENABLE_BSONCXX_POLY_USE_IMPLS``. This option is implicitly set to ``ON``.
+  - ``BSONCXX_POLY_USE_MNMLSTC``.
+  - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
+  - ``BSONCXX_POLY_USE_BOOST``.
 
-   The v4.0 driver introduces the following breaking changes to the API:
+API Breaking Changes
+~~~~~~~~~~~~~~~~~~~~
 
-   - Drops support for configuring ``bsoncxx::stdx::string_view`` and
-     ``bsoncxx::stdx::optional<T>`` as aliases for Boost or MNMLSTC/core
-     library equivalents. For context, see the :ref:`Build System Breaking Changes
-     <version-4.0-build-system-breaking>` admonition.
+The v4.0 driver introduces the following breaking changes to the API:
 
-.. warning:: ABI Breaking Changes
+- Drops support for configuring ``bsoncxx::stdx::string_view`` and
+  ``bsoncxx::stdx::optional<T>`` as aliases for Boost or MNMLSTC/core
+  library equivalents. For context, see the :ref:`Build System Breaking Changes
+  <version-4.0-build-system-breaking>` section.
 
-   The v4.0 driver introduces the following breaking changes to the ABI:
+ABI Breaking Changes
+~~~~~~~~~~~~~~~~~~~~
 
-   - Drops support for configuring ``bsoncxx::stdx::string_view`` and
-     ``bsoncxx::stdx::optional<T>`` as aliases for Boost or MNMLSTC/core
-     library equivalents. For context, see the :ref:`Build System Breaking Changes
-     <version-4.0-build-system-breaking>` admonition.
+The v4.0 driver introduces the following breaking changes to the ABI:
+
+- Drops support for configuring ``bsoncxx::stdx::string_view`` and
+  ``bsoncxx::stdx::optional<T>`` as aliases for Boost or MNMLSTC/core
+  library equivalents. For context, see the :ref:`Build System Breaking Changes
+  <version-4.0-build-system-breaking>` section.
 
 .. _version-3.11-breaking-changes:
 
 Version 3.11 Breaking Changes
+-----------------------------
+
+Build System Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning:: Build System Breaking Changes
+The v3.11 driver introduces the following breaking changes to the build system:
 
-   The v3.11 driver introduces the following breaking changes to the build system:
+- Drops support for {+mdb-server+} v3.6.
+- Requires MongoDB C Driver v1.28.0 or later.
 
-   - Drops support for {+mdb-server+} v3.6.
-   - Requires MongoDB C Driver v1.28.0 or later.
+ABI Breaking Changes
+~~~~~~~~~~~~~~~~~~~~
 
-.. warning:: ABI Breaking Changes
+The v3.11 driver introduces the following breaking changes to the ABI:
 
-   The v3.11 driver introduces the following breaking changes to the ABI:
-   
-   - Removes export of the following private member functions in the bsoncxx
-     ABI:
-   
-     - ``bsoncxx::v_noabi::types::bson_value::value::value(const uint8_t*, uint32_t, uint32_t, uint32_t)``
-     - ``bsoncxx::v_noabi::types::bson_value::view::_init(void*)``
-     - ``bsoncxx::v_noabi::types::bson_value::view::view(const uint8_t*, uint32_t, uint32_t, uint32_t)``
-     - ``bsoncxx::v_noabi::types::bson_value::view::view(void*)``
+- Removes export of the following private member functions in the bsoncxx
+  ABI:
 
-   - Removes export of the following private member functions in the mongocxx
-     ABI:
-   
-     - ``mongocxx::v_noabi::options::change_stream::as_bson()``
-     - ``mongocxx::v_noabi::options::aggregate::append(bsoncxx::v_noabi::builder::basic::document&)``
-     - ``mongocxx::v_noabi::options::index::storage_options()``
-   
-   - Declare all exported functions symbols with ``__cdecl`` when compiled with
-     MSVC. This is an ABI breaking change if you use an alternative
-     default calling convention when building projects.
+  - ``bsoncxx::v_noabi::types::bson_value::value::value(const uint8_t*, uint32_t, uint32_t, uint32_t)``
+  - ``bsoncxx::v_noabi::types::bson_value::view::_init(void*)``
+  - ``bsoncxx::v_noabi::types::bson_value::view::view(const uint8_t*, uint32_t, uint32_t, uint32_t)``
+  - ``bsoncxx::v_noabi::types::bson_value::view::view(void*)``
+
+- Removes export of the following private member functions in the mongocxx
+  ABI:
+
+  - ``mongocxx::v_noabi::options::change_stream::as_bson()``
+  - ``mongocxx::v_noabi::options::aggregate::append(bsoncxx::v_noabi::builder::basic::document&)``
+  - ``mongocxx::v_noabi::options::index::storage_options()``
+
+- Declare all exported functions symbols with ``__cdecl`` when compiled with
+  MSVC. This is an ABI breaking change if you use an alternative
+  default calling convention when building projects.
 
 .. _version-3.10-breaking-changes:
 
 Version 3.10 Breaking Changes
+-----------------------------
+
+Build System Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning:: Build System Breaking Changes
+The v3.10 driver introduces the following breaking changes to the build system:
 
-   The v3.10 driver introduces the following breaking changes to the build system:
-   
-   - Drops support for calling ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``.
-     Use ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
-     instead.
-   - Drops support for the ``LIBBSONCXX_*`` and ``LIBMONGOCXX_*`` CMake variables
-     provided by the legacy CMake package config files. Use the ``mongo::bsoncxx_*`` and
-     ``mongo::mongocxx_*`` CMake targets instead.
-   - Removes the ``BSONCXX_POLY_USE_STD_EXPERIMENTAL`` CMake option and drops support for selecting the experimental C++ standard library as a polyfill option.
+- Drops support for calling ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``.
+  Use ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
+  instead.
+- Drops support for the ``LIBBSONCXX_*`` and ``LIBMONGOCXX_*`` CMake variables
+  provided by the legacy CMake package config files. Use the ``mongo::bsoncxx_*`` and
+  ``mongo::mongocxx_*`` CMake targets instead.
+- Removes the ``BSONCXX_POLY_USE_STD_EXPERIMENTAL`` CMake option and drops support for selecting
+  the experimental C++ standard library as a polyfill option.
 
 .. _version-3.9-breaking-changes:
 
 Version 3.9 Breaking Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
-.. warning:: Build System Breaking Changes
+Build System Breaking Changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   The v3.9 driver introduces the following breaking changes:
+The v3.9 driver introduces the following breaking changes:
 
-   - Removes support for exported targets from the CMake project build tree
-   - Drops support for macOS 10.14, macOS 10.15, and Ubuntu 14.04
-   - Requires MongoDB C Driver v1.25.0 or later
-   - Requires CMake v3.15 or later to support the ``FetchContent`` module
+- Removes support for exported targets from the CMake project build tree
+- Drops support for macOS 10.14, macOS 10.15, and Ubuntu 14.04
+- Requires MongoDB C Driver v1.25.0 or later
+- Requires CMake v3.15 or later to support the ``FetchContent`` module
 
 Version 3.8 and Earlier
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 For driver versions 3.8 and earlier, see the
 release notes and associated JIRA tickets for each release
