@@ -81,6 +81,15 @@ This driver version introduces the following breaking changes:
   - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
   - ``BSONCXX_POLY_USE_BOOST``.
 
+- Removes the following ``using`` directives and declarations:
+
+  - ``bsoncxx::builder::types`` from the ``<bsoncxx/builder/list.hpp>`` header file.
+    Instead, use ``bsoncxx::types`` from ``<bsoncxx/types.hpp>``.
+  - ``bsoncxx::builder::stream::concatenate`` from the ``<bsoncxx/builder/stream/helpers.hpp>``
+    header file. Instead, use ``bsoncxx::builder::concatenate`` from ``<bsoncxx/builder/concatenate.hpp>``.
+  - ``mongocxx::events::read_preference`` from the ``<mongocxx/events/topology_description.hpp>``
+    header file. Instead, use ``mongocxx::read_preference`` from ``<mongocxx/read_preference.hpp>``.
+
 .. _version-3.11-breaking-changes:
 
 Version 3.11 Breaking Changes

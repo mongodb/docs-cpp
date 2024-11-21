@@ -102,6 +102,10 @@ What's New in 4.0
      library equivalents. For context, see the :ref:`Build System Breaking Changes
      <version-4.0-build-system-breaking>` admonition.
 
+   - Removes undocumented ``using`` directives and declarations. To view a full list
+     of these changes, see :ref:`version-4.0-breaking-changes` in the Upgrade Driver
+     Versions guide.
+
 .. warning:: ABI Breaking Changes
 
    The v4.0 driver introduces the following breaking changes to the ABI:
