@@ -111,6 +111,60 @@ What's New in 4.0
      library equivalents. For context, see the :ref:`Build System Breaking Changes
      <version-4.0-build-system-breaking>` admonition.
 
+The v4.0 driver release includes the following new features:
+
+- This driver version requires ``libmongoc`` 1.29.0 or later.
+
+- The CMake option ``ENABLE_TESTS`` is now ``OFF`` by default. To re-enable building
+  test targets, set ``ENABLE_TESTS=ON`` as part of your CMake configuration. To
+  include test targets in the ``all`` target, set ``BUILD_TESTING=ON`` as part of
+  your CMake configuration.
+
+- The layout of the ``mongocxx::v_noabi::options::change_stream`` class supports
+  the new optional ``start_at_operation_time`` accessor.
+
+- Drops support for {+mdb-server+} 4.0.
+
+- Adds a getter for the ``start_at_operation_time`` option in the
+  ``mongocxx::v_noabi::options::change_stream`` class.
+
+- Removes support for the CMake option ``MONGOCXX_OVERRIDE_DEFAULT_INSTALL_PREFIX``.
+  This option is implicitly ``OFF``.
+
+- Removes redeclarations of ``bsoncxx::stdx`` interfaces in the ``mongocxx::stdx`` namespace.
+  The driver uses ``bsoncxx::stdx::optional<T>`` instead of ``mongocxx::stdx::optional<T>``
+  and ``bsoncxx::stdx::string_view`` instead of ``mongocxx::stdx::string_view``.
+
+- Removes the ``*_INLINE_NAMESPACE_*`` inline namespace macros for the ``bsoncxx`` and
+  ``mongocxx`` namespaces.
+
+- Removes the following headers:
+
+  - ``<bsoncxx/stdx/make_unique.hpp>``
+  - ``<bsoncxx/types/value.hpp>``
+  - ``<bsoncxx/util/functor.hpp>``
+  - ``<mongocxx/options/create_collection.hpp>``
+
+- Removes references to the following deprecated ``utf8`` members: 
+  
+  - ``k_utf8`` in ``bsoncxx::v_noabi::type``. Use the ``k_string`` type instead.
+  - ``b_utf8`` in ``bsoncxx::v_noabi::types``. Use the ``b_string`` type instead.
+  - ``get_utf8`` in ``bsoncxx::v_noabi::document::element``,
+    ``bsoncxx::v_noabi::array::element``, and ``bsoncxx::v_noabi::types::bson_value::view``.
+    Use the ``get_string`` function instead.
+  - ``k_cannot_append_utf8`` and ``k_need_element_type_k_utf8`` in
+    ``bsoncxx::v_noabi::exception::error_code``. Use the ``k_cannot_append_string`` and
+    ``k_need_element_type_k_string`` error codes instead.
+
+- Removes the following undocumented ``using`` directives and ``using`` declarations:
+
+  - ``bsoncxx::builder::types`` in ``<bsoncxx/builder/list.hpp>``. Use ``bsoncxx::types``
+    in ``<bsoncxx/types.hpp>`` instead.
+  - ``bsoncxx::builder::stream::concatenate`` in ``<bsoncxx/builder/stream/helpers.hpp>``.
+    Use ``bsoncxx::builder::concatenate`` in ``<bsoncxx/builder/concatenate.hpp>`` instead.
+  - ``mongocxx::events::read_preference`` in ``<mongocxx/events/topology_description.hpp>``.
+    Use ``mongocxx::read_preference`` in ``<mongocxx/read_preference.hpp>`` instead.
+
 .. _version-3.11:
 
 What's New in 3.11
