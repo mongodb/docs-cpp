@@ -42,35 +42,10 @@ What's New in 4.0
 What's New in 3.11
 ------------------
 
-.. warning:: Build System Breaking Changes
+.. warning:: Breaking Changes
 
-   The v3.11 driver introduces the following breaking changes to the build system:
-
-   - Drops support for {+mdb-server+} v3.6.
-   - Requires MongoDB C Driver v1.28.0 or later.
-
-.. warning:: ABI Breaking Changes
-
-   The v3.11 driver introduces the following breaking changes to the ABI:
-   
-   - Removes export of the following private member functions in the bsoncxx
-     ABI:
-   
-     - ``bsoncxx::v_noabi::types::bson_value::value::value(const uint8_t*, uint32_t, uint32_t, uint32_t)``
-     - ``bsoncxx::v_noabi::types::bson_value::view::_init(void*)``
-     - ``bsoncxx::v_noabi::types::bson_value::view::view(const uint8_t*, uint32_t, uint32_t, uint32_t)``
-     - ``bsoncxx::v_noabi::types::bson_value::view::view(void*)``
-
-   - Removes export of the following private member functions in the mongocxx
-     ABI:
-   
-     - ``mongocxx::v_noabi::options::change_stream::as_bson()``
-     - ``mongocxx::v_noabi::options::aggregate::append(bsoncxx::v_noabi::builder::basic::document&)``
-     - ``mongocxx::v_noabi::options::index::storage_options()``
-   
-   - Declare all exported functions symbols with ``__cdecl`` when compiled with
-     MSVC. This is an ABI breaking change if you use an alternative
-     default calling convention when building projects.
+   {+driver-short+} v3.11 contains breaking changes. For more information, see
+   :ref:`version-3.11-breaking-changes` in the Upgrade Driver Versions guide.
 
 The v3.11 driver release includes the following new features:
 
@@ -90,17 +65,10 @@ on GitHub.
 What's New in 3.10
 ------------------
 
-.. warning:: Build System Breaking Changes
+.. warning:: Breaking Changes
 
-   The v3.10 driver introduces the following breaking changes to the build system:
-   
-   - Drops support for calling ``find_package(libbsoncxx)`` and ``find_package(libmongocxx)``.
-     Use ``find_package(bsoncxx)`` and ``find_package(mongocxx)``
-     instead.
-   - Drops support for the ``LIBBSONCXX_*`` and ``LIBMONGOCXX_*`` CMake variables
-     provided by the legacy CMake package config files. Use the ``mongo::bsoncxx_*`` and
-     ``mongo::mongocxx_*`` CMake targets instead.
-   - Removes the ``BSONCXX_POLY_USE_STD_EXPERIMENTAL`` CMake option and drops support for selecting the experimental C++ standard library as a polyfill option.
+   {+driver-short+} v3.10 contains breaking changes. For more information, see
+   :ref:`version-3.10-breaking-changes` in the Upgrade Driver Versions guide.
 
 The v3.10.0 driver release includes the following new features:
 
@@ -149,14 +117,10 @@ on GitHub.
 What's New in 3.9
 -----------------
 
-.. warning:: Build System Breaking Changes
+.. warning:: Breaking Changes
 
-   The v3.9 driver introduces the following breaking changes:
-
-   - Removes support for exported targets from the CMake project build tree
-   - Drops support for macOS 10.14, macOS 10.15, and Ubuntu 14.04
-   - Requires MongoDB C Driver v1.25.0 or later
-   - Requires CMake v3.15 or later to support the ``FetchContent`` module
+   {+driver-short+} v3.9 contains breaking changes. For more information, see
+   :ref:`version-3.9-breaking-changes` in the Upgrade Driver Versions guide.
 
 The v3.9 driver release includes the following new features:
 
