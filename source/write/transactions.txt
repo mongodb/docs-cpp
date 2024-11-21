@@ -97,8 +97,8 @@ When run, the code performs the following actions:
 Core API 
 ~~~~~~~~
 
-Use the core API for more manual control of the transaction lifecycle. The core API doesn't incorporate error handling logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult``,
-and instead provides the flexibility to incorporate custom error handling for these errors. To learn more about how to handle ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors, 
+Use the core API for more manual control of the transaction lifecycle. The core API doesn't incorporate error handling logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors,
+and instead provides the flexibility to incorporate custom error handling. To learn more about these errors, 
 see the :manual:`Transaction Error Handling </core/transactions-in-applications/#transaction-error-handling/>` section in the {+mdb-server+} manual.
 
 The core API requires explicit calls to start, commit, and abort the transaction using methods provided by the ``mongocxx::client_session`` interface.
@@ -189,11 +189,11 @@ To learn more about any of the types or methods discussed in this
 guide, see the following API Documentation:
 
 - `mongocxx::client <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__
-- `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html>`__
+- `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1transaction.html>`__
 - `mongocxx::options::transaction <{+api+}/classmongocxx_1_1options_1_1transaction.html>`__
 - `start_session() <{+api+}/classmongocxx_1_1v__noabi_1_1client.html#a03535128dbe5be973a08764b7741f24e>`__
 - `with_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a3dcdf91bf72e69bf7e63a7c8ad859b93>`__
-- `start_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a84ea5613813e6efbe065e3f39e1f972b>`__
+- `start_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#a9cc1c32d80a6cb1b0b21001d7990111b>`__
 - `commit_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#ad2d1a8f7c77542db6ec7629d162761ff>`__
 - `abort_transaction() <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html#aabb8247a655741af6fe0f78bef8116e1>`__
 - `insert_one() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a839bedb5505e5ce75cbf384e2e2457bd>`__
