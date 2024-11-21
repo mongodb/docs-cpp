@@ -50,6 +50,8 @@ instantiating a new client each time.
    Each ``mongoxcc::client`` instance and all of its child instances, including ``mongocxx::client_session``, should be used by a single thread at a time. 
    To learn more, see the :ref:`Thread and Fork Safety <cpp-thread-safety>` page. 
 
+.. _cpp-transaction-apis: 
+
 Transaction APIs
 ----------------
 
@@ -154,6 +156,8 @@ When run, the code performs the following actions:
    :dedent:
    :start-after: start-core-api
    :end-before: end-core-api
+
+.. _cpp-transactions-addtl-info:
 
 Additional Information
 ----------------------
