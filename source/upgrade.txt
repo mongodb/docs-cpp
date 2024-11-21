@@ -81,6 +81,17 @@ This driver version introduces the following breaking changes:
   - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
   - ``BSONCXX_POLY_USE_BOOST``.
 
+- Removes the following ``utf8`` types that have ``string`` equivalents:
+
+  - ``k_utf8`` from the ``bsoncxx::v_noabi::type`` class. Instead, use ``k_string``.
+  - ``b_utf8`` from the ``bsoncxx::v_noabi::types`` class. Instead, use ``b_string``.
+  - ``get_utf8`` from the ``bsoncxx::v_noabi::document::element``, ``bsoncxx::v_noabi::array::element``,
+    and ``bsoncxx::v_noabi::types::bson_value::view`` classes. Instead, use ``get_string``.
+  - ``k_cannot_append_utf8`` from the ``bsoncxx::v_noabi::exception::error_code`` class.
+    Instead, use ``k_cannot_append_string``.
+  - ``k_need_element_type_k_utf8`` from the ``bsoncxx::v_noabi::exception::error_code`` class.
+    Instead, use ``k_need_element_type_k_string``.
+
 .. _version-3.11-breaking-changes:
 
 Version 3.11 Breaking Changes
