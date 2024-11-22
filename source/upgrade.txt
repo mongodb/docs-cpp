@@ -175,12 +175,6 @@ The v4.0 driver introduces the following breaking changes to the ABI:
   library equivalents. For context, see the :ref:`Build System Breaking Changes
   <version-4.0-build-system-breaking>` section.
 
-- Removes the ``mongocxx::stdx`` namespace. Replace the following
-  types in your code:
-
-  - ``mongocxx::stdx::optional<T>``. Instead, use ``bsoncxx::stdx::optional<T>``.
-  - ``mongocxx::stdx::string_view``. Instead, use ``bsoncxx::stdx::string_view``.
-
 .. _version-3.11-breaking-changes:
 
 Version 3.11
