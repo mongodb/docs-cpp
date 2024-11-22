@@ -141,6 +141,14 @@ The v4.0 driver introduces the following breaking changes to the build system:
   - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
   - ``BSONCXX_POLY_USE_BOOST``.
 
+- Drops support for the ``MONGOCXX_OVERRIDE_DEFAULT_INSTALL_PREFIX`` configuration
+  option. Default CMake behavior for ``CMAKE_INSTALL_PREFIX`` is now respected.
+
+- Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default. To
+  re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
+  To include test targets in the "all" target, you must also set the
+  ``BUILD_TESTING`` option to ``ON``.
+
 .. _version-4.0-api-breaking:
 
 API Breaking Changes in v4.0
@@ -163,6 +171,21 @@ The v4.0 driver introduces the following breaking changes to the API:
     Instead, use ``k_cannot_append_string``.
   - ``k_need_element_type_k_utf8`` from the ``bsoncxx::v_noabi::exception::error_code`` class.
     Instead, use ``k_need_element_type_k_string``.
+
+- Removes the ``mongocxx::stdx`` namespace. Replace the following
+  types in your code:
+
+  - ``mongocxx::stdx::optional<T>``. Instead, use ``bsoncxx::stdx::optional<T>``.
+  - ``mongocxx::stdx::string_view``. Instead, use ``bsoncxx::stdx::string_view``.
+
+- Removes the following undocumented ``using`` directives and declarations:
+
+  - ``bsoncxx::builder::types`` from the ``<bsoncxx/builder/list.hpp>`` header file.
+    Instead, use ``bsoncxx::types`` from ``<bsoncxx/types.hpp>``.
+  - ``bsoncxx::builder::stream::concatenate`` from the ``<bsoncxx/builder/stream/helpers.hpp>``
+    header file. Instead, use ``bsoncxx::builder::concatenate`` from ``<bsoncxx/builder/concatenate.hpp>``.
+  - ``mongocxx::events::read_preference`` from the ``<mongocxx/events/topology_description.hpp>``
+    header file. Instead, use ``mongocxx::read_preference`` from ``<mongocxx/read_preference.hpp>``.
 
 ABI Breaking Changes in v4.0
 ````````````````````````````
