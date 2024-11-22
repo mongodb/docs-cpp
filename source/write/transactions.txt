@@ -106,8 +106,8 @@ The following table describes these methods:
 
    * - ``start_transaction()``
      - | Starts a new transaction on the current client session. Accepts an optional ``mongocxx::options::transaction`` 
-         instance as an argument to set options. For a full list of options, see the `mongocxx::options::transaction <{+api+}/mongocxx-3.4.1/classmongocxx_1_1options_1_1transaction.html>`__
-         API documentation.
+         instance as an argument to set options. For a full list of options, see `mongocxx::options::transaction <{+api+}/classmongocxx_1_1options_1_1transaction.html>`__
+         in the API documentation.
        |
        | Raises an exception if the options are misconfigured, if there are network or other transient failures, or if there 
          are other errors such as a session with a transaction already in progress. If an error is returned with the ``TransientTransactionError`` label, 
