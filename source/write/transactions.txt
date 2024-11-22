@@ -48,7 +48,7 @@ instantiating a new client each time.
    
    Instances of ``mongocxx::client`` are not thread-safe. 
    Each ``mongoxcc::client`` instance and its child instances, including ``mongocxx::client_session``, should be used by a single thread at a time. 
-   To learn more, see the :ref:`Thread and Fork Safety <cpp-thread-safety>` page. 
+   To learn more, see the :ref:`Thread and Fork Safety <cpp-thread-safety>` guide. 
 
 .. _cpp-transaction-apis: 
 
@@ -73,7 +73,9 @@ Callback API
 
 Use the callback API to allow the {+driver-long+} to manage the life cycle of your transaction. 
 To implement this API, call the ``with_transaction()`` method on your ``mongocxx::client_session`` and pass in a 
-callback function specifying the sequence of operations you want to run. The ``with_transaction()`` method starts a transaction, executes the callback function, and
+callback function specifying the sequence of operations you want to run. 
+
+The ``with_transaction()`` method starts a transaction, executes the callback function, and
 either commits your transaction or ends it and incorporates error handling logic. 
 If an error has the label ``TransientTransactionError`` and ``UnknownTransactionCommitResult``, the ``with_transaction()`` method automatically incorporates retry logic. 
 

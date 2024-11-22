@@ -28,7 +28,8 @@ int main() {
         mongocxx::client_session::with_transaction_cb callback = [&](mongocxx::client_session* session) {
             // Important::  You must pass the session to the operations.
             movies_collection.insert_one(*session, make_document(kvp("title", "Parasite")));
-            comments_collection.insert_one(*session, make_document(kvp("name", "Anjali Pateln"), kvp("text", "This is my new favorite movie.")));
+            comments_collection.insert_one(*session, make_document(kvp("name", "Anjali Patel"), 
+                                                                   kvp("text", "This is my new favorite movie!")));
         };
 
         // Define an options instance to explicitly set the write concern for the transaction operations  
@@ -123,7 +124,8 @@ int main() {
             // Attempt to insert documents into database collections
             try {
                 movies_collection.insert_one(session, make_document(kvp("title", "Parasite")));
-                comments_collection.insert_one(session, make_document(kvp("name", "Anjali Patel"), kvp("text", "This is my new favorite movie.")));
+                comments_collection.insert_one(session, make_document(kvp("name", "Anjali Patel"), 
+                                                                      kvp("text", "This is my new favorite movie!")));
             } catch (const mongocxx::operation_exception& oe) {
                 std::cout << "Caught exception during transaction, aborting." 
                           << std::endl;
