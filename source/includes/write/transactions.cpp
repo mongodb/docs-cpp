@@ -28,10 +28,10 @@ int main() {
         mongocxx::client_session::with_transaction_cb callback = [&](mongocxx::client_session* session) {
             // Important::  You must pass the session to the operations.
             movies_collection.insert_one(*session, make_document(kvp("title", "Parasite")));
-            comments_collection.insert_one(*session, make_document(kvp("name", "Rhaenyra Targaryen"), kvp("text", "Dracarys.")));
+            comments_collection.insert_one(*session, make_document(kvp("name", "Anjali Pateln"), kvp("text", "This is my new favorite movie.")));
         };
 
-        // Define an options instance to set the majority write concern for the transaction operations explicitly 
+        // Define an options instance to explicitly set the write concern for the transaction operations  
         mongocxx::options::transaction opts;
         mongocxx::write_concern wc;
         wc.acknowledge_level(mongocxx::write_concern::level::k_majority);
@@ -57,18 +57,21 @@ int main() {
         mongocxx::instance instance{};
         mongocxx::client client(mongocxx::uri{"<connectionString>"});
 
-        // Incorporate TransientTransactionError retry logic
+        // Runs the txn_func and retries if TransientTransactionError occurs
         using transaction_func = std::function<void(mongocxx::client_session& session)>;
-        auto run_with_retry = [](transaction_func txn_func, mongocxx::client_session& session) {
+        auto run_with_retry = [](transaction_func txn_func, 
+                                 mongocxx::client_session& session) {
             while (true) {
                 try {
                     txn_func(session);  // performs transaction.
                     break;
                 } catch (const mongocxx::operation_exception& oe) {
-                    std::cout << "Transaction aborted. Caught exception during transaction." << std::endl;
+                    std::cout << "Transaction aborted. Caught exception during transaction." 
+                              << std::endl;
                     // If transient error, retry the whole transaction.
                     if (oe.has_error_label("TransientTransactionError")) {
-                        std::cout << "TransientTransactionError, retrying transaction ..." << std::endl;
+                        std::cout << "TransientTransactionError, retrying transaction ..."
+                                  << std::endl;
                         continue;
                     } else {
                         throw oe;
@@ -77,7 +80,7 @@ int main() {
             }
         };
 
-        // Incorporate UnknownTransactionCommitResult retry logic
+        // Commits the active transaction and retries commit if UnknownTransactionCommitResult occurs
         auto commit_with_retry = [](mongocxx::client_session& session) {
             while (true) {
                 try {
@@ -87,7 +90,8 @@ int main() {
                 } catch (const mongocxx::operation_exception& oe) {
                     // Can retry commit
                     if (oe.has_error_label("UnknownTransactionCommitResult")) {
-                        std::cout << "UnknownTransactionCommitResult, retrying commit operation ..." << std::endl;
+                        std::cout << "UnknownTransactionCommitResult, retrying commit ..."
+                                  << std::endl;
                         continue;
                     } else {
                         std::cout << "Error during commit ..." << std::endl;
@@ -97,7 +101,7 @@ int main() {
             }
         };
 
-        auto run_transaction = [&](mongocxx::client_session& session) {
+        auto txn_func = [&](mongocxx::client_session& session) {
             auto& client = session.client(); 
 
             // Define database and collection variables
@@ -105,7 +109,7 @@ int main() {
             auto movies_collection = db["movies"];
             auto comments_collection = db["comments"];
 
-            // Define an options instance to set the majority write concern for the transaction operations explicitly 
+            // Define an options instance to explicitly set the write concern for the transaction operations  
             mongocxx::options::transaction opts;
             mongocxx::write_concern wc;
             wc.acknowledge_level(mongocxx::write_concern::level::k_majority);
@@ -116,7 +120,7 @@ int main() {
             // Attempt to insert documents into database collections
             try {
                 movies_collection.insert_one(session, make_document(kvp("title", "Parasite")));
-                comments_collection.insert_one(session, make_document(kvp("name", "Rhaenyra Targaryen"), kvp("text", "Dracarys")));
+                comments_collection.insert_one(session, make_document(kvp("name", "Anjali Patel"), kvp("text", "This is my new favorite movie.")));
             } catch (const mongocxx::operation_exception& oe) {
                 std::cout << "Caught exception during transaction, aborting." << std::endl;
                 session.abort_transaction();
@@ -130,7 +134,7 @@ int main() {
         auto session = client.start_session();
         
         try {
-            run_transaction_with_retry(run_transaction, session);
+            run_with_retry(txn_func, session);
         } catch (const mongocxx::operation_exception& oe) {
             // Do something with error 
             throw oe;

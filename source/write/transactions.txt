@@ -47,7 +47,7 @@ instantiating a new client each time.
 .. important::
    
    Instances of ``mongocxx::client`` are not thread-safe. 
-   Each ``mongoxcc::client`` instance and all of its child instances, including ``mongocxx::client_session``, should be used by a single thread at a time. 
+   Each ``mongoxcc::client`` instance and its child instances, including ``mongocxx::client_session``, should be used by a single thread at a time. 
    To learn more, see the :ref:`Thread and Fork Safety <cpp-thread-safety>` page. 
 
 .. _cpp-transaction-apis: 
@@ -59,25 +59,33 @@ The {+driver-long+} provides a callback API and a core API to manage the transac
 Before you begin a transaction, you must call the ``start_session()`` method to instantiate a ``mongocxx::client_session``. 
 Then, you can use either of the following APIs to perform a transaction:
 
-- :ref:`Callback API <cpp-callback-api>`
-- :ref:`Core API <cpp-core-api>`
+- :ref:`Callback API <cpp-callback-api>`: High-level API that manages the life cycle of the transaction and automatically incorporates error handling logic.
+- :ref:`Core API <cpp-core-api>`: Low-level API that allows you to manually manage the life cycle of the transaction and implement custom error handling logic. 
+
+.. tip:: 
+
+   To learn more about error handling, see the :manual:`Transaction Error Handling </core/transactions-in-applications/#transaction-error-handling>` section in the {+mdb-server+} manual.
 
 .. _cpp-callback-api: 
 
 Callback API 
 ~~~~~~~~~~~~
 
-Use the callback API to start, execute, and commit a transaction with incorporated retry logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors. 
+Use the callback API to allow the {+driver-long+} to manage the life cycle of your transaction. 
 To implement this API, call the ``with_transaction()`` method on your ``mongocxx::client_session`` and pass in a 
-callback specifying the sequence of operations you want to run in your transaction. 
+callback function specifying the sequence of operations you want to run in your transaction. The ``with_transaction()`` method starts a transaction, executes the callback function, and
+either commits your transaction or ends it if it encounters an error.
+If an error has the label ``TransientTransactionError`` and ``UnknownTransactionCommitResult``, the ``with_transaction()`` method automatically incorporates retry logic. 
 
-The following code shows how to use the callback API to perform a transaction that inserts documents into collections in the ``sample_mflix`` database. 
-When run, the code performs the following actions: 
+The following code shows how to use the callback API to perform a transaction that inserts documents into the ``movies`` and ``comments`` collections in the ``sample_mflix`` database. 
+This code performs the following actions: 
 
-1. Starts a session from the client using the ``start_session()`` method
-#. Defines a callback function that specifies the operations to perform during the transaction
-#. Creates an option object to set the write preference for the transaction operations
-#. Calls the ``with_transactions()`` method to manage the transaction, passing the callback and option object as arguments
+1. Starts a session from the client using the ``start_session()`` method.
+#. Defines a callback function that specifies the operations to perform during the transaction.
+#. Creates an option object to set the write concern for the transaction operations.
+   To learn more about read and write semantics, see the :manual:`Read Concern/Write Concern/Read Preference </core/transactions/#read-concern-write-concern-read-preference>`
+   section in the {+mdb-server+} manual. 
+#. Calls the ``with_transaction()`` method to manage the transaction, passing the callback function and option object as arguments.
 
 .. literalinclude:: /includes/write/transactions.cpp
    :language: cpp
@@ -90,9 +98,8 @@ When run, the code performs the following actions:
 Core API 
 ~~~~~~~~
 
-Use the core API for more manual control of the transaction lifecycle. The core API doesn't incorporate error handling logic for ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors,
-and instead provides the flexibility to incorporate custom error handling. To learn more about these errors, 
-see the :manual:`Transaction Error Handling </core/transactions-in-applications/#transaction-error-handling/>` section in the {+mdb-server+} manual.
+Use the core API to manually manage the life cycle of your transaction. The core API doesn't incorporate error handling logic 
+for ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors, and instead provides the flexibility to implement custom error handling logic.
 
 The core API requires explicit calls to start, commit, and abort the transaction using methods provided by the ``mongocxx::client_session`` interface.
 The following table describes these methods:  
@@ -126,7 +133,7 @@ The following table describes these methods:
        | To learn more about this method, see the :manual:`commitTransaction()
          </reference/method/Session.commitTransaction/>` guide in the {+mdb-server+} manual. 
 
-   * - ``abort_transcaction()``
+   * - ``abort_transaction()``
      - | Ends the active transaction on the current client session. 
        |
        | Raises an exception if the options are misconfigured or if there are other errors such as 
@@ -140,11 +147,13 @@ The following table describes these methods:
    The ``mongocxx::client_session`` class also provides methods to retrieve and modify session properties.
    To learn more, see `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ in the API documentation. 
 
-The following code shows how to use the core API to perform a transaction that inserts documents into collections in the ``sample_mflix`` database. 
-When run, the code performs the following actions: 
+The following code shows how to use the core API to perform a transaction that inserts documents into the ``movies`` and ``comments`` collections in the ``sample_mflix`` database. 
+This code performs the following actions: 
 
 1. Starts a session from the client using the ``start_session()`` method.
-#. Creates an option object to set the write preference for the transaction operations. 
+#. Creates an option object to set the write concern for the transaction operations.
+   To learn more about read and write semantics, see the :manual:`Read Concern/Write Concern/Read Preference </core/transactions/#read-concern-write-concern-read-preference>`
+   section in the {+mdb-server+} manual. 
 #. Calls the ``start_transaction()`` method to start a transaction, passing in the option object as an argument.
 #. Attempts operations to insert documents into collections in the ``sample_mflix`` database. 
    If an operation encounters an error, the transaction is aborted and
