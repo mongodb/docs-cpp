@@ -73,8 +73,8 @@ Callback API
 
 Use the callback API to allow the {+driver-long+} to manage the life cycle of your transaction. 
 To implement this API, call the ``with_transaction()`` method on your ``mongocxx::client_session`` and pass in a 
-callback function specifying the sequence of operations you want to run in your transaction. The ``with_transaction()`` method starts a transaction, executes the callback function, and
-either commits your transaction or ends it if it encounters an error.
+callback function specifying the sequence of operations you want to run. The ``with_transaction()`` method starts a transaction, executes the callback function, and
+either commits your transaction or ends it and incorporates error handling logic. 
 If an error has the label ``TransientTransactionError`` and ``UnknownTransactionCommitResult``, the ``with_transaction()`` method automatically incorporates retry logic. 
 
 The following code shows how to use the callback API to perform a transaction that inserts documents into the ``movies`` and ``comments`` collections in the ``sample_mflix`` database. 
@@ -113,7 +113,7 @@ The following table describes these methods:
 
    * - ``start_transaction()``
      - | Starts a new transaction on the current client session. Accepts an optional ``mongocxx::options::transaction`` 
-         instance as an argument to set options. For a full list of options, see `mongocxx::options::transaction <{+api+}/classmongocxx_1_1options_1_1transaction.html>`__
+         instance as an argument to set options. For a full list of options, see `mongocxx::options::transaction <{+api+}/classmongocxx_1_1v__noabi_1_1options_1_1transaction.html>`__
          in the API documentation.
        |
        | Raises an exception if the options are misconfigured, if there are network or other transient failures, or if there 
@@ -145,7 +145,7 @@ The following table describes these methods:
 .. tip:: 
    
    The ``mongocxx::client_session`` class also provides methods to retrieve and modify session properties.
-   To learn more, see `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client.html>`__ in the API documentation. 
+   To learn more, see `mongocxx::client_session <{+api+}/classmongocxx_1_1v__noabi_1_1client__session.html>`__ in the API documentation. 
 
 The following code shows how to use the core API to perform a transaction that inserts documents into the ``movies`` and ``comments`` collections in the ``sample_mflix`` database. 
 This code performs the following actions: 

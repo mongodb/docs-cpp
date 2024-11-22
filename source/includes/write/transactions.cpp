@@ -70,7 +70,7 @@ int main() {
                               << std::endl;
                     // If transient error, retry the whole transaction.
                     if (oe.has_error_label("TransientTransactionError")) {
-                        std::cout << "TransientTransactionError, retrying transaction ..."
+                        std::cout << "TransientTransactionError, retrying transaction..."
                                   << std::endl;
                         continue;
                     } else {
@@ -85,20 +85,23 @@ int main() {
             while (true) {
                 try {
                     session.commit_transaction();  // Uses write concern set at transaction start.
-                    std::cout << "Transaction committed." << std::endl;
+                    std::cout << "Transaction committed." 
+                              << std::endl;
                     break;
                 } catch (const mongocxx::operation_exception& oe) {
                     // Can retry commit
                     if (oe.has_error_label("UnknownTransactionCommitResult")) {
-                        std::cout << "UnknownTransactionCommitResult, retrying commit ..."
+                        std::cout << "UnknownTransactionCommitResult, retrying commit..."
                                   << std::endl;
                         continue;
                     } else {
-                        std::cout << "Error during commit ..." << std::endl;
+                        std::cout << "Error during commit..." 
+                                  << std::endl;
                         throw oe;
                     }
                 }
             }
+            
         };
 
         auto txn_func = [&](mongocxx::client_session& session) {
@@ -122,7 +125,8 @@ int main() {
                 movies_collection.insert_one(session, make_document(kvp("title", "Parasite")));
                 comments_collection.insert_one(session, make_document(kvp("name", "Anjali Patel"), kvp("text", "This is my new favorite movie.")));
             } catch (const mongocxx::operation_exception& oe) {
-                std::cout << "Caught exception during transaction, aborting." << std::endl;
+                std::cout << "Caught exception during transaction, aborting." 
+                          << std::endl;
                 session.abort_transaction();
                 throw oe;
             }
