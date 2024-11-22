@@ -165,6 +165,15 @@ The v4.0 driver introduces the following breaking changes to the API:
   - ``mongocxx::stdx::optional<T>``. Instead, use ``bsoncxx::stdx::optional<T>``.
   - ``mongocxx::stdx::string_view``. Instead, use ``bsoncxx::stdx::string_view``.
 
+- Removes the following undocumented ``using`` directives and declarations:
+
+  - ``bsoncxx::builder::types`` from the ``<bsoncxx/builder/list.hpp>`` header file.
+    Instead, use ``bsoncxx::types`` from ``<bsoncxx/types.hpp>``.
+  - ``bsoncxx::builder::stream::concatenate`` from the ``<bsoncxx/builder/stream/helpers.hpp>``
+    header file. Instead, use ``bsoncxx::builder::concatenate`` from ``<bsoncxx/builder/concatenate.hpp>``.
+  - ``mongocxx::events::read_preference`` from the ``<mongocxx/events/topology_description.hpp>``
+    header file. Instead, use ``mongocxx::read_preference`` from ``<mongocxx/read_preference.hpp>``.
+
 ABI Breaking Changes in v4.0
 ````````````````````````````
 
