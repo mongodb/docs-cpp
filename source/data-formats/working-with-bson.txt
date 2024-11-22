@@ -17,8 +17,7 @@ Working with BSON
 Overview
 --------
 
-In this guide, you can learn how to use the {+driver-short+} to store
-and interact with **BSON data**. 
+In this guide, you can learn how to use the {+driver-short+} to store and interact with **BSON data**. 
 
 
 BSON Data Format 
@@ -50,12 +49,60 @@ convert BSON documents into JSON documents.
 Create a BSON Document 
 ----------------------
 
-To create a BSON document, you can use one of the following methods: 
+The ``bsoncxx`` library offers four interfaces for building BSON.
+The following sections describe these interfaces: 
 
-- List Builder
-- One-off Builder Function 
-- Basic Builder
-- Stream Builder
+- :ref:`List Builder <cpp-list-builder>`
+- :ref:`One-off Builder Function <cpp-one-off-builder>`
+- :ref:`Basic Builder <cpp-basic-builder>`
+- :ref:`Stream Builder <cpp-stream-builder>`
+
+.. _cpp-list-builder:
+
+The list builder is o JSON-like builder for creating documents and arrays. To create BSON document using the list builder, 
+initialize a ``bsoncxx::builder::list`` object and set its value to an initializer list of key-value pairs inside curly braces ( {} ). 
+Each document key must be a ``string`` type, and each document value must be a ``bson_value::value`` type or implicitly convertible to one. 
+
+.. io-code-block:: cpp
+   :copyable: true 
+
+   .. input:: 
+
+     bsoncxx::builder::list list_builder = { "address", {  "street", "Pizza St",
+                                                           "zipcode", "10003"
+                                                        },
+                                             "coord",   { -73.982419, 41.579505 }, 
+                                             "cuisine", "Pizza",
+                                             "name", "Mongo's Pizza" 
+                                           }; 
+
+      bsoncxx::document::view document = list_builder.view().get_document();  
+      
+      // Print the resulting document in JSON 
+      std::cout << bsoncxx::to_json(document) << std::endl;
+
+   .. output:: 
+
+      { "address" : { "street" : "Pizza St", "zipcode" : "10003" }, "coord" : [ -73.982418999999993048, 41.579504999999997494 ], "cuisine" : "Pizza", "name" : "Mongo's Pizza" }
+
+.. .. code-block:: cpp
+
+..    // { "address" : { "street" : "Pizza St", "zipcode" : "10003" }, "coord" : [ -73.982418999999993048, 41.579504999999997494 ], "cuisine" : "Pizza", "name" : "Mongo's Pizza" }
+..    bsoncxx::builder::list list_builder = { "address", {  "street", "Pizza St",
+..                                                          "zipcode", "10003"
+..                                                       },
+..                                            "coord",   { -73.982419, 41.579505 }, 
+..                                            "cuisine", "Pizza",
+..                                            "name", "Mongo's Pizza" 
+..                                          }; 
+..     bsoncxx::document::view document = list_builder.view().get_document();
+
+.. _cpp-one-off-builder:
+
+.. _cpp-basic-builder:
+
+.. _cpp-stream-builder: 
+
 
 
 This article will
@@ -459,8 +506,7 @@ guide.
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-To learn more about the methods mentioned in this guide, see the following
-API documentation:
+To learn more about the methods mentioned in this guide, see the following API documentation:
 
 - `create_collection() <{+api+}/classmongocxx_1_1v__noabi_1_1database.html#a8989a894e021e87d704288a8d2522069>`__
 - `list_collections() <{+api+}/classmongocxx_1_1v__noabi_1_1database.html#aacef87f0bc585c536ce0dfae67cfefe8>`__
