@@ -141,6 +141,8 @@ The v4.0 driver introduces the following breaking changes to the build system:
   - ``BSONCXX_POLY_USE_SYSTEM_MNMLSTC``.
   - ``BSONCXX_POLY_USE_BOOST``.
 
+.. _version-4.0-api-breaking:
+
 API Breaking Changes in v4.0
 ````````````````````````````
 
@@ -151,7 +153,7 @@ The v4.0 driver introduces the following breaking changes to the API:
   library equivalents. For context, see the :ref:`Build System Breaking Changes
   <version-4.0-build-system-breaking>` section.
 
-- Removes the following deprecated ``utf8`` types and methods that have ``string`` equivalents:
+- Removes the following deprecated ``utf8`` types and functions that have ``string`` equivalents:
 
   - ``k_utf8`` from the ``bsoncxx::v_noabi::type`` class. Instead, use ``k_string``.
   - ``b_utf8`` from the ``bsoncxx::v_noabi::types`` class. Instead, use ``b_string``.
@@ -171,6 +173,10 @@ The v4.0 driver introduces the following breaking changes to the ABI:
   ``bsoncxx::stdx::optional<T>`` as aliases for Boost or MNMLSTC/core
   library equivalents. For context, see the :ref:`Build System Breaking Changes
   <version-4.0-build-system-breaking>` section.
+
+- Removes deprecated ``utf8`` types and functions that have ``string`` equivalents.
+  For a full list of these changes, see the :ref:`API Breaking Changes <version-4.0-api-breaking>`
+  section.
 
 .. _version-3.11-breaking-changes:
 
