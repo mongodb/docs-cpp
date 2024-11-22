@@ -46,8 +46,7 @@ The first column lists the driver version.
 libmongoc Compatibility
 -----------------------
 
-The following compatibility table specifies the recommended version of the
-{+driver-long+} for use with a specific version of libmongoc.
+The following compatibility table specifies the required version of libmongoc.
 
 The first column lists the driver version.
 
