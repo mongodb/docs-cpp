@@ -19,6 +19,9 @@ Overview
 
 In this guide, you can learn how to use the {+driver-short+} to store and interact with **BSON data**. 
 
+The {+driver-short+} ships with the ``bsoncxx`` library. 
+The following sections show how you can use classes and methods from the ``bsoncxx`` library to create BSON documents, read BSON from a file, write BSON to a file, and 
+convert BSON documents into JSON documents. 
 
 BSON Data Format 
 ----------------
@@ -28,7 +31,7 @@ BSON Data Format
  integers, ObjectIds, and binary data. For a complete list of supported types, see the :manual:`BSON Types </reference/bson-types/>` page 
  in the {+mdb-server+} manual. 
 
- The code samples in this guide use the following BSON document as an example: 
+ The code examples in this guide create, update, and store the following sample BSON document: 
 
  .. code-block:: josn 
 
@@ -42,9 +45,6 @@ BSON Data Format
       "name" : "Mongo's Pizza"
     }
 
-The {+driver-long+} ships with the ``bsoncxx`` library. 
-The following sections show how you can use classes and methods from the ``bsoncxx`` library to create BSON documents, read BSON from a file, write BSON to a file, and 
-convert BSON documents into JSON documents. 
 
 Create a BSON Document 
 ----------------------
@@ -52,53 +52,48 @@ Create a BSON Document
 The ``bsoncxx`` library offers four interfaces for building BSON.
 The following sections describe these interfaces: 
 
-- :ref:`List Builder <cpp-list-builder>`
-- :ref:`One-off Builder Function <cpp-one-off-builder>`
-- :ref:`Basic Builder <cpp-basic-builder>`
-- :ref:`Stream Builder <cpp-stream-builder>`
+- :ref:`List Builder <cpp-bson-list>`
+- :ref:`One-off Builder Function <cpp-bson-one-off>`
+- :ref:`Basic Builder <cpp-bson-basic>`
+- :ref:`Stream Builder <cpp-bson-stream>`
 
-.. _cpp-list-builder:
+.. _cpp-bson-list:
 
-The list builder is o JSON-like builder for creating documents and arrays. To create BSON document using the list builder, 
-initialize a ``bsoncxx::builder::list`` object and set its value to an initializer list of key-value pairs inside curly braces ( {} ). 
+List Builder
+~~~~~~~~~~~~
+
+The list builder is o JSON-like builder for creating documents and arrays. To create a BSON document using the list builder, 
+initialize a ``bsoncxx::builder::list`` object to an initializer list of key-value pairs inside curly braces ({}). 
 Each document key must be a ``string`` type, and each document value must be a ``bson_value::value`` type or implicitly convertible to one. 
-
-.. io-code-block:: cpp
-   :copyable: true 
-
-   .. input:: 
-
-     bsoncxx::builder::list list_builder = { "address", {  "street", "Pizza St",
-                                                           "zipcode", "10003"
-                                                        },
-                                             "coord",   { -73.982419, 41.579505 }, 
-                                             "cuisine", "Pizza",
-                                             "name", "Mongo's Pizza" 
-                                           }; 
-
-      bsoncxx::document::view document = list_builder.view().get_document();  
       
-      // Print the resulting document in JSON 
-      std::cout << bsoncxx::to_json(document) << std::endl;
+.. code-block:: cpp
 
-   .. output:: 
+   bsoncxx::builder::list list_builder = { "address", {  "street", "Pizza St",
+                                                         "zipcode", "10003"
+                                                      },
+                                           "coord",   { -73.982419, 41.579505 }, 
+                                           "cuisine", "Pizza",
+                                           "name", "Mongo's Pizza" 
+                                         }; 
 
-      { "address" : { "street" : "Pizza St", "zipcode" : "10003" }, "coord" : [ -73.982418999999993048, 41.579504999999997494 ], "cuisine" : "Pizza", "name" : "Mongo's Pizza" }
+    bsoncxx::document::view document = list_builder.view().get_document();  
 
-.. .. code-block:: cpp
+.. _cpp-bson-one-off:
 
-..    // { "address" : { "street" : "Pizza St", "zipcode" : "10003" }, "coord" : [ -73.982418999999993048, 41.579504999999997494 ], "cuisine" : "Pizza", "name" : "Mongo's Pizza" }
-..    bsoncxx::builder::list list_builder = { "address", {  "street", "Pizza St",
-..                                                          "zipcode", "10003"
-..                                                       },
-..                                            "coord",   { -73.982419, 41.579505 }, 
-..                                            "cuisine", "Pizza",
-..                                            "name", "Mongo's Pizza" 
-..                                          }; 
-..     bsoncxx::document::view document = list_builder.view().get_document();
+"One-off" Builder Functions
+---------------------------
 
-.. _cpp-one-off-builder:
+The "One-off" builder creates documents and arrays in a single call.
+You can use the "One-off" builder to create a BSON document that does not require
+any additional logic, such as conditionals or loops, to be created.
 
+.. code-block:: cpp
+
+   using bsoncxx::builder::basic::kvp;
+
+   // { "hello": "world" }
+   bsoncxx::document::value document = bsoncxx::builder::basic::make_document(kvp("hello", "world"));
+   
 .. _cpp-basic-builder:
 
 .. _cpp-stream-builder: 
@@ -151,21 +146,7 @@ list builder:
 More advanced uses of the list builder are shown in `this
 example <https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/builder_list.cpp>`__.
 
-.. _cpp-bson-one-off:
 
-"One-off" Builder Functions
----------------------------
-
-The "One-off" builder creates documents and arrays in a single call.
-These can be used when no additional logic (such as conditionals or loops)
-needs to be used to create the object:
-
-.. code-block:: cpp
-
-   using bsoncxx::builder::basic::kvp;
-
-   // { "hello": "world" }
-   bsoncxx::document::value document = bsoncxx::builder::basic::make_document(kvp("hello", "world"));
 
 Basic Builder
 -------------
