@@ -60,7 +60,7 @@ Before you begin a transaction, you must call the ``start_session()`` method to 
 Then, you can use either of the following APIs to perform a transaction:
 
 - :ref:`Callback API <cpp-callback-api>`: High-level API that manages the life cycle of the transaction and automatically incorporates error handling logic.
-- :ref:`Core API <cpp-core-api>`: Low-level API that allows you to manually manage the life cycle of the transaction and implement custom error handling logic. 
+- :ref:`Core API <cpp-core-api>`: Low-level API that allows you to manage the life cycle of the transaction and implement custom error handling logic. 
 
 .. tip:: 
 
@@ -100,11 +100,12 @@ This code performs the following actions:
 Core API 
 ~~~~~~~~
 
-Use the core API to manually manage the life cycle of your transaction. The core API doesn't incorporate error handling logic 
+Use the core API to manage the life cycle of your transaction. 
+
+The core API requires explicit calls to start, commit, and abort the transaction using methods provided by the ``mongocxx::client_session`` interface. The core API doesn't incorporate error handling logic 
 for ``TransientTransactionError`` and ``UnknownTransactionCommitResult`` errors, and instead provides the flexibility to implement custom error handling logic.
 
-The core API requires explicit calls to start, commit, and abort the transaction using methods provided by the ``mongocxx::client_session`` interface.
-The following table describes these methods:  
+The following table describes the core API methods provided by the ``mongocxx::client_session`` interface:  
 
 .. list-table::
    :widths: 25 75
