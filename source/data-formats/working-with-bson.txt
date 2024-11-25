@@ -16,6 +16,7 @@ Working with BSON
 
 Overview
 --------
+`examples <https://github.com/mongodb/mongo-cxx-driver/tree/master/examples/bsoncxx>`__.
 
 In this guide, you can learn how to use the {+driver-short+} to store and interact with **BSON data**. 
 
@@ -45,6 +46,7 @@ BSON Data Format
       "name" : "Mongo's Pizza"
     }
 
+.. _cpp-bson-builders: 
 
 Create a BSON Document 
 ----------------------
@@ -53,7 +55,7 @@ The ``bsoncxx`` library offers four interfaces for building BSON.
 The following sections describe these interfaces: 
 
 - :ref:`List Builder <cpp-bson-list>`
-- :ref:`One-off Builder Function <cpp-bson-one-off>`
+- :ref:`One-off Builder Functions <cpp-bson-one-off>`
 - :ref:`Basic Builder <cpp-bson-basic>`
 - :ref:`Stream Builder <cpp-bson-stream>`
 
@@ -81,9 +83,10 @@ Each document key must be a ``string`` type, and each document value must be a `
 .. _cpp-bson-one-off:
 
 "One-off" Builder Functions
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The "One-off" builder creates documents and arrays in a single call.
+The "One-off" builder utilizes the ``builder::basic::make_document()`` and ``builder::basic::kvp()`` functions 
+to create documents and arrays in a single call.
 You can use the "One-off" builder to create a BSON document that does not require
 any additional logic, such as conditionals or loops, to be created.
 
@@ -94,62 +97,10 @@ any additional logic, such as conditionals or loops, to be created.
    // { "hello": "world" }
    bsoncxx::document::value document = bsoncxx::builder::basic::make_document(kvp("hello", "world"));
    
-.. _cpp-basic-builder:
-
-.. _cpp-stream-builder: 
-
-
-
-This article will
-go over some of the different types in this library, and how and when to
-use each.  For more information and example code, see our
-`examples <https://github.com/mongodb/mongo-cxx-driver/tree/master/examples/bsoncxx>`__.
-
-1. :ref:`Document Builders <cpp-bson-builders>`
-#. :ref:`Owning BSON Documents (values) <cpp-bson-value>`
-#. :ref:`Non-owning BSON Documents (views) <cpp-bson-view>`
-#. :ref:`Optionally-owning BSON Documents(view_or_value) <cpp-bson-view_or_value>`
-#. :ref:`BSON Document Lifetime <cpp-bson-lifetime>`
-#. :ref:`Printing BSON Documents <cpp-bson-print>`
-#. :ref:`Getting Fields out of BSON Documents <cpp-bson-fields>`
-#. :ref:`BSON Types <cpp-bson-types>`
-
-.. _cpp-bson-builders:
-
-Document Builders
------------------
-
-The bsoncxx library offers four interfaces for building BSON: one-off
-functions, a basic builder, a list builder and a stream-based builder.
-
-`bsoncxx::builder::basic::document <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/builder/basic/document.hpp>`__
-`bsoncxx::builder::stream::document <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/builder/stream/document.hpp>`__
-
-The various methods of creating BSON documents and arrays are all
-equivalent. All interfaces will provide the same results, the choice of
-which to use is entirely aesthetic.
-
-.. _cpp-bson-list:
-
-List Builder
-------------
-
-The simplest way to create a BSON document or array is to use the JSON-like
-list builder: 
-
-.. code-block:: cpp
-
-   // { "hello": "world" }
-   bsoncxx::builder::list list_builder = {"hello", "world"};
-   bsoncxx::document::view document = list_builder.view().get_document();
-
-More advanced uses of the list builder are shown in `this
-example <https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/builder_list.cpp>`__.
-
-
+.. _cpp-bson-basic:
 
 Basic Builder
--------------
+~~~~~~~~~~~~~
 
 .. code-block:: cpp
 
@@ -162,6 +113,11 @@ Basic Builder
 
 More advanced uses of the basic builder are shown in `this
 example <https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/builder_basic.cpp>`__.
+
+.. _cpp-bson-stream:
+
+Stream Builder
+~~~~~~~~~~~~~~
 
 .. code-block:: cpp
 
