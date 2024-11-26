@@ -27,16 +27,17 @@ convert BSON documents into JSON documents.
 BSON Data Format 
 ----------------
 
- **BSON**, or Binary JSON, is the data format that MongoDB uses to organize and store data. 
- This data format includes all JSON data structure types and adds support for types including dates, different size
- integers, ObjectIds, and binary data. For a complete list of supported types, see the :manual:`BSON Types </reference/bson-types/>` page 
- in the {+mdb-server+} manual. 
+ **BSON**, or Binary JSON, is the data format that MongoDB uses to store documents and make remote procedure calls. 
+This data format includes all JSON data structure types and adds support for types including dates, different size
+integers, ObjectIds, and binary data. For a complete list of supported types, see the :manual:`BSON Types </reference/bson-types/>` page 
+in the {+mdb-server+} manual. 
 
- The code examples in this guide create, update, and store the following sample BSON document: 
+The code examples in this guide create, update, and store BSON documents 
+that contain the following data, represented here in extended JSON format: 
 
- .. code-block:: josn 
+.. code-block:: json 
 
-    {
+   {
       "address" : {
          "street" : "Pizza St",
          "zipcode" : "10003"
@@ -44,7 +45,22 @@ BSON Data Format
       "coord" : [-73.982419, 41.579505],
       "cuisine" : "Pizza",
       "name" : "Mongo's Pizza"
-    }
+   }
+
+ .. tip::
+
+    To preview the contents of your BSON document in a human-readable format, you can
+    convert it to extended JSON format by calling the ``bsoncxx::to_json()`` method. 
+    To learn more, see the :ref:`Convert from BSON to JSON <cpp-convert-bson-to-json>` 
+    section. 
+    and passing in a ``bsoncxx::document::view`` of your BSON document. 
+
+    The ``bsoncxx::to_json()`` method returns an extended JSON ``std::string`` object 
+    that includes string representations for BSON data types. 
+    
+    Conversion from extended JSON format to BSON can lose type information.
+    To learn more, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
+    guide in the {+mdb-server+} manual. 
 
 .. _cpp-bson-builders: 
 
@@ -65,20 +81,16 @@ List Builder
 ~~~~~~~~~~~~
 
 The list builder is o JSON-like builder for creating documents and arrays. To create a BSON document using the list builder, 
-initialize a ``bsoncxx::builder::list`` object to an initializer list of key-value pairs inside curly braces ({}). 
+initialize a ``bsoncxx::builder::list`` object to an initializer list of key-value pairs inside curly braces (``{}``). 
 Each document key must be a ``string`` type, and each document value must be a ``bson_value::value`` type or implicitly convertible to one. 
-      
-.. code-block:: cpp
 
-   bsoncxx::builder::list list_builder = { "address", {  "street", "Pizza St",
-                                                         "zipcode", "10003"
-                                                      },
-                                           "coord",   { -73.982419, 41.579505 }, 
-                                           "cuisine", "Pizza",
-                                           "name", "Mongo's Pizza" 
-                                         }; 
+The following code sample shows how to create a BsonDocument object to represent the example BSON document. Each key-value pair in the BsonDocument object is a BsonElement object.
 
-    bsoncxx::document::view document = list_builder.view().get_document();  
+.. literalinclude:: /includes/data-formats/bson.cpp
+   :start-after: start-bson-list
+   :end-before: end-bson-list
+   :language: cpp
+   :dedent:
 
 .. _cpp-bson-one-off:
 
@@ -423,7 +435,41 @@ to convert to a native decimal128 type.
 
 You can see how to work with ``bsoncxx::decimal128`` in `this example <https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/decimal128.cpp>`__.
 
-.. _cpp-time-series-addtl-info:
+.. _cpp-convert-bson-to-json:
+
+Convert BSON to JSON
+--------------------
+
+BSON is a binary-encoded serialization of JSON documents that is not human-readable.
+To preview the contents of a BSON document in a human-readable format, 
+you can convert your document to extended JSON format using the ``bsoncxx::to_json()`` method. 
+
+
+To preview the contents of your BSON document in a human-readable format, you can
+convert it to extended JSON format by calling the ``bsoncxx::to_json()`` method 
+and passing in a ``bsoncxx::document::view`` of your BSON document. 
+
+The ``bsoncxx::to_json()`` method returns an extended JSON ``std::string`` object 
+that includes string representations for BSON data types. 
+
+The ``bsoncxx::to_json()`` method accepts the following arguments:
+
+- A valid BSON document view of the document you want to convert
+- An optional extended JSON representation mode  
+
+The ``bsoncxx::to_json()`` method also accepts an optional argument of type ``ExtendedJsonMode`` that sets the JSON representation mode of
+of your converted document. You can choose from the following representation modes depending on your 
+preferred level of readability and data preservation: 
+
+- ``k_canonical``: extends the JSON format to ``Canonical`` mode, which emphasizes type information preservation at the expense of readability.
+  Conversion from canonical to BSON will generally preserve type information. 
+- ``k_relaxed``: extends the JSON format to ``Relaxed`` mode, which emphasizes readability at the expense of type information preservation. 
+  Conversion from relaxed format to BSON can lose type information. 
+
+To learn more about type preservation in the extended JSON format, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
+guide in the {+mdb-server+} manual. 
+
+.. _cpp-bson-addtl-info:
 
 Additional Information
 ----------------------
@@ -431,9 +477,8 @@ Additional Information
 To learn more about the concepts mentioned in this guide, see the
 following Server manual entries:
 
-- :manual:`Time Series </core/timeseries-collections/>`
-- :manual:`Create and Query a Time Series Collection </core/timeseries/timeseries-procedures/>`
-- :manual:`Set Granularity for Time Series Data </core/timeseries/timeseries-granularity/>`
+- :manual:`BSON Types </reference/bson-types/>`
+- :manual:`MongoDB Extended JSON (v2) </reference/mongodb-extended-json/>`
 
 To learn more about performing read operations, see :ref:`cpp-read`.
 
@@ -445,6 +490,4 @@ API Documentation
 
 To learn more about the methods mentioned in this guide, see the following API documentation:
 
-- `create_collection() <{+api+}/classmongocxx_1_1v__noabi_1_1database.html#a8989a894e021e87d704288a8d2522069>`__
-- `list_collections() <{+api+}/classmongocxx_1_1v__noabi_1_1database.html#aacef87f0bc585c536ce0dfae67cfefe8>`__
-- `insert_many() <{+api+}/classmongocxx_1_1v__noabi_1_1collection.html#a533e1d929fb71a6e85303769f3175275>`__
+- `bsoncxx::builder::list <{+api+}/classbsoncxx_1_1builder_1_1list.html>`__
