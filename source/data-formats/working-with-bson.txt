@@ -47,31 +47,22 @@ that contain the following data, represented here in extended JSON format:
       "name" : "Mongo's Pizza"
    }
 
- .. tip::
+.. tip::
 
-    To preview the contents of your BSON document in a human-readable format, you can
-    convert it to extended JSON format by calling the ``bsoncxx::to_json()`` method. 
-    To learn more, see the :ref:`Convert from BSON to JSON <cpp-convert-bson-to-json>` 
-    section. 
-    and passing in a ``bsoncxx::document::view`` of your BSON document. 
-
-    The ``bsoncxx::to_json()`` method returns an extended JSON ``std::string`` object 
-    that includes string representations for BSON data types. 
-    
-    Conversion from extended JSON format to BSON can lose type information.
-    To learn more, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
-    guide in the {+mdb-server+} manual. 
+   To preview the contents of your BSON document in a human-readable format, you can
+   convert it to extended JSON format by calling the ``bsoncxx::to_json()`` method. 
+   To learn more, see the :ref:`Convert from BSON to JSON <cpp-convert-bson-to-json>` 
+   section. 
 
 .. _cpp-bson-builders: 
 
 Create a BSON Document 
 ----------------------
 
-The ``bsoncxx`` library offers four interfaces for building BSON.
-The following sections describe these interfaces: 
+The ``bsoncxx`` library offers three interfaces for building BSON.
+The following sections show how to use each interface to create a BSON document:  
 
 - :ref:`List Builder <cpp-bson-list>`
-- :ref:`One-off Builder Functions <cpp-bson-one-off>`
 - :ref:`Basic Builder <cpp-bson-basic>`
 - :ref:`Stream Builder <cpp-bson-stream>`
 
@@ -80,51 +71,81 @@ The following sections describe these interfaces:
 List Builder
 ~~~~~~~~~~~~
 
-The list builder is o JSON-like builder for creating documents and arrays. To create a BSON document using the list builder, 
-initialize a ``bsoncxx::builder::list`` object to an initializer list of key-value pairs inside curly braces (``{}``). 
+The ``builder::list`` interface is o JSON-like builder for creating documents and arrays. To create a BSON document using the list builder, 
+initialize a ``bsoncxx::builder::list`` object to a list of key-value pairs inside curly braces (``{}``). 
 Each document key must be a ``string`` type, and each document value must be a ``bson_value::value`` type or implicitly convertible to one. 
 
-The following code sample shows how to create a BsonDocument object to represent the example BSON document. Each key-value pair in the BsonDocument object is a BsonElement object.
+.. The size of the initializer list must be even to imply a list of key-value pairs or an empty document if the size is zero. 
 
-.. literalinclude:: /includes/data-formats/bson.cpp
-   :start-after: start-bson-list
-   :end-before: end-bson-list
-   :language: cpp
-   :dedent:
+The following code shows how to create a BSON document using the list builder: 
+
+.. io-code-block::
+
+   .. input:: /includes/data-formats/bson.cpp
+      :start-after: start-bson-list
+      :end-before: end-bson-list
+      :language: cpp
+      :dedent:
+   
+   .. output:: 
+
+      { "address" : { "street" : "Pizza St", "zipcode" : "10003" }, "coord" : [ -73.982418999999993048, 41.579504999999997494 ], "cuisine" : "Pizza", "name" : "Mongo's Pizza" }
 
 .. _cpp-bson-one-off:
 
-"One-off" Builder Functions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Basic Builder Interface
+~~~~~~~~~~~~~~~~~~~~~~~
 
-The "One-off" builder utilizes the ``builder::basic::make_document()`` and ``builder::basic::kvp()`` functions 
-to create documents and arrays in a single call.
-You can use the "One-off" builder to create a BSON document that does not require
-any additional logic, such as conditionals or loops, to be created.
+The ``builder::basic`` interface provides data types and methods to construct BSON documents out of key-value pair objects. 
 
-.. code-block:: cpp
+To create a key-value pair object, call the ``builder::basic::kvp()`` method and pass in your 
+key and value as arguments. The key must be a ``string`` type, and the value must be a ``bson_value::value`` type or implicitly convertible to one. 
+The resulting ``kvp`` object can be passed into the following methods from the ``builder::basic`` interface to build a BSON document: 
 
-   using bsoncxx::builder::basic::kvp;
+- ``make_document()``: accepts a list of ``kvp`` objects and returns a ``document::value`` object representing your BSON document
+- ``document.append()``: appends a list of key-value pair objects to an existing ``builder::basic::document`` object representing your BSON document
 
-   // { "hello": "world" }
-   bsoncxx::document::value document = bsoncxx::builder::basic::make_document(kvp("hello", "world"));
+.. One-off Call
+.. ^^^^^^^^^^^^
+
+.. To create a BSON document in a single call, call the ``make_document()`` method and pass in a 
+.. list of key-value pair objects. The ``make_document()`` method returns a ``bsoncxx::document::value`` object
+.. that represents your BSON document. 
+
+The following code calls the ``make_document()`` method and passes in a list of key-value pair objects to build a BSON document: 
+
+.. io-code-block::
+
+   .. input:: /includes/data-formats/bson.cpp
+      :start-after: start-bson-one-off
+      :end-before: end-bson-one-off
+      :language: cpp
+      :dedent:
    
-.. _cpp-bson-basic:
+   .. output:: 
 
-Basic Builder
-~~~~~~~~~~~~~
+      { "hello" : "world" }
 
-.. code-block:: cpp
+.. Construct and Append 
+.. ^^^^^^^^^^^^^^^^^^^^
 
-   using bsoncxx::builder::basic::kvp;
+.. Alternatively, you can build a BSON document by appending key-value pair objects to an empty ``builder::basic::document`` object. 
+.. To initialize your empty BSON document, call the ``builder::basic::document`` constructor with no arguments. 
+.. To fill your document, call the ``append()`` method on your ``builder::basic::document`` object and pass in a list of key-value pairs. 
 
-   // { "hello" : "world" }
-   bsoncxx::builder::basic::document basic_builder{};
-   basic_builder.append(kvp("hello", "world"));
-   bsoncxx::document::value document = basic_builder.extract();
+The following code initializes an empty BSON document and then fills it with key-value pairs using the ``append()`` method: 
 
-More advanced uses of the basic builder are shown in `this
-example <https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/builder_basic.cpp>`__.
+.. io-code-block::
+
+   .. input:: /includes/data-formats/bson.cpp
+      :start-after: start-bson-append
+      :end-before: end-bson-append
+      :language: cpp
+      :dedent:
+   
+   .. output:: 
+
+      { "hello" : "world" }
 
 .. _cpp-bson-stream:
 
@@ -239,8 +260,12 @@ Owning BSON Documents
 
 `bsoncxx::document::value <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/document/value.hpp>`__
 
-This type represents an actual BSON document, one that owns its buffer of
-data.  These documents can be constructed from a builder by calling
+The ``bsoncxx::document::value`` data type represents an actual BSON document that owns its buffer of data. 
+When you pass a document value to a function, the function body creates a copy of the ``bsoncxx::document::value`` 
+object 
+ 
+
+ These documents can be constructed from a builder by calling
 ``extract()``:
 
 .. code-block:: cpp
@@ -267,7 +292,13 @@ Non-owning BSON Documents (views)
 
 `bsoncxx::document::view <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/document/view.hpp>`__
 
-This type is a view into an owning ``bsoncxx::document::value``.
+The ``bsoncxx::document::view`` data type provides read-only access to an existing ``bsoncxx::document`` object. A document view is preferable to a 
+``bsoncxx::document::value`` when you want to read, but not modify, the contents of a BSON document. 
+
+Document views are   function parameters 
+when a ``bsoncxx::document`` 
+
+is a read-only data type that provides access  is a view into an owning ``bsoncxx::document::value``. 
 
 .. code-block:: cpp
 
@@ -382,7 +413,37 @@ documents to strings for easy inspection:
    bsoncxx::document::value = document{} << "I am" << "a BSON document" << finalize;
    std::cout << bsoncxx::to_json(doc.view()) << std::endl;
 
-There is an analogous method, `from_json() <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/json.hpp#L57-L67>`__, to build document::values out of existing JSON strings.
+
+BSON is a binary-encoded serialization of JSON documents that is not human-readable.
+To preview the contents of a BSON document in a human-readable format, 
+you can convert your document to extended JSON format using the ``bsoncxx::to_json()`` method. 
+
+
+To preview the contents of your BSON document in a human-readable format, you can
+convert it to extended JSON format by calling the ``bsoncxx::to_json()`` method 
+and passing in a ``bsoncxx::document::view`` of your BSON document. 
+
+The ``bsoncxx::to_json()`` method returns an extended JSON ``std::string`` object 
+that includes string representations for BSON data types. 
+
+The ``bsoncxx::to_json()`` method accepts the following arguments:
+
+- A valid BSON document view of the document you want to convert
+- An optional extended JSON representation mode  
+
+The ``bsoncxx::to_json()`` method also accepts an optional argument of type ``ExtendedJsonMode`` that sets the JSON representation mode of
+of your converted document. You can choose from the following representation modes depending on your 
+preferred level of readability and data preservation: 
+
+- ``k_canonical``: extends the JSON format to ``Canonical`` mode, which emphasizes type information preservation at the expense of readability.
+  Conversion from canonical to BSON will generally preserve type information. 
+- ``k_relaxed``: extends the JSON format to ``Relaxed`` mode, which emphasizes readability at the expense of type information preservation. 
+  Conversion from relaxed format to BSON can lose type information. 
+
+To learn more about type preservation in the extended JSON format, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
+guide in the {+mdb-server+} manual. 
+
+There is an analogous method, `from_json() <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/json.hpp#L57-L67>`__, to build ``document::values`` out of existing JSON strings.
 
 .. _cpp-bson-fields:
 
@@ -440,34 +501,6 @@ You can see how to work with ``bsoncxx::decimal128`` in `this example <https://g
 Convert BSON to JSON
 --------------------
 
-BSON is a binary-encoded serialization of JSON documents that is not human-readable.
-To preview the contents of a BSON document in a human-readable format, 
-you can convert your document to extended JSON format using the ``bsoncxx::to_json()`` method. 
-
-
-To preview the contents of your BSON document in a human-readable format, you can
-convert it to extended JSON format by calling the ``bsoncxx::to_json()`` method 
-and passing in a ``bsoncxx::document::view`` of your BSON document. 
-
-The ``bsoncxx::to_json()`` method returns an extended JSON ``std::string`` object 
-that includes string representations for BSON data types. 
-
-The ``bsoncxx::to_json()`` method accepts the following arguments:
-
-- A valid BSON document view of the document you want to convert
-- An optional extended JSON representation mode  
-
-The ``bsoncxx::to_json()`` method also accepts an optional argument of type ``ExtendedJsonMode`` that sets the JSON representation mode of
-of your converted document. You can choose from the following representation modes depending on your 
-preferred level of readability and data preservation: 
-
-- ``k_canonical``: extends the JSON format to ``Canonical`` mode, which emphasizes type information preservation at the expense of readability.
-  Conversion from canonical to BSON will generally preserve type information. 
-- ``k_relaxed``: extends the JSON format to ``Relaxed`` mode, which emphasizes readability at the expense of type information preservation. 
-  Conversion from relaxed format to BSON can lose type information. 
-
-To learn more about type preservation in the extended JSON format, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
-guide in the {+mdb-server+} manual. 
 
 .. _cpp-bson-addtl-info:
 
@@ -491,3 +524,4 @@ API Documentation
 To learn more about the methods mentioned in this guide, see the following API documentation:
 
 - `bsoncxx::builder::list <{+api+}/classbsoncxx_1_1builder_1_1list.html>`__
+- `bsoncxx::builder::basic::document <{+api+}/classbsoncxx_1_1builder_1_1basic_1_1document.html>`__

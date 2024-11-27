@@ -15,29 +15,43 @@ int main() {
     mongocxx::uri uri("<connection string>");
     mongocxx::client client(uri);
 
-    // 
-    {
-      "address" : {
-         "street" : "Pizza St",
-         "zipcode" : "10003"
-      },
-      "coord" : [-73.982419, 41.579505],
-      "cuisine" : "Pizza",
-      "name" : "Mongo's Pizza"
-    }
-
     {
         // Create a BSON document using the list builder
         // start-bson-list
-        bsoncxx::builder::list list_builder = { "address", {  "street", "Pizza St",
-                                                                "zipcode", "10003"
-                                                            },
+        bsoncxx::builder::list list_builder = { "address", {  "street", "Pizza St", "zipcode", "10003" },
                                                 "coord",   { -73.982419, 41.579505 }, 
                                                 "cuisine", "Pizza",
                                                 "name", "Mongo's Pizza" 
-                                                }; 
+                                            }; 
 
-        bsoncxx::document::view document = list_builder.view().get_document();  
+        auto document = list_builder.view().get_document();  
+
+        std::cout << bsoncxx::to_json(document) << std::endl;
         // end-bson-list 
+    }
+
+    {
+        // Create a BSON document using the make_document() method
+        // start-bson-one-off
+        using bsoncxx::builder::basic::kvp;
+        using bsoncxx::builder::basic::make_document; 
+
+        auto document = make_document(kvp("hello","world"));
+
+        std::cout << bsoncxx::to_json(document.view()) << std::endl;
+        // end-bson-one-off
+    }
+
+
+    {
+        // Create a BSON document using the append() method
+        // start-bson-append
+        using bsoncxx::builder::basic::kvp;
+
+        auto document = bsoncxx::builder::basic::document{};
+        document.append(kvp("hello", "world"));
+
+        std::cout << bsoncxx::to_json(document.view()) << std::endl;
+        // end-bson-append
     }
 }
