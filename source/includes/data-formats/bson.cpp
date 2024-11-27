@@ -100,5 +100,10 @@ int main() {
 
         std::cout << "topLevelDoc2: " << bsoncxx::to_json(topLevelDoc2.view()) << std::endl;
         // end-bson-stream
+
+        // start-bson-print
+        bsoncxx::document::value = document{} << "I am" << "a BSON document" << finalize;
+        std::cout << bsoncxx::to_json(doc.view()) << std::endl;
+        // end-bson-print
     }
 }

@@ -16,13 +16,7 @@ Working with BSON
 
 Overview
 --------
-`examples <https://github.com/mongodb/mongo-cxx-driver/tree/master/examples/bsoncxx>`__.
-
-In this guide, you can learn how to use the {+driver-short+} to store and interact with **BSON data**. 
-
-The {+driver-short+} ships with the ``bsoncxx`` library. 
-The following sections show how you can use classes and methods from the ``bsoncxx`` library to create BSON documents, read BSON from a file, write BSON to a file, and 
-convert BSON documents into JSON documents. 
+In this guide, you can learn how to use the {+driver-short+} to store and interact with **BSON data** using the ``bsoncxx`` library.  
 
 BSON Data Format 
 ----------------
@@ -53,6 +47,10 @@ that contain the following data, represented here in extended JSON format:
    convert your BSON document to extended JSON format by calling the ``bsoncxx::to_json()`` method. 
    To learn more, see the :ref:`Printing BSON Documents <cpp-bson-print>` 
    section. 
+
+.. The {+driver-short+} ships with the ``bsoncxx`` library. 
+.. The following sections show how you can use classes and methods from the ``bsoncxx`` library to create BSON documents, read BSON from a file, write BSON to a file, and 
+.. convert BSON documents into JSON documents. 
 
 .. _cpp-bson-builders: 
 
@@ -192,7 +190,7 @@ To create an empty BSON document using the stream builder, call the ``bsoncxx::b
 Then, you can append keys and values to documents using the ``<<`` operator. Each key must be a ``string`` type,
 and each value must be a ``bson_value::value`` type or implicitly convertible to one. 
 
-The following example shows how to stream keys and values into an empty BSON document. create an empty BSON document and str
+The following code shows how to use methods from the ``builder::stream`` interface to build, nest, and concatenate BSON documents: 
 
 .. io-code-block::
 
@@ -450,33 +448,28 @@ dangerous view object, because the temporary value returned from
 Printing BSON Documents
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-`bsoncxx::to_json() <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/json.hpp#L39-L55>`__
-
-The bsoncxx library comes with a convenience method to convert BSON
-documents to strings for easy inspection:
-
-.. code-block:: cpp
-
-   bsoncxx::document::value = document{} << "I am" << "a BSON document" << finalize;
-   std::cout << bsoncxx::to_json(doc.view()) << std::endl;
-
-
 BSON is a binary-encoded serialization of JSON documents that is not human-readable.
 To preview the contents of a BSON document in a human-readable format, 
-you can convert your document to extended JSON format using the ``bsoncxx::to_json()`` method. 
+you can convert your document to extended JSON format using the ``bsoncxx::to_json()`` method.  
 
+The ``bsoncxx::to_json()`` method accepts a view of the BSON document you want to convert, 
+and returns an ``std::string`` object containing the contents of your BSON document in extended JSON format, 
+which is an extension of the JSON format that includes string representations of BSON data types. 
 
-To preview the contents of your BSON document in a human-readable format, you can
-convert it to extended JSON format by calling the ``bsoncxx::to_json()`` method 
-and passing in a ``bsoncxx::document::view`` of your BSON document. 
+The following code shows how to convert a BSON document to JSON format and print the results: 
 
-The ``bsoncxx::to_json()`` method returns an extended JSON ``std::string`` object 
-that includes string representations for BSON data types. 
+.. io-code-block::
 
-The ``bsoncxx::to_json()`` method accepts the following arguments:
+   .. input:: /includes/data-formats/bson.cpp
+      :start-after: start-bson-print
+      :end-before: end-bson-print
+      :language: cpp
+      :dedent:
+   
+   .. output:: 
 
-- A valid BSON document view of the document you want to convert
-- An optional extended JSON representation mode  
+      { "I am" : "a BSON document" }
+
 
 The ``bsoncxx::to_json()`` method also accepts an optional argument of type ``ExtendedJsonMode`` that sets the JSON representation mode of
 of your converted document. You can choose from the following representation modes depending on your 
@@ -490,7 +483,7 @@ preferred level of readability and data preservation:
 To learn more about type preservation in the extended JSON format, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
 guide in the {+mdb-server+} manual. 
 
-There is an analogous method, `from_json() <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/json.hpp#L57-L67>`__, to build ``document::values`` out of existing JSON strings.
+There is an analogous method, ``from_json()``, to build ``document::values`` out of existing JSON strings.
 
 .. _cpp-bson-fields:
 
@@ -575,3 +568,4 @@ To learn more about the types or methods mentioned in this guide, see the follow
 - `bsoncxx::builder::stream::document <{+api+}/classbsoncxx_1_1builder_1_1stream_1_1document.html>`__
 - `bsoncxx::document::value <{+api+}/classbsoncxx_1_1document_1_1value.html>`__
 - `bsoncxx::document::view <{+api+}/classbsoncxx_1_1document_1_1view.html>`__
+- `bsoncxx::to_json() <{+api+}/namespacebsoncxx.html#a066323daaa4ae47a337c7134b81fc08b>`__
