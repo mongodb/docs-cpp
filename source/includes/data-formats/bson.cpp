@@ -16,15 +16,46 @@ int main() {
     mongocxx::client client(uri);
 
     {
+        // start-bson-values
+        bsoncxx::document::value basic_doc{basic_builder.extract()};
+        bsoncxx::document::value stream_doc{stream_builder.extract()};
+        // end-bson-values
+
+        // start-bson-views
+        bsoncxx::document::view document_view{document_value.view()};
+        bsoncxx::document::view basic_view{basic_builder.view()};
+        bsoncxx::document::view stream_view{stream_builder.view()};
+        // end-bson-views
+    }
+    {
+        // Create a dangling view
+        // start-bson-dangling-view
+        bsoncxx::document::view make_a_dangling_view() {
+            bsoncxx::builder::basic::document builder{};
+            builder.append(kvp("hello", "world"));
+
+            // Creates a document::value on the stack that will disappear when we return.
+            bsoncxx::document::value stack_value{builder.extract()};
+
+            // Returns a dangling view of the local value
+            return stack_value.view(); // Bad!!
+        }
+        // end-bson-dangling-view
+    }
+    {
+        // Create a dangling view off of a builder
+        // start-bson-dangling-builder
+        bsoncxx::builder::stream::document temp_builder{};
+        temp_builder << "oh" << "no";
+        bsoncxx::document::view dangling_view = temp_builder.extract().view(); // Bad!!
+        // end-bson-dangling-builder
+    }
+    {
         // Create a BSON document using the list builder
         // start-bson-list
-        bsoncxx::builder::list list_builder = { "address", {  "street", "Pizza St", "zipcode", "10003" },
-                                                "coord",   { -73.982419, 41.579505 }, 
-                                                "cuisine", "Pizza",
-                                                "name", "Mongo's Pizza" 
-                                            }; 
+        bsoncxx::builder::list list_builder = { "hello", "world" }
 
-        auto document = list_builder.view().get_document();  
+        bsoncxx::builder::view document = list_builder.view().get_document();  
 
         std::cout << bsoncxx::to_json(document) << std::endl;
         // end-bson-list 
@@ -32,14 +63,14 @@ int main() {
 
     {
         // Create a BSON document using the make_document() method
-        // start-bson-one-off
+        // start-bson-make-document
         using bsoncxx::builder::basic::kvp;
         using bsoncxx::builder::basic::make_document; 
 
-        auto document = make_document(kvp("hello","world"));
+        bsoncxx::document::value document = make_document(kvp("hello","world"));
 
         std::cout << bsoncxx::to_json(document.view()) << std::endl;
-        // end-bson-one-off
+        // end-bson-make-document
     }
 
 
@@ -57,6 +88,13 @@ int main() {
     {
         // Create a BSON document using the stream builder
         // start-bson-stream
+        auto stream_builder = bsoncxx::builder::stream::document{};
+        stream_builder << "hello" << "world"; 
+
+        auto document_value = stream_builder.extract();
+        auto document_view = stream_builder.view();
+
+        std::cout << bsoncxx::to_json(document_view) << std::endl;
 
         // Create and fill a builder::stream::document
         using bsoncxx::builder::stream::document;
