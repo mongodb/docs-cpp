@@ -88,36 +88,53 @@ int main() {
     {
         // Create a BSON document using the stream builder
         // start-bson-stream
-        auto stream_builder = bsoncxx::builder::stream::document{};
-        stream_builder << "hello" << "world"; 
+        using bsoncxx::builder::stream::document{};
+        auto stream_builder = document{} << "hello" << "world"; 
 
-        auto document_value = stream_builder.extract();
-        auto document_view = stream_builder.view();
+        auto doc_value = stream_builder.extract();
+        auto doc_view = stream_builder.view();
 
-        std::cout << bsoncxx::to_json(document_view) << std::endl;
-
+        std::cout << bsoncxx::to_json(doc_view) << std::endl;
+        // end-bson-stream 
+    }
+    {
         // Create and fill a builder::stream::document
+        // start-bson-stream-finalize 
         using bsoncxx::builder::stream::document;
-        auto stream_doc = document{}; 
-        stream_doc << "hello" << "world";
-
-        std::cout << "stream_doc: " << bsoncxx::to_json(stream_doc.view()) << std::endl;
-
-        // Convert a stream to its underlying BSON value using the finalize helper
         using bsoncxx::builder::stream::finalize;
-        auto finalize_doc = document{} << "finalize" << "me" << finalize;
 
-        std::cout << "finalize_doc: " << bsoncxx::to_json(finalize_doc.view()) << std::endl;
+        bsoncxx::document::value document = document{} << "hello" << "world" << finalize;
 
+        std::cout << bsoncxx::to_json(document.view()) << std::endl;
+        // end-bson-stream-finalize
+    }
+    {
         // Add all keys and corresponding values from one document into another using the concatenate helper
-        using bsoncxx::builder::stream::concatenate;
-        stream_doc << concatenate(finalize_doc.view()); 
+        // start-bson-concat-nest
 
-        std::cout << "Concatenated doc: " << bsoncxx::to_json(stream_doc.view()) << std::endl;
+        // Concatenate two documents using concatenate
+        using bsoncxx::builder::stream::document;
+        using bsoncxx::builder::stream::finalize;
+        using bsoncxx::builder::stream::concatenate;
+
+        auto document1 = document{} << "hello" << "again" << finalize; 
+
+        auto document2 = document{} << "goodbye" << "world" << concatenate(document1.view()) << finalize; 
+
+        std::cout << bsoncxx::to_json(document2.view()) << std::endl;
+
 
         // Build a subdocument using open_document and close_document
         using bsoncxx::builder::stream::open_document;
-        using bsoncxx::builder::stream::close_document; 
+        using bsoncxx::builder::stream::close_document;
+
+        auto topLevelDoc = document{} << "hello" << "world" << "subDoc" 
+                                      << open_document << "subdoc_key" << "subdoc_value" << close_document
+                                      << finalize; 
+
+        std::cout << bsoncxx::to_json(topLevelDoc.view()) << std::endl;
+        // end-bson-concat-nest
+
         
         auto topLevelDoc1 = document{}; 
         topLevelDoc1 << "hello" << "world" << "subDoc" << open_document << "subdoc_key" << "subdoc_value" << close_document; 

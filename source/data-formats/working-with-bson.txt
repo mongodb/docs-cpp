@@ -171,6 +171,12 @@ The following code shows how to create an empty BSON document and fill it with k
 
       { "hello" : "world" }
 
+.. note:: 
+
+   Many {+driver-short+} methods take a ``document::view_or_value`` parameter.
+   These methods can take either a ``document::view`` or a ``document::value``. If
+   a ``document::value`` is passed in, it must be passed by r-value reference, so
+   ownership of the document is transferred to the method.
 
 .. _cpp-bson-stream:
 
@@ -178,9 +184,10 @@ Stream Builder
 ~~~~~~~~~~~~~~
 
 The ``builder::stream`` interface is a streaming interface for constructing complex BSON objects.
-To create a BSON document using the stream builder, first create an empty document by calling the 
-``builder::stream::document`` constructor with no arguments. Then, you can stream in keys and values 
-using the ``<<`` operator. 
+To create a BSON document using the stream builder, initialize a stream builder using the 
+``builder::stream::document`` constructor. Then, you can stream keys and values into your builder
+using the ``<<`` operator. Finally, you can extract a document value or view from your stream builder using the
+``view()`` and ``value()`` methods. 
 
 The following code shows how to create an empty BSON document and fill it with key-value pairs using the ``<<`` operator:
 
@@ -211,64 +218,23 @@ The following code shows how to return a ``document::value`` from a temporary st
 
       stream_doc: { "hello" : "world" }
 
- create a bsoncxx::document::value in a single line using the stream builder interface and the finalize token. finalize returns a document::value from a temporary stream builder:
-
-
-
-.. list-table:: 
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Type or Method
-     - Description
-
-   * - ``document``
-     - Constructor for a builder stream document. 
-
-   * - ``document.view()`` 
-     - Returns a view of the underlying BSON document.
-  
-       To learn more, see the :ref:`Document View vs. Value <cpp-bson-view-vs-value>` section.      
-       
-       **Return Type:** ``bsoncxx::document::view`` 
-
-   * - ``document.extract()``
-     - Returns the BSON value of the underlying BSON document. 
-       Transfers ownership of the underlying document to the caller. 
-       
-       To learn more, see the :ref:`Document View vs. Value <cpp-bson-view-vs-value>` section. 
-
-   * - ``document.clear()`` 
-     - Resets the underlying BSON document to an empty document. 
-
-   * - ``finalize``
-        **Return Type:** void
-
-   * - ``concatenate()`` 
-   * - ``open_document``
-   * - ``close_document`` 
-
-To create an empty BSON document using the stream builder, call the ``bsoncxx::builder::stream::document`` constructor with no arguments. 
-Then, you can append keys and values to documents using the ``<<`` operator. Each key must be a ``string`` type,
-and each value must be a ``bson_value::value`` type or implicitly convertible to one. 
+The ``builder::stream`` interface also provides helped methods to build nested documents and concatenate documents onto existing documents. 
+The following code shows how to use the ``open_document``, ``close_document``, and ``concatenate`` methods to nest and concatenate documents: 
 
 The following code shows how to use methods from the ``builder::stream`` interface to build, nest, and concatenate BSON documents: 
 
 .. io-code-block::
 
    .. input:: /includes/data-formats/bson.cpp
-      :start-after: start-bson-stream
-      :end-before: end-bson-stream
+      :start-after: start-bson-concat-nest
+      :end-before: end-bson-concat-nest
       :language: cpp
       :dedent:
    
    .. output:: 
 
-      stream_doc: { "hello" : "world" }
-      finalize_doc: { "finalize" : "me" }
-      Concatenated doc: { "hello" : "world", "finalize" : "me" }
-      topLevelDoc1: { "hello" : "world", "subDoc" : { "subdoc_key" : "subdoc_value" } }
-      topLevelDoc2: { "subDoc1" : { "nest" : "me" }, "subDoc2" : { "nest" : "me" }, "subDoc3" : { "nest" : "me" } }
+      { "goodbye" : "world", "hello" : "again" }
+      { "hello" : "world", "subDoc" : { "subdoc_key" : "subdoc_value" } }
 
 .. important::
 
@@ -282,151 +248,6 @@ The following code shows how to use methods from the ``builder::stream`` interfa
    we recommend using the :ref:`Basic Builder <cpp-bson-basic>` instead 
    of the stream builder. 
 
-.. _cpp-bson-value:
-
-Owning BSON Documents
-~~~~~~~~~~~~~~~~~~~~~
-
-`bsoncxx::document::value <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/document/value.hpp>`__
-
-The ``bsoncxx::document::value`` data type represents an actual BSON document that owns its buffer of data. 
-When you pass a document value to a function, the function body creates a copy of the ``bsoncxx::document::value`` 
-object 
- 
-
- These documents can be constructed from a builder by calling
-``extract()``:
-
-.. code-block:: cpp
-
-   bsoncxx::document::value basic_doc{basic_builder.extract()};
-   bsoncxx::document::value stream_doc{stream_builder.extract()};
-
-After calling ``extract()`` the builder is in a moved-from state,
-and should not be used.
-
-It's possible to create a ``bsoncxx::document::value`` in a single line using
-the stream builder interface and the ``finalize`` token. ``finalize`` returns a
-``document::value`` from a temporary stream builder:
-
-.. code-block:: cpp
-
-   // { "finalize" : "is nifty" }
-   bsoncxx::document::value one_line = bsoncxx::builder::stream::document{} << "finalize" << "is nifty" << bsoncxx::builder::stream::finalize;
-
-.. _cpp-bson-view:
-
-Non-owning BSON Documents (views)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-`bsoncxx::document::view <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/bsoncxx/include/bsoncxx/v_noabi/bsoncxx/document/view.hpp>`__
-
-The ``bsoncxx::document::view`` data type provides read-only access to an existing ``bsoncxx::document`` object. A document view is preferable to a 
-``bsoncxx::document::value`` when you want to read, but not modify, the contents of a BSON document. 
-
-Document views are   function parameters 
-when a ``bsoncxx::document`` 
-
-is a read-only data type that provides access  is a view into an owning ``bsoncxx::document::value``. 
-
-.. code-block:: cpp
-
-   bsoncxx::document::view document_view{document_value.view()};
-
-A ``document::value`` also implicitly converts to a ``document::view``:
-
-.. code-block:: cpp
-
-   bsoncxx::document::view document_view{document_value};
-
-In performance-critical code, passing views around is preferable to using
-values because we can avoid excess copying. Also, passing a view of a
-document allows us to use the document multiple times:
-
-.. code-block:: cpp
-
-   // { "copies" : { "$gt" : 100 } }
-   auto query_value = document{} << "copies" << open_document << "$gt" << 100 << close_document << finalize;
-
-   // Run the same query across different collections
-   auto collection1 = db["science_fiction"];
-   auto cursor1 = collection1.find(query_value.view());
-
-   auto collection2 = db["cookbooks"];
-   auto cursor2 = collection2.find(query_value.view());
-
-.. _cpp-bson-view_or_value:
-
-Optionally-owning BSON Documents (view_or_value)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Many driver methods take a ``document::view_or_value`` parameter, for example,
-`run_command <https://github.com/mongodb/mongo-cxx-driver/blob/master/src/mongocxx/include/mongocxx/v_noabi/mongocxx/database.hpp#L144-L153>`__:
-
-.. code-block:: cpp
-
-   bsoncxx::document::value run_command(bsoncxx::document::view_or_value command);
-
-Such methods can take either a ``document::view`` or a ``document::value``. If
-a ``document::value`` is passed in, it must be passed by r-value reference, so
-ownership of the document is transferred to the method.
-
-.. code-block:: cpp
-
-   document::value ping = document{} << "ping" << 1 << finalize;
-
-   // You can pass a document::view into run_command()
-   db.run_command(ping.view());
-
-   // Or you can move in a document::value
-   db.run_command(std::move(ping));
-
-You shouldn't need to create ``view_or_value`` types directly in order to use
-the driver.  They are offered as a convenience method to allow driver
-methods to take documents in either an owning or non-owning way.  The
-``view_or_value`` type also helps mitigate some of the lifetime issues
-discussed in the next section.
-
-.. _cpp-bson-lifetime:
-
-BSON Document Lifetime
-~~~~~~~~~~~~~~~~~~~~~~
-
-It is imperative that ``document::value`` types outlive any ``document::view`` types that
-use them. If the underlying value gets cleaned up, the view will be left
-with a dangling pointer.  Consider a method that returns a view of a
-newly-created document:
-
-.. code-block:: cpp
-
-   bsoncxx::document::view make_a_dangling_view() {
-      bsoncxx::builder::basic::document builder{};
-      builder.append(kvp("hello", "world"));
-
-      // This creates a document::value on the stack that will disappear when we return.
-      bsoncxx::document::value stack_value{builder.extract()};
-
-      // We're returning a view of the local value
-      return stack_value.view(); // Bad!!
-   }
-
-This method returns a dangling view that should not be used:
-
-.. code-block:: cpp
-
-   // This view contains a dangling pointer
-   bsoncxx::document::view dangling_view = make_a_dangling_view(); // Warning!!
-
-Attempting to create a view off of a builder will similarly create a
-dangerous view object, because the temporary value returned from
-``extract()`` isn't captured:
-
-.. code-block:: cpp
-
-   bsoncxx::builder::stream::document temp_builder{};
-   temp_builder << "oh" << "no";
-   bsoncxx::document::view dangling_view = temp_builder.extract().view(); // Bad!!
-
 .. _cpp-bson-print:
 
 Printing BSON Documents
@@ -439,6 +260,8 @@ you can convert your document to extended JSON format using the ``bsoncxx::to_js
 The ``bsoncxx::to_json()`` method accepts a view of the BSON document you want to convert, 
 and returns an ``std::string`` object containing the contents of your BSON document in extended JSON format, 
 which is an extension of the JSON format that includes string representations of BSON data types. 
+To learn more about type preservation in the extended JSON format, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
+guide in the {+mdb-server+} manual. 
 
 The following code shows how to convert a BSON document to JSON format and print the results: 
 
@@ -454,48 +277,19 @@ The following code shows how to convert a BSON document to JSON format and print
 
       { "I am" : "a BSON document" }
 
+.. The ``bsoncxx::to_json()`` method also accepts an optional argument of type ``ExtendedJsonMode`` that sets the JSON representation mode of
+.. of your converted document. You can choose from the following representation modes depending on your 
+.. preferred level of readability and data preservation: 
 
-The ``bsoncxx::to_json()`` method also accepts an optional argument of type ``ExtendedJsonMode`` that sets the JSON representation mode of
-of your converted document. You can choose from the following representation modes depending on your 
-preferred level of readability and data preservation: 
+.. - ``k_canonical``: extends the JSON format to ``Canonical`` mode, which emphasizes type information preservation at the expense of readability.
+..   Conversion from canonical to BSON will generally preserve type information. 
+.. - ``k_relaxed``: extends the JSON format to ``Relaxed`` mode, which emphasizes readability at the expense of type information preservation. 
+..   Conversion from relaxed format to BSON can lose type information. 
 
-- ``k_canonical``: extends the JSON format to ``Canonical`` mode, which emphasizes type information preservation at the expense of readability.
-  Conversion from canonical to BSON will generally preserve type information. 
-- ``k_relaxed``: extends the JSON format to ``Relaxed`` mode, which emphasizes readability at the expense of type information preservation. 
-  Conversion from relaxed format to BSON can lose type information. 
+.. To learn more about type preservation in the extended JSON format, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
+.. guide in the {+mdb-server+} manual. 
 
-To learn more about type preservation in the extended JSON format, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
-guide in the {+mdb-server+} manual. 
-
-There is an analogous method, ``from_json()``, to build ``document::values`` out of existing JSON strings.
-
-.. _cpp-bson-fields:
-
-Getting Fields out of BSON Documents
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The [ ] operator reaches into a BSON document to retrieve values:
-
-.. code-block:: cpp
-
-   // doc_view = { "store" : "Key Foods", "fruits" : [ "apple", "banana" ] }
-   auto store = doc_view["store"];
-   auto first_fruit = doc_view["fruits"][0];
-
-This returns a ``bsoncxx::document::element``, which holds the actual desired value:
-
-.. code-block:: cpp
-
-   document::element store_ele{doc_view["store"]};
-   if (store_ele) {
-       // this block will only execute if "store" was found in the document
-       std::cout << "Examining inventory at " << to_json(store_ele.get_value()) << std::endl;
-   }
-
-This feature is shown in more detail in `this example
-<https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/getting_values.cpp>`__
-and `this example
-<https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/view_and_value.cpp>`__.
+.. There is an analogous method, ``from_json()``, to build ``document::values`` out of existing JSON strings.
 
 .. _cpp-bson-types:
 
