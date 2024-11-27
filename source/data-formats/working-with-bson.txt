@@ -27,7 +27,7 @@ convert BSON documents into JSON documents.
 BSON Data Format 
 ----------------
 
- **BSON**, or Binary JSON, is the data format that MongoDB uses to store documents and make remote procedure calls. 
+**BSON**, or Binary JSON, is the data format that MongoDB uses to store documents and make remote procedure calls.
 This data format includes all JSON data structure types and adds support for types including dates, different size
 integers, ObjectIds, and binary data. For a complete list of supported types, see the :manual:`BSON Types </reference/bson-types/>` page 
 in the {+mdb-server+} manual. 
@@ -50,8 +50,8 @@ that contain the following data, represented here in extended JSON format:
 .. tip::
 
    To preview the contents of your BSON document in a human-readable format, you can
-   convert it to extended JSON format by calling the ``bsoncxx::to_json()`` method. 
-   To learn more, see the :ref:`Convert from BSON to JSON <cpp-convert-bson-to-json>` 
+   convert your BSON document to extended JSON format by calling the ``bsoncxx::to_json()`` method. 
+   To learn more, see the :ref:`Printing BSON Documents <cpp-bson-print>` 
    section. 
 
 .. _cpp-bson-builders: 
@@ -91,13 +91,12 @@ The following code shows how to create a BSON document using the list builder:
 
       { "address" : { "street" : "Pizza St", "zipcode" : "10003" }, "coord" : [ -73.982418999999993048, 41.579504999999997494 ], "cuisine" : "Pizza", "name" : "Mongo's Pizza" }
 
-.. _cpp-bson-one-off:
+.. _cpp-bson-basic:
 
-Basic Builder Interface
-~~~~~~~~~~~~~~~~~~~~~~~
+Basic Builder
+~~~~~~~~~~~~~
 
 The ``builder::basic`` interface provides data types and methods to construct BSON documents out of key-value pair objects. 
-
 To create a key-value pair object, call the ``builder::basic::kvp()`` method and pass in your 
 key and value as arguments. The key must be a ``string`` type, and the value must be a ``bson_value::value`` type or implicitly convertible to one. 
 The resulting ``kvp`` object can be passed into the following methods from the ``builder::basic`` interface to build a BSON document: 
