@@ -54,4 +54,51 @@ int main() {
         std::cout << bsoncxx::to_json(document.view()) << std::endl;
         // end-bson-append
     }
+    {
+        // Create a BSON document using the stream builder
+        // start-bson-stream
+
+        // Create and fill a builder::stream::document
+        using bsoncxx::builder::stream::document;
+        auto stream_doc = document{}; 
+        stream_doc << "hello" << "world";
+
+        std::cout << "stream_doc: " << bsoncxx::to_json(stream_doc.view()) << std::endl;
+
+        // Convert a stream to its underlying BSON value using the finalize helper
+        using bsoncxx::builder::stream::finalize;
+        auto finalize_doc = document{} << "finalize" << "me" << finalize;
+
+        std::cout << "finalize_doc: " << bsoncxx::to_json(finalize_doc.view()) << std::endl;
+
+        // Add all keys and corresponding values from one document into another using the concatenate helper
+        using bsoncxx::builder::stream::concatenate;
+        stream_doc << concatenate(finalize_doc.view()); 
+
+        std::cout << "Concatenated doc: " << bsoncxx::to_json(stream_doc.view()) << std::endl;
+
+        // Build a subdocument using open_document and close_document
+        using bsoncxx::builder::stream::open_document;
+        using bsoncxx::builder::stream::close_document; 
+        
+        auto topLevelDoc1 = document{}; 
+        topLevelDoc1 << "hello" << "world" << "subDoc" << open_document << "subdoc_key" << "subdoc_value" << close_document; 
+
+        std::cout << "topLevelDoc1: " << bsoncxx::to_json(topLevelDoc1.view()) << std::endl;
+
+        // Nest an existing BSON document in 3 ways: 
+        // 1. Create a bsoncxx::types:b_document with the document view and append it 
+        // 2. Open a new document and concatenate the document view in
+        // 3. Stream in the document view 
+        using bsoncxx::types::b_document;
+        auto nestedValue = document{} << "nest" << "me" << finalize; 
+
+        auto topLevelDoc2 = document{} << "subDoc1" << b_document{nestedValue.view()} 
+                                       << "subDoc2" << open_document << concatenate(nestedValue.view()) << close_document 
+                                       << "subDoc3" << nestedValue.view()
+                                       << finalize; 
+
+        std::cout << "topLevelDoc2: " << bsoncxx::to_json(topLevelDoc2.view()) << std::endl;
+        // end-bson-stream
+    }
 }

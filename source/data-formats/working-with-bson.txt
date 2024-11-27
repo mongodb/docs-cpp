@@ -74,8 +74,7 @@ List Builder
 The ``builder::list`` interface is o JSON-like builder for creating documents and arrays. To create a BSON document using the list builder, 
 initialize a ``bsoncxx::builder::list`` object to a list of key-value pairs inside curly braces (``{}``). 
 Each document key must be a ``string`` type, and each document value must be a ``bson_value::value`` type or implicitly convertible to one. 
-
-.. The size of the initializer list must be even to imply a list of key-value pairs or an empty document if the size is zero. 
+The size of the initializer list must be even to imply a list of key-value pairs or an empty document if the size is zero. 
 
 The following code shows how to create a BSON document using the list builder: 
 
@@ -151,27 +150,76 @@ The following code initializes an empty BSON document and then fills it with key
 Stream Builder
 ~~~~~~~~~~~~~~
 
-.. code-block:: cpp
+The stream builder is a streaming interface for constructing complex BSON objects.
+To use the stream builder, call methods from the ``builder::stream`` interface to construct empty ``builder::stream::document`` objects 
+and stream in keys and values using the ``<<`` operator. 
+The following table describes the types and and methods provided by the ``bsoncxx::builder::stream`` interface:
 
-   // { "hello" : "world" }
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 70
 
-   using bsoncxx::builder::stream;
-   bsoncxx::document::value document = stream::document{} << "hello" << "world" << stream::finalize;
+   * - Type or Method
+     - Description
 
-More advanced uses of the stream builder are shown in `this
-example <https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/builder_stream.cpp>`__.
+   * - ``document``
+     - Constructor for a builder stream document. 
 
-.. note::
+   * - ``document.view()`` 
+     - Returns a view of the underlying BSON document.
+  
+       To learn more, see the :ref:`Document View vs. Value <cpp-bson-view-vs-value>` section.      
+       
+       **Return Type:** ``bsoncxx::document::view`` 
 
-   In order to properly append each new value, a stream builder
-   needs to keep track of the state of the current document, including the nesting
+   * - ``document.extract()``
+     - Returns the BSON value of the underlying BSON document. 
+       Transfers ownership of the underlying document to the caller. 
+       
+       To learn more, see the :ref:`Document View vs. Value <cpp-bson-view-vs-value>` section. 
+
+   * - ``document.clear()`` 
+     - Resets the underlying BSON document to an empty document. 
+
+   * - ``finalize``
+        **Return Type:** void
+
+   * - ``concatenate()`` 
+   * - ``open_document``
+   * - ``close_document`` 
+
+To create an empty BSON document using the stream builder, call the ``bsoncxx::builder::stream::document`` constructor with no arguments. 
+Then, you can append keys and values to documents using the ``<<`` operator. Each key must be a ``string`` type,
+and each value must be a ``bson_value::value`` type or implicitly convertible to one. 
+
+The following example shows how to stream keys and values into an empty BSON document. create an empty BSON document and str
+
+.. io-code-block::
+
+   .. input:: /includes/data-formats/bson.cpp
+      :start-after: start-bson-stream
+      :end-before: end-bson-stream
+      :language: cpp
+      :dedent:
+   
+   .. output:: 
+
+      stream_doc: { "hello" : "world" }
+      finalize_doc: { "finalize" : "me" }
+      Concatenated doc: { "hello" : "world", "finalize" : "me" }
+      topLevelDoc1: { "hello" : "world", "subDoc" : { "subdoc_key" : "subdoc_value" } }
+      topLevelDoc2: { "subDoc1" : { "nest" : "me" }, "subDoc2" : { "nest" : "me" }, "subDoc3" : { "nest" : "me" } }
+
+.. important::
+
+   To properly append each new value, a stream builder must keep track of the state of the current document, including the nesting
    level and the type of the most recent value appended to the builder. The initial
    stream builder must *not* be reused after this state changes, which means that
    intermediate values must be stored in new variables if a document is being built
-   with the stream builder across multiple statements. Because doing this properly
-   is difficult and the compiler error messages can be confusing, using the stream
-   builder is discouraged. We recommend instead using the basic builder or the
-   :ref:`one-off builder functions <cpp-bson-one-off>`.
+   with the stream builder across multiple statements.
+   
+   To avoid this added complexity, we recommend using the :ref:`Basic Builder <cpp-bson-basic>` instead 
+   of the stream builder. 
 
 Building Arrays in Loops
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -520,7 +568,10 @@ guide.
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-To learn more about the methods mentioned in this guide, see the following API documentation:
+To learn more about the types or methods mentioned in this guide, see the following API documentation:
 
 - `bsoncxx::builder::list <{+api+}/classbsoncxx_1_1builder_1_1list.html>`__
 - `bsoncxx::builder::basic::document <{+api+}/classbsoncxx_1_1builder_1_1basic_1_1document.html>`__
+- `bsoncxx::builder::stream::document <{+api+}/classbsoncxx_1_1builder_1_1stream_1_1document.html>`__
+- `bsoncxx::document::value <{+api+}/classbsoncxx_1_1document_1_1value.html>`__
+- `bsoncxx::document::view <{+api+}/classbsoncxx_1_1document_1_1view.html>`__
