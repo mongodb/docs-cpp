@@ -24,7 +24,7 @@ BSON Data Format
 
 MongoDB uses the **BSON**, or Binary JSON, data format to store documents and
 make remote procedure calls. This data format includes all JSON data structure types
-and adds support for types including dates, different size integers, ObjectIds,
+and adds support for additional types, including dates, different size integers, ObjectIds,
 and binary data. For a complete list of supported types, see the :manual:`BSON Types </reference/bson-types/>`
 page in the {+mdb-server+} manual. 
 
@@ -33,7 +33,7 @@ BSON Values and Views
 
 Many {+driver-short+} methods take a BSON document as an argument.
 The ``bsoncxx`` library provides two types that represent an underlying
-BSON document: ``document::value``, and ``document::view``. 
+BSON document: ``document::value`` and ``document::view``. 
 
 The ``document::value`` type represents a BSON document that
 owns its underlying buffer of data. When you pass a ``document::value`` to a
@@ -46,11 +46,13 @@ The ``document::view`` type provides a non-owning view into a ``document::value`
 This type allows you to read and interact with the contents of a BSON
 document without owning its underlying data. When you pass a ``document::view``
 object to a {+driver-short+} method, the method can use data from the underlying document
-without copying it. 
+without copying it. To avoid excess copying, we recommend passing documents by view
+if possible.
 
 Some {+driver-short+} methods accept arguments of type ``document::view_or_value``. You
-can pass either a ``document::view`` or ``document::value`` type to these methods. To
-avoid excess copying, we recommend passing documents by view.
+can pass either a ``document::view`` or ``document::value`` type to these methods. You
+must pass ``document::value`` arguments by `rvalue <https://en.cppreference.com/w/cpp/language/value_category#rvalue>`__
+reference to transfer ownership of the document to the method.
 
 .. important:: 
 
@@ -61,8 +63,8 @@ avoid excess copying, we recommend passing documents by view.
 
 .. _cpp-bson-builders: 
 
-Build a BSON Document 
----------------------
+Create a BSON Document 
+----------------------
 
 This section shows how to use the following interfaces to create a
 BSON document:  
@@ -77,26 +79,24 @@ List Builder
 ~~~~~~~~~~~~
 
 The ``builder::list`` interface is a JSON-like builder for constructing documents and arrays. 
-To create a BSON document using the list builder, first initialize a ``bsoncxx::builder::list``
-object to a list of key-value pairs inside curly braces (``{}``).  Each document key must
-be a ``string`` type, and each document value must be a ``bson_value::value`` type or
-implicitly convertible to one. Then, you can construct a ``bsoncxx::document::view`` by
-calling the ``view()`` method and then the ``get_document()`` method on your list builder
-object. 
+To create a BSON document by using the list builder, initialize a ``bsoncxx::builder::list``
+object to a list of key-value pairs. The list builder creates a document if the key-value list fulfills
+the following requirements:
 
-The following code shows how to construct a BSON document using the list builder: 
+- The list has an even number of elements
+- Each key is a ``string`` type and each value is a ``bson_value::value`` type or
+  implicitly convertible to one
 
-.. io-code-block::
+If the preceding requirements are not met, the list builder creates an array. 
 
-   .. input:: /includes/data-formats/bson.cpp
-      :start-after: start-bson-list
-      :end-before: end-bson-list
-      :language: cpp
-      :dedent:
-   
-   .. output:: 
+The following code shows how to use the list builder to create a document and an
+array:
 
-      { "hello" : "world" }
+.. literalinclude:: /includes/data-formats/bson.cpp
+    :language: cpp
+    :dedent:
+    :start-after: start-bson-list
+    :end-before: end-bson-list
 
 .. _cpp-bson-basic:
 
@@ -104,126 +104,75 @@ Basic Builder
 ~~~~~~~~~~~~~
 
 The ``builder::basic`` interface is a builder-style interface for constructing a BSON document. 
-To create a ``bson::document::value`` object in a single call using the ``builder::basic`` interface,
-call the ``make_document()`` method and pass in a list of key-value pair objects. You can create
-these key-value pair objects by calling the ``builder::basic::kvp()`` method and passing in your
-key and value as the arguments. The key must be a ``string`` type, and the value must be a
-``bson_value::value`` type or implicitly convertible to one. 
+To create a BSON document by using the basic builder, call the ``make_document()`` method
+and pass in a list of key-value pair objects. You can create these key-value pair objects by
+passing a key and value to the ``builder::basic::kvp()`` method. The key must be a ``string`` type, and
+the value must be a ``bson_value::value`` type or implicitly convertible to one. 
 
-The following code shows how to use the ``make_document()`` method to build a BSON document: 
+The following code shows how to use the basic builder to create a BSON document: 
 
-.. io-code-block::
+.. literalinclude:: /includes/data-formats/bson.cpp
+    :language: cpp
+    :dedent:
+    :start-after: start-bson-make-document
+    :end-before: end-bson-make-document
 
-   .. input:: /includes/data-formats/bson.cpp
-      :start-after: start-bson-make-document
-      :end-before: end-bson-make-document
-      :language: cpp
-      :dedent:
-   
-   .. output:: 
+Alternatively, you can use this interface to construct a BSON document
+by appending key-value pairs to a basic builder object. The following 
+example initializes a ``builder::basic::document`` object, then calls the
+``append()`` method to store data in the document:
 
-      { "hello" : "world" }
-
-Alternatively, you can use the ``builder::basic`` interface to construct a BSON document
-by appending key-value pairs to a basic builder object. To begin, create an empty basic
-builder object using the ``builder::basic::document`` constructor. Then, fill your builder
-with key-value pairs by calling the ``append()`` method and passing in a list of
-``builder::basic::kvp`` objects. 
-
-.. To construct a ``bsoncxx::document::value`` from a basic builder instance, call the ``extract()`` method. You can also call the ``view()`` method 
-.. on a list builder instance to return a ``bsoncxx::document::view`` of your BSON document. 
-
-The following code shows how to create an empty BSON document and fill it with key-value
-pairs using the ``append()`` method: 
-
-.. io-code-block::
-
-   .. input:: /includes/data-formats/bson.cpp
-      :start-after: start-bson-append
-      :end-before: end-bson-append
-      :language: cpp
-      :dedent:
-   
-   .. output:: 
-
-      { "hello" : "world" }
-
-.. note:: 
-
-   Many {+driver-short+} methods take a ``document::view_or_value`` parameter.
-   These methods can take either a ``document::view`` or a ``document::value``. If
-   a ``document::value`` is passed in, it must be passed by r-value reference, so
-   ownership of the document is transferred to the method.
+.. literalinclude:: /includes/data-formats/bson.cpp
+    :language: cpp
+    :dedent:
+    :start-after: start-bson-append
+    :end-before: end-bson-append
 
 .. _cpp-bson-stream:
 
 Stream Builder
 ~~~~~~~~~~~~~~
 
-The ``builder::stream`` interface is a streaming interface for constructing complex BSON objects.
-To create a BSON document using the stream builder, initialize a stream builder using the 
-``builder::stream::document`` constructor. Then, you can stream keys and values into your builder
-using the ``<<`` operator. Finally, you can extract a document value or view from your stream builder using the
-``view()`` and ``value()`` methods. 
-
-The following code shows how to create an empty BSON document and fill it with key-value pairs using the ``<<`` operator:
-
-.. io-code-block::
-
-   .. input:: /includes/data-formats/bson.cpp
-      :start-after: start-bson-stream-finalize
-      :end-before: end-bson-stream-finalize
-      :language: cpp
-      :dedent:
-   
-   .. output:: 
-
-      stream_doc: { "hello" : "world" }
-
-You can create a ``bsoncxx::document::value`` in a single line using the ``builder::stream::finalize`` token.
-The following code shows how to return a ``document::value`` from a temporary stream builder using the ``finalize`` token:
-
-.. io-code-block::
-
-   .. input:: /includes/data-formats/bson.cpp
-      :start-after: start-bson-stream-finalize
-      :end-before: end-bson-stream-finalize
-      :language: cpp
-      :dedent:
-   
-   .. output:: 
-
-      stream_doc: { "hello" : "world" }
-
-The ``builder::stream`` interface also provides helped methods to build nested documents and concatenate documents onto existing documents. 
-The following code shows how to use the ``open_document``, ``close_document``, and ``concatenate`` methods to nest and concatenate documents: 
-
-The following code shows how to use methods from the ``builder::stream`` interface to build, nest, and concatenate BSON documents: 
-
-.. io-code-block::
-
-   .. input:: /includes/data-formats/bson.cpp
-      :start-after: start-bson-concat-nest
-      :end-before: end-bson-concat-nest
-      :language: cpp
-      :dedent:
-   
-   .. output:: 
-
-      { "goodbye" : "world", "hello" : "again" }
-      { "hello" : "world", "subDoc" : { "subdoc_key" : "subdoc_value" } }
-
 .. important::
 
-   To properly append each new value, a stream builder must keep track of the state of the current document, including the nesting
+   We recommend using the :ref:`Basic Builder <cpp-bson-basic>` instead 
+   of the stream builder. 
+   
+   To properly append each new value, a stream builder must track
+   of the state of the current document, including the nesting
    level and the type of the most recent value appended to the builder. The initial
    stream builder must *not* be reused after this state changes, so all intermediate
    values must be stored in new variables if a document is being built
-   with the stream builder across multiple statements.
+   with the stream builder across multiple statements. Due to this complexity,
+   use of the stream builder is discouraged.
+
+The ``builder::stream`` interface is a streaming interface for constructing
+complex BSON objects. To create a BSON document by using the stream builder,
+initialize a ``builder::stream::document`` object. Then, you can use the ``<<``
+operator to stream keys and values into your builder. 
+
+The following code shows how to create a BSON document by using the stream builder:
+
+.. literalinclude:: /includes/data-formats/bson.cpp
+    :language: cpp
+    :dedent:
+    :start-after: start-bson-stream
+    :end-before: end-bson-stream
+
+You can convert the stream to a ``bsoncxx::document::value`` by using the
+``builder::stream::finalize`` token, as shown in the following example:
+
+.. io-code-block::
+
+   .. input:: /includes/data-formats/bson.cpp
+      :start-after: start-bson-stream-finalize
+      :end-before: end-bson-stream-finalize
+      :language: cpp
+      :dedent:
    
-   To avoid the added complexity of tracking intermediate values, 
-   we recommend using the :ref:`Basic Builder <cpp-bson-basic>` instead 
-   of the stream builder. 
+   .. output:: 
+
+      stream_doc: { "hello" : "world" }
 
 .. _cpp-bson-print:
 
@@ -238,8 +187,10 @@ Extended JSON format is an extension of standard JSON that includes string repre
 To learn more, see the :manual:`MongoDB Extended JSON </reference/mongodb-extended-json>`
 guide in the {+mdb-server+} manual.
 
-The ``bsoncxx::to_json()`` method accepts a ``bsoncxx::document::view`` of the BSON document you want to convert, 
-and returns an ``std::string`` object representing your BSON document in extended JSON format. 
+The ``bsoncxx::to_json()`` method accepts a ``bsoncxx::document::view`` of the BSON document
+you want to convert. This method returns an ``std::string`` object representing your BSON
+document in extended JSON format. 
+
 The following code shows how to convert a BSON document to extended JSON format and print the results: 
 
 .. io-code-block::
