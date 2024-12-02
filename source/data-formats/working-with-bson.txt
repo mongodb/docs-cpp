@@ -24,7 +24,7 @@ BSON Data Format
 
 MongoDB uses the **BSON**, or Binary JSON, data format to store documents and
 make remote procedure calls. This data format includes all JSON data structure types
-and adds support for additional types, including dates, different size integers, ObjectIds,
+and supports additional types, including dates, different size integers, ObjectIds,
 and binary data. For a complete list of supported types, see the :manual:`BSON Types </reference/bson-types/>`
 page in the {+mdb-server+} manual. 
 
@@ -83,9 +83,9 @@ To create a BSON document by using the list builder, initialize a ``bsoncxx::bui
 object to a list of key-value pairs. The list builder creates a document if the key-value list fulfills
 the following requirements:
 
-- The list has an even number of elements
+- The list has an even number of elements.
 - Each key is a ``string`` type and each value is a ``bson_value::value`` type or
-  implicitly convertible to one
+  implicitly convertible to one.
 
 If the preceding requirements are not met, the list builder creates an array. 
 
@@ -162,22 +162,16 @@ The following code shows how to create a BSON document by using the stream build
 You can convert the stream to a ``bsoncxx::document::value`` by using the
 ``builder::stream::finalize`` token, as shown in the following example:
 
-.. io-code-block::
-
-   .. input:: /includes/data-formats/bson.cpp
-      :start-after: start-bson-stream-finalize
-      :end-before: end-bson-stream-finalize
-      :language: cpp
-      :dedent:
-   
-   .. output:: 
-
-      stream_doc: { "hello" : "world" }
+.. literalinclude:: /includes/data-formats/bson.cpp
+    :language: cpp
+    :dedent:
+    :start-after: start-bson-stream-finalize
+    :end-before: end-bson-stream-finalize
 
 .. _cpp-bson-print:
 
-Printing BSON Documents
-~~~~~~~~~~~~~~~~~~~~~~~
+Print a BSON Document
+---------------------
 
 BSON is a binary-encoded serialization of JSON documents that is not human-readable.
 To preview the contents of a BSON document in a human-readable format, you can use the 
@@ -194,6 +188,7 @@ document in extended JSON format.
 The following code shows how to convert a BSON document to extended JSON format and print the results: 
 
 .. io-code-block::
+   :copyable:
 
    .. input:: /includes/data-formats/bson.cpp
       :start-after: start-bson-print
@@ -202,11 +197,9 @@ The following code shows how to convert a BSON document to extended JSON format 
       :dedent:
    
    .. output:: 
+      :visible: false
 
-      { "I am" : "a BSON document" }
-
-
-
+      { "title" : "Screenwriting", "department" : "English" }
 
 .. _cpp-bson-addtl-info:
 

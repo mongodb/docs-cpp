@@ -18,8 +18,11 @@ int main() {
     {
         // Creates a BSON document using the list builder
         // start-bson-list
-        bsoncxx::builder::list course_document = { "title", "Poetry", "department", "English" }
-        bsoncxx::builder::list courses_array = { "Poetry", "Literature", "Creative Writing" }
+        bsoncxx::builder::list course_doc = { "title", "Poetry",
+                                              "department", "English" }
+
+        bsoncxx::builder::list courses_array = { "Poetry", "Literature",
+                                                 "Creative Writing" }
         // end-bson-list 
     }
 
@@ -61,10 +64,10 @@ int main() {
         using bsoncxx::builder::stream::document;
         using bsoncxx::builder::stream::finalize;
 
-        bsoncxx::document::value document = document{} << "title" << "Literature" << finalize;
+        bsoncxx::document::value doc = document{} << "title" << "Literature" << finalize;
         // end-bson-stream-finalize
     }
-    
+
     {
         // Prints a BSON document
         // start-bson-print
