@@ -20,8 +20,8 @@ Databases and Collections
 Overview
 --------
 
-In this guide, you can learn how to interact with MongoDB databases and
-collections by using the {+driver-short+}.
+In this guide, you can learn how to use the {+driver-short+} to interact
+with MongoDB databases and collections.
 
 MongoDB organizes data into a hierarchy of the following levels:
 
