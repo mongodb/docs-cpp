@@ -109,13 +109,14 @@ Basic Builder
 ~~~~~~~~~~~~~
 
 The ``builder::basic`` interface is a builder-style interface for constructing a BSON document. 
-To create a BSON document by using the basic builder, call the ``make_document()`` method
-and pass in a list of key-value pair objects. You can create these key-value pair objects by
-passing a key and value to the ``builder::basic::kvp()`` method. The key must be a ``string`` type, and
+To create a BSON document by using the basic builder, specify your document's data in a list of
+key-value pair objects. You can create these key-value pair objects by passing a key and value
+to the ``builder::basic::kvp()`` method. The key must be a ``string`` type, and
 the value must be a ``bson_value::value`` type or implicitly convertible to one. 
 
-You can use the basic builder to create a document and convert it to a ``bsoncxx::document::value``
-in a single statement, as shown in the following code: 
+You can use the basic builder's ``make_document()`` method to create a document and
+convert it to a ``bsoncxx::document::value`` in a single statement, as shown in the
+following code:
 
 .. literalinclude:: /includes/data-formats/bson.cpp
     :language: cpp
