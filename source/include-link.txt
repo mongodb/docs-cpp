@@ -1,0 +1,168 @@
+.. _cpp-include-link:
+
+===========================================
+Include and Link the Driver in Your Program
+===========================================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+The examples on this page make use of the ``view_and_value.cpp`` example program located in the {+driver-short+} source. This program can be executed without the need for a running MongoDB server. As a result, the examples use the ``mongo::bsoncxx_shared`` CMake target or the ``libbsoncxx`` pkg-config package. You may use ``mongo::mongoccxx_shared``, ``libmongocxx`` or the static counterparts (``mongo::bsoncxx_static``, ``libbsoncxx-static``, ``mongo::mongoccxx_static``, or ``libmongocxx-static``) depending on the needs of your own project. The availability of targets is dependent on the particular installation method.
+
+In the sections that follow, replace ``<path-to-mongo-cxx-driver-sources>`` with the actual path where the {+driver-short+} source tree is located on your system.
+
+CMake
+-----
+
+The preferred way to use the {+driver-short+} is via CMake. This can be done via ``find_package`` (if the {+driver-short+} is installed) or via ``add_subdirectory`` (without installing the {+driver-short+}). The second approach is considered advanced.
+
+With Driver Installation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The {+driver-short+} can be installed from source (as described in :ref:`cpp-quick-start-download-and-install`) or from packages (as described in :ref:`cpp-installation-advanced`). You will need to install the {+driver-short+} using one of those methods before proceeding.
+
+Once the {+driver-short+} is installed, then create a project directory. For this example, we will use ``/home/user/project1``. Create the following file in the project directory:
+
+.. literalinclude:: /includes/cmake_with_driver_installation.txt
+  :caption: /home/user/project1/CMakeLists.txt
+  :start-after: -- sphinx-include-start --
+
+The project can then be built and executed. Note that depending on your particular environment, you may need to specify additional options to the first CMake command below. For instance, if your compiler does not default to at least c++17, then you may need ``-DCMAKE_CXX_STANDARD=17``. And if in the installation step you installed the {+driver-short+} to a non-standard location, you may need to specify ``-DCMAKE_PREFIX_PATH=/<path-to-mongo-cxx-driver-installation>``. The execution should resemeble: 
+
+.. code-block:: none
+
+   $ cd /home/user/project1
+   $ cmake -Bbuild
+   -- The CXX compiler identification is GNU 14.2.0
+   -- Detecting CXX compiler ABI info
+   -- Detecting CXX compiler ABI info - done
+   -- Check for working CXX compiler: /usr/bin/c++ - skipped
+   -- Detecting CXX compile features
+   -- Detecting CXX compile features - done
+   -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+   -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+   -- Found Threads: TRUE
+   -- Configuring done (0.3s)
+   -- Generating done (0.0s)
+   -- Build files have been written to: /home/user/project1/build
+   $ cmake --build build
+   [ 50%] Building CXX object CMakeFiles/view_and_value.dir/<path-to-mongo-cxx-driver-sources>/examples/bsoncxx/view_and_value.cpp.o
+   [100%] Linking CXX executable view_and_value
+   [100%] Built target view_and_value
+   $ ./build/view_and_value
+   { "team" : "platforms", "id" : { "$oid" : "66f4be6fef9eb8b9240619f0" }, "members" : [ "tyler", "jason", "drew", "sam", "ernie", "john", "mark", "crystal" ] }
+   Got key, key = team
+   Got String!
+   Got key, key = id
+   Got ObjectId!
+   Got key, key = members
+   Got Array!
+   array element: tyler
+   array element: jason
+   array element: drew
+   array element: sam
+   array element: ernie
+   array element: john
+   array element: mark
+   array element: crystal
+   as expected, we have a team
+   document has 3 keys.
+   document keys are:
+   team
+   id
+   members
+
+
+Without Driver Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The {+driver-short+} can also be utilized via CMake's ``add_subdirectory`` command, without first installing it. This is considered an advanced technique with some drawbacks (notably, this approach lacks the ability to specify a version constraint as with ``find_package``).
+
+Note that it may be necessary to adjust build flags for your project in order to accommodate this approach. Your own build will need to include any flags or options that you would have passed to the {+driver-short+} (e.g., as you might have done in a separate installation step).
+
+Create a project directory. For this example, we will use ``/home/user/project2``. Create the following file in the project directory:
+
+.. literalinclude:: /includes/cmake_without_driver_installation.txt
+  :caption: /home/user/project2/CMakeLists.txt
+  :start-after: -- sphinx-include-start --
+
+Note that in this approach the CMake target is referred to simply as ``bsoncxx_shared``, without the ``mongo::`` namespace. The namespace is added as part of the CMake module installation, which is not performed in this approach.
+
+The project can then be built and executed (the rather voluminous CMake output has been omitted for the sake of brevity):
+
+.. code-block:: none
+
+   $ cmake -Bbuild
+   $ cmake --build build
+   $ ./build/view_and_value 
+   { "team" : "platforms", "id" : { "$oid" : "67207dcf532837a4470cc090" }, "members" : [ "tyler", "jason", "drew", "sam", "ernie", "john", "mark", "crystal" ] }
+   Got key, key = team
+   Got String!
+   Got key, key = id
+   Got ObjectId!
+   Got key, key = members
+   Got Array!
+   array element: tyler
+   array element: jason
+   array element: drew
+   array element: sam
+   array element: ernie
+   array element: john
+   array element: mark
+   array element: crystal
+   as expected, we have a team
+   document has 3 keys.
+   document keys are: 
+   team 
+   id 
+   members
+
+pkg-config
+----------
+
+Because ``pkg-config`` provides less flexibility compared with CMake it is a less desirable way to use the {+driver-short+}. However, if your project is not CMake-based or is otherwise already structured around ``pkg-config``, then this provides a very simple way to integrate the {+driver-short+} with your project.
+
+Unlike as with CMake, using the {+driver-short+} via ``pkg-config`` is only possible with the driver fully installed. The {+driver-short+} can be installed from source (as described in :ref:`cpp-quick-start-download-and-install`) or from packages (as described in :ref:`cpp-installation-advanced`). You will need to install the {+driver-short+} using one of those methods before proceeding.
+
+Assuming a source file located at ``/<path-to-mongo-cxx-driver-sources>/examples/bsoncxx/view_and_value.cpp`` then using the {+driver-short+} via ``pkg-config`` can be accomplished like this:
+
+.. code-block:: none
+
+   $ c++ /<path-to-mongo-cxx-driver-sources>/examples/bsoncxx/view_and_value.cpp $(pkg-config --cflags libbsoncxx) -I/<path-to-mongo-cxx-driver-sources> $(pkg-config pkg-config --libs libbsoncxx) -o view_and_value
+   $ ./view_and_value 
+   { "team" : "platforms", "id" : { "$oid" : "67207262672b96dc3b0fc150" }, "members" : [ "tyler", "jason", "drew", "sam", "ernie", "john", "mark", "crystal" ] }
+   Got key, key = team
+   Got String!
+   Got key, key = id
+   Got ObjectId!
+   Got key, key = members
+   Got Array!
+   array element: tyler
+   array element: jason
+   array element: drew
+   array element: sam
+   array element: ernie
+   array element: john
+   array element: mark
+   array element: crystal
+   as expected, we have a team
+   document has 3 keys.
+   document keys are: 
+   team 
+   id 
+   members
+
+The above command line can be adapted for more complex projects (e.g., by adding module version consrtaints) or specific build systems depending on how they consume pkg-config packages.
+
+TODO
+source/advanced-installation.txt
+https://www.mongodb.com/docs/languages/c/c-driver/current/libmongoc/tutorial/#cmake
+https://www.mongodb.com/docs/languages/cpp/cpp-driver/upcoming/advanced-installation/
+https://www.mongodb.com/docs/languages/cpp/cpp-driver/current/tutorial/
