@@ -20,7 +20,7 @@ Retrieve Data
 Overview
 --------
 
-In this guide, you can learn how to use the {+driver-short+} to retrieve
+this guide, you can learn how to use the {+driver-short+} to retrieve
 data from a MongoDB collection by using **read operations**. You can call the
 ``find()`` or ``find_one()`` method on a collection to retrieve documents
 that match a set of criteria.
