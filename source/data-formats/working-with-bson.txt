@@ -33,20 +33,22 @@ BSON Values and Views
 
 Many {+driver-short+} methods take a BSON document as an argument.
 The ``bsoncxx`` library provides two types that represent an underlying
-BSON document: ``document::value`` and ``document::view``. 
+BSON document: ``bsoncxx::document::value`` and ``bsoncxx:document::view``. 
 
 The ``document::value`` type represents a BSON document that
 owns its underlying buffer of data. When you pass a ``document::value`` to a
-{+driver-short+} method, the ownership of the underlying buffer is passed
-to the caller and a copy of the ``document::value`` is created and passed
-to the callee. When a ``document::value`` type goes out of scope, its
-underlying buffer is freed.
+{+driver-short+} method, the method receives a copy of the ``document::value``.
+When a ``document::value`` type goes out of scope, its underlying buffer is freed.
+You can convert builder types to ``document::value`` types by calling the ``extract()``
+method on the builder. To learn more about the builder types, see the :ref:`cpp-bson-builders`
+section in this guide.
 
 The ``document::view`` type provides a non-owning view into a ``document::value``.
 This type allows you to read and interact with the contents of a BSON
 document without owning its underlying data. When you pass a ``document::view``
 object to a {+driver-short+} method, the method can use data from the underlying document
-without copying it. To avoid excess copying, we recommend passing documents by view
+without copying it. You can create a view by calling the ``view()`` method on a ``document::value``
+object. To avoid excess copying, we recommend passing documents by view
 if possible.
 
 Some {+driver-short+} methods accept arguments of type ``document::view_or_value``. You
@@ -63,8 +65,8 @@ reference to transfer ownership of the document to the method.
 
 .. _cpp-bson-builders: 
 
-Create a BSON Document 
-----------------------
+Build a BSON Document 
+---------------------
 
 This section shows how to use the following interfaces to create a
 BSON document:  
@@ -89,8 +91,11 @@ the following requirements:
 
 If the preceding requirements are not met, the list builder creates an array. 
 
-The following code shows how to use the list builder to create a document and an
-array:
+This example uses the list builder to perform the following actions:
+
+- Build a document 
+- Build an array
+- Convert the builder document to a ``bsoncxx::document::value``
 
 .. literalinclude:: /includes/data-formats/bson.cpp
     :language: cpp
@@ -109,7 +114,8 @@ and pass in a list of key-value pair objects. You can create these key-value pai
 passing a key and value to the ``builder::basic::kvp()`` method. The key must be a ``string`` type, and
 the value must be a ``bson_value::value`` type or implicitly convertible to one. 
 
-The following code shows how to use the basic builder to create a BSON document: 
+You can use the basic builder to create a document and convert it to a ``bsoncxx::document::value``
+in a single statement, as shown in the following code: 
 
 .. literalinclude:: /includes/data-formats/bson.cpp
     :language: cpp
@@ -117,10 +123,13 @@ The following code shows how to use the basic builder to create a BSON document:
     :start-after: start-bson-make-document
     :end-before: end-bson-make-document
 
-Alternatively, you can use this interface to construct a BSON document
-by appending key-value pairs to a basic builder object. The following 
-example initializes a ``builder::basic::document`` object, then calls the
-``append()`` method to store data in the document:
+Alternatively, you can create a BSON document across multiple statements
+by appending key-value pairs to a basic builder object. This 
+example uses the basic builder to perform the following actions:
+
+- Initialize a ``builder::basic::document`` object
+- Store data in the document by using the ``append()`` method
+- Convert the builder document to a ``bsoncxx::document::value``
 
 .. literalinclude:: /includes/data-formats/bson.cpp
     :language: cpp
@@ -138,20 +147,23 @@ Stream Builder
    We recommend using the :ref:`Basic Builder <cpp-bson-basic>` instead 
    of the stream builder. 
    
-   To properly append each new value, a stream builder must track
-   of the state of the current document, including the nesting
-   level and the type of the most recent value appended to the builder. The initial
-   stream builder must *not* be reused after this state changes, so all intermediate
-   values must be stored in new variables if a document is being built
-   with the stream builder across multiple statements. Due to this complexity,
-   use of the stream builder is discouraged.
+   To properly append each new value, a stream builder must keep track
+   of the state of the current document. You cannot reuse the initial
+   stream builder after this state changes. As a result, all intermediate
+   values must be stored in new variables if you build a document
+   across multiple statements. Due to this complexity, use of the stream
+   builder is discouraged.
 
 The ``builder::stream`` interface is a streaming interface for constructing
 complex BSON objects. To create a BSON document by using the stream builder,
 initialize a ``builder::stream::document`` object. Then, you can use the ``<<``
 operator to stream keys and values into your builder. 
 
-The following code shows how to create a BSON document by using the stream builder:
+The following code shows how to use the stream builder to perform the
+following actions:
+
+- Build a document
+- Convert the document to a ``bsoncxx::document::value``
 
 .. literalinclude:: /includes/data-formats/bson.cpp
     :language: cpp
@@ -159,7 +171,7 @@ The following code shows how to create a BSON document by using the stream build
     :start-after: start-bson-stream
     :end-before: end-bson-stream
 
-You can convert the stream to a ``bsoncxx::document::value`` by using the
+You can also convert the stream to a ``bsoncxx::document::value`` by using the
 ``builder::stream::finalize`` token, as shown in the following example:
 
 .. literalinclude:: /includes/data-formats/bson.cpp

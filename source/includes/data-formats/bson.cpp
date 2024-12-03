@@ -19,10 +19,12 @@ int main() {
         // Creates a BSON document using the list builder
         // start-bson-list
         bsoncxx::builder::list course_doc = { "title", "Poetry",
-                                              "department", "English" }
+                                              "department", "English" };
 
         bsoncxx::builder::list courses_array = { "Poetry", "Literature",
-                                                 "Creative Writing" }
+                                                 "Creative Writing" };
+
+        bsoncxx::document::value course{course_doc.extract()};
         // end-bson-list 
     }
 
@@ -43,18 +45,21 @@ int main() {
         // start-bson-append
         using bsoncxx::builder::basic::kvp;
 
-        auto course = bsoncxx::builder::basic::document{};
-        course.append(kvp("title", "Literature"), kvp("department", "English"));
+        auto course_builder = bsoncxx::builder::basic::document{};
+        course_builder.append(kvp("title", "Literature"),
+                              kvp("department", "English"));
+                              
+        bsoncxx::document::value course{course_builder.extract()};
         // end-bson-append
     }
 
     {
         // Creates a BSON document using the stream builder
         // start-bson-stream
-        using bsoncxx::builder::stream::document;
+        auto course_builder = bsoncxx::builder::stream::document{};
+        course_builder << "title" << "Creative Writing" << "credits" << types::b_int32{4};
 
-        auto course = document{};
-        course << "title" << "Creative Writing" << "credits" << types::b_int32{4};
+        bsoncxx::document::value course{course_builder.extract()};
         // end-bson-stream 
     }
 
