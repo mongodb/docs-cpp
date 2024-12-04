@@ -220,6 +220,9 @@ The v3.11 driver introduces the following breaking changes to the build system:
 
 - Drops support for {+mdb-server+} v3.6.
 - Requires MongoDB C Driver v1.28.0 or later.
+- If the ``ENABLE_TESTS`` configuration option is set to ``ON``, you must configure
+  the driver to use C++14 or later. You can opt out of the C++14 requirement
+  by disabling tests with ``ENABLE_TESTS=OFF`` during CMake configuration.
 
 ABI Breaking Changes in v3.11
 `````````````````````````````
@@ -257,10 +260,6 @@ The v3.11 driver introduces the following breaking changes to the ABI:
 - Declare all exported functions symbols with ``__cdecl`` when compiled with
   MSVC. This is an ABI breaking change if you use an alternative
   default calling convention when building projects.
-
-- If the ``ENABLE_TESTS`` variable is set to ``ON`` while building tests in CMake,
-  the compiler must be updated to C++14. Users can opt out of the C++14 requirement
-  by disabling tests with ``ENABLE_TESTS=OFF{`` during CMake configuration.
 
 .. _version-3.10-breaking-changes:
 
