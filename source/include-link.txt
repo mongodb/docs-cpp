@@ -34,7 +34,7 @@ Once the {+driver-short+} is installed, then create a project directory. For thi
   :caption: /home/user/project1/CMakeLists.txt
   :start-after: -- sphinx-include-start --
 
-The project can then be built and executed. Note that depending on your particular environment, you may need to specify additional options to the first CMake command below. For instance, if your compiler does not default to at least c++17, then you may need ``-DCMAKE_CXX_STANDARD=17``. And if in the installation step you installed the {+driver-short+} to a non-standard location, you may need to specify ``-DCMAKE_PREFIX_PATH=/<path-to-mongo-cxx-driver-installation>``. The execution should resemeble: 
+The project can then be built and executed. Note that depending on your particular environment, you may need to specify additional options to the first CMake command below. For instance, if your compiler does not default to at least c++17, then you may need ``-DCMAKE_CXX_STANDARD=17``. And if in the installation step you installed the {+driver-short+} to a non-standard location, you may need to specify ``-DCMAKE_PREFIX_PATH=/<path-to-mongo-cxx-driver-installation>``. The execution should resemble:
 
 .. code-block:: none
 
@@ -160,9 +160,3 @@ Assuming a source file located at ``/<path-to-mongo-cxx-driver-sources>/examples
    members
 
 The above command line can be adapted for more complex projects (e.g., by adding module version consrtaints) or specific build systems depending on how they consume pkg-config packages.
-
-TODO
-source/advanced-installation.txt
-https://www.mongodb.com/docs/languages/c/c-driver/current/libmongoc/tutorial/#cmake
-https://www.mongodb.com/docs/languages/cpp/cpp-driver/upcoming/advanced-installation/
-https://www.mongodb.com/docs/languages/cpp/cpp-driver/current/tutorial/
