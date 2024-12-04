@@ -47,8 +47,8 @@ The following example accesses a database named ``"test_database"``:
    :copyable:
    :dedent:
 
-Alternatively, you can use the ``[]`` operator as a shorthand for the
-``database()`` function, as shown in the following code:
+Alternatively, you can use the ``[]`` operator on a ``mongocxx::client``
+as a shorthand for the ``database()`` function, as shown in the following code:
 
 .. literalinclude:: /includes/databases-collections/databases-collections.cpp
    :start-after: start-access-database-operator
@@ -73,8 +73,8 @@ The following example accesses a collection named ``"test_collection"``:
    :copyable:
    :dedent:
 
-Alternatively, you can use the ``[]`` operator as a shorthand for the
-``collection()`` function, as shown in the following code:
+Alternatively, you can use the ``[]`` operator on a ``mongocxx::database``
+as a shorthand for the ``collection()`` function, as shown in the following code:
 
 .. literalinclude:: /includes/databases-collections/databases-collections.cpp
    :start-after: start-access-collection-operator
