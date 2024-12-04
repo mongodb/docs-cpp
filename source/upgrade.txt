@@ -230,6 +230,7 @@ The v3.11 driver introduces the following breaking changes to the ABI:
   ABI:
 
   .. code-block::
+     :copyable: false
 
      bsoncxx::v_noabi::types::bson_value::value::value(const uint8_t*, uint32_t, uint32_t, uint32_t)
 
@@ -244,10 +245,12 @@ The v3.11 driver introduces the following breaking changes to the ABI:
   ABI:
 
   .. code-block::
+     :copyable: false 
+     
      mongocxx::v_noabi::options::change_stream::as_bson()
 
      mongocxx::v_noabi::options::aggregate::append(bsoncxx::v_noabi::builder::basic::document&)
-     
+
      mongocxx::v_noabi::options::index::storage_options()
 
 
