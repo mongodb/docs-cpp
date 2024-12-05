@@ -14,27 +14,39 @@ Include and Link the Driver in Your Program
    :name: genre
    :values: reference
 
-The examples on this page make use of the ``view_and_value.cpp`` example program located in the {+driver-short+} source. This program can be executed without the need for a running MongoDB server. As a result, the examples use the ``mongo::bsoncxx_shared`` CMake target or the ``libbsoncxx`` pkg-config package. You may use ``mongo::mongoccxx_shared``, ``libmongocxx`` or the static counterparts (``mongo::bsoncxx_static``, ``libbsoncxx-static``, ``mongo::mongoccxx_static``, or ``libmongocxx-static``) depending on the needs of your own project. The availability of targets is dependent on the particular installation method.
+The examples on this page use the ``view_and_value.cpp`` example program from the {+driver-short+} source code. You do not need to run this program on a MongoDB server. As a result, the examples use the ``mongo::bsoncxx_shared`` CMake target or the ``libbsoncxx`` pkg-config package. You may use the following library targets, depending on the needs of your project:
+
+- ``mongo::mongoccxx_shared``
+- ``libmongocxx`` 
+- ``mongo::bsoncxx_static``
+- ``libbsoncxx-static``
+- ``mongo::mongoccxx_static``
+-  ``libmongocxx-static``
+
+The availability of targets is dependent on the particular installation method.
 
 In the sections that follow, replace ``<path-to-mongo-cxx-driver-sources>`` with the actual path where the {+driver-short+} source tree is located on your system.
 
 CMake
 -----
 
-The preferred way to use the {+driver-short+} is via CMake. This can be done via ``find_package`` (if the {+driver-short+} is installed) or via ``add_subdirectory`` (without installing the {+driver-short+}). The second approach is considered advanced.
+You can configure the {+driver-short+} by using CMake. CMake provides the ``find_package`` command, which you can use to locate external libraries if the {+driver-short+} is installed. Alternatively, you can use the advanced ``add_subdirectory`` command without installing the {+driver-short+}.
 
 With Driver Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The {+driver-short+} can be installed from source (as described in :ref:`cpp-quick-start-download-and-install`) or from packages (as described in :ref:`cpp-installation-advanced`). You will need to install the {+driver-short+} using one of those methods before proceeding.
+After installing the {+driver-short+}, you can use CMake's ``find_package`` command to configure the driver. To learn how to install the {+driver-short+}, visit the following guides:
 
-Once the {+driver-short+} is installed, then create a project directory. For this example, we will use ``/home/user/project1``. Create the following file in the project directory:
+- :ref:`cpp-quick-start-download-and-install` to install from source
+- :ref:`cpp-installation-advanced` to install from packages
+
+To use the ``find_package`` command, create a ``CMakeLists.txt`` file in your project directory. The following example creates a ``CMakeLists.txt`` file in the ``/home/user/project1`` project directory that uses ``find_package``:
 
 .. literalinclude:: /includes/cmake_with_driver_installation.txt
   :caption: /home/user/project1/CMakeLists.txt
   :start-after: -- sphinx-include-start --
 
-The project can then be built and executed. Note that depending on your particular environment, you may need to specify additional options to the first CMake command below. For instance, if your compiler does not default to at least c++17, then you may need ``-DCMAKE_CXX_STANDARD=17``. And if in the installation step you installed the {+driver-short+} to a non-standard location, you may need to specify ``-DCMAKE_PREFIX_PATH=/<path-to-mongo-cxx-driver-installation>``. The execution should resemble:
+Then, you can build and run your project. Depending on your particular environment, you may need to specify additional options to the following CMake command. For instance, if your compiler does not default to at least C++17, use the ``-DCMAKE_CXX_STANDARD=17`` CMake option. If you installed the driver to a non-standard location, you may need to specify the ``-DCMAKE_PREFIX_PATH=/<path-to-mongo-cxx-driver-installation>`` option. The execution should resemble the following code:
 
 .. code-block:: none
 
@@ -83,11 +95,15 @@ The project can then be built and executed. Note that depending on your particul
 Without Driver Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The {+driver-short+} can also be utilized via CMake's ``add_subdirectory`` command, without first installing it. This is considered an advanced technique with some drawbacks (notably, this approach lacks the ability to specify a version constraint as with ``find_package``).
+Alternatively, you can use CMake's ``add_subdirectory`` command without installing the {+driver-short+}. This is an advanced technique that, unlike the  ``find_package`` command, does not support specifying version constraints.
 
-Note that it may be necessary to adjust build flags for your project in order to accommodate this approach. Your own build will need to include any flags or options that you would have passed to the {+driver-short+} (e.g., as you might have done in a separate installation step).
+.. note::
 
-Create a project directory. For this example, we will use ``/home/user/project2``. Create the following file in the project directory:
+   You may need to adjust build flags for your project to 
+   accommodate this approach. You must include any flags or
+   options that you would have passed to the {+driver-short+} during installation.
+
+To use the ``add_subdirectory`` command, create a ``CMakeLists.txt`` file in your project directory. The following example creates a ``CMakeLists.txt`` file in the ``/home/user/project2`` project directory that uses ``add_subdirectory``:
 
 .. literalinclude:: /includes/cmake_without_driver_installation.txt
   :caption: /home/user/project2/CMakeLists.txt
@@ -95,7 +111,7 @@ Create a project directory. For this example, we will use ``/home/user/project2`
 
 Note that in this approach the CMake target is referred to simply as ``bsoncxx_shared``, without the ``mongo::`` namespace. The namespace is added as part of the CMake module installation, which is not performed in this approach.
 
-The project can then be built and executed (the rather voluminous CMake output has been omitted for the sake of brevity):
+Then, you can build and run your project. The following code shows a truncated example of the CMake output:
 
 .. code-block:: none
 
@@ -127,11 +143,11 @@ The project can then be built and executed (the rather voluminous CMake output h
 pkg-config
 ----------
 
-Because ``pkg-config`` provides less flexibility compared with CMake it is a less desirable way to use the {+driver-short+}. However, if your project is not CMake-based or is otherwise already structured around ``pkg-config``, then this provides a very simple way to integrate the {+driver-short+} with your project.
+If your project is not CMake-based, you can ``pkg-config`` to integrate the {+driver-short+} with your project. Because ``pkg-config`` provides less flexibility than CMake, we recommend avoiding this approach when possible.
 
-Unlike as with CMake, using the {+driver-short+} via ``pkg-config`` is only possible with the driver fully installed. The {+driver-short+} can be installed from source (as described in :ref:`cpp-quick-start-download-and-install`) or from packages (as described in :ref:`cpp-installation-advanced`). You will need to install the {+driver-short+} using one of those methods before proceeding.
+You can only use the {+driver-short+} with ``pkg-config`` if you fully install the driver. 
 
-Assuming a source file located at ``/<path-to-mongo-cxx-driver-sources>/examples/bsoncxx/view_and_value.cpp`` then using the {+driver-short+} via ``pkg-config`` can be accomplished like this:
+The following code uses ``pkg-config`` to configure the driver. Replace the ``/<path-to-mongo-cxx-driver-sources>`` placeholder with your installation path:
 
 .. code-block:: none
 
@@ -159,4 +175,4 @@ Assuming a source file located at ``/<path-to-mongo-cxx-driver-sources>/examples
    id 
    members
 
-The above command line can be adapted for more complex projects (e.g., by adding module version consrtaints) or specific build systems depending on how they consume pkg-config packages.
+You can adapt the preceding command line for more complex projects or specific build systems depending on how they consume ``pkg-config`` packages.
