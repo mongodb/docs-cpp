@@ -90,7 +90,7 @@ int main() {
         mongocxx::read_preference rp;
         rp.mode(mongocxx::read_preference::read_mode::k_secondary);
         mongocxx::read_concern rc;
-        rc.acknowledge_level(mongocxx::read_concern::level::k_majority)
+        rc.acknowledge_level(mongocxx::read_concern::level::k_majority);
 
         db.read_preference(rp);
         db.read_concern(rc);
@@ -103,9 +103,9 @@ int main() {
         auto coll = client["test_database"]["test_collection"];
 
         mongocxx::read_concern rc;
-        rc.acknowledge_level(mongocxx::read_concern::level::k_local)
+        rc.acknowledge_level(mongocxx::read_concern::level::k_local);
         mongocxx::write_concern wc;
-        wc.acknowledge_level(mongocxx::write_concern::level::k_acknowledged)
+        wc.acknowledge_level(mongocxx::write_concern::level::k_acknowledged);
 
         coll.read_concern(rc);
         coll.write_concern(wc);
