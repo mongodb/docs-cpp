@@ -37,8 +37,8 @@ a BSON document: ``bsoncxx::document::value`` and ``bsoncxx:document::view``.
 
 A ``document::value`` object represents a BSON document that owns its
 underlying buffer of data. When you pass a ``document::value`` object
-to a {+driver-short+} method, the method receives a copy of the ``document::value``.
-When a ``document::value`` object goes out of scope, its underlying buffer is freed.
+to a {+driver-short+} method, the method receives a copy of the BSON document
+data. When a ``document::value`` object goes out of scope, its underlying buffer is freed.
 
 .. tip::
 
