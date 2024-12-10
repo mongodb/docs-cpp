@@ -93,7 +93,7 @@ object, passing a list of key-value pairs to the constructor. The list builder c
 BSON document if the key-value list fulfills the following requirements:
 
 - The list has an even number of elements.
-- Each key is a ``string`` type and each value is a ``bson_value::value`` type is or
+- Each key is a ``string`` type and each value is a ``bson_value::value`` type or is
   implicitly convertible to one.
 
 If the preceding requirements are not met, the list builder creates an array. 
