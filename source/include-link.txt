@@ -24,6 +24,8 @@ Sample Data
 
 The examples on this page use the :github:`view_and_value.cpp </mongo-cxx-driver/blob/master/examples/bsoncxx/view_and_value.cpp>` example program from the {+driver-short+} source code. Obtain the {+driver-short+} source code by following the :ref:`cpp-quick-start-download-and-install` guide.
 
+In the sections that follow, replace ``<path-to-mongo-cxx-driver-sources>`` with the actual path where the {+driver-short+} source tree is located on your system.
+
 You do not need to run this program on a MongoDB server.
 
 Library References
@@ -44,12 +46,24 @@ The examples on this page reference {+driver-short+} library targets. Examples i
 
 The availability of targets depends on the particular installation method.
 
-In the sections that follow, replace ``<path-to-mongo-cxx-driver-sources>`` with the actual path where the {+driver-short+} source tree is located on your system.
 .. _cpp-include-cmake:
 CMake
 -----
 
 You can use CMake to include the {+driver-short+} in your project. CMake provides the ``find_package`` command, which your project can use to locate the {+driver-short+} once it is installed. Alternatively, your project can use the advanced ``add_subdirectory`` command without installing the {+driver-short+}.
+
+Troubleshooting
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the following sections, if you encounter errors, you may need to specify additional options to the initial CMake command. The specific options depend on your particular environment. However, the following options address most common issues:
+
+- If your compiler does not default to at least C++17, use the ``-DCMAKE_CXX_STANDARD=17`` CMake option.
+
+- If you installed the driver to a non-standard location, specify the ``-DCMAKE_PREFIX_PATH=/<path-to-mongo-cxx-driver-installation>`` option. For example:
+
+.. code-block:: none
+
+   $ cmake -Bbuild -DCMAKE_CXX_STANDARD=17 -DCMAKE_PREFIX_PATH=/opt/mongodb/cxx-driver
 
 With Driver Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -72,29 +86,24 @@ To use the ``find_package`` command, create a ``CMakeLists.txt`` file in your pr
   :caption: /home/user/project1/CMakeLists.txt
   :start-after: -- sphinx-include-start --
 
-Then, you can build and run your project. The execution should produce output resembling the following sample output:
+Then, run the following commands to build your project:
 
 .. code-block:: none
 
    $ cd /home/user/project1
    $ cmake -Bbuild
-   -- The CXX compiler identification is GNU 14.2.0
-   -- Detecting CXX compiler ABI info
-   -- Detecting CXX compiler ABI info - done
-   -- Check for working CXX compiler: /usr/bin/c++ - skipped
-   -- Detecting CXX compile features
-   -- Detecting CXX compile features - done
-   -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
-   -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
-   -- Found Threads: TRUE
-   -- Configuring done (0.3s)
-   -- Generating done (0.0s)
-   -- Build files have been written to: /home/user/project1/build
    $ cmake --build build
-   [ 50%] Building CXX object CMakeFiles/view_and_value.dir/<path-to-mongo-cxx-driver-sources>/examples/bsoncxx/view_and_value.cpp.o
-   [100%] Linking CXX executable view_and_value
-   [100%] Built target view_and_value
+
+These commands return information about the build process. After the build completes, run the executable produced in the preceding step:
+
+.. code-block:: none
+
    $ ./build/view_and_value
+
+The output resembles the following:
+
+.. code-block:: none
+
    { "team" : "platforms", "id" : { "$oid" : "66f4be6fef9eb8b9240619f0" }, "members" : [ "tyler", "jason", "drew", "sam", "ernie", "john", "mark", "crystal" ] }
    Got key, key = team
    Got String!
@@ -116,16 +125,6 @@ Then, you can build and run your project. The execution should produce output re
    team
    id
    members
-
-If you encounter errors, you may need to specify additional options to the initial CMake command. The specific options depend on your particular environment. However, the following options address most common issues:
-
-- If your compiler does not default to at least C++17, use the ``-DCMAKE_CXX_STANDARD=17`` CMake option.
-
-- If you installed the driver to a non-standard location, specify the ``-DCMAKE_PREFIX_PATH=/<path-to-mongo-cxx-driver-installation>`` option. For example:
-
-.. code-block:: none
-
-   $ cmake -Bbuild -DCMAKE_CXX_STANDARD=17 -DCMAKE_PREFIX_PATH=/opt/mongodb/cxx-driver
 
 Without Driver Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -150,13 +149,24 @@ To use the ``add_subdirectory`` command, create a ``CMakeLists.txt`` file in you
    is added as part of the CMake module installation, which is not performed
    in this approach.
 
-Then, you can build and run your project. The following shows a truncated example of the CMake output and the program execution output immediately following:
+Then, run the following commands to build your project:
 
 .. code-block:: none
 
+   $ cd /home/user/project1
    $ cmake -Bbuild
    $ cmake --build build
-   $ ./build/view_and_value 
+
+These commands return information about the build process. After the build completes, run the executable produced in the preceding step:
+
+.. code-block:: none
+
+   $ ./build/view_and_value
+
+The output resembles the following:
+
+.. code-block:: none
+
    { "team" : "platforms", "id" : { "$oid" : "67207dcf532837a4470cc090" }, "members" : [ "tyler", "jason", "drew", "sam", "ernie", "john", "mark", "crystal" ] }
    Got key, key = team
    Got String!
@@ -179,7 +189,6 @@ Then, you can build and run your project. The following shows a truncated exampl
    id 
    members
 
-If you encounter errors, then refer to the preceding section, which includes suggested additional CMake options for resolving common build errors.
 .. _cpp-include-pkg-config:
 pkg-config
 ----------
