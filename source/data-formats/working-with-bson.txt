@@ -42,8 +42,8 @@ data. When a ``document::value`` object goes out of scope, its underlying buffer
 
 .. tip::
 
-   You can convert builder types to ``document::value`` types by calling the ``extract()``
-   method on the builder. To learn more about the builder types, see the :ref:`cpp-bson-builders`
+   You can convert builder types to ``document::value`` types by calling helper
+   methods on the builder. To learn more about the builder types, see the :ref:`cpp-bson-builders`
    section in this guide.
 
 A ``document::view`` object provides a non-owning view into a ``document::value``.

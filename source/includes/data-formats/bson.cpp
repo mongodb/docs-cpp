@@ -2,6 +2,8 @@
 #include <chrono>
 
 #include <bsoncxx/builder/basic/document.hpp>
+#include <bsoncxx/builder/list.hpp>
+#include <bsoncxx/builder/stream/document.hpp>
 #include <bsoncxx/json.hpp>
 #include <mongocxx/client.hpp>
 #include <mongocxx/instance.hpp>
@@ -24,7 +26,7 @@ int main() {
         bsoncxx::builder::list courses_array = { "Poetry", "Literature",
                                                  "Creative Writing" };
 
-        bsoncxx::document::value course{course_doc.extract()};
+        bsoncxx::document::value course{course_doc.view().get_document()};
         // end-bson-list 
     }
 
@@ -57,7 +59,7 @@ int main() {
         // Creates a BSON document using the stream builder
         // start-bson-stream
         auto course_builder = bsoncxx::builder::stream::document{};
-        course_builder << "title" << "Creative Writing" << "credits" << types::b_int32{4};
+        course_builder << "title" << "Creative Writing" << "credits" << bsoncxx::types::b_int32{4};
 
         bsoncxx::document::value course{course_builder.extract()};
         // end-bson-stream 
@@ -80,7 +82,7 @@ int main() {
             kvp("title","Screenwriting"),
             kvp("department","English"));
 
-        std::cout << bsoncxx::to_json(doc.view()) << std::endl;
+        std::cout << bsoncxx::to_json(course.view()) << std::endl;
         // end-bson-print
     }
 }
