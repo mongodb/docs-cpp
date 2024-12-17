@@ -26,7 +26,7 @@ int main() {
         bsoncxx::builder::list courses_array = { "Poetry", "Literature",
                                                  "Creative Writing" };
 
-        bsoncxx::document::value course{course_doc.view().get_document()};
+        bsoncxx::document::value course{course_doc.view().get_document().value};
         // end-bson-list 
     }
 
