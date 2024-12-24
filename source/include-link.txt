@@ -31,7 +31,7 @@ You do not need to run this program on a MongoDB server.
 Library References
 ~~~~~~~~~~~~~~~~~~
 
-The examples on this page reference {+driver-short+} library targets. Examples in the :ref:`CMake <cpp-include-cmake>` section use the``mongo::bsoncxx_shared`` target, and examples in the :ref:`pkg-config <cpp-include-pkg-config>` section use the ``libbsoncxx`` package. You may use the following alternative library targets, depending on the needs of your project:
+The examples on this page reference {+driver-short+} library targets. Examples in the :ref:`CMake <cpp-include-cmake>` section use the ``mongo::bsoncxx_shared`` target, and examples in the :ref:`pkg-config <cpp-include-pkg-config>` section use the ``libbsoncxx`` package. You may use the following alternative library targets, depending on the needs of your project:
 
 - CMake:
   - ``mongo::bsoncxx_shared``
@@ -63,7 +63,7 @@ In the following sections, if you encounter errors, you may need to specify addi
 
 .. code-block:: none
 
-   $ cmake -Bbuild -DCMAKE_CXX_STANDARD=17 -DCMAKE_PREFIX_PATH=/opt/mongodb/cxx-driver
+   cmake -Bbuild -DCMAKE_CXX_STANDARD=17 -DCMAKE_PREFIX_PATH=/opt/mongodb/cxx-driver
 
 With Driver Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -76,9 +76,9 @@ After installing the {+driver-short+}, you can use CMake's ``find_package`` comm
    the following guides:
 
    - :ref:`cpp-quick-start-download-and-install` to 
-      install from source
+     install from source
    - :ref:`cpp-installation-advanced` to install from 
-      packages
+     packages
 
 To use the ``find_package`` command, create a ``CMakeLists.txt`` file in your project directory. The following example creates a ``CMakeLists.txt`` file in the ``/home/user/project1`` project directory that uses ``find_package``:
 
@@ -197,7 +197,7 @@ If your project is not CMake-based, you can use ``pkg-config`` to integrate the 
 
 You can only use the {+driver-short+} with pkg-config if you fully install the driver.
 
-The following code uses ``pkg-config`` to include and link the {+driver-short+}. Replace the ``<path-to-mongo-cxx-driver-sources>`` placeholder with the location of the {+driver-short+} source tree is located on your system:
+The following code uses ``pkg-config`` to include and link the {+driver-short+}. Replace the ``<path-to-mongo-cxx-driver-sources>`` placeholder with the location of the {+driver-short+} source tree on your system:
 
 .. code-block:: none
 
