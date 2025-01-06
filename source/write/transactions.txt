@@ -20,9 +20,6 @@ Transactions
 Overview
 --------
 
-**THIS IS A TEST CHANGE DO NOT MERGE**
-**THIS IS ANOTHER TEST CHANGE**
-
 In this guide, you can learn how to use the {+driver-long+} to perform
 **transactions**. Transactions allow
 you to run a series of operations that do not change any data until the
