@@ -276,8 +276,8 @@ URI to ``"MONGODB-AWS"``, as shown in the following example:
 Error Handling
 --------------
 
-Authentication errors are thrown as ``mongocxx::exception``` errors. You can find
-the error code by using the ``code()`` method.
+You can handle authentication errors by catching ``mongocxx::exception``
+errors. Inspect the associated error code by using the ``code()`` method.
 
 .. literalinclude:: /includes/authentication.cpp
    :language: cpp
