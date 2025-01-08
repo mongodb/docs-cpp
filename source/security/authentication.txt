@@ -273,6 +273,18 @@ URI to ``"MONGODB-AWS"``, as shown in the following example:
    to retrieve credentials only from an EC2 instance, ensure that the
    environment variables are not set.
 
+Error Handling
+--------------
+
+Authentication errors are thrown as ``mongocxx::exception``` errors. You can find
+the error code by using the ``code()`` method.
+
+.. literalinclude:: /includes/authentication.cpp
+   :language: cpp
+   :copyable: true
+   :start-after: // start-auth-err
+   :end-before: // end-auth-err
+
 API Documentation
 -----------------
 
