@@ -285,7 +285,7 @@ the error code by using the ``code()`` method.
    :start-after: // start-auth-err
    :end-before: // end-auth-err
 
-For more information, see the `Operation Exceptions page
+For more information, see `Operation Exceptions
 <{+api+}/topic-mongocxx-examples-operation-exceptions.html>`__ in the API
 Documentation.
 
