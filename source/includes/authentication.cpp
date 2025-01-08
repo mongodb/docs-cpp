@@ -49,10 +49,10 @@ auto client = mongocxx::client(uri);
 
 // start-auth-err
 try {
-    auto uri = mongocxx::uri("mongodb://<>"
-                         "authMechanism=<>");
+    auto uri = mongocxx::uri("mongodb://<db_username>:<db_password>@<hostname>:<port>/?"
+                         "authSource=admin&authMechanism=SCRAM-SHA-256");
     auto client = mongocxx::client(uri);
-} catch (const mongocxx::exception& e) {
-    std::cerr << "Error: " << e.code() << std::endl;
+} catch (const mongocxx::exception& ex) {
+    std::cerr << "Error: " << ex.code() << std::endl;
 }
 // end-auth-err
