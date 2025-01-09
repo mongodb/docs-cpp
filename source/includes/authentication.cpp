@@ -49,11 +49,11 @@ auto client = mongocxx::client(uri);
 
 // start-auth-err
 try {
-    auto uri = mongocxx::uri("<Your chosen auth method>");
+    auto uri = mongocxx::uri("<connection string>");
     auto client = mongocxx::client(uri);
 
-    client["db"].run_command("<Any command requiring authorization>");
-    
+    client["db"].run_command(<any command requiring authorization>);
+
 } catch (const mongocxx::exception& ex) {
     std::cerr << "Error: " << ex.what() << std::endl;
 }
