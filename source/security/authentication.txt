@@ -288,7 +288,7 @@ shown in the following example:
 
 For more information, see `Operation Exceptions
 <{+api+}/topic-mongocxx-examples-operation-exceptions.html>`__ in the API
-Documentation.
+documentation.
 
 API Documentation
 -----------------
