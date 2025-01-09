@@ -277,7 +277,7 @@ Error Handling
 --------------
 
 You can handle authentication errors by catching ``mongocxx::exception``
-errors. Inspect the associated error code by using the ``code()`` method, as
+errors. Inspect the error message string by using the ``what()`` method, as
 shown in the following example:
 
 .. literalinclude:: /includes/authentication.cpp

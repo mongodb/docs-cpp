@@ -52,7 +52,8 @@ try {
     auto uri = mongocxx::uri("mongodb://<db_username>:<db_password>@<hostname>:<port>/?"
                          "authSource=admin&authMechanism=SCRAM-SHA-256");
     auto client = mongocxx::client(uri);
+    client["db"].run_command(bsoncxx::from_json(R"({"ping": 1})")); // Any command requiring authorization
 } catch (const mongocxx::exception& ex) {
-    std::cerr << "Error: " << ex.code() << std::endl;
+    std::cerr << "Error: " << ex.what() << std::endl;
 }
 // end-auth-err
