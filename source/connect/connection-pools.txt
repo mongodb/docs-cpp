@@ -41,8 +41,8 @@ Configuring a Connection Pool
 -----------------------------
 
 The number of clients in a connection pool is limited by the URI parameter
-``maxPoolSize``. Once the number of clients created by a ``mongocxx::pool``
-(both in the pool and checked out) reaches ``maxPoolSize``,
+``maxPoolSize``. After the number of clients created by a ``mongocxx::pool``
+(both in the pool and checked out) reaches the value of ``maxPoolSize``,
 ``mongocxx::pool::acquire`` blocks until another thread returns a client to the
 pool. The default value is 100.
 
