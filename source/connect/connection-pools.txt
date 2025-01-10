@@ -40,11 +40,11 @@ details on how to use a ``mongocxx::client`` in a thread-safe manner.
 Configuring a Connection Pool
 -----------------------------
 
-The number of clients in a connection pool is determined by the URI parameter
-``maxPoolSize``. The maximum number of clients created by a ``mongocxx::pool`` (both
-in the pool and checked out). The default value is 100. Once it is reached,
+The number of clients in a connection pool is limited by the URI parameter
+``maxPoolSize``. Once the number of clients created by a ``mongocxx::pool``
+(both in the pool and checked out) reaches ``maxPoolSize``,
 ``mongocxx::pool::acquire`` blocks until another thread returns a client to the
-pool. 
+pool. The default value is 100.
 
 Using a Connection Pool
 -----------------------
