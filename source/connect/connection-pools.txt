@@ -29,13 +29,16 @@ rather than "stopping the world", it's highly recommended to use a
 application has access to multiple threads, even if your application only
 uses one thread.
 
-Connection Pools and Thread Safety
-----------------------------------
+Using Connection Pools with Threads and Forks Safety
+----------------------------------------------------
 
 A ``mongocxx::pool`` can be shared across multiple threads and used to create
 clients. However, each ``mongocxx::client`` can only be used in a single
 thread. See the :ref:`thread safety documentation <cpp-thread-safety>` for
 details on how to use a ``mongocxx::client`` in a thread-safe manner.
+
+A ``mongocxx::pool`` can **not** be shared between a parent and a fork.
+You must create your connection pool after forking.
 
 Configuring a Connection Pool
 -----------------------------
