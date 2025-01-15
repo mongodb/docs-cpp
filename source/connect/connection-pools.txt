@@ -29,8 +29,8 @@ rather than "stopping the world", it's highly recommended to use a
 application has access to multiple threads, even if your application only
 uses one thread.
 
-Using Connection Pools with Threads and Forks Safety
-----------------------------------------------------
+Using Threads and Forks with Connection Pools
+---------------------------------------------
 
 A ``mongocxx::pool`` can be shared across multiple threads and used to create
 clients. However, each ``mongocxx::client`` can only be used in a single
