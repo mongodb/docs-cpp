@@ -41,8 +41,8 @@ Using Forks with Connection Pools
 ----------------------------------
 
 A ``mongocxx::pool`` **cannot** be shared between a parent and a fork.
-You must create your connection pool after forking. See :ref:`thread safety
-documentation <cpp-fork-safety>`. 
+You must create your connection pool after forking. See the :ref:`fork safety
+documentation <cpp-fork-safety>` documentation. 
 
 Configuring a Connection Pool
 -----------------------------
