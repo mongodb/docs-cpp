@@ -37,7 +37,7 @@ clients. However, each ``mongocxx::client`` can only be used in a single
 thread. See the :ref:`thread safety documentation <cpp-thread-safety>` for
 details on how to use a ``mongocxx::client`` in a thread-safe manner.
 
-A ``mongocxx::pool`` can **not** be shared between a parent and a fork.
+A ``mongocxx::pool`` **cannot** be shared between a parent and a fork.
 You must create your connection pool after forking.
 
 Configuring a Connection Pool
