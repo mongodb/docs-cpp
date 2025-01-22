@@ -29,11 +29,9 @@ values, and binary data. For a complete list of supported types, see the :manual
 page in the {+mdb-server+} manual. 
 
 .. note::
-
-   Although the `BSON specification <https://bsonspec.org/>`__ allows BSON
-   documents to have duplicate keys, you should avoid doing this. The MongoDB
-   server behavior is undefined when a BSON document contains duplicate keys,
-   which can result in unexpected behavior. 
+   
+   Avoid adding duplicate keys to BSON documents. Although the `BSON specification <https://bsonspec.org/>`__ 
+   allows duplicate keys, they can cause unexpected behavior in {+mdb-server+}.
 
 BSON Values and Views
 ~~~~~~~~~~~~~~~~~~~~~
