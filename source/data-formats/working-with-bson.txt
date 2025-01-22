@@ -28,6 +28,13 @@ and supports additional types, including dates, different-sized integers, ``Obje
 values, and binary data. For a complete list of supported types, see the :manual:`BSON Types </reference/bson-types/>`
 page in the {+mdb-server+} manual. 
 
+.. note::
+
+   Although the `BSON specification <https://bsonspec.org/>`__ allows BSON
+   documents to have duplicate keys, you should avoid doing this. The MongoDB
+   server behavior is undefined when a BSON document contains duplicate keys,
+   which can result in unexpected behavior. 
+
 BSON Values and Views
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -120,13 +127,6 @@ To create a BSON document by using the basic builder, specify your document's da
 key-value pair objects. You can create these key-value pair objects by passing a key and value
 to the ``builder::basic::kvp()`` method. The key must be a ``string`` type, and
 the value must be a ``bson_value::value`` type or implicitly convertible to one. 
-
-.. note::
-
-   Although the `BSON specification <https://bsonspec.org/>`__ allows BSON
-   documents to have duplicate keys, you should avoid doing this. The MongoDB
-   server behavior is undefined when a BSON document contains duplicate keys,
-   which can result in unexpected behavior. 
 
 You can use the basic builder's ``make_document()`` method to create a document and
 convert it to a ``bsoncxx::document::value`` in a single statement, as shown in the
