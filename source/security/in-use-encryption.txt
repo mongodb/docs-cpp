@@ -97,5 +97,157 @@ low cardinality is susceptible to code breaking by frequency analysis.
    - :wikipedia:`Cardinality <w/index.php?title=Cardinality_(data_modeling)&oldid=1182661589>`
    - :wikipedia:`Frequency Analysis <w/index.php?title=Frequency_analysis&oldid=1182536787>`
 
-To learn more about CSFLE, see the :ref:`cpp-client-side-encryption` guide and
-:manual:`CSFLE </core/csfle/>` in the Server manual.
+This section shows how to configure CSFLE using the following
+mechanisms:
+
+- :ref:`Automatic Encryption <cpp-csfle-automatic>`
+- :ref:`Explicit Encryption <cpp-csfle-explicit>`
+
+.. _cpp-csfle-automatic:
+
+Configure Automatic Encryption
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+   
+   Automatic client-side field level encryption requires MongoDB Enterprise
+   Server v4.2 or later. The community version of the server supports only
+   automatic decryption and explicit client-side field level encryption.
+
+Automatic encryption allows you to perform encrypted read and write operations
+without specifying how to encrypt fields. Automatic encryption relies
+on the ``mongocryptd`` binary, which is pre-packaged with MongoDB Enterprise
+Server. The ``mongocryptd`` binary spawns automatically when the driver
+encrypts data.
+
+Alternatively, you can explicitly start the ``mongocryptd`` binary by setting
+the ``extra_options`` field of an ``options::auto_encryption`` instance.
+Then, pass these options to your client in a ``client_opts`` instance.
+
+The following code shows how to start the ``mongocryptd`` binary separately
+from the driver:
+
+.. code-block:: cpp
+
+   auto mongocryptd_options = make_document(kvp("mongocryptdBypassSpawn", true));
+
+   options::auto_encryption auto_encrypt_opts{};
+   auto_encrypt_opts.extra_options({mongocryptd_options.view()});
+
+   options::client client_opts;
+   client_opts.auto_encryption_opts(std::move(auto_encrypt_opts));
+
+   // Create and use your client here
+
+Set an Encryption Schema
+````````````````````````
+
+You can use the ``schema_map`` option to specify an automatic encryption schema.
+Encryption schemas contain user-specified rules that identify which
+fields must be encrypted and how to encrypt those fields.
+
+Set the ``schema_map`` option to a JSON document that aligns
+with the `JSON Schema Draft 4 <https://datatracker.ietf.org/doc/html/draft-zyp-json-schema-04>`__
+standard syntax. This document must include the field names to encrypt
+and a nested ``encrypt`` object under each field name, which sets the
+encryption options to use.
+
+.. tip::
+
+   To learn more about encryption schemas, see
+   :manual:`CSFLE Encryption Schemas </core/csfle/reference/encryption-schemas/>`
+   in the {+mdb-server+}
+
+The following code shows the syntax for specifying a JSON Schema document:
+
+.. code-block:: cpp
+
+   auto data_key_id = client_encryption.create_data_key("local");
+   auto json_schema = document{} << "properties" << open_document << "encryptedFieldName" << open_document << "encrypt"
+                                 << open_document << "keyId" << open_array << data_key_id << close_array << "bsonType"
+                                 << "string"
+                                 << "algorithm"
+                                 << "AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic" << close_document << close_document
+                                 << close_document << "bsonType"
+                                 << "object" << finalize;
+
+To view a full example that uses the preceding ``json_schema`` document to
+configure an automatic encryption schema, see the :github:`Automatic CSFLE
+</mongo-cxx-driver/blob/master/examples/mongocxx/automatic_client_side_field_level_encryption.cpp>`
+example in the driver source code.
+
+.. tip::
+
+   You can also specify an automatic encryption schema for 
+   server-side field level encryption. To view a full example,
+   see the :github:`Server-Side Field Level Encryption Enforcement </mongo-cxx-driver/blob/master/examples/mongocxx/server_side_field_level_encryption_enforcement.cpp>`
+   example in the driver source code.
+
+.. _cpp-csfle-explicit:
+
+Configure Explicit Encryption
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Explicit encryption allows you to perform encrypted operations
+by using the driver's encryption library. To use explicit encryption,
+you must specify the encryption logic throughout your application.
+
+The following example configures explicit encryption
+for an insert operation, which inserts an encrypted message
+into the database:
+
+.. code-block:: cpp
+
+   // Configure your MongoDB client here
+
+   auto kms_providers = document{} << "local" << open_document << "key"
+                                   << local_master_key << close_document
+                                   << finalize;
+
+   options::client_encryption client_encryption_opts{};
+   client_encryption_opts.key_vault_namespace({"keyvault", "datakeys"});
+   client_encryption_opts.kms_providers(kms_providers.view());
+   client_encryption_opts.key_vault_client(&client);
+
+   class client_encryption client_encryption(std::move(client_encryption_opts));
+
+   // Explicitly encrypts a BSON value
+   auto to_encrypt = bsoncxx::types::bson_value::make_value("secret message");
+   auto encrypted_message = client_encryption.encrypt(to_encrypt, encrypt_opts);
+
+   // Explicitly decrypts a BSON value.
+   auto decrypted_message = client_encryption.decrypt(encrypted_message);
+
+   coll.insert_one(make_document(kvp("encryptedField", encrypted_message)));
+
+To view a full example that configures explicit encryption,
+see the :github:`Explicit Encryption </mongo-cxx-driver/blob/master/examples/mongocxx/explicit_encryption.cpp>`
+example in the driver source code.
+
+Explicit Encryption with Automatic Decryption
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can configure explicit encryption and automatic decryption,
+which is supported for all users. To configure automatic decryption
+without automatic encryption, set ``bypass_auto_encryption=True``
+in the ``options::auto_encryption`` class.
+
+.. code-block:: cpp
+
+   options::auto_encryption auto_encrypt_opts{};
+   auto_encrypt_opts.bypass_auto_encryption(true);
+   // Please see full example for complete options construction.
+
+   // Create a client with automatic decryption enabled, but automatic encryption bypassed.
+   options::client client_opts{};
+   client_opts.auto_encryption_opts(std::move(auto_encrypt_opts));
+   class client client_encrypted {uri{}, std::move(client_opts)};
+
+Please see  `examples/mongocxx/explicit_encryption_auto_decryption.cpp
+<https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/mongocxx/explicit_encryption_auto_decryption.cpp>`__
+for an example of using explicit encryption with automatic decryption.
+
+Additional Information
+----------------------
+
+To learn more about CSFLE, see :manual:`CSFLE </core/csfle/>` in the Server manual.
