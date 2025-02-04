@@ -97,7 +97,7 @@ low cardinality is susceptible to code breaking by frequency analysis.
    - :wikipedia:`Cardinality <w/index.php?title=Cardinality_(data_modeling)&oldid=1182661589>`
    - :wikipedia:`Frequency Analysis <w/index.php?title=Frequency_analysis&oldid=1182536787>`
 
-This section shows how to configure CSFLE using the following
+This section shows how to configure CSFLE by using the following
 mechanisms:
 
 - :ref:`Automatic Encryption <cpp-csfle-automatic>`
@@ -215,9 +215,10 @@ into the database:
    auto to_encrypt = bsoncxx::types::bson_value::make_value("secret message");
    auto encrypted_message = client_encryption.encrypt(to_encrypt, encrypt_opts);
 
-   // Explicitly decrypts a BSON value.
+   // Explicitly decrypts a BSON value
    auto decrypted_message = client_encryption.decrypt(encrypted_message);
 
+   // Inserts the encrypted value into the database
    coll.insert_one(make_document(kvp("encryptedField", encrypted_message)));
 
 To view a full example that configures explicit encryption,
@@ -229,23 +230,29 @@ Explicit Encryption with Automatic Decryption
 
 You can configure explicit encryption and automatic decryption,
 which is supported for all users. To configure automatic decryption
-without automatic encryption, set ``bypass_auto_encryption=True``
-in the ``options::auto_encryption`` class.
+without automatic encryption, create an ``options::auto_encryption``
+instance and set its ``bypass_auto_encryption`` field to ``true``.
+Then, apply these options to your client.
+
+The following example creates a ``options::auto_encryption`` instance
+to configure explicit encryption with automatic decryption,
+then passes this options instance to the ``auto_encryption_opts`` field
+of a ``options::client``. This creates a client configured to
+use automatic decryption:
 
 .. code-block:: cpp
 
    options::auto_encryption auto_encrypt_opts{};
    auto_encrypt_opts.bypass_auto_encryption(true);
-   // Please see full example for complete options construction.
 
-   // Create a client with automatic decryption enabled, but automatic encryption bypassed.
    options::client client_opts{};
    client_opts.auto_encryption_opts(std::move(auto_encrypt_opts));
    class client client_encrypted {uri{}, std::move(client_opts)};
 
-Please see  `examples/mongocxx/explicit_encryption_auto_decryption.cpp
-<https://github.com/mongodb/mongo-cxx-driver/blob/master/examples/mongocxx/explicit_encryption_auto_decryption.cpp>`__
-for an example of using explicit encryption with automatic decryption.
+To view a full example that configures explicit encryption
+with automatic decryption, see the :github:`Explicit Encryption Auto Decryption
+</mongo-cxx-driver/blob/master/examples/mongocxx/explicit_encryption_auto_decryption.cpp>`
+example in the driver source code.
 
 Additional Information
 ----------------------
