@@ -150,7 +150,7 @@ encryption options to use.
 
    To learn more about encryption schemas, see
    :manual:`CSFLE Encryption Schemas </core/csfle/reference/encryption-schemas/>`
-   in the {+mdb-server+}
+   in the {+mdb-server+} manual.
 
 The following code shows the syntax for specifying a JSON schema document:
 
@@ -204,10 +204,10 @@ without automatic encryption, create an ``options::auto_encryption``
 instance and set its ``bypass_auto_encryption`` field to ``true``.
 Then, apply these options to your client.
 
-The following example creates a ``options::auto_encryption`` instance
+The following example creates an ``options::auto_encryption`` instance
 to configure explicit encryption with automatic decryption,
 then passes this options instance to the ``auto_encryption_opts`` field
-of a ``options::client``. This creates a client configured to
+of an ``options::client``. This creates a client configured to
 use automatic decryption:
 
 .. literalinclude:: /includes/csfle.cpp
