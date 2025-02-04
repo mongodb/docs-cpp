@@ -7,7 +7,7 @@ In-Use Encryption
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. facet::
@@ -152,7 +152,7 @@ encryption options to use.
    :manual:`CSFLE Encryption Schemas </core/csfle/reference/encryption-schemas/>`
    in the {+mdb-server+}
 
-The following code shows the syntax for specifying a JSON Schema document:
+The following code shows the syntax for specifying a JSON schema document:
 
 .. literalinclude:: /includes/csfle.cpp
    :language: cpp
@@ -162,14 +162,14 @@ The following code shows the syntax for specifying a JSON Schema document:
 
 To view a full example that uses the preceding ``json_schema`` document to
 configure an automatic encryption schema, see the :github:`Automatic CSFLE
-</mongo-cxx-driver/blob/master/examples/mongocxx/automatic_client_side_field_level_encryption.cpp>`
+<mongo-cxx-driver/blob/master/examples/mongocxx/automatic_client_side_field_level_encryption.cpp>`
 example in the driver source code.
 
 .. tip::
 
    You can also specify an automatic encryption schema for 
    server-side field level encryption. To view a full example,
-   see the :github:`Server-Side Field Level Encryption Enforcement </mongo-cxx-driver/blob/master/examples/mongocxx/server_side_field_level_encryption_enforcement.cpp>`
+   see the :github:`Server-Side Field Level Encryption Enforcement <mongo-cxx-driver/blob/master/examples/mongocxx/server_side_field_level_encryption_enforcement.cpp>`
    example in the driver source code.
 
 .. _cpp-csfle-explicit:
@@ -192,11 +192,11 @@ into the database:
    :end-before: // end-explicit-encrypt
 
 To view a full example that configures explicit encryption,
-see the :github:`Explicit Encryption </mongo-cxx-driver/blob/master/examples/mongocxx/explicit_encryption.cpp>`
+see the :github:`Explicit Encryption <mongo-cxx-driver/blob/master/examples/mongocxx/explicit_encryption.cpp>`
 example in the driver source code.
 
 Explicit Encryption with Automatic Decryption
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`````````````````````````````````````````````
 
 You can configure explicit encryption and automatic decryption,
 which is supported for all users. To configure automatic decryption
@@ -218,7 +218,7 @@ use automatic decryption:
 
 To view a full example that configures explicit encryption
 with automatic decryption, see the :github:`Explicit Encryption Auto Decryption
-</mongo-cxx-driver/blob/master/examples/mongocxx/explicit_encryption_auto_decryption.cpp>`
+<mongo-cxx-driver/blob/master/examples/mongocxx/explicit_encryption_auto_decryption.cpp>`
 example in the driver source code.
 
 Additional Information
