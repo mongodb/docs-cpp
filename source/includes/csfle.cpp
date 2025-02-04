@@ -22,18 +22,14 @@ auto json_schema = document{} << "properties" << open_document << "encryptedFiel
 // end-json-schema
 
 // start-explicit-encrypt
-// Configure your MongoDB client here
-
-auto kms_providers = document{} << "local" << open_document << "key"
-                                << local_master_key << close_document
-                                << finalize;
-
-options::client_encryption client_encryption_opts{};
-client_encryption_opts.key_vault_namespace({"keyvault", "datakeys"});
-client_encryption_opts.kms_providers(kms_providers.view());
-client_encryption_opts.key_vault_client(&client);
+// Configure your MongoDB client's encryption options here
 
 class client_encryption client_encryption(std::move(client_encryption_opts));
+
+auto data_key_id = client_encryption.create_data_key("local");
+options::encrypt encrypt_opts{};
+encrypt_opts.key_id(data_key_id.view());
+encrypt_opts.algorithm(options::encrypt::encryption_algorithm::k_deterministic);
 
 // Explicitly encrypts a BSON value
 auto to_encrypt = bsoncxx::types::bson_value::make_value("secret message");
