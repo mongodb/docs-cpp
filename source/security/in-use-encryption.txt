@@ -108,30 +108,22 @@ mechanisms:
 Configure Automatic Encryption
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note::
-   
-   Automatic client-side field level encryption requires MongoDB Enterprise
-   Server v4.2 or later. The community version of the server supports only
-   automatic decryption and explicit client-side field level encryption.
-
 Automatic encryption allows you to perform encrypted read and write operations
-without specifying how to encrypt fields. Automatic encryption relies
-on the ``mongocryptd`` binary, which is pre-packaged with MongoDB Enterprise
-Server. The ``mongocryptd`` binary spawns automatically when the driver
-encrypts data.
+without specifying how to encrypt fields. To enable automatic encryption, use
+one of the following libraries:
 
-Alternatively, you can explicitly start the ``mongocryptd`` binary by setting
-the ``extra_options`` field of an ``options::auto_encryption`` instance.
-Then, pass these options to your client in a ``client_opts`` instance.
+- ``crypt_shared`` *(Recommended)*: A dynamic library that reads the encryption schema
+  to determine which fields to encrypt and decrypt. When using this library, you do not
+  need to spawn a separate process to perform automatic encryption.
 
-The following code shows how to start the ``mongocryptd`` binary separately
-from the driver:
+- ``mongocryptd``: A binary pre-packaged with MongoDB Enterprise Server that uses
+  specified automatic encryption rules to mark fields for encryption. ``mongocryptd``
+  spawns automatically when you create a CSFLE-enabled client, but you can explicitly start
+  the binary in an ``options::auto_encryption`` instance.
 
-.. literalinclude:: /includes/csfle.cpp
-   :language: cpp
-   :copyable: true
-   :start-after: // start-auto-encrypt
-   :end-before: // end-auto-encrypt
+.. important::
+   
+   ``mongocryptd`` requires MongoDB Enterprise Server v4.2 or later.
 
 Set an Encryption Schema
 ````````````````````````
