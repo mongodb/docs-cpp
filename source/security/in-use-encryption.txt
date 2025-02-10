@@ -125,6 +125,10 @@ one of the following libraries:
    
    ``mongocryptd`` requires MongoDB Enterprise Server v4.2 or later.
 
+To learn more about the automatic encryption libraries, see
+:manual:`Install and Configure a CSFLE Library </core/csfle/reference/install-library/>`
+in the {+mdb-server+} manual.
+
 Set an Encryption Schema
 ````````````````````````
 
