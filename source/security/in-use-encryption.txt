@@ -110,7 +110,7 @@ Configure Automatic Encryption
 
 Automatic encryption allows you to perform encrypted read and write operations
 without specifying how to encrypt fields. To enable automatic encryption, use
-one of the following libraries:
+one of the following:
 
 - ``crypt_shared`` *(Recommended)*: A dynamic library that reads the encryption schema
   to determine which fields to encrypt and decrypt. When using this library, you do not
@@ -125,7 +125,7 @@ one of the following libraries:
    
    ``mongocryptd`` requires MongoDB Enterprise Server v4.2 or later.
 
-To learn more about the automatic encryption libraries, see
+To learn more about configuring automatic encryption, see
 :manual:`Install and Configure a CSFLE Library </core/csfle/reference/install-library/>`
 in the {+mdb-server+} manual.
 
