@@ -224,7 +224,7 @@ corresponds to your Atlas cluster.
 
 .. _cpp-quick-start-connect-to-mongodb:
 
-Connect to MongoDB
+Run a Sample Query
 ------------------
 
 .. facet::
