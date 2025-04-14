@@ -5,7 +5,7 @@ Testing
 =======
 
 .. meta::
-   :description: Learn how to run and write tests for the C++11 driver using Catch, including unit and integration tests.
+   :description: Learn how to run and write tests for the C++ driver using Catch, including unit and integration tests.
 
 .. contents:: On this page
    :local:
