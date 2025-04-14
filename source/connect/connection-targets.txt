@@ -97,6 +97,7 @@ hosts, including ``host1``:
    :copyable: true
 
 .. note:: Replica Set in Docker
+
    .. sharedinclude:: dbx/docker-replica-set.rst
 
 Initialization
