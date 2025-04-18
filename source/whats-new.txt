@@ -44,7 +44,7 @@ The v4.0 driver release includes the following new features:
 
 The release includes the following bug:
 
-- CMake might incorrectly set the API version (``BUILD_VERSION``) for an 
+- CMake might incorrectly set the API version for an 
   auto-downloaded C driver to ``0.0.0`` when the CMake project is configured 
   more than once or to the same value as the C++ driver's 
   API version when ``BUILD_VERSION`` is explicitly set during initial configuration. 
