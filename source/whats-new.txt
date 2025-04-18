@@ -49,7 +49,7 @@ The release includes the following bug:
   more than once or to the same value as the C++ driver's 
   API version when ``BUILD_VERSION`` is explicitly set during initial configuration. 
   CMake will only auto-download the C driver with the C++ driver 
-  if it cannot find an existing C driver installation via ``find_package()``. 
+  if it cannot find an existing C driver installation by using ``find_package()``. 
   This bug will be fixed in an upcoming patch release. 
 
 To learn more about this release, see the
@@ -82,7 +82,7 @@ The release includes the following bug:
   more than once or to the same value as the C++ driver's 
   API version when ``BUILD_VERSION`` is explicitly set during initial configuration. 
   CMake will only auto-download the C driver with the C++ driver 
-  if it cannot find an existing C driver installation via ``find_package()``. 
+  if it cannot find an existing C driver installation by using ``find_package()``. 
   This bug will be fixed in an upcoming patch release. 
 
 To learn more about this release, see the
