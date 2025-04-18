@@ -44,10 +44,10 @@ The v4.0 driver release includes the following new features:
 
 The release includes the following bug:
 
-- CMake may incorrectly set the API version (``BUILD_VERSION``) for an 
-  auto-downloaded C driver to ``0.0.0`` or to the same value as the C++ Driver's 
-  API version. CMake will only auto-download the C Driver with the C++ Driver 
-  if it cannot find an existing C Driver installation. This ``BUILD_VERSION`` 
+- CMake might incorrectly set the API version (``BUILD_VERSION``) for an 
+  auto-downloaded C driver to ``0.0.0`` or to the same value as the C++ driver's 
+  API version. CMake will only auto-download the C driver with the C++ driver 
+  if it cannot find an existing C driver installation. This ``BUILD_VERSION`` 
   error will be fixed in an upcoming patch release. 
 
 To learn more about this release, see the
@@ -75,10 +75,10 @@ The v3.11 driver release includes the following new features:
 
 The release includes the following bug:
 
-- CMake may incorrectly set the API version (``BUILD_VERSION``) for an 
-  auto-downloaded C driver to ``0.0.0`` or to the same value as the C++ Driver's 
-  API version. CMake will only auto-download the C Driver with the C++ Driver 
-  if it cannot find an existing C Driver installation. This ``BUILD_VERSION`` 
+- CMake might incorrectly set the API version (``BUILD_VERSION``) for an 
+  auto-downloaded C driver to ``0.0.0`` or to the same value as the C++ driver's 
+  API version. CMake will only auto-download the C driver with the C++ driver 
+  if it cannot find an existing C driver installation. This ``BUILD_VERSION`` 
   error will be fixed in an upcoming patch release. 
 
 To learn more about this release, see the
