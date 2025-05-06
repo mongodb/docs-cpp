@@ -49,10 +49,12 @@ The v4.1 driver release includes the following new features:
 - Replaces the ``storage_options()`` method with ``storage_engine()`` in ``mongocxx::v_noabi::options::index``
 - Declares C++17 polyfill implementations for ``optional<T>`` and ``string_view`` in the ``bsoncxx::v1::stdx`` namespace. The
   ``bsoncxx::v_noabi::stdx`` namespace now contains type aliases to their v1
-  equivalents. 
+  equivalents.
+
   .. note::
 
      This does not affect users who compile with C++17 or newer and have not set ``BSONCXX_POLY_USE_IMPLS=ON``
+     
 - Supports for the sort option with ``replaceOne`` and ``updateOne`` operations
 - Adds support ``$lookup`` in CSFLE and QE
 
