@@ -189,7 +189,7 @@ For documentation about previous releases, see the `legacy documentation <https:
 
    * - mongocxx 4.0.x
      - Stable
-     - Bug fixes until ????
+     - None
      - Previous stable C++ driver release 
    
    * - mongocxx 3.11.x
