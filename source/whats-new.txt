@@ -38,7 +38,8 @@ The v4.1 driver release includes the following new features:
   
   For more information, see the following resources:
 
-  - :manual:`Binary Data BSON Types </reference/bson-types/#binary-data>` in the {+mdb-server+} manual usage example on GitHub
+  - :manual:`Binary Data BSON Types </reference/bson-types/#binary-data>` in the {+mdb-server+} manual
+  - :github:`BSON Binary Vector </mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/bson_binary_vector.cpp>` usage example on GitHub
 
 .. _version-4.0:
 
