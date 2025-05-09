@@ -40,14 +40,8 @@ What's New in 4.1
 
 The v4.1 driver release includes the following new features:
 
-- Replaces the ``storage_options()`` method with ``storage_engine()`` in ``mongocxx::v_noabi::options::index``
-- Declares C++17 polyfill implementations for ``optional<T>`` and ``string_view`` in the ``bsoncxx::v1::stdx`` namespace. The
-  ``bsoncxx::v_noabi::stdx`` namespace now contains type aliases to their v1
-  equivalents.
+- Deprecates ``storage_options()`` method for the newly added ``storage_engine()`` method in ``mongocxx::v_noabi::options::index``
 
-  .. note::
-
-     This does not affect users who compile with C++17 or newer and have not set ``BSONCXX_POLY_USE_IMPLS=ON``
 
 - Adds support for the BSON Binary Vector type.  
   
@@ -55,8 +49,7 @@ The v4.1 driver release includes the following new features:
 
   - :manual:`Binary Data BSON Types </reference/bson-types/#binary-data>` in the {+mdb-server+} manual
   - :github:`BSON Binary Vector </mongodb/mongo-cxx-driver/blob/master/examples/bsoncxx/bson_binary_vector.cpp>` usage example on GitHub
-- Fixes the :ref:`CMake API versioning error <v4.0-cmake-api-version-bug>` noted
-  in the v4.0 release
+- Fixes the :ref:`C driver API version bug <v4.0-cmake-api-version-bug>` noted in the v4.0 release
 
 To learn more about this release, see the
 `v4.1 Release Notes <https://github.com/mongodb/mongo-cxx-driver/releases/tag/r4.1.0>`__
