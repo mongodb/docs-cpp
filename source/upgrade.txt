@@ -151,7 +151,7 @@ The v4.1 driver introduces the following breaking changes to the ABI:
 .. _version-4.1-enable-tests-config:
 
 - Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default,
-  including for auto-downloaded versions of {+driver-short+}. To
+  including for auto-downloaded versions of the {+driver-short+}. To
   re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
   To include test targets in the "all" target, you must also set the
   ``BUILD_TESTING`` option to ``ON``.
