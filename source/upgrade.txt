@@ -145,7 +145,16 @@ The v4.1 driver introduces the following breaking changes to the ABI:
 
   .. note::
 
-     This does not affect users who compile with C++17 or newer and have not set ``BSONCXX_POLY_USE_IMPLS=ON``
+     This does not affect users who compile with C++17 or newer and have not set
+     ``BSONCXX_POLY_USE_IMPLS=ON``
+
+.. _version-4.1-enable-tests-config:
+
+- Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default,
+  including for auto-downloaded versions of {+driver-short+}. To
+  re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
+  To include test targets in the "all" target, you must also set the
+  ``BUILD_TESTING`` option to ``ON``.
 
 .. _version-4.0-breaking-changes:
 
@@ -170,10 +179,11 @@ The v4.0 driver introduces the following breaking changes to the build system:
 - Drops support for the ``MONGOCXX_OVERRIDE_DEFAULT_INSTALL_PREFIX`` configuration
   option. Default CMake behavior for ``CMAKE_INSTALL_PREFIX`` is now respected.
 
-- Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default. To
-  re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
-  To include test targets in the "all" target, you must also set the
-  ``BUILD_TESTING`` option to ``ON``.
+.. note:: 
+
+   The :ref:`ENABLE_TESTS configuration option change
+   <version-4.1-enable-tests-config>` was originally announced for v4.0, but
+   instead was released with v4.1.
 
 .. _version-4.0-api-breaking:
 
