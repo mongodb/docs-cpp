@@ -150,11 +150,9 @@ The v4.1 driver introduces the following breaking changes to the ABI:
 
 .. _version-4.1-enable-tests-config:
 
-- Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default,
-  including for auto-downloaded versions of the {+driver-short+}. To
-  re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
-  To include test targets in the "all" target, you must also set the
-  ``BUILD_TESTING`` option to ``ON``.
+- Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default for
+  auto-downloaded versions of the {+driver-short+}. :ref:`This is an expansion of the
+  change made in v4.0. <version-4.0-enable-tests-config>`
 
 .. _version-4.0-breaking-changes:
 
@@ -179,11 +177,18 @@ The v4.0 driver introduces the following breaking changes to the build system:
 - Drops support for the ``MONGOCXX_OVERRIDE_DEFAULT_INSTALL_PREFIX`` configuration
   option. Default CMake behavior for ``CMAKE_INSTALL_PREFIX`` is now respected.
 
-.. note:: 
+.. _version-4.0-enable-tests-config:
 
-   The :ref:`ENABLE_TESTS configuration option change
-   <version-4.1-enable-tests-config>` was originally announced for v4.0, but
-   instead was released with v4.1.
+- Sets the ``ENABLE_TESTS`` configuration option to ``OFF`` by default. To
+  re-enable building test targets, you must set ``ENABLE_TESTS`` to ``ON``.
+  To include test targets in the "all" target, you must also set the
+  ``BUILD_TESTING`` option to ``ON``.
+
+  .. note:: 
+
+    This change does not apply to auto-downloaded versions of the
+    {+driver-short+}. :ref:`The change for auto-downloaded versions was added in
+    v4.1. <version-4.1-enable-tests-config>` 
 
 .. _version-4.0-api-breaking:
 
