@@ -38,18 +38,6 @@ programming language, see our :driver:`list of official drivers <>`.
 
 .. _cpp-quick-start-download-and-install:
 
-Minimum Compiler Requirements
------------------------------
-
-To build the MongoDB C++ driver from source, you must use a compiler that meets the following minimum version requirements:
-
-- GCC 8.1 or newer
-- Clang 3.8 or newer
-- Apple Clang 13.1 or newer
-- MSVC 19.0.24210 (Visual Studio 2015 Update 3) or newer
-
-These requirements apply only when building from source. Using prebuilt headers and libraries does not require these compiler versions.
-
 Download and Install
 --------------------
 
@@ -61,8 +49,13 @@ Download and Install
       Before you begin this tutorial, ensure you have the following dependencies
       installed in your development environment:
       
-      - Compiler that supports C++17, such as `GCC <https://gcc.gnu.org/install/>`__, `Clang <https://clang.llvm.org/>`__,
-        or `Visual Studio <https://visualstudio.microsoft.com/>`__
+      - Compiler that supports C++17, such as one of the following:
+
+         - `GCC <https://gcc.gnu.org/install/>`__ v8.1 or newer
+         - `Clang <https://clang.llvm.org/>`__ v3.8 or newer
+         - `Apple Clang <https://developer.apple.com/xcode/>`__ v13.1 or newer
+         - `Visual Studio <https://visualstudio.microsoft.com/vs/features/cplusplus/>`__ 2015 Update 3 or newer
+      
       - `CMake <https://cmake.org/>`__ v3.15 or later
       - `pkg-config <https://www.freedesktop.org/wiki/Software/pkg-config/>`__
 
