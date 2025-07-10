@@ -51,11 +51,11 @@ Download and Install
       
       - Compiler that supports C++17, such as one of the following:
 
-         - `GCC <https://gcc.gnu.org/install/>`__ v8.1 or newer
-         - `Clang <https://clang.llvm.org/>`__ v3.8 or newer
-         - `Apple Clang <https://developer.apple.com/xcode/>`__ v13.1 or newer
-         - `Visual Studio <https://visualstudio.microsoft.com/vs/features/cplusplus/>`__ 2015 Update 3 or newer
-      
+         - `GCC <https://gcc.gnu.org/install/>`__ v8.1 or later
+         - `Clang <https://clang.llvm.org/>`__ v3.8 or later
+         - `Apple Clang <https://developer.apple.com/xcode/>`__ v13.1 or later
+         - `Visual Studio <https://visualstudio.microsoft.com/vs/features/cplusplus/>`__ 2015 Update 3 or later
+
       - `CMake <https://cmake.org/>`__ v3.15 or later
       - `pkg-config <https://www.freedesktop.org/wiki/Software/pkg-config/>`__
 
