@@ -54,3 +54,10 @@ The first column lists the driver version.
 
 For more information on how to read the compatibility tables, see our guide on
 :ref:`MongoDB Compatibility Tables. <about-driver-compatibility>`
+
+Compiler Compatibility
+----------------------
+
+The {+driver-short+} supports the following compilers:
+
+.. include:: /includes/compiler-compatibility-table-cxx.rst
